@@ -4,12 +4,15 @@
 
 *Криптографічно-геометричний водяний знак та суверенне запечатування документів на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002*
 
+[![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23429018.svg)](https://doi.org/10.5281/zenodo.23429018)
 [![Zenodo Record](https://img.shields.io/badge/CERN_Zenodo-23429018-024289.svg)](https://zenodo.org/records/23429018)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Whitepaper-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 [![Standard: DSTU 4145-2002](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_GF(2%5E257)-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Platform: Debian / GNOME](https://img.shields.io/badge/Platform-Debian_Linux_%7C_GTK4_Adwaita-8a6206.svg)](build.sh)
+
+> **🌐 [Open the Interactive Browser Verifier & Sri Yantra 9-Triangle Inspector → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)**
 
 ---
 
