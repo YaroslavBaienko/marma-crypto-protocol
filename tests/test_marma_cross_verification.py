@@ -77,7 +77,7 @@ const sandbox = {{
 }};
 vm.createContext(sandbox);
 vm.runInContext(scriptMatch[1], sandbox);
-const testFn = new vm.Script(`(async () => {{ {js_body} }})()`);
+const testFn = new vm.Script({json.dumps(f"(async () => {{ {js_body} }})()")});
 testFn.runInContext(sandbox).then(res => {{
   console.log(JSON.stringify({{ ok: true, result: res }}));
 }}).catch(err => {{
@@ -835,12 +835,37 @@ print(json.dumps(out))
             tmp_dir = Path(tmp)
             browser_pdf = tmp_dir / "browser_sealed_ma_party_07.pdf"
             browser_svg = tmp_dir / "browser_sealed_ma_party_07.svg"
-            secret = "DEAL-ROOM-MASTER-SECRET-2026"
+            py_svg_special = tmp_dir / "py_sealed_special.svg"
+            py_initial_pdf = tmp_dir / "py_initial_signed.pdf"
+            browser_resealed_pdf = tmp_dir / "browser_resealed_from_py.pdf"
+            py_resealed_pdf = tmp_dir / "py_resealed_from_browser.pdf"
+            protocol_pdf = tmp_dir / "browser_sealed_protocol.pdf"
+
+            secret = "DEAL-ROOM-MASTER-SECRET-2026::КЛЮЧ-108"
             recipient = "M&A-Party-07"
             suspect_pool = ["Investor-Alpha", "M&A-Party-07", "Legal-Counsel-B", "Board-Observer-X"]
+            special_payload = 'КОНФІДЕНЦІЙНО · M&A <Term Sheet> & "GOLAW" \'2026\''
+            special_signer = 'Баєнко Ярослав & Партнери "M&A" <Law>'
+
+            # Prepare a Python-CLI-signed PDF first so we can also test re-sealing it in Browser Studio
+            raw_pdf = tmp_dir / "raw_base.pdf"
+            d_raw = pymupdf.open()
+            d_raw.new_page().insert_text((72, 100), "Base Deal Document for Cross-Sealing", fontsize=12)
+            d_raw.save(str(raw_pdf))
+            d_raw.close()
+            mw.stamp_pdf_document(raw_pdf, py_initial_pdf, secret_key="OLD-PYTHON-KEY", recipient_id="Investor-Alpha")
+
+            # Also sign an SVG in Python CLI with XML special characters & Cyrillic
+            mw.sign_sri_yantra_svg(
+                special_payload,
+                secret,
+                py_svg_special,
+                signer_key_name=special_signer,
+                recipient_id=recipient,
+            )
 
             js_seal_res = run_browser_js_harness(f"""
-              document.getElementById("sealerSignerInput").value = "GOLAW-Deal-Room-Authority";
+              document.getElementById("sealerSignerInput").value = {json.dumps(special_signer)};
               document.getElementById("sealerSecretInput").value = {json.dumps(secret)};
               document.getElementById("sealerRecipientsInput").value = "Investor-Alpha, M&A-Party-07, Legal-Counsel-B";
 
@@ -853,20 +878,49 @@ print(json.dumps(out))
               // Save the 2nd sealed PDF copy (M&A-Party-07) to disk for Python CLI verification
               fs.writeFileSync({json.dumps(str(browser_pdf))}, Buffer.from(generatedSealedCopies[1].sealedBytes));
 
-              // 2. Also seal an SVG in the Browser Studio for M&A-Party-07 and save to disk
-              const svgSealed = sealSvgInBrowser("BROWSER-SVG-PAYLOAD-V1.3::MA-DEAL-108", {{
+              // 2. Seal an SVG in the Browser Studio with XML special chars & Cyrillic for M&A-Party-07
+              const svgSealed = sealSvgInBrowser({json.dumps(special_payload)}, {{
                 secretKey: {json.dumps(secret)},
-                signerName: "GOLAW-Deal-Room-Authority",
+                signerName: {json.dumps(special_signer)},
                 recipientId: {json.dumps(recipient)}
               }});
               fs.writeFileSync({json.dumps(str(browser_svg))}, Buffer.from(svgSealed.sealedBytes));
+
+              // Verify Browser-sealed SVG in Browser Verifier
+              const parsedBrowserSvg = extractMarmaSealFromBytes(svgSealed.sealedBytes, "browser_sealed.svg");
+              renderVerificationState(parsedBrowserSvg, "browser_sealed.svg", false);
+              const browserSvgSelfOk = elems.statusBanner.className.includes("ok");
+
+              // Verify Python-sealed SVG (with XML special chars & Cyrillic) in Browser Verifier
+              const pySvgBytes = new Uint8Array(fs.readFileSync({json.dumps(str(py_svg_special))}));
+              const parsedPySvg = extractMarmaSealFromBytes(pySvgBytes, "py_sealed_special.svg");
+              renderVerificationState(parsedPySvg, "py_sealed_special.svg", false);
+              const pySvgInBrowserOk = elems.statusBanner.className.includes("ok");
+
+              // 3. Re-seal the already Python-CLI-signed PDF inside Browser Studio for Board-Observer-X
+              const pyPdfBytes = new Uint8Array(fs.readFileSync({json.dumps(str(py_initial_pdf))}));
+              const resealed = sealPdfBytesInBrowser(pyPdfBytes, {{
+                secretKey: {json.dumps(secret)},
+                signerName: {json.dumps(special_signer)},
+                recipientId: "Board-Observer-X"
+              }});
+              fs.writeFileSync({json.dumps(str(browser_resealed_pdf))}, Buffer.from(resealed.sealedBytes));
+              const parsedResealed = extractMarmaSealFromBytes(resealed.sealedBytes, "browser_resealed.pdf");
+              renderVerificationState(parsedResealed, "browser_resealed.pdf", false);
+              const resealedInBrowserOk = elems.statusBanner.className.includes("ok");
 
               return {{
                 demoBannerOk,
                 demoTraceText,
                 copiesCount,
                 pdfBeacon: generatedSealedCopies[1].beaconWord,
-                svgBeacon: svgSealed.sealPacket.canary.beacon_word
+                svgBeacon: svgSealed.sealPacket.canary.beacon_word,
+                browserSvgSelfOk,
+                pySvgInBrowserOk,
+                parsedPySvgPayload: parsedPySvg.payload,
+                parsedPySvgSigner: parsedPySvg.signer_key_name,
+                resealedInBrowserOk,
+                resealedSigner: parsedResealed.signer_key_name
               }};
             """)
 
@@ -875,14 +929,21 @@ print(json.dumps(out))
             self.assertIn("M&A-Party-07", js_seal_res["demoTraceText"])
             self.assertGreater(js_seal_res["pdfBeacon"], 0)
             self.assertGreater(js_seal_res["svgBeacon"], 0)
+            self.assertTrue(js_seal_res["browserSvgSelfOk"])
+            self.assertTrue(js_seal_res["pySvgInBrowserOk"])
+            self.assertEqual(js_seal_res["parsedPySvgPayload"], special_payload)
+            self.assertEqual(js_seal_res["parsedPySvgSigner"], special_signer)
+            self.assertTrue(js_seal_res["resealedInBrowserOk"])
+            self.assertEqual(js_seal_res["resealedSigner"], special_signer)
 
-            # 3. Verify Browser-sealed PDF in Python CLI (both public mode and strict-key + recipient mode)
+            # 4. Verify Browser-sealed PDF in Python CLI (both public mode and strict-key + recipient mode)
             py_pdf_pub = mw.verify_pdf_document(browser_pdf)
             self.assertTrue(py_pdf_pub["verified"], f"Python public verify failed on Browser PDF: {py_pdf_pub}")
             self.assertEqual(py_pdf_pub["protocol"], "MARMA-DSTU4145-V1.3")
             self.assertEqual(py_pdf_pub["marma_bits"], 256)
             self.assertTrue(py_pdf_pub["bijective_256bit_match"])
             self.assertTrue(py_pdf_pub["dstu4145_verified"])
+            self.assertEqual(py_pdf_pub["signer_key_name"], special_signer)
             self.assertEqual(py_pdf_pub["max_coordinate_signature_drift"], 0.0)
             self.assertEqual(py_pdf_pub["max_bilateral_symmetry_error"], 0.0)
 
@@ -893,19 +954,45 @@ print(json.dumps(out))
             py_pdf_wrong_key = mw.verify_pdf_document(browser_pdf, secret_key="WRONG-KEY")
             self.assertFalse(py_pdf_wrong_key["verified"])
 
-            # 4. Run Python CLI Canary Trace on Browser-sealed PDF
+            # 5. Generate Official PDF Verification Protocol from Browser-sealed PDF
+            proto_res = mw.generate_pdf_verification_protocol(browser_pdf, protocol_pdf, lang="en")
+            self.assertTrue(proto_res["verified"])
+            self.assertTrue(protocol_pdf.exists())
+
+            # 6. Run Python CLI Canary Trace on Browser-sealed PDF
             py_pdf_trace = mw.trace_canary_suspects(browser_pdf, suspect_pool, secret_key=secret)
             self.assertTrue(py_pdf_trace["document_verified"])
             self.assertEqual(py_pdf_trace["matched_recipient"], recipient)
             self.assertEqual(py_pdf_trace["matched_count"], 1)
 
-            # 5. Verify Browser-sealed SVG in Python CLI + Canary Trace
+            # 7. Verify Browser-resealed PDF (originally signed in Python CLI) in Python CLI + Canary Trace
+            py_resealed_ver = mw.verify_pdf_document(
+                browser_resealed_pdf,
+                secret_key=secret,
+                recipient_id="Board-Observer-X",
+            )
+            self.assertTrue(py_resealed_ver["verified"], f"Failed on Browser-resealed PDF: {py_resealed_ver}")
+            self.assertTrue(py_resealed_ver["canary_recipient_verified"])
+            py_resealed_trace = mw.trace_canary_suspects(browser_resealed_pdf, suspect_pool, secret_key=secret)
+            self.assertEqual(py_resealed_trace["matched_recipient"], "Board-Observer-X")
+
+            # 8. Re-seal Browser-sealed PDF in Python CLI and verify in both Python CLI & Browser Verifier
+            mw.stamp_pdf_document(browser_pdf, py_resealed_pdf, secret_key=secret, recipient_id="Legal-Counsel-B")
+            self.assertTrue(mw.verify_pdf_document(py_resealed_pdf, secret_key=secret, recipient_id="Legal-Counsel-B")["verified"])
+            self.assertEqual(
+                mw.trace_canary_suspects(py_resealed_pdf, suspect_pool, secret_key=secret)["matched_recipient"],
+                "Legal-Counsel-B",
+            )
+
+            # 9. Verify Browser-sealed SVG (with XML special chars & Cyrillic) in Python CLI + Canary Trace
             py_svg_ver = mw.verify_sri_yantra_svg(
                 browser_svg.read_text(encoding="utf-8"),
                 secret_key=secret,
                 recipient_id=recipient,
             )
             self.assertTrue(py_svg_ver["verified"], f"Python verify failed on Browser SVG: {py_svg_ver}")
+            self.assertEqual(py_svg_ver["payload"], special_payload)
+            self.assertEqual(py_svg_ver["signer_key_name"], special_signer)
             self.assertTrue(py_svg_ver["bijective_256bit_match"])
             self.assertTrue(py_svg_ver["canary_recipient_verified"])
             self.assertEqual(py_svg_ver["max_coordinate_signature_drift"], 0.0)
@@ -913,7 +1000,17 @@ print(json.dumps(out))
             py_svg_trace = mw.trace_canary_suspects(browser_svg, suspect_pool, secret_key=secret)
             self.assertEqual(py_svg_trace["matched_recipient"], recipient)
 
-            # 6. Tamper 1 byte in Browser-sealed PDF body -> rejected by BOTH Python CLI and Browser Verifier
+            # Also verify Python-sealed SVG with XML special chars in Python CLI
+            py_special_ver = mw.verify_sri_yantra_svg(
+                py_svg_special.read_text(encoding="utf-8"),
+                secret_key=secret,
+                recipient_id=recipient,
+            )
+            self.assertTrue(py_special_ver["verified"])
+            self.assertEqual(py_special_ver["payload"], special_payload)
+            self.assertEqual(py_special_ver["signer_key_name"], special_signer)
+
+            # 10. Tamper 1 byte in Browser-sealed PDF body -> rejected by BOTH Python CLI and Browser Verifier
             tampered_pdf = tmp_dir / "browser_sealed_tampered.pdf"
             raw_b = bytearray(browser_pdf.read_bytes())
             idx_val = raw_b.find(b"42,500,000")
@@ -940,6 +1037,7 @@ print(json.dumps(out))
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
 
 
 

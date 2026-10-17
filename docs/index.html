@@ -1755,7 +1755,10 @@
       const pos = rawText.lastIndexOf(marker);
       if (pos === -1) return null;
       let slice = rawText.slice(pos + marker.length, pos + marker.length + 35000);
-      slice = slice.replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\\/g, "\\");
+      const isRawComment = pos > 0 && rawText[pos - 1] === "%";
+      if (marker === "MARMA_SEAL::" && !isRawComment) {
+        slice = slice.replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\\/g, "\\");
+      }
       let depth = 0, endIdx = -1, inStr = false, esc = false;
       for (let i = 0; i < slice.length; i++) {
         const ch = slice[i];
@@ -1812,7 +1815,14 @@
         const text = new TextDecoder("utf-8").decode(uint8);
         const getAttr = (tag, attr) => {
           const m = tag.match(new RegExp(attr + '="([^"]*)"'));
-          return m ? m[1] : "";
+          if (!m) return "";
+          return m[1]
+            .replace(/&quot;/g, '"')
+            .replace(/&#x27;/g, "'")
+            .replace(/&#39;/g, "'")
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&amp;/g, "&");
         };
         const metaTagMatch = text.match(/<metadata\s+[^>]*>/i);
         if (!metaTagMatch) {
@@ -1825,8 +1835,14 @@
         let dstu4145 = {};
         if (b64) {
           try {
-            const bin = typeof atob === "function" ? atob(b64) : Buffer.from(b64, "base64").toString("utf8");
-            dstu4145 = JSON.parse(bin);
+            if (typeof Buffer !== "undefined") {
+              dstu4145 = JSON.parse(Buffer.from(b64, "base64").toString("utf8"));
+            } else {
+              const binStr = atob(b64);
+              const bArr = new Uint8Array(binStr.length);
+              for (let i = 0; i < binStr.length; i++) bArr[i] = binStr.charCodeAt(i);
+              dstu4145 = JSON.parse(new TextDecoder("utf-8").decode(bArr));
+            }
           } catch (e) {}
         }
         const polyRegex = /<polygon[^>]*id="tri_(D1|U1|U3|U2|D3|D2|U4|D4|D5)"[^>]*>/g;
@@ -1870,9 +1886,9 @@
       }
 
       // Case 2: PDF or uncompressed stream (extract MARMA_SEAL::{...} or MARMA_SEAL_PACKET::{...})
-      const rawLatin = new TextDecoder("latin1").decode(uint8);
-      const sealPdf = parseBalancedJsonAfterMarker(rawLatin, "MARMA_SEAL::")
-        || parseBalancedJsonAfterMarker(rawLatin, "MARMA_SEAL_PACKET::");
+      const rawUtf8 = new TextDecoder("utf-8", { fatal: false }).decode(uint8);
+      const sealPdf = parseBalancedJsonAfterMarker(rawUtf8, "MARMA_SEAL::")
+        || parseBalancedJsonAfterMarker(rawUtf8, "MARMA_SEAL_PACKET::");
       if (sealPdf) {
         if (typeof sealPdf.body_byte_length === "number") {
           const bLen = sealPdf.body_byte_length;
@@ -1923,13 +1939,19 @@
         ? recRaw.split(",").map(s => s.trim()).filter(Boolean)
         : [""];
 
-      const sourceBytes = sealerUploadedBytes || buildSampleConfidentialPdfBytes();
-      const baseName = (sealerUploadedFileName || "Sample_Confidential_MA_Term_Sheet.pdf").replace(/\.(pdf|svg)$/i, "");
+      const uploadedIsSvg = Boolean(sealerUploadedBytes && sealerUploadedFileName && sealerUploadedFileName.toLowerCase().endsWith(".svg"));
+      const sourceBytes = (!asSvgOnly && uploadedIsSvg)
+        ? buildSampleConfidentialPdfBytes()
+        : (sealerUploadedBytes || buildSampleConfidentialPdfBytes());
+      const baseName = ((!asSvgOnly && uploadedIsSvg)
+        ? "Sample_Confidential_MA_Term_Sheet.pdf"
+        : (sealerUploadedFileName || "Sample_Confidential_MA_Term_Sheet.pdf")
+      ).replace(/\.(pdf|svg)$/i, "");
 
       generatedSealedCopies = [];
       for (const rec of recipients) {
         const recTag = rec ? `_${sanitizeFileSlug(rec)}` : "_Public";
-        if (asSvgOnly || (sealerUploadedFileName && sealerUploadedFileName.toLowerCase().endsWith(".svg"))) {
+        if (asSvgOnly) {
           const payloadStr = `SVG-DEAL-ROOM::${baseName}::${sha256BytesToHex(sourceBytes)}`;
           const res = sealSvgInBrowser(payloadStr, { secretKey, signerName, recipientId: rec });
           generatedSealedCopies.push({
