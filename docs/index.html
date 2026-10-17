@@ -636,93 +636,31 @@
 
   <script>
     // =========================================================================
-    // 1. EXACT NONLINEAR 9-TRIANGLE SRI YANTRA SOLVER (KULAICHEV 1984 MODEL)
+    // 1. EXACT NONLINEAR 9-TRIANGLE SRI YANTRA SOLVER (MATCHING marma_watermark.py)
     // =========================================================================
-    function lineXAtY(y1, x1, y2, x2, y) {
-      return x1 + (x2 - x1) * (y - y1) / (y2 - y1);
+    const CANONICAL_TRIANGLES = [
+      { name: "D1", lx: 53.65669560, by: 123.20508076, ay: 250.00000000, rx: 246.34330440, is_up: false },
+      { name: "U1", lx: 52.98401103, by: 174.24660561, ay: 50.00000000,  rx: 247.01598897, is_up: true },
+      { name: "U3", lx: 98.71823313, by: 220.03828947, ay: 123.20508076, rx: 201.28176687, is_up: true },
+      { name: "U2", lx: 78.26467998, by: 197.92315674, ay: 78.10499178,  rx: 221.73532002, is_up: true },
+      { name: "D3", lx: 90.48569229, by: 78.10499178,  ay: 160.66014976, rx: 209.51430771, is_up: false },
+      { name: "D2", lx: 80.98384839, by: 103.12199145, ay: 220.03828947, rx: 219.01615161, is_up: false },
+      { name: "U4", lx: 114.94885006, by: 160.66014976, ay: 103.12199145, rx: 185.05114994, is_up: true },
+      { name: "D4", lx: 116.35142605, by: 134.30757627, ay: 197.92315674, rx: 183.64857395, is_up: false },
+      { name: "D5", lx: 124.61190803, by: 144.79777263, ay: 174.24660561, rx: 175.38809197, is_up: false },
+    ];
+
+    function solveBaselineYantra() {
+      return CANONICAL_TRIANGLES.map(t => ({ ...t }));
     }
 
-    function intersectLines(p1, p2, p3, p4) {
-      const [x1, y1] = p1, [x2, y2] = p2, [x3, y3] = p3, [x4, y4] = p4;
-      const denom = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-      if (Math.abs(denom) < 1e-15) return [300.0, 300.0];
-      const px = ((x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4)) / denom;
-      const py = ((x1 * y2 - y1 * x2) * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4)) / denom;
-      return [px, py];
-    }
-
-    function solveBaselineYantra(CX = 300.0, CY = 300.0, R = 200.0) {
-      const k1 = 0.232050807568877, k2 = 0.742466056125163;
-      const k3 = 1.200382894693545, k4 = 0.979231567402759;
-
-      const by_D1 = CY + R * (k1 - 0.5);
-      const by_U1 = CY + R * (k2 - 0.5);
-      const by_U3 = CY + R * (k3 - 0.5);
-      const by_U2 = CY + R * (k4 - 0.5);
-
-      const ay_D1 = CY + R, ay_U1 = CY - R;
-      const ay_U3 = by_D1, ay_D2 = by_U3, ay_D4 = by_U2, ay_D5 = by_U1;
-
-      const dx_D1 = Math.sqrt(Math.max(R * R - Math.pow(by_D1 - CY, 2), 1.0));
-      const lx_D1 = CX - dx_D1, rx_D1 = CX + dx_D1;
-
-      const dx_U1 = Math.sqrt(Math.max(R * R - Math.pow(by_U1 - CY, 2), 1.0));
-      const lx_U1 = CX - dx_U1, rx_U1 = CX + dx_U1;
-
-      const [x_m1, y_m1] = intersectLines([lx_U1, by_U1], [CX, ay_U1], [CX, ay_D1], [lx_D1, by_D1]);
-      const lx_U3 = lineXAtY(ay_U3, CX, y_m1, x_m1, by_U3);
-      const rx_U3 = 2 * CX - lx_U3;
-
-      const [x_m2, by_D3] = intersectLines([lx_U1, by_U1], [CX, ay_U1], [lx_U3, by_U3], [CX, ay_U3]);
-      const ay_U2 = by_D3;
-      const lx_U2 = lineXAtY(ay_U2, CX, by_D1, lx_D1, by_U2);
-      const rx_U2 = 2 * CX - lx_U2;
-
-      const [x_m3, y_m3] = intersectLines([lx_U2, by_U2], [CX, ay_U2], [CX, ay_D1], [lx_D1, by_D1]);
-      const [, by_D2] = intersectLines([lx_U1, by_U1], [CX, ay_U1], [lx_U2, by_U2], [CX, ay_U2]);
-      const lx_D2 = lineXAtY(ay_D2, CX, y_m3, x_m3, by_D2);
-      const rx_D2 = 2 * CX - lx_D2;
-
-      const ay_U4 = by_D2;
-      const [x_m4, by_U4] = intersectLines([CX, ay_D2], [lx_D2, by_D2], [lx_U3, by_U3], [CX, ay_U3]);
-      const ay_D3 = by_U4;
-      const lx_D3 = lineXAtY(ay_D3, CX, by_U1, lx_U1, by_D3);
-      const rx_D3 = 2 * CX - lx_D3;
-
-      const [x_m5, y_m5] = intersectLines([CX, ay_D3], [lx_D3, by_D3], [lx_U2, by_U2], [CX, ay_U2]);
-      const lx_U4 = lineXAtY(ay_U4, CX, y_m5, x_m5, by_U4);
-      const rx_U4 = 2 * CX - lx_U4;
-
-      const [x_m6, by_D4] = intersectLines([CX, ay_D2], [lx_D2, by_D2], [lx_U4, by_U4], [CX, ay_U4]);
-      const lx_D4 = lineXAtY(ay_D4, CX, y_m1, x_m1, by_D4);
-      const rx_D4 = 2 * CX - lx_D4;
-
-      const [x_m7, by_D5] = intersectLines([CX, ay_D3], [lx_D3, by_D3], [lx_U4, by_U4], [CX, ay_U4]);
-      const [, y_m8] = intersectLines([CX, ay_D4], [lx_D4, by_D4], [lx_U3, by_U3], [CX, ay_U3]);
-      const [x_m8] = intersectLines([CX, ay_D4], [lx_D4, by_D4], [lx_U3, by_U3], [CX, ay_U3]);
-      const lx_D5 = lineXAtY(ay_D5, CX, y_m8, x_m8, by_D5);
-      const rx_D5 = 2 * CX - lx_D5;
-
-      return [
-        { name: "D1", lx: lx_D1, by: by_D1, ay: ay_D1, rx: rx_D1 },
-        { name: "U1", lx: lx_U1, by: by_U1, ay: ay_U1, rx: rx_U1 },
-        { name: "U3", lx: lx_U3, by: by_U3, ay: ay_U3, rx: rx_U3 },
-        { name: "U2", lx: lx_U2, by: by_U2, ay: ay_U2, rx: rx_U2 },
-        { name: "D3", lx: lx_D3, by: by_D3, ay: ay_D3, rx: rx_D3 },
-        { name: "D2", lx: lx_D2, by: by_D2, ay: ay_D2, rx: rx_D2 },
-        { name: "U4", lx: lx_U4, by: by_U4, ay: ay_U4, rx: rx_U4 },
-        { name: "D4", lx: lx_D4, by: by_D4, ay: ay_D4, rx: rx_D4 },
-        { name: "D5", lx: lx_D5, by: by_D5, ay: ay_D5, rx: rx_D5 },
-      ];
-    }
-
-    function deriveOffsetsFromHmac(hmacHex, scale = 1e-5) {
+    function deriveOffsetsFromHmac(hmacHex) {
       const offsets = [];
       for (let i = 0; i < 9; i++) {
-        const chunk = hmacHex.slice(i * 4, (i + 1) * 4);
-        const val = parseInt(chunk, 16) / 65535.0;
-        const delta = (val - 0.5) * 2.0 * scale;
-        offsets.push(Number(delta.toFixed(9)));
+        const chunkHex = hmacHex.slice(i * 6, (i + 1) * 6);
+        const chunk = parseInt(chunkHex, 16);
+        const norm = (chunk / 16777215.0) * 2.0 - 1.0; // [-1.0, +1.0]
+        offsets.push(Number((norm * 1e-5).toFixed(9)));
       }
       return offsets;
     }
@@ -730,14 +668,19 @@
     function applySignedPerturbations(baseTris, hmacHex) {
       const offsets = deriveOffsetsFromHmac(hmacHex);
       return baseTris.map((t, idx) => {
-        const d = offsets[idx];
+        const delta = offsets[idx];
+        const lx_s = Number((t.lx + delta).toFixed(9));
+        const rx_s = Number((300.0 - lx_s).toFixed(9));
+        const by_s = Number((t.by + delta * 0.5).toFixed(9));
+        const ay_s = Number(t.ay.toFixed(9));
         return {
           name: t.name,
-          delta: d,
-          lx: Number((t.lx - d * 0.5).toFixed(9)),
-          by: Number((t.by + d).toFixed(9)),
-          ay: Number(t.ay.toFixed(9)),
-          rx: Number((t.rx + d * 0.5).toFixed(9)),
+          delta: delta,
+          lx: lx_s,
+          by: by_s,
+          ay: ay_s,
+          rx: rx_s,
+          is_up: t.is_up
         };
       });
     }
@@ -922,28 +865,46 @@
       // Case 1: SVG file
       if (lower.endsWith(".svg")) {
         const text = new TextDecoder("utf-8").decode(uint8);
-        const descMatch = text.match(/<desc[^>]*>([\s\S]*?)<\/desc>/i);
-        if (!descMatch) throw new Error("У SVG-файлі відсутній крипто-блок <desc> Marma-Crypto.");
-        const meta = JSON.parse(descMatch[1]);
-        const triangles = [];
-        const polyRegex = /<polygon[^>]*id="tri-(D1|U1|U3|U2|D3|D2|U4|D4|D5)"[^>]*points="([^"]+)"/g;
-        let m;
-        const mapByName = {};
-        while ((m = polyRegex.exec(text)) !== null) {
-          const name = m[1];
-          const pts = m[2].trim().split(/\s+/).map(pair => pair.split(",").map(Number));
-          mapByName[name] = { name, lx: pts[0][0], by: pts[0][1], rx: pts[1][0], ay: pts[2][1] };
+        const getAttr = (tag, attr) => {
+          const m = tag.match(new RegExp(attr + '="([^"]*)"'));
+          return m ? m[1] : "";
+        };
+        const metaTagMatch = text.match(/<metadata\s+[^>]*>/i);
+        if (!metaTagMatch) throw new Error("У SVG-файлі відсутній крипто-блок <metadata> Marma-Crypto.");
+        const mTag = metaTagMatch[0];
+        const b64 = getAttr(mTag, "data-dstu4145-b64");
+        let dstu4145 = {};
+        if (b64) {
+          try {
+            const bin = typeof atob === "function" ? atob(b64) : Buffer.from(b64, "base64").toString("utf8");
+            dstu4145 = JSON.parse(bin);
+          } catch (e) {}
         }
+        const polyRegex = /<polygon[^>]*id="tri_(D1|U1|U3|U2|D3|D2|U4|D4|D5)"[^>]*>/g;
+        const mapByName = {};
+        let pm;
+        while ((pm = polyRegex.exec(text)) !== null) {
+          const pTag = pm[0];
+          const name = pm[1];
+          mapByName[name] = {
+            name,
+            lx: Number(getAttr(pTag, "data-lx")),
+            by: Number(getAttr(pTag, "data-by")),
+            ay: Number(getAttr(pTag, "data-ay")),
+            rx: Number(getAttr(pTag, "data-rx")),
+          };
+        }
+        const triangles = [];
         ["D1", "U1", "U3", "U2", "D3", "D2", "U4", "D4", "D5"].forEach(n => {
           if (mapByName[n]) triangles.push(mapByName[n]);
         });
         return {
-          protocol: meta.protocol,
-          signer_key_name: meta.signer_key_name,
-          key_fingerprint: meta.key_fingerprint,
-          content_sha256: meta.payload_sha256,
-          hmac_sha256: meta.signature_hmac_sha256,
-          dstu4145: meta.dstu4145 || {},
+          protocol: "MARMA-DSTU4145-V1.2",
+          signer_key_name: getAttr(mTag, "data-signer"),
+          key_fingerprint: getAttr(mTag, "data-key-fp"),
+          content_sha256: getAttr(mTag, "data-content-sha256"),
+          hmac_sha256: getAttr(mTag, "data-hmac-sha256"),
+          dstu4145,
           triangles
         };
       }
