@@ -1,0 +1,14 @@
+# Never commit private keys, certificates, or build artifacts
+*.pfx
+*.p12
+*.key
+*.dat
+*.jks
+*.zs2
+*.pem
+.env
+.env.*
+build/
+dist/
+__pycache__/
+*.pyc
