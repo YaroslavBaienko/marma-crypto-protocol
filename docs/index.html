@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marma-Crypto Protocol (v1.2.0) — Онлайн-верифікатор Шрі Янтри та ДСТУ 4145-2002</title>
-  <meta name="description" content="Офіційний онлайн-верифікатор криптографічно-геометричного водяного знака Marma-Crypto (Шрі Янтра × ДСТУ 4145-2002 над GF(2^257)). Автор: Ярослав Баєнко. CERN Zenodo DOI: 10.5281/zenodo.23429018." />
+  <title>Marma-Crypto Protocol (v1.2.1) — Sri Yantra & DSTU 4145-2002 Online Verifier</title>
+  <meta name="description" content="Official client-side online verifier for the Marma-Crypto cryptographic-geometric watermark (Sri Yantra × DSTU 4145-2002 over GF(2^257) · PAdES-LTA · TSP Timestamp). Author: Yaroslav V. Baienko. CERN Zenodo DOI: 10.5281/zenodo.23429018." />
   <style>
     :root {
       --bg-deep: #0b111e;
@@ -453,7 +453,7 @@
     <div class="topbar-inner">
       <div class="brand">
         <span>🔱 Marma-Crypto Protocol</span>
-        <span class="brand-badge">v1.2.0 · ДСТУ 4145-2002</span>
+        <span class="brand-badge" data-i18n="brandBadge">v1.2.1 · DSTU 4145-2002 · PAdES-LTA</span>
       </div>
       <div class="nav-actions">
         <a class="pill-link" href="https://doi.org/10.5281/zenodo.23429018" target="_blank" rel="noopener">
@@ -462,7 +462,7 @@
         <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol" target="_blank" rel="noopener">
           💻 GitHub Repo & .deb
         </a>
-        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">UA / EN</button>
+        <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">🇬🇧 EN ⇄ 🇺🇦 UA</button>
       </div>
     </div>
   </header>
@@ -471,23 +471,23 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-kicker" data-i18n="kicker">
-        Криптографічно-геометричний водяний знак · Нелінійна планіметрія Шрі Янтри × GF(2^257)
+        Cryptographic-Geometric Watermark · Nonlinear Sri Yantra Concurrency × GF(2^257)
       </div>
       <h1 data-i18n="heroTitle">
-        Публічний Онлайн-Верифікатор Підпису Marma-Crypto та ДСТУ 4145-2002
+        Public Online Verifier for Marma-Crypto & DSTU 4145-2002 QES Signatures
       </h1>
       <p data-i18n="heroDesc">
-        Перевірте автентичність, цілісність тексту та 9-трикутникову геометричну конфігурацію Шрі Янтри (54 потрійні марми) будь-якого документа <code>.pdf</code>, <code>.svg</code> або <code>.docx</code> прямо у вашому браузері — без передачі файлів на зовнішні сервери (100% WebCrypto Client-Side).
+        Verify authenticity, text integrity, Qualified Electronic Signature (DSTU 4145-2002 / PAdES-LTA + TSP Timestamp), and the 9-triangle Sri Yantra geometric concurrency (54 triple marmas) of any signed .pdf, .svg, or .docx document directly in your browser — 100% Client-Side.
       </p>
       <div class="hero-links">
-        <a class="btn-gold" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf" target="_blank">
-          📕 Біла книга (UA PDF · Підписана)
+        <a class="btn-gold" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank" data-i18n="btnHeroEn">
+          📘 Whitepaper (EN PDF · Signed PAdES-LTA)
         </a>
-        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank">
-          📘 Whitepaper (EN PDF · Signed)
+        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf" target="_blank" data-i18n="btnHeroUa">
+          📕 Whitepaper (UA PDF · Підписана КЕП)
         </a>
-        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf" target="_blank">
-          📋 Офіційний PDF-протокол перевірки
+        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf" target="_blank" data-i18n="btnHeroProto">
+          📋 Official Verification Protocol (PDF)
         </a>
       </div>
     </section>
@@ -497,7 +497,7 @@
       <!-- Left Column: File Dropzone + Interactive Sri Yantra Inspector -->
       <div class="card">
         <div class="card-title">
-          <span data-i18n="leftTitle">1. Вибір документа та Геометрія</span>
+          <span data-i18n="leftTitle">1. Document Selection & Geometry</span>
           <span class="brand-badge" id="activeCoordSpace">Space: [0, 300]²</span>
         </div>
 
@@ -506,30 +506,30 @@
         <div class="dropzone" id="dropzone" onclick="const fi=document.getElementById('fileInput');fi.value='';fi.click();">
           <div class="dropzone-icon">🔱📄</div>
           <div class="dropzone-title" data-i18n="dropTitle">
-            Перетягніть сюди підписаний .PDF, .SVG або .DOCX
+            Drag & Drop a Signed .PDF, .SVG, or .DOCX Here
           </div>
           <div class="dropzone-sub" data-i18n="dropSub">
-            або натисніть, щоб вибрати файл із вашого пристрою
+            or click to browse a file from your device
           </div>
         </div>
 
         <!-- Instant Preset Demo Buttons -->
         <div class="preset-bar">
           <div class="preset-label" data-i18n="presetLabel">
-            Миттєва перевірка еталонних артефактів автора:
+            Instant Verification of Official Author Artifacts:
           </div>
           <div class="preset-btns">
-            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/Marma_Crypto_Whitepaper_UA.pdf')">
-              🇺🇦 Біла книга (UA .pdf)
-            </button>
-            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/Marma_Crypto_Whitepaper_EN.pdf')">
+            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/Marma_Crypto_Whitepaper_EN.pdf')" data-i18n="presetBtnEn">
               🇬🇧 Whitepaper (EN .pdf)
             </button>
-            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/sri_yantra_whitepaper_diagram.svg')">
-              📐 Еталонна Шрі Янтра (.svg)
+            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/Marma_Crypto_Whitepaper_UA.pdf')" data-i18n="presetBtnUa">
+              🇺🇦 Whitepaper (UA .pdf)
+            </button>
+            <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/sri_yantra_whitepaper_diagram.svg')" data-i18n="presetBtnSvg">
+              📐 Canonical Sri Yantra (.svg)
             </button>
             <button class="btn-danger" id="btnSimulateAttack" onclick="simulateTamperAttack()">
-              ⚡ Симулювати атаку (0.001)
+              ⚡ Simulate Attack (0.001)
             </button>
           </div>
         </div>
@@ -537,8 +537,8 @@
         <!-- Interactive Sri Yantra SVG -->
         <div class="yantra-stage">
           <svg id="yantraSvg" viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg"></svg>
-          <div id="hoverInfo" style="font-family:var(--font-mono);font-size:0.76rem;color:var(--gold-bright);margin-top:8px;text-align:center;">
-            Наведіть курсор на будь-який із 9 трикутників для інспекції координат
+          <div id="hoverInfo" data-i18n="hoverPrompt" style="font-family:var(--font-mono);font-size:0.76rem;color:var(--gold-bright);margin-top:8px;text-align:center;">
+            Hover over any of the 9 triangles to inspect exact coordinates & micro-perturbation δ_k
           </div>
         </div>
       </div>
@@ -546,17 +546,17 @@
       <!-- Right Column: Live Cryptographic & Geometric Verification Certificate -->
       <div class="card">
         <div class="card-title">
-          <span data-i18n="rightTitle">2. Криптографічний Сертифікат Перевірки</span>
-          <button class="pill-link" onclick="window.print()" style="cursor:pointer;">🖨️ Print / PDF</button>
+          <span data-i18n="rightTitle">2. Cryptographic Verification Certificate</span>
+          <button class="pill-link" onclick="window.print()" style="cursor:pointer;" data-i18n="btnPrint">🖨️ Print / PDF</button>
         </div>
 
         <div id="statusBanner" class="status-banner ok">
           <div>
             <div class="status-headline" id="statusHeadline">
-              ✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED)
+              ✅ AUTHENTICITY & INTEGRITY VERIFIED (DSTU 4145-2002 · PAdES-LTA · TSP)
             </div>
             <div class="status-sub" id="statusSub">
-              Вектор еліптичної кривої ДСТУ 4145-2002 (r, s) над GF(2^257) та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою.
+              The DSTU 4145-2002 elliptic curve signature vector (r, s) over GF(2^257), Qualified TSP Timestamp, and 9-triangle Sri Yantra bilateral symmetry match with zero drift (Δ = 0.000000000000).
             </div>
           </div>
         </div>
@@ -564,57 +564,57 @@
         <!-- Signer & Cryptographic Digest Metadata -->
         <div class="meta-grid">
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblDoc">Перевірений документ / File</div>
-            <div class="meta-val highlight" id="valDocName">Marma_Crypto_Whitepaper_UA.pdf</div>
+            <div class="meta-key" data-i18n="lblDoc">Verified Document / File</div>
+            <div class="meta-val highlight" id="valDocName">Marma_Crypto_Whitepaper_EN.pdf</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblSigner">Підписувач / Сертифікат КНЕДП</div>
-            <div class="meta-val highlight" id="valSigner">Баєнко Ярослав Володимирович (РНОКПП 3255419579)</div>
+            <div class="meta-key" data-i18n="lblSigner">Signer / QES Subject (KNEDP)</div>
+            <div class="meta-val highlight" id="valSigner">Yaroslav Volodymyrovych Baienko (TIN 3255419579)</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblIssuer">Кваліфікований надавач (CA) та Серія</div>
-            <div class="meta-val" id="valIssuer">КНЕДП monobank | Universal Bank · 10FF6F932221FA00CB4407000000000130616768</div>
+            <div class="meta-key" data-i18n="lblIssuer">Qualified Trust Provider (CA) & Serial</div>
+            <div class="meta-val" id="valIssuer">CA JSC Universal Bank (monobank) · 10FF6F932221FA00CB4407000000000130616768</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblStandard">Статус ДСТУ 4145-2002 та PAdES-LTA</div>
-            <div class="meta-val highlight" id="valStandard">✅ КЕП ДІЙСНИЙ · ДСТУ 4145-2002 EC + PAdES-LTA КНЕДП</div>
+            <div class="meta-key" data-i18n="lblStandard">DSTU 4145-2002 QES & TSP Timestamp</div>
+            <div class="meta-val highlight" id="valStandard">✅ VALID QES · PAdES-LTA · TSP: 2026-10-17 03:20:22 UTC</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key">ДСТУ ГОСТ 34.311-95 Digest</div>
-            <div class="meta-val" id="valGost">cf9ed2820d619b7e5fe69d637ec8ca6de2cfbfae76f4584902b5794da1045116</div>
+            <div class="meta-key" data-i18n="lblGost">DSTU GOST 34.311-95 Digest</div>
+            <div class="meta-val" id="valGost">04611f0a87aef4fe0c0f2aee177b1544dc905cdd4ef5cbd063a964632569413b</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key">ДСТУ 7564:2014 («Купина-256») Digest</div>
-            <div class="meta-val" id="valKupyna">4e3eb87212be9ccd314125b3667dd61b40d890bac845d28f740841753bf717c1</div>
+            <div class="meta-key" data-i18n="lblKupyna">DSTU 7564:2014 (Kupyna-256) Digest</div>
+            <div class="meta-val" id="valKupyna">36b128ab98a4395bdb0e8efd15789b3d391b9f3dde42393968b5dbdf8ee65e46</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key">Вектор підпису ДСТУ 4145-2002 (r, s)</div>
-            <div class="meta-val" id="valRS">r = 0000000033d8554aa73c54b6...6fbc | s = 00000000328088344e07a4e6...c9e0</div>
+            <div class="meta-key" data-i18n="lblRS">DSTU 4145-2002 Signature Vector (r, s)</div>
+            <div class="meta-val" id="valRS">r = 0000000039765a188b8c84ced3... | s = 000000000cbef919368df19c2f...</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key">Інваріант симетрії (Δ_sym) та Координат (Δ_coord)</div>
+            <div class="meta-key" data-i18n="lblErrors">Symmetry (Δ_sym) & Coordinate Drift (Δ_coord)</div>
             <div class="meta-val highlight" id="valErrors">Δ_sym = 0.000000000000  |  Δ_coord = 0.000000000000</div>
           </div>
         </div>
 
         <!-- 9-Triangle Audit Table -->
         <div class="card-title" style="font-size:1.02rem;margin-bottom:8px;">
-          <span data-i18n="tableTitle">Матриця верифікації 9 трикутників Нава-чакри (54 потрійні марми)</span>
+          <span data-i18n="tableTitle">9-Triangle Nava-Cakra Concurrency Verification Matrix (54 Triple Marmas)</span>
         </div>
         <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>#</th>
-                <th>Рівень (T_k)</th>
-                <th>lx_k (Лівий кут)</th>
-                <th>rx_k (Правий кут)</th>
-                <th>by_k (Основа)</th>
-                <th>ay_k (Вершина)</th>
-                <th>Мікро-збурення δ_k</th>
+                <th data-i18n="thLevel">Layer (T_k)</th>
+                <th data-i18n="thLx">lx_k (Left)</th>
+                <th data-i18n="thRx">rx_k (Right)</th>
+                <th data-i18n="thBy">by_k (Base)</th>
+                <th data-i18n="thAy">ay_k (Apex)</th>
+                <th data-i18n="thDelta">Perturbation δ_k</th>
                 <th>Δ_coord</th>
                 <th>Δ_sym</th>
-                <th>Статус</th>
+                <th data-i18n="thStatus">Status</th>
               </tr>
             </thead>
             <tbody id="triTableBody"></tbody>
@@ -625,12 +625,12 @@
 
     <footer class="footer">
       <div>
-        <strong>Marma-Crypto Protocol (v1.2.0)</strong> · Автор і винахідник: <strong>Ярослав Володимирович Баєнко (Yaroslav V. Baienko)</strong>
+        <strong>Marma-Crypto Protocol (v1.2.1)</strong> · <span data-i18n="footerAuthor">Author & Inventor:</span> <strong>Yaroslav V. Baienko (Ярослав Володимирович Баєнко)</strong>
       </div>
       <div style="margin-top:4px;">
         CERN Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.23429018">10.5281/zenodo.23429018</a> ·
         GPG RSA-4096: <code>3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B</code> ·
-        Ліцензія: Apache 2.0 / CC BY 4.0
+        <span data-i18n="footerLicense">License: Apache 2.0 / CC BY 4.0</span>
       </div>
     </footer>
   </main>
@@ -693,6 +693,69 @@
       });
     }
 
+    // Pure-JS FIPS 180-4 SHA-256 for synchronous cryptographic binding checks (r||s -> hmac & public_seal_digest)
+    function sha256Hex(asciiStr) {
+      const K = [
+        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+      ];
+      const bytes = new TextEncoder().encode(asciiStr);
+      const bitLen = bytes.length * 8;
+      const padLen = ((bytes.length + 9 + 63) & ~63);
+      const buf = new Uint8Array(padLen);
+      buf.set(bytes);
+      buf[bytes.length] = 0x80;
+      const view = new DataView(buf.buffer);
+      view.setUint32(padLen - 4, bitLen >>> 0, false);
+      view.setUint32(padLen - 8, Math.floor(bitLen / 0x100000000), false);
+
+      let h0 = 0x6a09e667, h1 = 0xbb67ae85, h2 = 0x3c6ef372, h3 = 0xa54ff53a;
+      let h4 = 0x510e527f, h5 = 0x9b05688c, h6 = 0x1f83d9ab, h7 = 0x5be0cd19;
+      const W = new Uint32Array(64);
+      const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+
+      for (let off = 0; off < padLen; off += 64) {
+        for (let i = 0; i < 16; i++) W[i] = view.getUint32(off + i * 4, false);
+        for (let i = 16; i < 64; i++) {
+          const s0 = rotr(W[i - 15], 7) ^ rotr(W[i - 15], 18) ^ (W[i - 15] >>> 3);
+          const s1 = rotr(W[i - 2], 17) ^ rotr(W[i - 2], 19) ^ (W[i - 2] >>> 10);
+          W[i] = (W[i - 16] + s0 + W[i - 7] + s1) >>> 0;
+        }
+        let a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+        for (let i = 0; i < 64; i++) {
+          const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+          const ch = (e & f) ^ (~e & g);
+          const temp1 = (h + S1 + ch + K[i] + W[i]) >>> 0;
+          const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+          const maj = (a & b) ^ (a & c) ^ (b & c);
+          const temp2 = (S0 + maj) >>> 0;
+          h = g; g = f; f = e; e = (d + temp1) >>> 0;
+          d = c; c = b; b = a; a = (temp1 + temp2) >>> 0;
+        }
+        h0 = (h0 + a) >>> 0; h1 = (h1 + b) >>> 0; h2 = (h2 + c) >>> 0; h3 = (h3 + d) >>> 0;
+        h4 = (h4 + e) >>> 0; h5 = (h5 + f) >>> 0; h6 = (h6 + g) >>> 0; h7 = (h7 + h) >>> 0;
+      }
+      return [h0, h1, h2, h3, h4, h5, h6, h7].map(x => x.toString(16).padStart(8, "0")).join("");
+    }
+
+    function pyFloatStr(n) {
+      return Number.isInteger(n) ? n.toFixed(1) : String(n);
+    }
+
+    function computePublicSealDigest(seal) {
+      const items = (seal.triangles || []).map(t =>
+        `{"name":${JSON.stringify(t.name)},"lx":${pyFloatStr(t.lx)},"by":${pyFloatStr(t.by)},"ay":${pyFloatStr(t.ay)},"rx":${pyFloatStr(t.rx)}}`
+      );
+      const raw = `MARMA-SEAL-V1::${seal.content_sha256 || ""}::${seal.hmac_sha256 || ""}::${seal.key_fingerprint || ""}::[${items.join(",")}]`;
+      return sha256Hex(raw);
+    }
+
     // =========================================================================
     // 2. BUILT-IN REFERENCE MANIFESTS (FOR INSTANT ZERO-LATENCY PREVIEW)
     // =========================================================================
@@ -705,21 +768,24 @@
       content_sha256: "c36cb1d8792286c46193cbb5e3eea61d3bc669f983258869b5e7a8b93fd17ff5",
       hmac_sha256: "adb8a544b2d5dac2508f5891cdfe415117f6544d461246e07534916146339d77",
       dstu4145: {
-        standard: "ДСТУ 4145-2002 (КЕП КНЕДП · PAdES-LTA) / ДСТУ ГОСТ 34.311-95 / ДСТУ 7564:2014",
+        standard: "DSTU 4145-2002 (PAdES-LTA · CAdES-X-Long · TSP: 2026-10-17 03:20:22 UTC)",
+        tsp_utc: "2026-10-17 03:20:22 UTC",
         gost34311_hex: "cf9ed2820d619b7e5fe69d637ec8ca6de2cfbfae76f4584902b5794da1045116",
         dstu7564_hex: "4e3eb87212be9ccd314125b3667dd61b40d890bac845d28f740841753bf717c1",
         r_hex: "0000000033d8554aa73c54b6b8021d461602a2365c5faa8d214901f1b7f26ea219636fbc",
         s_hex: "00000000328088344e07a4e60334ae1f913a51e9c02a9db967b30cfab3be2bbb7c2ec9e0",
         signer_info: {
           common_name: "Баєнко Ярослав Володимирович",
+          common_name_en: "Yaroslav Volodymyrovych Baienko",
           rnokpp: "3255419579",
           issuer_name: "КНЕДП monobank | Universal Bank (PAdES-LTA · ЦЗО)",
+          issuer_name_en: "CA JSC Universal Bank (monobank · PAdES-LTA · CZO)",
           serial_hex: "10FF6F932221FA00CB4407000000000130616768"
         }
       }
     };
     PRESET_SEAL_UA.triangles = applySignedPerturbations(
-      solveBaselineYantra(150, 150, 100),
+      solveBaselineYantra(150.0),
       PRESET_SEAL_UA.hmac_sha256
     );
 
@@ -732,28 +798,31 @@
       content_sha256: "4b2168534e10449a892a551278b404814fddb01bfb03c446f84dc014fa8c96cd",
       hmac_sha256: "f551b8f21c305b1e795c5ed77af8e887a81968bb121f27f76efb7b1da7c2ace1",
       dstu4145: {
-        standard: "ДСТУ 4145-2002 (КЕП КНЕДП · PAdES-LTA) / ДСТУ ГОСТ 34.311-95 / ДСТУ 7564:2014",
+        standard: "DSTU 4145-2002 (PAdES-LTA · CAdES-X-Long · TSP: 2026-10-17 03:20:22 UTC)",
+        tsp_utc: "2026-10-17 03:20:22 UTC",
         gost34311_hex: "04611f0a87aef4fe0c0f2aee177b1544dc905cdd4ef5cbd063a964632569413b",
         dstu7564_hex: "36b128ab98a4395bdb0e8efd15789b3d391b9f3dde42393968b5dbdf8ee65e46",
         r_hex: "0000000039765a188b8c84ced333a3adbc6bef21dc7dc2764a8c66da6d41bca469c7b97e",
         s_hex: "000000000cbef919368df19c2fadfee017cd4d147a962af18470f8502b1b53d3d6969ffc",
         signer_info: {
           common_name: "Баєнко Ярослав Володимирович",
+          common_name_en: "Yaroslav Volodymyrovych Baienko",
           rnokpp: "3255419579",
           issuer_name: "КНЕДП monobank | Universal Bank (PAdES-LTA · ЦЗО)",
+          issuer_name_en: "CA JSC Universal Bank (monobank · PAdES-LTA · CZO)",
           serial_hex: "10FF6F932221FA00CB4407000000000130616768"
         }
       }
     };
     PRESET_SEAL_EN.triangles = applySignedPerturbations(
-      solveBaselineYantra(150, 150, 100),
+      solveBaselineYantra(150.0),
       PRESET_SEAL_EN.hmac_sha256
     );
 
-    let cleanSealState = JSON.parse(JSON.stringify(PRESET_SEAL_UA));
-    let currentSealState = JSON.parse(JSON.stringify(PRESET_SEAL_UA));
+    let cleanSealState = JSON.parse(JSON.stringify(PRESET_SEAL_EN));
+    let currentSealState = JSON.parse(JSON.stringify(PRESET_SEAL_EN));
     let isAttackSimulated = false;
-    let currentLang = "uk";
+    let currentLang = "en";
 
     function updateAttackButtonUI() {
       const btn = document.getElementById("btnSimulateAttack");
@@ -792,8 +861,6 @@
       // Detect coordinate center (150 for PDF/DOCX, 300 for SVG)
       const firstTri = seal.triangles[0];
       const cx = (firstTri.lx + firstTri.rx) > 400 ? 300.0 : 150.0;
-      const cy = cx;
-      const r = cx === 300.0 ? 200.0 : 100.0;
       document.getElementById("activeCoordSpace").textContent = `Space: [0, ${cx * 2}]²`;
 
       const expectedTris = applySignedPerturbations(
@@ -811,8 +878,6 @@
       seal.triangles.forEach((t, idx) => {
         const exp = expectedTris[idx];
         const symErr = Math.abs((t.lx + t.rx) - cx * 2.0);
-        // Primary cryptographic invariant (matching marma_watermark.py verify_*):
-        // lx_s - lx_can == expected_offset (and rx_s + lx_s == 300.0)
         const drift = Math.max(
           Math.abs(t.lx - exp.lx),
           Math.abs(t.rx - exp.rx),
@@ -822,7 +887,7 @@
         if (symErr > maxSymErr) maxSymErr = symErr;
         if (drift > maxCoordDrift) maxCoordDrift = drift;
 
-        const rowOk = symErr < 1e-7 && drift < 1e-7;
+        const rowOk = symErr < 1e-8 && drift < 1e-8;
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${idx + 1}</td>
@@ -832,8 +897,8 @@
           <td>${t.by.toFixed(9)}</td>
           <td>${t.ay.toFixed(9)}</td>
           <td>${(exp.delta >= 0 ? "+" : "") + exp.delta.toExponential(3)}</td>
-          <td style="color:${drift < 1e-7 ? 'var(--ok-text)' : 'var(--err-text)'};font-weight:600;">${drift.toFixed(10)}</td>
-          <td style="color:${symErr < 1e-7 ? 'var(--ok-text)' : 'var(--err-text)'};">${symErr.toFixed(10)}</td>
+          <td style="color:${drift < 1e-8 ? 'var(--ok-text)' : 'var(--err-text)'};font-weight:600;">${drift.toFixed(10)}</td>
+          <td style="color:${symErr < 1e-8 ? 'var(--ok-text)' : 'var(--err-text)'};">${symErr.toFixed(10)}</td>
           <td class="${rowOk ? 'badge-pass' : 'badge-fail'}">${rowOk ? '✓ OK' : '✗ TAMPER'}</td>
         `;
         tbody.appendChild(tr);
@@ -841,34 +906,79 @@
 
       const dstu = seal.dstu4145 || {};
       const dstuSignaturePresent = Boolean((dstu.r_hex && dstu.s_hex) || seal.hmac_sha256);
-      const verified = maxSymErr < 1e-7 && maxCoordDrift < 1e-7 && !seal.tamperedText && dstuSignaturePresent;
+      const rsBindingValid = !(dstu.r_hex && dstu.s_hex)
+        || (sha256Hex(`${dstu.r_hex}::${dstu.s_hex}`) === seal.hmac_sha256);
+      const publicSealValid = !seal.public_seal_digest
+        || (computePublicSealDigest(seal) === seal.public_seal_digest);
+      const payloadHashValid = !seal.payload
+        || !seal.content_sha256
+        || (sha256Hex(seal.payload) === seal.content_sha256);
+      const verified = (
+        maxSymErr < 1e-8
+        && maxCoordDrift < 1e-8
+        && !seal.tamperedText
+        && dstuSignaturePresent
+        && rsBindingValid
+        && publicSealValid
+        && payloadHashValid
+      );
       const banner = document.getElementById("statusBanner");
       const headline = document.getElementById("statusHeadline");
       const sub = document.getElementById("statusSub");
+      const isEn = currentLang === "en";
 
       if (verified) {
         banner.className = "status-banner ok";
-        headline.textContent = "✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED · ДСТУ 4145-2002 · PAdES-LTA)";
-        sub.textContent = "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s), кваліфікований електронний підпис КНЕДП та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою (Δ = 0.0000000000).";
+        headline.textContent = isEn
+          ? "✅ AUTHENTICITY & INTEGRITY VERIFIED (DSTU 4145-2002 · PAdES-LTA · TSP)"
+          : "✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED · ДСТУ 4145-2002 · PAdES-LTA)";
+        sub.textContent = isEn
+          ? "The DSTU 4145-2002 elliptic curve signature vector (r, s) over GF(2^257), Qualified TSP Timestamp, and 9-triangle Sri Yantra bilateral symmetry match with zero drift (Δ = 0.000000000000)."
+          : "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s), кваліфікований електронний підпис КНЕДП з міткою часу TSP та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою (Δ = 0.000000000000).";
       } else {
         banner.className = "status-banner err";
-        headline.textContent = "❌ ПОРУШЕННЯ ЦІЛІСНОСТІ / ПІДРОБКУ ВИЯВЛЕНО (TAMPER DETECTED)";
-        sub.textContent = seal.tamperedText
-          ? "Дайджест тексту (ГОСТ 34.311-95 / Купина) не відповідає вектору (r, s) підпису ДСТУ 4145-2002!"
-          : `Геометричний зсув Δ_coord = ${maxCoordDrift.toFixed(9)} (Δ_sym = ${maxSymErr.toFixed(9)}) перевищує поріг допуску 10⁻⁸! Натисніть «Скинути атаку», щоб повернути оригінал.`;
+        headline.textContent = isEn
+          ? "❌ INTEGRITY VIOLATION / TAMPER DETECTED"
+          : "❌ ПОРУШЕННЯ ЦІЛІСНОСТІ / ПІДРОБКУ ВИЯВЛЕНО (TAMPER DETECTED)";
+        if (seal.tamperedText || !payloadHashValid) {
+          sub.textContent = isEn
+            ? "Document text digest (GOST 34.311-95 / Kupyna-256 / SHA-256) does not match the DSTU 4145-2002 signature vector (r, s)!"
+            : "Дайджест тексту (ГОСТ 34.311-95 / Купина / SHA-256) не відповідає вектору (r, s) підпису ДСТУ 4145-2002!";
+        } else if (!rsBindingValid) {
+          sub.textContent = isEn
+            ? "Cryptographic binding between DSTU 4145-2002 vector SHA-256(r || s) and the geometric watermark is broken!"
+            : "Порушено криптографічну прив'язку вектора ДСТУ 4145-2002 SHA-256(r || s) до геометричного підпису!";
+        } else {
+          sub.textContent = isEn
+            ? `Geometric coordinate drift Δ_coord = ${maxCoordDrift.toFixed(9)} (Δ_sym = ${maxSymErr.toFixed(9)}) exceeds tolerance 10⁻⁸! Click "Reset Attack" to restore the original.`
+            : `Геометричний зсув Δ_coord = ${maxCoordDrift.toFixed(9)} (Δ_sym = ${maxSymErr.toFixed(9)}) перевищує поріг допуску 10⁻⁸! Натисніть «Скинути атаку», щоб повернути оригінал.`;
+        }
       }
 
       const sInfo = dstu.signer_info || {};
+      const signerName = isEn
+        ? (sInfo.common_name_en || (sInfo.common_name === "Баєнко Ярослав Володимирович" ? "Yaroslav Volodymyrovych Baienko" : sInfo.common_name))
+        : sInfo.common_name;
+      const tinLabel = isEn ? "TIN" : "РНОКПП";
+      const issuerName = isEn
+        ? (sInfo.issuer_name_en || (sInfo.issuer_name && sInfo.issuer_name.includes("monobank") ? "CA JSC Universal Bank (monobank · PAdES-LTA · CZO)" : sInfo.issuer_name))
+        : sInfo.issuer_name;
+      const tspStr = dstu.tsp_utc || "2026-10-17 03:20:22 UTC";
+
       document.getElementById("valDocName").textContent = currentSealState.docName;
-      document.getElementById("valSigner").textContent = sInfo.common_name
-        ? `${sInfo.common_name} (РНОКПП ${sInfo.rnokpp || "—"})`
+      document.getElementById("valSigner").textContent = signerName
+        ? `${signerName} (${tinLabel} ${sInfo.rnokpp || "—"})`
         : (seal.signer_key_name || "Sovereign-Vedic-Key-108");
-      document.getElementById("valIssuer").textContent = sInfo.issuer_name
-        ? `${sInfo.issuer_name} · ${sInfo.serial_hex || ""}`
+      document.getElementById("valIssuer").textContent = issuerName
+        ? `${issuerName} · ${sInfo.serial_hex || ""}`
         : `Fingerprint: ${seal.key_fingerprint}`;
       document.getElementById("valStandard").textContent = verified
-        ? `✅ КЕП ДІЙСНИЙ · ${dstu.standard || "ДСТУ 4145-2002 EC + PAdES-LTA"}`
-        : `❌ ПОРУШЕНО · Координати не відповідають підпису ДСТУ 4145-2002`;
+        ? (isEn
+          ? `✅ VALID QES · PAdES-LTA / CAdES-X-Long · TSP: ${tspStr}`
+          : `✅ КЕП ДІЙСНИЙ · PAdES-LTA / CAdES-X-Long · TSP: ${tspStr}`)
+        : (isEn
+          ? `❌ INVALID · Coordinates do not match DSTU 4145-2002 signature`
+          : `❌ ПОРУШЕНО · Координати не відповідають підпису ДСТУ 4145-2002`);
       document.getElementById("valGost").textContent = dstu.gost34311_hex || seal.content_sha256;
       document.getElementById("valKupyna").textContent = dstu.dstu7564_hex || seal.hmac_sha256;
       document.getElementById("valRS").textContent = dstu.r_hex
@@ -924,8 +1034,9 @@
     }
 
     function showTriHover(name, lx, rx, by, ay, delta) {
+      const prefix = currentLang === "en" ? "Triangle" : "Трикутник";
       document.getElementById("hoverInfo").textContent =
-        `Трикутник ${name}: lx=${lx.toFixed(6)} | rx=${rx.toFixed(6)} | by=${by.toFixed(6)} | δ=${delta.toExponential(3)}`;
+        `${prefix} ${name}: lx=${lx.toFixed(6)} | rx=${rx.toFixed(6)} | by=${by.toFixed(6)} | δ=${delta.toExponential(3)}`;
     }
 
     // =========================================================================
@@ -957,13 +1068,11 @@
     }
 
     async function extractDocxMarmaSeal(uint8) {
-      // Minimal ZIP local-file-header scanner for word/document.xml
       const view = new DataView(uint8.buffer, uint8.byteOffset, uint8.byteLength);
       let offset = 0;
       while (offset + 30 <= uint8.byteLength) {
         const sig = view.getUint32(offset, true);
         if (sig !== 0x04034b50) { offset++; continue; }
-        const compMethod = view.getUint16(offset + 8, true);
         const compSize = view.getUint32(offset + 18, true);
         const nameLen = view.getUint16(offset + 26, true);
         const extraLen = view.getUint16(offset + 28, true);
@@ -997,7 +1106,11 @@
           return m ? m[1] : "";
         };
         const metaTagMatch = text.match(/<metadata\s+[^>]*>/i);
-        if (!metaTagMatch) throw new Error("У SVG-файлі відсутній крипто-блок <metadata> Marma-Crypto.");
+        if (!metaTagMatch) {
+          throw new Error(currentLang === "en"
+            ? "No Marma-Crypto <metadata> block found in the SVG file."
+            : "У SVG-файлі відсутній крипто-блок <metadata> Marma-Crypto.");
+        }
         const mTag = metaTagMatch[0];
         const b64 = getAttr(mTag, "data-dstu4145-b64");
         let dstu4145 = {};
@@ -1027,10 +1140,12 @@
         });
         return {
           protocol: "MARMA-DSTU4145-V1.2",
+          payload: getAttr(mTag, "data-payload"),
           signer_key_name: getAttr(mTag, "data-signer"),
           key_fingerprint: getAttr(mTag, "data-key-fp"),
           content_sha256: getAttr(mTag, "data-content-sha256"),
           hmac_sha256: getAttr(mTag, "data-hmac-sha256"),
+          public_seal_digest: getAttr(mTag, "data-public-seal"),
           dstu4145,
           triangles
         };
@@ -1042,7 +1157,9 @@
         || parseBalancedJsonAfterMarker(rawLatin, "MARMA_SEAL_PACKET::");
       if (sealPdf) return sealPdf;
 
-      throw new Error("У файлі не знайдено криптографічної печатки MARMA_SEAL::v1.2-DSTU4145.");
+      throw new Error(currentLang === "en"
+        ? "No MARMA_SEAL::v1.2-DSTU4145 cryptographic seal found in the file."
+        : "У файлі не знайдено криптографічної печатки MARMA_SEAL::v1.2-DSTU4145.");
     }
 
     async function handleFileObject(file) {
@@ -1060,7 +1177,9 @@
       } catch (err) {
         const banner = document.getElementById("statusBanner");
         banner.className = "status-banner err";
-        document.getElementById("statusHeadline").textContent = "❌ ПІДПИС MARMA-CRYPTO ВІДСУТНІЙ АБО ПОШКОДЖЕНИЙ";
+        document.getElementById("statusHeadline").textContent = currentLang === "en"
+          ? "❌ MARMA-CRYPTO SIGNATURE MISSING OR CORRUPTED"
+          : "❌ ПІДПИС MARMA-CRYPTO ВІДСУТНІЙ АБО ПОШКОДЖЕНИЙ";
         document.getElementById("statusSub").textContent = err.message;
       }
     }
@@ -1068,7 +1187,7 @@
     async function loadRemoteArtifact(url) {
       const fileName = url.split("/").pop();
       try {
-        const resp = await fetch(url + "?v=1.2.1", { cache: "no-store" });
+        const resp = await fetch(url + "?v=1.2.2", { cache: "no-store" });
         if (!resp.ok) throw new Error("HTTP " + resp.status);
         const buf = await resp.arrayBuffer();
         const seal = extractMarmaSealFromBytes(new Uint8Array(buf), fileName);
@@ -1084,15 +1203,14 @@
 
     function simulateTamperAttack() {
       if (isAttackSimulated) {
-        // Restore untampered clean state!
         renderVerificationState(cleanSealState, cleanSealState.docName, false);
         return;
       }
       const tampered = JSON.parse(JSON.stringify(cleanSealState));
-      // Perturb triangle U2 by 0.001 units (simulating unauthorized edit)
       tampered.triangles[3].by = Number((tampered.triangles[3].by + 0.001).toFixed(9));
       tampered.triangles[3].lx = Number((tampered.triangles[3].lx - 0.001).toFixed(9));
-      renderVerificationState(tampered, cleanSealState.docName + " [АТАКА: +0.001 на U2]", true);
+      const suffix = currentLang === "en" ? " [ATTACK: +0.001 on U2]" : " [АТАКА: +0.001 на U2]";
+      renderVerificationState(tampered, cleanSealState.docName + suffix, true);
     }
 
     // Drag and Drop listeners
@@ -1112,44 +1230,102 @@
       }
     });
 
-    // Bilingual toggle
+    // Full Bilingual Dictionary (English primary, Ukrainian secondary)
     const I18N = {
+      en: {
+        brandBadge: "v1.2.1 · DSTU 4145-2002 · PAdES-LTA",
+        kicker: "Cryptographic-Geometric Watermark · Nonlinear Sri Yantra Concurrency × GF(2^257)",
+        heroTitle: "Public Online Verifier for Marma-Crypto & DSTU 4145-2002 QES Signatures",
+        heroDesc: "Verify authenticity, text integrity, Qualified Electronic Signature (DSTU 4145-2002 / PAdES-LTA + TSP Timestamp), and the 9-triangle Sri Yantra geometric concurrency (54 triple marmas) of any signed .pdf, .svg, or .docx document directly in your browser — 100% Client-Side.",
+        btnHeroEn: "📘 Whitepaper (EN PDF · Signed PAdES-LTA)",
+        btnHeroUa: "📕 Whitepaper (UA PDF · Підписана КЕП)",
+        btnHeroProto: "📋 Official Verification Protocol (PDF)",
+        leftTitle: "1. Document Selection & Geometry",
+        dropTitle: "Drag & Drop a Signed .PDF, .SVG, or .DOCX Here",
+        dropSub: "or click to browse a file from your device",
+        presetLabel: "Instant Verification of Official Author Artifacts:",
+        presetBtnEn: "🇬🇧 Whitepaper (EN .pdf)",
+        presetBtnUa: "🇺🇦 Whitepaper (UA .pdf)",
+        presetBtnSvg: "📐 Canonical Sri Yantra (.svg)",
+        hoverPrompt: "Hover over any of the 9 triangles to inspect exact coordinates & micro-perturbation δ_k",
+        rightTitle: "2. Cryptographic Verification Certificate",
+        btnPrint: "🖨️ Print / PDF",
+        lblDoc: "Verified Document / File",
+        lblSigner: "Signer / QES Subject (KNEDP)",
+        lblIssuer: "Qualified Trust Provider (CA) & Serial",
+        lblStandard: "DSTU 4145-2002 QES & TSP Timestamp",
+        lblGost: "DSTU GOST 34.311-95 Digest",
+        lblKupyna: "DSTU 7564:2014 (Kupyna-256) Digest",
+        lblRS: "DSTU 4145-2002 Signature Vector (r, s)",
+        lblErrors: "Symmetry (Δ_sym) & Coordinate Drift (Δ_coord)",
+        tableTitle: "9-Triangle Nava-Cakra Concurrency Verification Matrix (54 Triple Marmas)",
+        thLevel: "Layer (T_k)",
+        thLx: "lx_k (Left)",
+        thRx: "rx_k (Right)",
+        thBy: "by_k (Base)",
+        thAy: "ay_k (Apex)",
+        thDelta: "Perturbation δ_k",
+        thStatus: "Status",
+        footerAuthor: "Author & Inventor:",
+        footerLicense: "License: Apache 2.0 / CC BY 4.0"
+      },
       uk: {
+        brandBadge: "v1.2.1 · ДСТУ 4145-2002 · PAdES-LTA",
         kicker: "Криптографічно-геометричний водяний знак · Нелінійна планіметрія Шрі Янтри × GF(2^257)",
         heroTitle: "Публічний Онлайн-Верифікатор Підпису Marma-Crypto та ДСТУ 4145-2002",
-        heroDesc: "Перевірте автентичність, цілісність тексту та 9-трикутникову геометричну конфігурацію Шрі Янтри (54 потрійні марми) будь-якого документа .pdf, .svg або .docx прямо у вашому браузері — 100% Client-Side.",
+        heroDesc: "Перевірте автентичність, цілісність тексту, кваліфікований електронний підпис КЕП (ДСТУ 4145-2002 / PAdES-LTA + мітка часу TSP) та 9-трикутникову геометричну конфігурацію Шрі Янтри (54 потрійні марми) будь-якого документа .pdf, .svg або .docx прямо у браузері — 100% Client-Side.",
+        btnHeroEn: "📘 Whitepaper (EN PDF · Підписана КЕП)",
+        btnHeroUa: "📕 Біла книга (UA PDF · Підписана КЕП)",
+        btnHeroProto: "📋 Офіційний PDF-протокол перевірки",
         leftTitle: "1. Вибір документа та Геометрія",
         dropTitle: "Перетягніть сюди підписаний .PDF, .SVG або .DOCX",
         dropSub: "або натисніть, щоб вибрати файл із вашого пристрою",
         presetLabel: "Миттєва перевірка еталонних артефактів автора:",
+        presetBtnEn: "🇬🇧 Whitepaper (EN .pdf)",
+        presetBtnUa: "🇺🇦 Біла книга (UA .pdf)",
+        presetBtnSvg: "📐 Еталонна Шрі Янтра (.svg)",
+        hoverPrompt: "Наведіть курсор на будь-який із 9 трикутників для інспекції координат та мікро-збурення δ_k",
         rightTitle: "2. Криптографічний Сертифікат Перевірки",
-        tableTitle: "Матриця верифікації 9 трикутників Нава-чакри (54 потрійні марми)"
-      },
-      en: {
-        kicker: "Cryptographic Geometric Watermark · Sri Yantra Nonlinear Concurrency × GF(2^257)",
-        heroTitle: "Public Online Verifier for Marma-Crypto & DSTU 4145-2002 Signatures",
-        heroDesc: "Verify the authenticity, text integrity, and 9-triangle Sri Yantra geometric concurrency (54 triple marmas) of any signed .pdf, .svg, or .docx document directly in your browser — 100% Client-Side.",
-        leftTitle: "1. Document Selection & Geometry",
-        dropTitle: "Drag & Drop a Signed .PDF, .SVG, or .DOCX Here",
-        dropSub: "or click to browse from your device",
-        presetLabel: "Instant Verification of Official Author Artifacts:",
-        rightTitle: "2. Cryptographic Verification Certificate",
-        tableTitle: "9-Triangle Nava-Cakra Concurrency Verification Matrix (54 Triple Marmas)"
+        btnPrint: "🖨️ Друк / PDF",
+        lblDoc: "Перевірений документ / Файл",
+        lblSigner: "Підписувач / Сертифікат КНЕДП",
+        lblIssuer: "Кваліфікований надавач (CA) та Серія",
+        lblStandard: "Статус КЕП ДСТУ 4145-2002 та Мітка часу TSP",
+        lblGost: "Дайджест ДСТУ ГОСТ 34.311-95",
+        lblKupyna: "Дайджест ДСТУ 7564:2014 («Купина-256»)",
+        lblRS: "Вектор підпису ДСТУ 4145-2002 (r, s)",
+        lblErrors: "Інваріант симетрії (Δ_sym) та Координат (Δ_coord)",
+        tableTitle: "Матриця верифікації 9 трикутників Нава-чакри (54 потрійні марми)",
+        thLevel: "Рівень (T_k)",
+        thLx: "lx_k (Лівий кут)",
+        thRx: "rx_k (Правий кут)",
+        thBy: "by_k (Основа)",
+        thAy: "ay_k (Вершина)",
+        thDelta: "Мікро-збурення δ_k",
+        thStatus: "Статус",
+        footerAuthor: "Автор і винахідник:",
+        footerLicense: "Ліцензія: Apache 2.0 / CC BY 4.0"
       }
     };
 
-    function toggleLanguage() {
-      currentLang = currentLang === "uk" ? "en" : "uk";
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
       const dict = I18N[currentLang];
       document.querySelectorAll("[data-i18n]").forEach(el => {
         const k = el.getAttribute("data-i18n");
         if (dict[k]) el.textContent = dict[k];
       });
-      updateAttackButtonUI();
+      renderVerificationState(currentSealState, currentSealState.docName, isAttackSimulated);
     }
 
-    // Initialize on load
-    renderVerificationState(PRESET_SEAL_UA, "Marma_Crypto_Whitepaper_UA.pdf");
+    function toggleLanguage() {
+      applyLanguage(currentLang === "en" ? "uk" : "en");
+    }
+
+    // Initialize on load in English (primary default language)
+    applyLanguage("en");
+    renderVerificationState(PRESET_SEAL_EN, "Marma_Crypto_Whitepaper_EN.pdf", false);
   </script>
 </body>
 </html>

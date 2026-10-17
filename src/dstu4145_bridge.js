@@ -16,6 +16,7 @@
 'use strict';
 
 const fs = require('fs');
+const os = require('os');
 const path = require('path');
 const crypto = require('crypto');
 const { spawnSync } = require('child_process');
@@ -83,7 +84,7 @@ function findOwnerCertificateMetadata(preferredKeyPath) {
     candidates.push(path.join(parsed.dir, `${parsed.name}.cer`));
     candidates.push(path.join(parsed.dir, `${parsed.name}.crt`));
   }
-  const secDir = path.join(process.env.HOME || '$HOME', '.secure_keys');
+  const secDir = path.join(process.env.HOME || os.homedir(), '.secure_keys');
   if (fs.existsSync(secDir)) {
     try {
       for (const f of fs.readdirSync(secDir)) {
@@ -283,6 +284,39 @@ async function handleSign(req) {
   };
 }
 
+function toSafePdfAscii(input) {
+  const map = {
+    'А': 'A', 'Б': 'B', 'В': 'V', 'Г': 'H', 'Ґ': 'G', 'Д': 'D', 'Е': 'E', 'Є': 'Ye',
+    'Ж': 'Zh', 'З': 'Z', 'И': 'Y', 'І': 'I', 'Ї': 'Yi', 'Й': 'Y', 'К': 'K', 'Л': 'L',
+    'М': 'M', 'Н': 'N', 'О': 'O', 'П': 'P', 'Р': 'R', 'С': 'S', 'Т': 'T', 'У': 'U',
+    'Ф': 'F', 'Х': 'Kh', 'Ц': 'Ts', 'Ч': 'Ch', 'Ш': 'Sh', 'Щ': 'Shch', 'Ь': '',
+    'Ю': 'Yu', 'Я': 'Ya', 'Ы': 'Y', 'Э': 'E', 'Ъ': '',
+    'а': 'a', 'б': 'b', 'в': 'v', 'г': 'h', 'ґ': 'g', 'д': 'd', 'е': 'e', 'є': 'ye',
+    'ж': 'zh', 'з': 'z', 'и': 'y', 'і': 'i', 'ї': 'yi', 'й': 'y', 'к': 'k', 'л': 'l',
+    'м': 'm', 'н': 'n', 'о': 'o', 'п': 'p', 'р': 'r', 'с': 's', 'т': 't', 'у': 'u',
+    'ф': 'f', 'х': 'kh', 'ц': 'ts', 'ч': 'ch', 'ш': 'sh', 'щ': 'shch', 'ь': '',
+    'ю': 'yu', 'я': 'ya', 'ы': 'y', 'э': 'e', 'ъ': '', '’': "'", 'ʼ': "'",
+  };
+  const raw = String(input || '');
+  let out = '';
+  for (let i = 0; i < raw.length; i++) {
+    const ch = raw[i];
+    if (Object.prototype.hasOwnProperty.call(map, ch)) {
+      out += map[ch];
+    } else if (ch === '(') {
+      out += '[';
+    } else if (ch === ')') {
+      out += ']';
+    } else if (ch === '\\') {
+      out += '/';
+    } else {
+      const code = ch.charCodeAt(0);
+      out += (code >= 0x20 && code <= 0x7e) ? ch : '';
+    }
+  }
+  return out.trim() || 'Ukraine';
+}
+
 async function handleSealPades(req) {
   const keyPath = req.keyPath || '';
   const password = req.password || '';
@@ -294,12 +328,20 @@ async function handleSealPades(req) {
   }
 
   const { box } = await unlockQesBox(keyPath, password);
+  const rawCertInfo = padesMod.extractCertInfo(box);
+  const safeCertInfo = {
+    ...rawCertInfo,
+    commonName: toSafePdfAscii(rawCertInfo.commonName || 'QES Signer'),
+    issuerName: toSafePdfAscii(rawCertInfo.issuerName || 'KNEDP Ukraine'),
+    locality: toSafePdfAscii(rawCertInfo.locality || 'Ukraine'),
+  };
   const res = await padesMod.signPdfPAdES(box, inputPdfPath, {
     outputPath: outputPdfPath,
     stamp: false,
     tsp: req.tsp !== false,
     ltv: req.ltv !== false,
-    reason: 'Підписано Marma-Crypto (Шрі Янтра) та КЕП за ДСТУ 4145-2002',
+    certInfo: safeCertInfo,
+    reason: 'Signed by Marma-Crypto [Sri Yantra] and DSTU 4145-2002 QES',
   });
 
   return {
@@ -308,7 +350,7 @@ async function handleSealPades(req) {
     output_path: res.outputPath,
     file_size: res.fileSize,
     has_ltv_dss: Boolean(res.hasLtvDss),
-    cert_info: res.certInfo,
+    cert_info: rawCertInfo,
   };
 }
 
@@ -411,11 +453,18 @@ async function handleVerify(req) {
     }
   }
 
+  const expectedRsDigest = (d.r_hex && d.s_hex)
+    ? crypto.createHash('sha256').update(`${d.r_hex}::${d.s_hex}`).digest('hex')
+    : '';
+  const rsDigestMatches = Boolean(expectedRsDigest && (!d.rs_digest_hex || d.rs_digest_hex === expectedRsDigest));
+
   return {
     status: 'ok',
-    dstu4145_valid: Boolean(hashMatches && ecVerified),
+    dstu4145_valid: Boolean(hashMatches && ecVerified && rsDigestMatches),
     gost34311_match: hashMatches,
     ec_signature_valid: ecVerified,
+    rs_digest_match: rsDigestMatches,
+    expected_rs_digest_hex: expectedRsDigest,
     actual_gost34311_hex: actualGostHex,
     actual_dstu7564_hex: actualDstu7564Hex,
     ec_error: ecError,

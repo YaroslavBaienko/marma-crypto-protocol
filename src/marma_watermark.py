@@ -436,11 +436,20 @@ def _check_strict_key_or_cert_match(
     key_file_path: str,
     raw_password: str,
 ) -> tuple[str, list[float], bool]:
-    """Verify key derivation or matching owner certificate under --strict-key."""
+    """Verify key derivation, r||s digest binding, or matching owner certificate under --strict-key."""
+    r_hex = (dstu_bundle or {}).get("r_hex", "")
+    s_hex = (dstu_bundle or {}).get("s_hex", "")
+    rs_sha = (
+        hashlib.sha256(f"{r_hex}::{s_hex}".encode("utf-8")).hexdigest()
+        if (r_hex and s_hex)
+        else ""
+    )
+
     if not secret_key:
         expected_hex = embedded_hmac
         expected_offsets = derive_offsets_from_hmac_hex(embedded_hmac) if len(embedded_hmac) == 64 else [0.0] * 9
-        return expected_hex, expected_offsets, len(embedded_hmac) == 64
+        hmac_ok = (len(embedded_hmac) == 64) and (not rs_sha or embedded_hmac == rs_sha)
+        return expected_hex, expected_offsets, hmac_ok
 
     try:
         expected_hex, expected_offsets, derived_dstu = derive_micro_offsets(
@@ -450,7 +459,8 @@ def _check_strict_key_or_cert_match(
         return "", [0.0] * 9, False
 
     if not embedded_hmac or embedded_hmac == expected_hex:
-        return expected_hex, expected_offsets, True
+        hmac_ok = not rs_sha or not embedded_hmac or embedded_hmac == rs_sha
+        return expected_hex, expected_offsets, hmac_ok
 
     # If the document has a valid DSTU 4145-2002 EC signature and the unlocked key/cert belongs to the same owner (serial_hex / rnokpp)
     doc_signer = (dstu_bundle or {}).get("signer_info") or {}
@@ -458,6 +468,7 @@ def _check_strict_key_or_cert_match(
     same_owner = bool(
         dstu_ok
         and len(embedded_hmac) == 64
+        and (not rs_sha or embedded_hmac == rs_sha)
         and doc_signer.get("serial_hex")
         and doc_signer.get("serial_hex") == key_signer.get("serial_hex")
     )
@@ -467,12 +478,49 @@ def _check_strict_key_or_cert_match(
     return expected_hex, expected_offsets, False
 
 
+def verify_triangle_coordinates(
+    embedded_tris: list[dict],
+    expected_offsets: list[float],
+    cx: float = 150.0,
+) -> tuple[float, float]:
+    """Verify all 36 coordinates (lx, rx, by, ay) and bilateral symmetry (lx + rx == 2*cx) across 9 triangles."""
+    scale = 2.0 if cx == 300.0 else 1.0
+    max_coord_drift = 0.0
+    max_sym_err = 0.0
+    for idx, (name, lx_can, by_can, ay_can, rx_can, _) in enumerate(CANONICAL_TRIANGLES):
+        t = embedded_tris[idx]
+        delta = expected_offsets[idx]
+        exp_lx = round(lx_can * scale + delta, 9)
+        exp_rx = round(cx * 2.0 - exp_lx, 9)
+        exp_by = round(by_can * scale + delta * 0.5, 9)
+        exp_ay = round(ay_can * scale, 9)
+
+        lx_s = float(t["lx"])
+        rx_s = float(t["rx"])
+        by_s = float(t["by"])
+        ay_s = float(t["ay"])
+
+        sym_err = abs((lx_s + rx_s) - cx * 2.0)
+        drift = max(
+            abs(lx_s - exp_lx),
+            abs(rx_s - exp_rx),
+            abs(by_s - exp_by),
+            abs(ay_s - exp_ay),
+        )
+        if sym_err > max_sym_err:
+            max_sym_err = sym_err
+        if drift > max_coord_drift:
+            max_coord_drift = drift
+    return max_coord_drift, max_sym_err
+
+
 def verify_sri_yantra_svg(
     svg_text: str,
     payload: str | None = None,
     secret_key: str | None = None,
     key_file_path: str = "",
     raw_password: str = "",
+    svg_path: Path | None = None,
 ) -> dict:
     """Verify the DSTU 4145-2002 elliptic curve signature and 9-triangle geometric watermark."""
     if payload is None:
@@ -483,6 +531,10 @@ def verify_sri_yantra_svg(
 
     m_hmac = re.search(r'data-hmac-sha256="([0-9a-fA-F]+)"', svg_text)
     embedded_hmac = m_hmac.group(1) if m_hmac else ""
+    m_csha = re.search(r'data-content-sha256="([0-9a-fA-F]+)"', svg_text)
+    embedded_csha = m_csha.group(1) if m_csha else ""
+    m_pseal = re.search(r'data-public-seal="([0-9a-fA-F]+)"', svg_text)
+    embedded_pseal = m_pseal.group(1) if m_pseal else ""
     m_signer = re.search(r'data-signer="([^"]+)"', svg_text)
     signer_name = m_signer.group(1) if m_signer else "Sovereign-Vedic-Key-108"
     m_kfp = re.search(r'data-key-fp="([0-9a-fA-F]+)"', svg_text)
@@ -499,23 +551,26 @@ def verify_sri_yantra_svg(
     if not secret_key and (not embedded_hmac or len(embedded_hmac) != 64):
         return {"verified": False, "format": "svg", "reason": "Missing signature digest in SVG"}
 
+    computed_csha = hashlib.sha256(payload.encode("utf-8")).hexdigest()
+    content_matches = (not embedded_csha) or (embedded_csha == computed_csha)
+
     dstu_verify = {"dstu4145_valid": True}
     if dstu_bundle:
-        dstu_verify = call_dstu4145_bridge(
-            {
-                "action": "verify",
-                "payloadBytesHex": payload.encode("utf-8").hex(),
-                "dstu4145": dstu_bundle,
-            }
-        )
+        bridge_req = {
+            "action": "verify",
+            "payloadBytesHex": payload.encode("utf-8").hex(),
+            "dstu4145": dstu_bundle,
+        }
+        if svg_path:
+            bridge_req["docPath"] = str(svg_path)
+        dstu_verify = call_dstu4145_bridge(bridge_req)
     dstu_ok = bool(dstu_verify.get("dstu4145_valid", True))
 
-    expected_hex, expected_offsets, hmac_match = _check_strict_key_or_cert_match(
+    expected_hex, expected_offsets, hmac_raw_match = _check_strict_key_or_cert_match(
         payload, embedded_hmac, dstu_bundle, dstu_ok, secret_key, key_file_path, raw_password
     )
+    hmac_match = content_matches and hmac_raw_match
 
-    extracted_offsets = []
-    symmetry_errors = []
     triangles = []
     for idx, (name, lx_can, by_can, ay_can, rx_can, _) in enumerate(CANONICAL_TRIANGLES):
         m = re.search(
@@ -525,16 +580,37 @@ def verify_sri_yantra_svg(
         if not m:
             return {"verified": False, "format": "svg", "reason": f"Missing triangle {name}"}
         lx_s, by_s, ay_s, rx_s = float(m.group(1)), float(m.group(2)), float(m.group(3)), float(m.group(4))
-        symmetry_errors.append(abs((lx_s + rx_s) - 300.0))
-        extracted_offsets.append(round(lx_s - lx_can, 9))
         triangles.append({"name": name, "lx": lx_s, "by": by_s, "ay": ay_s, "rx": rx_s})
 
-    max_offset_diff = max(abs(a - b) for a, b in zip(extracted_offsets, expected_offsets))
-    max_sym_err = max(symmetry_errors)
-    verified = hmac_match and dstu_ok and (max_offset_diff < 1e-8) and (max_sym_err < 1e-8)
+    cx = 300.0 if (triangles[0]["lx"] + triangles[0]["rx"]) > 400.0 else 150.0
+    max_offset_diff, max_sym_err = verify_triangle_coordinates(triangles, expected_offsets, cx=cx)
+
+    eff_hmac = embedded_hmac or expected_hex
+    expected_pseal = compute_public_seal_digest(computed_csha, eff_hmac, key_fp, triangles) if key_fp else ""
+    pub_seal_ok = (not embedded_pseal) or (not expected_pseal) or (embedded_pseal == expected_pseal)
+
+    verified = (
+        content_matches
+        and hmac_match
+        and dstu_ok
+        and pub_seal_ok
+        and (max_offset_diff < 1e-8)
+        and (max_sym_err < 1e-8)
+    )
+
+    reason = "OK"
+    if not content_matches:
+        reason = "SVG payload SHA-256 mismatch"
+    elif not dstu_ok:
+        reason = "ДСТУ 4145-2002 elliptic curve verification failed"
+    elif not hmac_match:
+        reason = "Cryptographic key / digest mismatch"
+    elif not pub_seal_ok or max_offset_diff >= 1e-8 or max_sym_err >= 1e-8:
+        reason = "Geometric coordinate tampering detected"
 
     return {
         "verified": verified,
+        "reason": reason,
         "format": "svg",
         "standard": dstu_bundle.get("standard", "ДСТУ 4145-2002 / ГОСТ 34.311-95"),
         "dstu4145_verified": dstu_ok,
@@ -545,12 +621,15 @@ def verify_sri_yantra_svg(
         "dstu4145_r": dstu_bundle.get("r_hex", ""),
         "dstu4145_s": dstu_bundle.get("s_hex", ""),
         "signer_info": dstu_bundle.get("signer_info"),
+        "qes_container_report": dstu_verify.get("qes_container_report"),
         "payload": payload,
         "signer_key_name": signer_name,
         "key_fingerprint": key_fp,
-        "computed_content_sha256": hashlib.sha256(payload.encode("utf-8")).hexdigest(),
+        "hmac_match": hmac_match,
+        "public_seal_match": pub_seal_ok,
+        "computed_content_sha256": computed_csha,
         "expected_hmac_sha256": expected_hex,
-        "embedded_hmac_sha256": embedded_hmac or expected_hex,
+        "embedded_hmac_sha256": eff_hmac,
         "max_coordinate_signature_drift": round(max_offset_diff, 10),
         "max_bilateral_symmetry_error": round(max_sym_err, 12),
         "triangles": triangles,
@@ -753,18 +832,21 @@ def verify_pdf_document(
     )
     hmac_match = content_matches and hmac_raw_match
 
-    extracted_offsets = []
-    symmetry_errors = []
-    for idx, (name, lx_can, _, _, _, _) in enumerate(CANONICAL_TRIANGLES):
-        t = embedded_tris[idx]
-        lx_s = float(t["lx"])
-        rx_s = float(t["rx"])
-        symmetry_errors.append(abs((lx_s + rx_s) - 300.0))
-        extracted_offsets.append(round(lx_s - lx_can, 9))
+    cx = 300.0 if (float(embedded_tris[0]["lx"]) + float(embedded_tris[0]["rx"])) > 400.0 else 150.0
+    max_offset_diff, max_sym_err = verify_triangle_coordinates(embedded_tris, expected_offsets, cx=cx)
 
-    max_offset_diff = max(abs(a - b) for a, b in zip(extracted_offsets, expected_offsets))
-    max_sym_err = max(symmetry_errors)
-    verified = content_matches and hmac_match and dstu_ok and (max_offset_diff < 1e-8) and (max_sym_err < 1e-8)
+    embedded_pseal = seal_packet.get("public_seal_digest", "")
+    expected_pseal = compute_public_seal_digest(content_hash, embedded_hmac, key_fp, embedded_tris) if key_fp else ""
+    pub_seal_ok = (not embedded_pseal) or (not expected_pseal) or (embedded_pseal == expected_pseal)
+
+    verified = (
+        content_matches
+        and hmac_match
+        and dstu_ok
+        and pub_seal_ok
+        and (max_offset_diff < 1e-8)
+        and (max_sym_err < 1e-8)
+    )
 
     reason = "OK"
     if not content_matches:
@@ -773,7 +855,7 @@ def verify_pdf_document(
         reason = "Cryptographic key mismatch (ДСТУ 4145-2002 / HMAC)"
     elif not dstu_ok:
         reason = "ДСТУ 4145-2002 elliptic curve verification failed"
-    elif max_offset_diff >= 1e-8 or max_sym_err >= 1e-8:
+    elif not pub_seal_ok or max_offset_diff >= 1e-8 or max_sym_err >= 1e-8:
         reason = "Geometric coordinate tampering detected"
 
     return {
@@ -794,6 +876,7 @@ def verify_pdf_document(
         "signer_key_name": signer_name,
         "key_fingerprint": key_fp,
         "hmac_match": hmac_match,
+        "public_seal_match": pub_seal_ok,
         "computed_content_sha256": content_hash,
         "expected_hmac_sha256": expected_hex,
         "embedded_hmac_sha256": embedded_hmac,
@@ -980,6 +1063,8 @@ def verify_docx_document(
     key_fp = seal_packet.get("key_fingerprint", "")
     dstu_bundle = seal_packet.get("dstu4145") or {}
     embedded_tris = seal_packet.get("triangles", [])
+    if len(embedded_tris) != 9:
+        return {"verified": False, "format": "docx", "file": str(docx_path), "reason": "Corrupted triangle array"}
 
     content_matches = content_hash == embedded_content_sha
 
@@ -1000,18 +1085,21 @@ def verify_docx_document(
     )
     hmac_match = content_matches and hmac_raw_match
 
-    extracted_offsets = []
-    symmetry_errors = []
-    for idx, (name, lx_can, _, _, _, _) in enumerate(CANONICAL_TRIANGLES):
-        t = embedded_tris[idx]
-        lx_s = float(t["lx"])
-        rx_s = float(t["rx"])
-        symmetry_errors.append(abs((lx_s + rx_s) - 300.0))
-        extracted_offsets.append(round(lx_s - lx_can, 9))
+    cx = 300.0 if (float(embedded_tris[0]["lx"]) + float(embedded_tris[0]["rx"])) > 400.0 else 150.0
+    max_offset_diff, max_sym_err = verify_triangle_coordinates(embedded_tris, expected_offsets, cx=cx)
 
-    max_offset_diff = max(abs(a - b) for a, b in zip(extracted_offsets, expected_offsets))
-    max_sym_err = max(symmetry_errors)
-    verified = content_matches and hmac_match and dstu_ok and (max_offset_diff < 1e-8) and (max_sym_err < 1e-8)
+    embedded_pseal = seal_packet.get("public_seal_digest", "")
+    expected_pseal = compute_public_seal_digest(content_hash, embedded_hmac, key_fp, embedded_tris) if key_fp else ""
+    pub_seal_ok = (not embedded_pseal) or (not expected_pseal) or (embedded_pseal == expected_pseal)
+
+    verified = (
+        content_matches
+        and hmac_match
+        and dstu_ok
+        and pub_seal_ok
+        and (max_offset_diff < 1e-8)
+        and (max_sym_err < 1e-8)
+    )
 
     reason = "OK"
     if not content_matches:
@@ -1020,7 +1108,7 @@ def verify_docx_document(
         reason = "Cryptographic key mismatch"
     elif not dstu_ok:
         reason = "ДСТУ 4145-2002 elliptic curve verification failed"
-    elif max_offset_diff >= 1e-8 or max_sym_err >= 1e-8:
+    elif not pub_seal_ok or max_offset_diff >= 1e-8 or max_sym_err >= 1e-8:
         reason = "Geometric coordinate tampering detected"
 
     return {
@@ -1041,6 +1129,7 @@ def verify_docx_document(
         "signer_key_name": signer_name,
         "key_fingerprint": key_fp,
         "hmac_match": hmac_match,
+        "public_seal_match": pub_seal_ok,
         "computed_content_sha256": content_hash,
         "expected_hmac_sha256": expected_hex,
         "embedded_hmac_sha256": embedded_hmac,
@@ -1186,6 +1275,32 @@ def generate_pdf_verification_protocol(
         color=(0.45, 0.45, 0.45),
     )
 
+    # Self-seal the Verification Protocol PDF so that the protocol itself is verifiable
+    proto_text = "\n".join(normalize_text(p.get_text("text")) for p in doc)
+    proto_hash = hashlib.sha256(proto_text.encode("utf-8")).hexdigest()
+    proto_payload = f"PDF-CONTENT-SHA256::{proto_hash}"
+    eff_sec = secret_key or DEFAULT_SECRET
+    p_hex, _, p_tris, p_dstu = build_perturbed_triangles(proto_payload, eff_sec)
+    if s_info and p_dstu:
+        p_dstu["signer_info"] = s_info
+    p_kfp = str(ver_res.get("key_fingerprint") or hashlib.sha256(eff_sec.encode("utf-8")).hexdigest())
+    p_kname = str(ver_res.get("signer_key_name") or "Sovereign-Vedic-Key-108")
+    p_pseal = compute_public_seal_digest(proto_hash, p_hex, p_kfp, p_tris)
+    proto_seal_packet = {
+        "protocol": "MARMA-DSTU4145-V1.2",
+        "signer_key_name": p_kname,
+        "key_fingerprint": p_kfp,
+        "content_sha256": proto_hash,
+        "hmac_sha256": p_hex,
+        "public_seal_digest": p_pseal,
+        "timestamp_utc": datetime.now(timezone.utc).isoformat(),
+        "dstu4145": p_dstu,
+        "triangles": [{k: t[k] for k in ("name", "lx", "by", "ay", "rx")} for t in p_tris],
+    }
+    meta = doc.metadata or {}
+    meta["keywords"] = "MARMA_SEAL::" + json.dumps(proto_seal_packet, separators=(",", ":"))
+    doc.set_metadata(meta)
+
     doc.save(str(out_pdf))
     doc.close()
     ver_res["protocol_pdf"] = str(out_pdf)
@@ -1239,6 +1354,12 @@ def verify_any_file(
     raw_password: str = "",
 ) -> dict:
     ext = in_path.suffix.lower()
+    if ext == ".p7s" and in_path.with_suffix("").is_file():
+        in_path = in_path.with_suffix("")
+        ext = in_path.suffix.lower()
+    elif ext not in (".pdf", ".docx", ".svg") and in_path.with_suffix(".pdf").is_file():
+        in_path = in_path.with_suffix(".pdf")
+        ext = ".pdf"
     if ext == ".pdf":
         return verify_pdf_document(in_path, secret_key=secret_key, key_file_path=key_file_path, raw_password=raw_password)
     if ext == ".docx":
@@ -1247,6 +1368,7 @@ def verify_any_file(
         res = verify_sri_yantra_svg(
             in_path.read_text(encoding="utf-8"), payload, secret_key,
             key_file_path=key_file_path, raw_password=raw_password,
+            svg_path=in_path,
         )
         res["file"] = str(in_path)
         return res

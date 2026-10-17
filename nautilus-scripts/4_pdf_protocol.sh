@@ -23,6 +23,12 @@ for f in "${FILES[@]}"; do
     if [[ -f "$f" ]]; then
         case "${f,,}" in
             *.pdf|*.docx|*.svg) VALID_FILES+=("$f") ;;
+            *.p7s)
+                [[ -f "${f%.p7s}" ]] && VALID_FILES+=("${f%.p7s}")
+                ;;
+            *)
+                [[ -f "${f%.*}.pdf" ]] && VALID_FILES+=("${f%.*}.pdf")
+                ;;
         esac
     fi
 done
