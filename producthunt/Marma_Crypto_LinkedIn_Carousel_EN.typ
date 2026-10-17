@@ -1,5 +1,5 @@
 // =============================================================================
-// MARMA-CRYPTO PROTOCOL (v1.2.1) — 10-SLIDE VECTOR LINKEDIN CAROUSEL (EN)
+// MARMA-CRYPTO PROTOCOL (v1.3.0) — 11-SLIDE VECTOR LINKEDIN CAROUSEL (EN)
 // Format: 1080pt x 1350pt (4:5 Portrait — Optimal LinkedIn Document Feed Ratio)
 // Author: Yaroslav V. Baienko | CERN Zenodo DOI: 10.5281/zenodo.23436152
 // =============================================================================
@@ -134,7 +134,7 @@
   grid(
     columns: (1fr, auto),
     align: (left + horizon, right + horizon),
-    mono("MARMA-CRYPTO PROTOCOL v1.2.1 · DOI: 10.5281/zenodo.23436152", size: 14pt, color: text-muted),
+    mono("MARMA-CRYPTO PROTOCOL v1.3.0 · DOI: 10.5281/zenodo.23436152", size: 14pt, color: text-muted),
     box(inset: (right: 72pt), mono("yaroslavbaienko.github.io/marma-crypto-protocol", size: 14pt, color: gold-bright)),
   )
 }
@@ -152,14 +152,14 @@
 #v(24pt)
 
 #align(center)[
-  #serif("THE MARMA-CRYPTO PROTOCOL", size: 48pt, color: gold-bright)
+  #serif("THE MARMA-CRYPTO PROTOCOL v1.3", size: 46pt, color: gold-bright)
   #v(10pt)
   #text(size: 24pt, weight: "bold", fill: text-main)[
     Cryptographic-Geometric Watermarking & Sovereign Document Sealing
     via Sri Yantra Nonlinear Planimetry and Elliptic Curves over $FF_(2^257)$
   ]
   #v(8pt)
-  #mono("Ukrainian National Standard DSTU 4145-2002 · ETSI EN 319 142-1 (PAdES-B-LTA) · RFC 3161 TSP", size: 15.5pt, color: text-muted)
+  #mono("DSTU 4145-2002 · Parallel Multi-Hash Combiner · 256-Bit Bijective Lattice · Canary Leak-Tracing", size: 15pt, color: text-muted)
 ]
 
 #v(22pt)
@@ -193,11 +193,11 @@
     ]
   ),
   card(
-    tag: "SUB-MICRON BINDING",
-    title: "24-Bit Quantized δ_k",
+    tag: "BIJECTIVE LATTICE (v1.3)",
+    title: "256-Bit + Canary D5",
     inset-val: 15pt,
     text(size: 17pt, fill: text-muted)[
-      Maps a 512-bit $"DSTU 4145-2002"$ signature $(r, s)$ into deterministic shifts $|delta_k| <= 10^(-5)$ with exact bilateral symmetry $Delta_("sym") = 0$.
+      Encodes full 256-bit signature commitment across 26 coordinates ($|delta_k| <= 9.21 times 10^(-6)$) + Canary Leak-Tracing in `D5.ay`.
     ]
   ),
   card(
@@ -205,7 +205,7 @@
     title: "100% Client-Side",
     inset-val: 15pt,
     text(size: 17pt, fill: text-muted)[
-      Instant verification of signed `.pdf`, `.docx`, and `.svg` files in your browser or via Debian/Ubuntu `apt install`.
+      Instant verification & suspect leak attribution of `.pdf`, `.docx`, and `.svg` files in your browser or via `apt install`.
     ]
   ),
 )
@@ -369,16 +369,16 @@
 // =============================================================================
 #slide-frame(
   "04",
-  "ELLIPTIC CURVE CRYPTOGRAPHY · BINARY GALOIS FIELD GF(2^257)",
+  "ELLIPTIC CURVE CRYPTOGRAPHY · PARALLEL MULTI-HASH COMBINER",
   "Cryptographic Binding via National Standard DSTU 4145-2002",
-  subtitle: "From normalized document text to a deterministic elliptic curve signature vector (r, s) over characteristic-two fields."
+  subtitle: "From canonical text normalization and parallel multi-hash domain separation to deterministic (r, s) over GF(2^257)."
 )[
   #card(
-    tag: "STEP 01 · CANONICAL TEXT NORMALIZATION & TRIPLE CRYPTOGRAPHIC DIGEST",
-    title: "Multi-Standard Hash Commitment (GOST + Kupyna-256 + SHA-256)",
+    tag: "STEP 01 · PARALLEL MULTI-HASH COMBINER (RESISTANT TO SINGLE-PRIMITIVE COLLISION)",
+    title: "SHA-256(GOST 34.311-95 || \"::\" || Kupyna-256 || \"::\" || SHA-256)",
     [
-      #text(size: 18.5pt, fill: text-main)[
-        Document text $M$ is extracted in deterministic page/paragraph order, stripped of dynamic seal headers, normalized via Unicode NFC, and hashed across three independent cryptographic primitives:
+      #text(size: 18pt, fill: text-main)[
+        Document text $M$ is extracted in deterministic order, stripped of dynamic seal headers, normalized via Unicode NFC, and combined in parallel across three independent cryptographic hash families:
       ]
       #v(10pt)
       #grid(
@@ -409,21 +409,21 @@
     tag: "STEP 02 · ELLIPTIC CURVE SIGNATURE OVER GF(2^257)",
     title: "Polynomial-Basis Curve DSTU_PB_257 & RFC 6979 Determinism",
     [
-      #text(size: 18.5pt, fill: text-main)[
+      #text(size: 18pt, fill: text-main)[
         We operate over the binary Galois field $FF_(2^257) = FF_2[t] \/ (t^257 + t^12 + 1)$ on the non-supersingular elliptic curve:
       ]
       #v(10pt)
-      #box(fill: bg-code, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 16pt, width: 100%)[
+      #box(fill: bg-code, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 14pt, width: 100%)[
         #align(center)[
           $ E(FF_(2^257)): quad y^2 + x y = x^3 + a x^2 + b, quad a = 0, quad deg(f(t)) = 257 $
         ]
       ]
       #v(10pt)
-      #text(size: 18pt, fill: text-muted)[
-        Using *IETF RFC 6979* deterministic nonce derivation (eliminating RNG side-channel risks), the signer's key produces the signature pair $(r, s)$ which is bound into a keyless public verification digest:
+      #text(size: 17.5pt, fill: text-muted)[
+        Using *IETF RFC 6979* deterministic nonce derivation over the Parallel Combiner $C(M)$, the signer's key produces $(r, s)$ bound into a 256-bit verification digest:
       ]
       #v(10pt)
-      #box(fill: bg-code, stroke: 1.2pt + gold, radius: 10pt, inset: 16pt, width: 100%)[
+      #box(fill: bg-code, stroke: 1.2pt + gold, radius: 10pt, inset: 14pt, width: 100%)[
         #align(center)[
           $ V = "SHA-256"(r_("hex") parallel "::" parallel s_("hex")) in {0, 1}^256 $
         ]
@@ -435,61 +435,61 @@
 #pagebreak()
 
 // =============================================================================
-// SLIDE 05: 24-BIT QUANTIZED SUB-MICRON PERTURBATION
+// SLIDE 05: 256-BIT BIJECTIVE LATTICE & CANARY LEAK-TRACING (v1.3)
 // =============================================================================
 #slide-frame(
   "05",
-  "GEOMETRIC STEGANOGRAPHY · SYMMETRY-PRESERVING MODULATION",
-  "24-Bit Quantized Sub-Micron Perturbation (|δ_k| ≤ 10⁻⁵)",
-  subtitle: "How 216 bits of the cryptographic signature vector are injected into the 9 Sri Yantra triangles with zero symmetry drift."
+  "GEOMETRIC STEGANOGRAPHY · 256-BIT BIJECTIVE LATTICE + CANARY D5",
+  "Full 256-Bit Mantissa Encoding & Canary Leak-Tracing",
+  subtitle: "Bijective integer-nanometer lattice encoding all 256 bits across 26 coordinates + recipient attribution in D5.ay."
 )[
   #card(
-    tag: "MATHEMATICAL TRANSFORMATION · 9 × 24-BIT BLOCK QUANTIZATION",
-    title: "Bijective Mapping from Signature Digest V to Coordinate Shifts δ_k",
+    tag: "MATHEMATICAL TRANSFORMATION · 25 × 10-BIT + 1 × 6-BIT EXACT LATTICE (256 BITS)",
+    title: "Lossless Bijective Inversion from Coordinates to 256-Bit Digest V",
     [
-      #text(size: 19pt, fill: text-main)[
-        The first 27 bytes (*216 bits*) of the binding digest $V$ are partitioned into nine 24-bit unsigned big-endian integers $u_k = "uint24"_("BE")(V[3k : 3k+3]) in [0, 16\,777\,215]$ and mapped into bounded micro-perturbations:
+      #text(size: 18pt, fill: text-main)[
+        All *256 bits* of $V$ are partitioned into $25 times 10$-bit words $w_j in [0, 1023]$ and one $6$-bit word $w_25 in [0, 63]$ ($w'_25 = 16 w_25 + 8$), mapped onto an exact integer-nanometer grid across 26 independent symmetric coordinates (`lx_1..lx_9`, `by_1..by_9`, `ay_1..ay_8`):
       ]
-      #v(12pt)
-      #box(fill: bg-code, stroke: 1.2pt + gold, radius: 10pt, inset: 18pt, width: 100%)[
+      #v(10pt)
+      #box(fill: bg-code, stroke: 1.2pt + gold, radius: 10pt, inset: 15pt, width: 100%)[
         #align(center)[
-          $ delta_(k+1) = "round"_9 lr(( ( (2 dot u_k) / (16\,777\,215) - 1 ) times 10^(-5) )), quad k = 0, dots, 8, quad delta_(k+1) in [-10^(-5), +10^(-5)] $
+          $ delta(w) = (18 w - 9207) times 10^(-9) in [-9.207 times 10^(-6), +9.207 times 10^(-6)], quad w = "round"((10^9 delta + 9207) / 18) $
         ]
       ]
     ]
   )
 
-  #v(16pt)
+  #v(14pt)
 
   #card(
-    tag: "BILATERAL SYMMETRY INVARIANT · ZERO VISUAL DISTORTION",
-    title: "Exact Counter-Symmetric Vertex Modulation",
+    tag: "BILATERAL SYMMETRY INVARIANT & CANARY LEAK-TRACING (--recipient-id)",
+    title: "Exact Counter-Symmetry + 27th Degree of Freedom (Bindu Apex D5.ay)",
     [
-      #text(size: 19pt, fill: text-main)[
-        To preserve the sacred bilateral symmetry axis $x = C_x = 150.0$, each triangle $T_k$ is modulated counter-symmetrically:
+      #text(size: 18pt, fill: text-main)[
+        Horizontal symmetry $x = 150.0$ is preserved identically ($Delta_("sym") = 0$), while the 27th coordinate (`D5.ay`) carries a 10-bit Canary Leak-Tracing beacon $w_("canary") in [1, 1023]$:
       ]
-      #v(12pt)
-      #box(fill: bg-code, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 18pt, width: 100%)[
+      #v(10pt)
+      #box(fill: bg-code, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 15pt, width: 100%)[
         #align(center)[
-          $ "lx"'_k = "round"_9("lx"_k + delta_k), quad "rx"'_k = "round"_9(2 C_x - "lx"'_k), quad "by"'_k = "round"_9("by"_k + 0.5 delta_k), quad "ay"'_k = "ay"_k $
+          $ "lx"'_k = "lx"_k + delta(w_k), quad "rx"'_k = 300 - "lx"'_k, quad "ay"'_9 = "ay"_9 + delta(w_("canary")) $
         ]
       ]
       #v(10pt)
       #grid(
         columns: (1fr, 1fr),
         gutter: 16pt,
-        box(fill: ok-bg, stroke: 1.2pt + ok-green, radius: 10pt, inset: 16pt)[
-          #mono("HUMAN EYE IMPERCEPTIBILITY", size: 14pt, color: ok-green)
+        box(fill: ok-bg, stroke: 1.2pt + ok-green, radius: 10pt, inset: 14pt)[
+          #mono("FULL 256-BIT ENTROPY", size: 14pt, color: ok-green)
           #v(6pt)
-          #text(size: 17pt, fill: text-main)[
-            Max shift is $10^(-5)$ units ($approx 0.003$ pt $approx 1 mu"m"$), which is *30× smaller* than a 300 DPI laser printer dot.
+          #text(size: 16.5pt, fill: text-main)[
+            Also embeds all 256 bits across 24 symmetric Marma pairs (`11 bits/pair = 264-bit` capacity) with zero visual distortion.
           ]
         ],
-        box(fill: bg-deep, stroke: 1.2pt + gold, radius: 10pt, inset: 16pt)[
-          #mono("COMBINATORIAL ENTROPY", size: 14pt, color: gold-bright)
+        box(fill: bg-deep, stroke: 1.2pt + gold, radius: 10pt, inset: 14pt)[
+          #mono("CANARY LEAK-TRACING (v1.3)", size: 14pt, color: gold-bright)
           #v(6pt)
-          #text(size: 17pt, fill: text-main)[
-            $(2^24)^9 = 2^216 approx 1.05 times 10^65$ distinct geometric states bound via SHA-256 commitment.
+          #text(size: 16.5pt, fill: text-main)[
+            Zero-plaintext recipient commitment (`--recipient-id`) identifies the exact leaked M&A / board PDF copy (`trace --suspects`).
           ]
         ],
       )
@@ -598,7 +598,7 @@
 #slide-frame(
   "07",
   "CRYPTOGRAPHIC & GEOMETRIC BENCHMARK · ALGORITHMIC COMPARISON",
-  "Why Marma-Crypto Outperforms Classical Signatures & Watermarks",
+  "Why Marma-Crypto v1.3 Outperforms Classical Signatures",
   subtitle: "Side-by-side comparison against RSA-3072, ECDSA P-256 / Ed25519, Detached CAdES, and Raster Steganography."
 )[
   #card(
@@ -606,18 +606,18 @@
     title: "Comparative Architecture Matrix",
     inset-val: 14pt,
     [
-      #set text(size: 13.5pt)
+      #set text(size: 13pt)
       #table(
         columns: (1.45fr, 1.15fr, 1.2fr, 1.15fr, 1.65fr),
         align: (left + horizon, center + horizon, center + horizon, center + horizon, center + horizon),
         stroke: 0.6pt + gold.transparentize(60%),
-        inset: 8.5pt,
+        inset: 7.5pt,
         table.header(
           [*Criterion / Layer*],
           [*RSA-3072*\ (PKCS\#1 v2.2)],
           [*ECDSA P-256*\ / Ed25519],
           [*Raster / QR*\ Watermark],
-          [#text(fill: gold-bright, weight: "bold")[*🔱 Marma-Crypto v1.2.1*\ (DSTU 4145 × Sri Yantra)]]
+          [#text(fill: gold-bright, weight: "bold")[*🔱 Marma-Crypto v1.3.0*\ (DSTU 4145 × Sri Yantra)]]
         ),
         [*Algebraic Group*],
         [Integer Ring $ZZ_n^*$],
@@ -635,7 +635,7 @@
         [Single (`SHA-256`)],
         [Single (`SHA-256`)],
         [None / CRC],
-        [#text(fill: ok-green, weight: "bold")[Triple (`GOST`+`Kupyna`+`SHA256`)]],
+        [#text(fill: ok-green, weight: "bold")[Parallel (`GOST||Kupyna||SHA256`)]],
 
         [*Nonce RNG Safety*],
         [Deterministic / PSS],
@@ -643,11 +643,11 @@
         [`N/A`],
         [#text(fill: ok-green, weight: "bold")[Deterministic `RFC 6979`]],
 
-        [*Visible Vector Binding*],
-        [#text(fill: err-red)[❌ None (Hidden ASN.1)]],
-        [#text(fill: err-red)[❌ None (Hidden ASN.1)]],
-        [#text(fill: err-red)[⚠️ Decorative only]],
-        [#text(fill: ok-green, weight: "bold")[✅ 54 Marmas ($|delta_k| <= 10^(-5)$)]],
+        [*Geometric Capacity*],
+        [#text(fill: err-red)[❌ 0 bits (Hidden ASN.1)]],
+        [#text(fill: err-red)[❌ 0 bits (Hidden ASN.1)]],
+        [#text(fill: err-red)[⚠️ Fragile pixels]],
+        [#text(fill: ok-green, weight: "bold")[✅ Full 256-Bit Bijective Lattice]],
 
         [*Tamper Localization*],
         [#text(fill: err-red)[❌ Binary Pass/Fail]],
@@ -655,11 +655,11 @@
         [#text(fill: err-red)[⚠️ Visual degradation]],
         [#text(fill: ok-green, weight: "bold")[✅ Exact Layer $T_1..T_9$ (36 coords)]],
 
-        [*Cross-Format Survival*],
-        [#text(fill: err-red)[❌ Lost on export]],
-        [#text(fill: err-red)[❌ Lost on export]],
-        [#text(fill: err-red)[❌ Breaks on scaling]],
-        [#text(fill: ok-green, weight: "bold")[✅ Native `.pdf`, `.docx`, `.svg`]],
+        [*Canary Leak-Tracing*],
+        [#text(fill: err-red)[❌ None]],
+        [#text(fill: err-red)[❌ None]],
+        [#text(fill: err-red)[❌ Easily cropped]],
+        [#text(fill: ok-green, weight: "bold")[✅ `D5.ay` Beacon (`--recipient-id`)]],
 
         [*Archival Legal Force*],
         [Requires PAdES],
@@ -676,27 +676,27 @@
     columns: (1fr, 1fr, 1fr),
     gutter: 14pt,
     card(
-      tag: "ADVANTAGE 01 · ALGEBRA",
-      title: "GF(2^257) Efficiency",
+      tag: "ADVANTAGE 01 · COMBINER",
+      title: "Multi-Hash Resilience",
       inset-val: 14pt,
-      text(size: 15pt, fill: text-muted)[
-        Polynomial-basis arithmetic over $FF_2[t]\/(t^257+t^12+1)$ uses carry-less XOR addition and provides cryptographic diversity beyond prime curves.
+      text(size: 14.5pt, fill: text-muted)[
+        Parallel domain-separated combiner remains collision-resistant unless GOST, Kupyna-256, and SHA-256 are broken simultaneously.
       ]
     ),
     card(
-      tag: "ADVANTAGE 02 · RESILIENCE",
-      title: "Dual-Channel Survival",
+      tag: "ADVANTAGE 02 · BIJECTION",
+      title: "256-Bit Recovery",
       inset-val: 14pt,
-      text(size: 15pt, fill: text-muted)[
-        Even if ASN.1 metadata is stripped by a document gateway, the 9-triangle vector coordinates retain the 216-bit signature commitment.
+      text(size: 14.5pt, fill: text-muted)[
+        Recovers the entire 256-bit signature commitment directly from the 9-triangle vector coordinates without metadata reliance.
       ]
     ),
     card(
-      tag: "ADVANTAGE 03 · FORENSICS",
-      title: "Sub-Micron Pinpointing",
+      tag: "ADVANTAGE 03 · ATTRIBUTION",
+      title: "Canary Leak-Tracing",
       inset-val: 14pt,
-      text(size: 15pt, fill: text-muted)[
-        Instead of an opaque "Invalid Signature" error, forensic auditors can localize the exact modified triangle and coordinate drift $Delta_("coord")$.
+      text(size: 14.5pt, fill: text-muted)[
+        Modulates the 27th symmetric coordinate (`D5.ay`) to prove which recipient leaked a confidential M&A or litigation PDF.
       ]
     )
   )
@@ -757,7 +757,7 @@
   #v(18pt)
 
   #card(
-    tag: "SELF-REFERENTIAL CRYPTOGRAPHIC PROOF · LIVE IN V1.2.1",
+    tag: "SELF-REFERENTIAL CRYPTOGRAPHIC PROOF · 100% BACKWARD COMPATIBLE (v1.2 + v1.3)",
     title: "The Whitepapers Are Sealed Using the Exact Protocol They Specify",
     border-color: gold,
     fill-color: bg-card-alt,
@@ -765,7 +765,7 @@
       #mono("Signer: Yaroslav Volodymyrovych Baienko · CA JSC Universal Bank (monobank) · TSP: 2026-10-17 12:47 UTC", size: 15pt, color: gold-bright)
       #v(8pt)
       #text(size: 18pt, fill: text-muted)[
-        Both the English (`Marma_Crypto_Whitepaper_EN.pdf`) and Ukrainian (`Marma_Crypto_Whitepaper_UA.pdf`) editions carry live PAdES-B-LTA signatures + embedded 9-triangle Sri Yantra seals verified by a 9-suite automated test harness.
+        Both the English (`Marma_Crypto_Whitepaper_EN.pdf`) and Ukrainian (`Marma_Crypto_Whitepaper_UA.pdf`) editions carry live PAdES-B-LTA signatures + embedded 9-triangle Sri Yantra seals verified by an 11-suite automated test harness.
       ]
     ]
   )
@@ -779,8 +779,8 @@
 #slide-frame(
   "09",
   "PRIVILEGE-PRESERVING VERIFICATION · 100% CLIENT-SIDE",
-  "Zero-Trust Online Verifier & Interactive 9-Triangle Inspector",
-  subtitle: "Verify privileged legal contracts (.pdf, .docx, .svg) directly in your browser — zero bytes ever leave your device."
+  "Zero-Trust Online Verifier & Canary Leak-Tracing Inspector",
+  subtitle: "Verify privileged legal contracts (.pdf, .docx, .svg) & trace leaked recipient copies directly in your browser."
 )[
   #card(
     tag: "ATTORNEY-CLIENT PRIVILEGE BY DESIGN · ZERO SERVER UPLOADS",
@@ -802,10 +802,10 @@
           ]
         ],
         box(fill: bg-deep, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 16pt)[
-          #mono("INTERACTIVE GEOMETRY", size: 14.5pt, color: gold-bright)
+          #mono("CANARY LEAK-TRACING PANEL", size: 14.5pt, color: gold-bright)
           #v(6pt)
           #text(size: 17pt, fill: text-muted)[
-            Hover over any of the 9 Sri Yantra triangles (`D1..D5`, `U1..U4`) to inspect its exact vertices and sub-micron perturbation $delta_k$.
+            Enter candidate recipient IDs directly in the browser to identify the exact source of a leaked document via `D5.ay` + SHA-256 commitment.
           ]
         ],
         box(fill: bg-deep, stroke: 1pt + gold.transparentize(50%), radius: 10pt, inset: 16pt)[
@@ -880,13 +880,13 @@
       ]
     ),
     card(
-      tag: "PACKAGE 2 · ALL (v1.2.1-1)",
+      tag: "PACKAGE 2 · ALL (v1.3.0-1)",
       title: "🔱 marma-crypto-watermark",
       [
         #text(size: 17.5pt, fill: text-main)[
-          - *Formats:* PDF, DOCX, and SVG dual-layer sealing (`--mode both | watermark | seal`).
+          - *Formats:* PDF, DOCX, and SVG 256-bit sealing (`--mode both | watermark | seal` + `--recipient-id`).
           - *Desktop GUI:* GTK4 / Libadwaita key selector (`marma-dialog`) & 15-min RAM session cache.
-          - *CLI:* `marma-watermark sign | verify | protocol | selftest` + Nautilus right-click integration.
+          - *CLI:* `marma-watermark sign | verify | trace | protocol | selftest` + Nautilus integration.
         ]
       ]
     )

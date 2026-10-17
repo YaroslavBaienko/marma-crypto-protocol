@@ -658,9 +658,181 @@ print(json.dumps(out))
             self.assertEqual(r["sign_type"], 0x10)  # CAdES-X-Long / PAdES-LTA
         self.assertEqual(res["svg_p7s_rv"], 0)
 
+    def test_10_v13_parallel_combiner_and_256bit_bijective_inversion(self) -> None:
+        """Verify v1.3.0 Parallel Multi-Hash Combiner SHA256(GOST||Kupyna||SHA256) and 256-bit bijective inversion."""
+        # 1. Parallel Multi-Hash Combiner cross-verification (Python <-> Node.js dstu4145_bridge.js)
+        payload_bytes = "MARMA-V1.3-PARALLEL-COMBINER-AND-256BIT-BIJECTIVE-TEST".encode("utf-8")
+        sign_res = mw.call_dstu4145_bridge({
+            "action": "sign",
+            "secretSeed": "Test-Parallel-Combiner-Key",
+            "payloadBytesHex": payload_bytes.hex(),
+        })
+        self.assertEqual(sign_res["status"], "ok")
+        self.assertEqual(sign_res["combiner_alg"], "SHA256(GOST34311||Kupyna256||SHA256)")
+        expected_sha256 = hashlib.sha256(payload_bytes).hexdigest()
+        self.assertEqual(sign_res["sha256_hex"], expected_sha256)
+        expected_combiner = mw.compute_parallel_combiner_hex(
+            sign_res["gost34311_hex"],
+            sign_res["dstu7564_hex"],
+            sign_res["sha256_hex"],
+        )
+        self.assertEqual(sign_res["combiner_hex"], expected_combiner)
+
+        # Verify tampering ANY single hash component in dstu4145_bridge.js fails verification
+        for field in ("gost34311_hex", "dstu7564_hex", "sha256_hex", "combiner_hex"):
+            tampered_pkt = dict(sign_res)
+            tampered_pkt[field] = "0" * 64
+            ver_res = mw.call_dstu4145_bridge({
+                "action": "verify",
+                "payloadBytesHex": payload_bytes.hex(),
+                "dstu4145": tampered_pkt,
+            })
+            self.assertFalse(ver_res["dstu4145_valid"], f"Parallel combiner failed to reject tampered {field}")
+
+        # 2. Full 256-bit bijective triangle coordinate inversion (Python <-> Browser JS across 50 digests)
+        sample_digests = [hashlib.sha256(f"BIJECTIVE-256-{i}".encode("utf-8")).hexdigest() for i in range(50)]
+        for idx, h in enumerate(sample_digests):
+            canary_w = (idx * 19) % 1024
+            for cx in (150.0, 300.0):
+                tris = mw.build_perturbed_triangles_v13(h, canary_beacon_word=canary_w, cx=cx)
+                rec_hex, rec_cw = mw.recover_256bit_from_triangles(tris, cx=cx)
+                self.assertEqual(rec_hex, h)
+                self.assertEqual(rec_cw, canary_w)
+                d_coord, d_sym = mw.verify_triangle_coordinates(
+                    tris,
+                    [0.0] * 9,
+                    cx=cx,
+                    protocol="MARMA-DSTU4145-V1.3",
+                    expected_hex=h,
+                    canary_beacon_word=canary_w,
+                )
+                self.assertEqual(d_coord, 0.0)
+                self.assertEqual(d_sym, 0.0)
+
+            # Also verify 24-pair symmetric Marma mantissa encoding/decoding (264-bit capacity >= 256 bits)
+            marmas = mw.encode_256bit_marma_pairs(h, canary_beacon_word=canary_w)
+            self.assertEqual(len(marmas), 24)
+            dec_hex, dec_c8 = mw.decode_256bit_marma_pairs(marmas)
+            self.assertEqual(dec_hex, h)
+            self.assertEqual(dec_c8, canary_w & 0xFF)
+            for p in marmas:
+                self.assertEqual(p["sym_sum_error"], 0.0)
+
+        # Cross-verify Python v1.3 triangles against Browser JS applySignedPerturbations & recover256BitFromTriangles
+        js_bijective = run_browser_js_harness(f"""
+          const digests = {json.dumps(sample_digests[:10])};
+          const results = digests.map((h, i) => {{
+            const cw = (i * 37) % 1024;
+            const tris150 = applySignedPerturbations(solveBaselineYantra(150.0), h, 150.0, "MARMA-DSTU4145-V1.3", cw);
+            const inv150 = recover256BitFromTriangles(tris150, 150.0);
+            const tris300 = applySignedPerturbations(solveBaselineYantra(300.0), h, 300.0, "MARMA-DSTU4145-V1.3", cw);
+            const inv300 = recover256BitFromTriangles(tris300, 300.0);
+            return {{
+              match150: inv150.recovered_hmac_hex === h && inv150.canary_word === cw,
+              match300: inv300.recovered_hmac_hex === h && inv300.canary_word === cw
+            }};
+          }});
+          return results;
+        """)
+        for item in js_bijective:
+            self.assertTrue(item["match150"])
+            self.assertTrue(item["match300"])
+
+    def test_11_v13_canary_leak_tracing_end_to_end(self) -> None:
+        """Verify v1.3.0 Canary Leak-Tracing (--recipient-id & trace) across PDF, DOCX, SVG, and Browser JS."""
+        with tempfile.TemporaryDirectory(prefix="marma_canary_") as tmp:
+            tmp_dir = Path(tmp)
+            target_recipient = "M&A-Party-07"
+            suspect_pool = ["Investor-Alpha", "Counsel-Beta", "M&A-Party-07", "Auditor-Delta"]
+
+            # 1. SVG with Canary recipient tag
+            svg_path = tmp_dir / "confidential.svg"
+            mw.sign_sri_yantra_svg(
+                "CONFIDENTIAL-DEAL-MEMO-2026",
+                mw.DEFAULT_SECRET,
+                svg_path,
+                recipient_id=target_recipient,
+            )
+            svg_ver = mw.verify_sri_yantra_svg(svg_path.read_text(encoding="utf-8"), recipient_id=target_recipient)
+            self.assertTrue(svg_ver["verified"])
+            self.assertEqual(svg_ver["protocol"], "MARMA-DSTU4145-V1.3")
+            self.assertTrue(svg_ver["bijective_256bit_match"])
+            self.assertTrue(svg_ver["canary_active"])
+            self.assertTrue(svg_ver["canary_recipient_verified"])
+            self.assertGreater(svg_ver["canary_beacon_word"], 0)
+
+            svg_trace_keyed = mw.trace_canary_suspects(svg_path, suspect_pool, secret_key=mw.DEFAULT_SECRET)
+            svg_trace_pub = mw.trace_canary_suspects(svg_path, suspect_pool, secret_key=None)
+            self.assertEqual(svg_trace_keyed["matched_recipient"], target_recipient)
+            self.assertEqual(svg_trace_pub["matched_recipient"], target_recipient)
+
+            # 2. PDF with Canary recipient tag
+            raw_pdf = tmp_dir / "deal_raw.pdf"
+            signed_pdf = tmp_dir / "deal_canary.pdf"
+            doc = pymupdf.open()
+            doc.new_page().insert_text((72, 100), "Strictly Confidential M&A Term Sheet", fontsize=12)
+            doc.save(str(raw_pdf))
+            doc.close()
+
+            mw.stamp_pdf_document(raw_pdf, signed_pdf, secret_key=mw.DEFAULT_SECRET, recipient_id=target_recipient)
+            pdf_ver = mw.verify_pdf_document(signed_pdf, recipient_id=target_recipient)
+            self.assertTrue(pdf_ver["verified"])
+            self.assertEqual(pdf_ver["protocol"], "MARMA-DSTU4145-V1.3")
+            self.assertTrue(pdf_ver["bijective_256bit_match"])
+            self.assertTrue(pdf_ver["canary_active"])
+            self.assertTrue(pdf_ver["canary_recipient_verified"])
+
+            pdf_trace = mw.trace_canary_suspects(signed_pdf, suspect_pool, secret_key=mw.DEFAULT_SECRET)
+            self.assertEqual(pdf_trace["matched_recipient"], target_recipient)
+            self.assertEqual(pdf_trace["matched_count"], 1)
+
+            # 3. DOCX with Canary recipient tag
+            raw_docx = tmp_dir / "nda_raw.docx"
+            signed_docx = tmp_dir / "nda_canary.docx"
+            w = docx.Document()
+            w.add_paragraph("Confidential NDA Copy for M&A Data Room")
+            w.save(str(raw_docx))
+
+            mw.stamp_docx_document(raw_docx, signed_docx, secret_key=mw.DEFAULT_SECRET, recipient_id=target_recipient)
+            docx_ver = mw.verify_docx_document(signed_docx, recipient_id=target_recipient)
+            self.assertTrue(docx_ver["verified"])
+            self.assertEqual(docx_ver["protocol"], "MARMA-DSTU4145-V1.3")
+            self.assertTrue(docx_ver["bijective_256bit_match"])
+            self.assertTrue(docx_ver["canary_active"])
+            self.assertTrue(docx_ver["canary_recipient_verified"])
+
+            docx_trace = mw.trace_canary_suspects(signed_docx, suspect_pool, secret_key=mw.DEFAULT_SECRET)
+            self.assertEqual(docx_trace["matched_recipient"], target_recipient)
+
+            # 4. Browser JS Verifier Canary UI & 1-LSB D5.ay tamper rejection
+            js_canary = run_browser_js_harness(f"""
+              const buf = fs.readFileSync({json.dumps(str(signed_pdf))});
+              const seal = extractMarmaSealFromBytes(new Uint8Array(buf), "deal_canary.pdf");
+              renderVerificationState(seal, "deal_canary.pdf", false);
+              const cleanOk = elems.statusBanner.className.includes("ok");
+              const canaryStatusText = elems.valCanaryStatus.textContent;
+
+              document.getElementById("canarySuspectsInput").value = "Investor-Alpha, M&A-Party-07, Auditor-Delta";
+              runCanaryTraceUI();
+              const traceResultText = elems.canaryTraceResult.textContent;
+
+              // Shift D5.ay by a single 10-bit step (+18 nm = +0.000000018) to attempt Canary removal/spoofing
+              const forged = JSON.parse(JSON.stringify(seal));
+              forged.triangles[8].ay = Number((forged.triangles[8].ay + 0.000000018).toFixed(9));
+              renderVerificationState(forged, "forged_canary.pdf", true);
+              const forgedRejected = elems.statusBanner.className.includes("err");
+
+              return {{ cleanOk, canaryStatusText, traceResultText, forgedRejected }};
+            """)
+            self.assertTrue(js_canary["cleanOk"])
+            self.assertIn("ACTIVE", js_canary["canaryStatusText"])
+            self.assertIn("M&A-Party-07", js_canary["traceResultText"])
+            self.assertTrue(js_canary["forgedRejected"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
 
 
 
