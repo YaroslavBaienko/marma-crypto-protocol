@@ -10,6 +10,8 @@ authors:
     email: "zerhug@gmail.com"
     affiliation: "Independent Researcher, Attorney-at-Law (Ukraine)"
 repository-code: "https://github.com/YaroslavBaienko/marma-crypto-protocol"
+url: "https://zenodo.org/records/23429018"
+doi: "10.5281/zenodo.23429018"
 license: Apache-2.0
 keywords:
   - "Cryptographic Watermarking"
