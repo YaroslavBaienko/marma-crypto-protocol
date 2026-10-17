@@ -1,5 +1,5 @@
 ================================================================================
-CRYPTOGRAPHIC AUTHORSHIP & PRIORITY MANIFEST (MARMA-CRYPTO PROTOCOL v1.2.0)
+CRYPTOGRAPHIC AUTHORSHIP & PRIORITY MANIFEST (MARMA-CRYPTO PROTOCOL v1.2.1)
 ================================================================================
 Title (UA):      Marma-Crypto: Протокол криптографічно-геометричного водяного
                  знака та суверенного запечатування документів на основі
@@ -10,44 +10,39 @@ Title (EN):      Marma-Crypto: A Cryptographic Geometric Watermarking and
 Author:          Ярослав Володимирович Баєнко (Yaroslav V. Baienko)
 RNOKPP (Tax ID): 3255419579
 Email:           zerhug@gmail.com
-QES Certificate: КНЕДП monobank | Universal Bank (PAdES-LTA / ЦЗО)
+QES Certificate: КНЕДП monobank | Universal Bank (CA JSC Universal Bank)
 QES Serial Hex:  10FF6F932221FA00CB4407000000000130616768
 Key Fingerprint: b5913a2f269eb107db3ecf3057cd8b37cb4591eacc8492bada510edb471b583b
-GPG Key ID:      rsa4096/D2A2C1C49164673B
-GPG Fingerprint: 3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B
-CERN Zenodo DOI: 10.5281/zenodo.23429018
+GPG Key ID:      3D5AACFDE32C98FE88199D47D2A2C1C49164673B
+Timestamp (UTC): 2026-10-17 12:49:09 UTC
+TSP (UA / EN):   2026-10-17 12:47:00 UTC / 2026-10-17 12:47:03 UTC
+Zenodo DOI:      10.5281/zenodo.23429018
 ================================================================================
 
-1. UKRAINIAN WHITEPAPER EDITION (Marma_Crypto_Whitepaper_UA.pdf)
---------------------------------------------------------------------------------
-Content SHA-256:        c36cb1d8792286c46193cbb5e3eea61d3bc669f983258869b5e7a8b93fd17ff5
-ГОСТ 34.311-95 Digest:  cf9ed2820d619b7e5fe69d637ec8ca6de2cfbfae76f4584902b5794da1045116
-ДСТУ 7564:2014 Digest:  4e3eb87212be9ccd314125b3667dd61b40d890bac845d28f740841753bf717c1
-ДСТУ 4145-2002 Vector r:0000000033d8554aa73c54b6b8021d461602a2365c5faa8d214901f1b7f26ea219636fbc
-ДСТУ 4145-2002 Vector s:00000000328088344e07a4e60334ae1f913a51e9c02a9db967b30cfab3be2bbb7c2ec9e0
-Geometric HMAC-SHA256:  adb8a544b2d5dac2508f5891cdfe415117f6544d461246e07534916146339d77
-Symmetry Error Δ_sym:   0.000000000000
-Coord Drift Δ_coord:    0.000000000000
+1. ENGLISH WHITEPAPER (Marma_Crypto_Whitepaper_EN.pdf)
+   - File SHA-256:       78d1e049020c16bdb5928f40bb1b7d934131145602f55c07f419e55b2b77be7c
+   - Content SHA-256:    53bfdc2070495eaf6bcd915e012324b6bbec1289b5f76b131d402b21b04d8753
+   - Binding Vector V:   3a98de054dd8b142b847d1ac551b443c5c4e40b55fcc1ac377649c646d9b4947
+   - GOST 34.311-95:     eaae0cae9783cd28c6f75600704b498d1b2924750c6e16a1ed01496e567d2b8c
+   - DSTU 7564 (Kupyna): 2d54f8ea6b6d32ecd41465818344cd09c34ac8aa1673488bceed33ce99f20533
+   - DSTU 4145-2002 (r): 00000000352ecee3788932abfb1df6de1570f3191e96331706792fb41ffbafb9da00be9f
+   - DSTU 4145-2002 (s): 0000000019d8207e489f6abfda256bd16f7dd8b727899674ddd2d75c07926a2974bb4263
 
-2. ENGLISH WHITEPAPER EDITION (Marma_Crypto_Whitepaper_EN.pdf)
---------------------------------------------------------------------------------
-Content SHA-256:        4b2168534e10449a892a551278b404814fddb01bfb03c446f84dc014fa8c96cd
-ГОСТ 34.311-95 Digest:  04611f0a87aef4fe0c0f2aee177b1544dc905cdd4ef5cbd063a964632569413b
-ДСТУ 7564:2014 Digest:  36b128ab98a4395bdb0e8efd15789b3d391b9f3dde42393968b5dbdf8ee65e46
-ДСТУ 4145-2002 Vector r:0000000039765a188b8c84ced333a3adbc6bef21dc7dc2764a8c66da6d41bca469c7b97e
-ДСТУ 4145-2002 Vector s:000000000cbef919368df19c2fadfee017cd4d147a962af18470f8502b1b53d3d6969ffc
-Geometric HMAC-SHA256:  f551b8f21c305b1e795c5ed77af8e887a81968bb121f27f76efb7b1da7c2ace1
-Symmetry Error Δ_sym:   0.000000000000
-Coord Drift Δ_coord:    0.000000000000
+2. UKRAINIAN WHITEPAPER (Marma_Crypto_Whitepaper_UA.pdf)
+   - File SHA-256:       79341a9e4d768c7e361a173c228b56ab290ee767a02b6dfbd026d29551778c62
+   - Content SHA-256:    4ee642f48ad9ced607a70b9ed575cecea4996b17d259be28a34c4f57d72a2c97
+   - Binding Vector V:   536a02b1960b7d2c55a527597f01227a5782d60500458470e67b740fc114b616
+   - GOST 34.311-95:     ea0f1b4a08a0ee84f321955c2ff7e61eeedb6b893b88bf65851ee30b17488534
+   - DSTU 7564 (Kupyna): 1de4d8dfa4330a70701e2ab7013e8430fa7d5154cddb27ff0de0d908fa7c09ca
+   - DSTU 4145-2002 (r): 000000007c5b8bb78d21159b42e4de38c37e497bb112b32d4ff5cc9836174b5117933560
+   - DSTU 4145-2002 (s): 0000000053296a85bb6591f070dec2e3e5c4d10d87fa961c47a6040478ee29aa3392f4ba
 
-3. FILE INTEGRITY DIGESTS (SHA-256)
---------------------------------------------------------------------------------
-67f96d96d31d9ded41996b6f369b472ca23e3ab9d4c3b8b586a46a6a057ed880  Marma_Crypto_Whitepaper_UA.pdf
-a5123c15b61b769e7a91fb3d39cb7086412b62289b0ec77c7b876c581fcbde89  Marma_Crypto_Whitepaper_EN.pdf
-0c6683742e5f924d22cce927f25c0ec906cb43bad4c6dfc37f536f16ed5b6303  Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf
-871a3a6411a1bda8992b498e340e9a1845c04ef6113ee3d2ab03c196ea0194ba  Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf
-03ceb67ebfea45d57c0fba490d761619a9bbd59b349addd370e4856f1d23a3cc  sri_yantra_whitepaper_diagram.svg
-73c68195c4c39e218941f678f8a4469464dc16d968a35f491bf355738ddfae66  sri_yantra_whitepaper_diagram.svg.p7s
-4239839f0e5580952c3ffd78d0342aa871e15635cba7041353f9057055beab0e  Marma_Crypto_Whitepaper_UA.typ
-eeb2786540bf1e53ed631125bdcb287da7cae6930caca3660d2be4b2a63bbced  Marma_Crypto_Whitepaper_EN.typ
+3. REFERENCE SRI YANTRA DIAGRAM (sri_yantra_whitepaper_diagram.svg)
+   - File SHA-256:       03ceb67ebfea45d57c0fba490d761619a9bbd59b349addd370e4856f1d23a3cc
+   - Content SHA-256:    84cc4a54dccc97869bb8f4287f431b59b7ef8667b498501473e59d989dc4a9c7
+   - Binding Vector V:   c05d694956dc63abc531282cad758370aef4ebca36554e89e6e20d1bdb92421c
+   - GOST 34.311-95:     1af5f9144bbfac54c3063f15aec3b8092856431502c25292aeb1aa6372e9a303
+   - DSTU 7564 (Kupyna): b59ce3fc5280f7dc3d96555507fc4d22a7187c256d84b43c75a92d6e0eca6baf
+   - DSTU 4145-2002 (r): 0000000010a791ef47b33c5ff341d8720900bf8559bdddab94789715ddd32d9d34c7fecd
+   - DSTU 4145-2002 (s): 000000001da9ec1f173fc00dd494d46facb5c0d30181ec4ac4f2547023994bc9aa2b653d
 ================================================================================

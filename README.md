@@ -1,4 +1,4 @@
-# 🔱 Marma-Crypto Protocol (`v1.2.0`)
+# 🔱 Marma-Crypto Protocol (`v1.2.1`)
 
 **Cryptographic Geometric Watermarking and Sovereign Document Sealing via Sri Yantra Nonlinear Concurrency and Elliptic Curves over $\mathbb{F}_{2^{257}}$ (DSTU 4145-2002)**
 
@@ -9,40 +9,43 @@
 [![Zenodo Record](https://img.shields.io/badge/CERN_Zenodo-23429018-024289.svg)](https://zenodo.org/records/23429018)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Whitepaper-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
-[![Standard: DSTU 4145-2002](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_GF(2%5E257)-1b2a4a.svg)](src/dstu4145_bridge.js)
-[![Platform: Debian / GNOME](https://img.shields.io/badge/Platform-Debian_Linux_%7C_GTK4_Adwaita-8a6206.svg)](build.sh)
+[![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_PAdES--B--LTA_%7C_RFC_3161-1b2a4a.svg)](src/dstu4145_bridge.js)
 
 > **🌐 [Open the Interactive Browser Verifier & Sri Yantra 9-Triangle Inspector → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)**
 
 ---
 
-## 📄 Official Whitepapers & Self-Referential Cryptographic Proofs
+## 📄 Official Academic Whitepapers & Self-Referential Cryptographic Proofs
 
-Both editions of the Whitepaper are sealed using the **Marma-Crypto v1.2.0** protocol they specify, and anchored in the Bitcoin blockchain via OpenTimestamps:
+Both editions of the Whitepaper are sealed using the **Marma-Crypto v1.2.1** protocol they specify, signed with a Qualified Electronic Signature (**ETSI EN 319 142-1 PAdES-B-LTA** + **IETF RFC 3161 Time-Stamp Token** + **ISO 32000-2 `/DSS`**), and anchored in the Bitcoin blockchain via OpenTimestamps:
 
 | Artifact | Link | Content SHA-256 |
 | :--- | :--- | :--- |
-| **English Whitepaper (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_EN.pdf`](whitepaper/Marma_Crypto_Whitepaper_EN.pdf) | `4b2168534e10449a892a551278b404814fddb01bfb03c446f84dc014fa8c96cd` |
-| **Ukrainian Whitepaper (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_UA.pdf`](whitepaper/Marma_Crypto_Whitepaper_UA.pdf) | `c36cb1d8792286c46193cbb5e3eea61d3bc669f983258869b5e7a8b93fd17ff5` |
+| **English Whitepaper (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_EN.pdf`](whitepaper/Marma_Crypto_Whitepaper_EN.pdf) | `53bfdc2070495eaf6bcd915e012324b6bbec1289b5f76b131d402b21b04d8753` |
+| **Ukrainian Whitepaper (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_UA.pdf`](whitepaper/Marma_Crypto_Whitepaper_UA.pdf) | `4ee642f48ad9ced607a70b9ed575cecea4996b17d259be28a34c4f57d72a2c97` |
 | **EN Verification Protocol (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf`](whitepaper/Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf) | Zero-tolerance 9-triangle audit report |
 | **UA Verification Protocol (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf`](whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf) | Офіційний протокол перевірки 9 трикутників |
 | **Signed Reference Sri Yantra (SVG)** | [`whitepaper/sri_yantra_whitepaper_diagram.svg`](whitepaper/sri_yantra_whitepaper_diagram.svg) | `1dfebfa9a7154973512e3933d6a0c7a556319c6b7b3900dcce1f0f6eef01bbce` |
+| **Detached CAdES-X-Long Container (`.p7s`)** | [`whitepaper/sri_yantra_whitepaper_diagram.svg.p7s`](whitepaper/sri_yantra_whitepaper_diagram.svg.p7s) | ETSI EN 319 122-1 CMS `SignedData` + RFC 3161 TSP |
 | **Authorship Manifest & OTS Proofs** | [`whitepaper/AUTHORSHIP_MANIFEST.txt`](whitepaper/AUTHORSHIP_MANIFEST.txt) | Anchored via `a.pool.opentimestamps.org` (`.ots`) |
 
 ---
 
 ## 🧮 Mathematical & Cryptographic Overview
 
-Conventional digital signatures detach the binary PKCS#7 container from the visual rendering of a page, whereas raster watermarks degrade under scaling and vector conversion. **Marma-Crypto** solves this by uniting two mathematical domains:
+Conventional digital signatures (IETF RFC 5652 CMS / PKCS#7) detach the binary signature container from the visual geometry of a page, whereas raster watermarks degrade under scaling and vector conversion. **Marma-Crypto** solves this by uniting two formal mathematical systems:
 
-1. **Nonlinear 9-Triangle Concurrency of the Sri Yantra (*Nava-Cakra*, Kulaichev 1984):**
+1. **Nonlinear 9-Triangle Concurrency of the Sri Yantra (*Nava-Cakra*, Kulaichev 1984; Huet 2002):**
    Four upward-pointing *Śiva* triangles ($\Delta_{\text{U1}}\dots\Delta_{\text{U4}}$) and five downward-pointing *Śakti* triangles ($\nabla_{\text{D1}}\dots\nabla_{\text{D5}}$) intersect to form **43 sub-triangles** and **54 triple concurrency nodes (*marmas*)** governed by $\det[A_i, B_i, C_i] = 0$.
-2. **Elliptic Curve Signature Mapping over $\mathbb{F}_{2^{257}}$ (DSTU 4145-2002):**
-   The document content $M$ is hashed via **GOST 34.311-95**, **DSTU 7564:2014 ("Kupyna-256")**, and **SHA-256**. A deterministic signature vector $(r, s)$ is computed on the polynomial-basis elliptic curve `DSTU_PB_257` ($y^2 + xy = x^3 + b$ over $\mathbb{F}_{2^{257}} = \mathbb{F}_2[t]/(t^{257}+t^{12}+1)$) using RFC 6979 nonce derivation.
-3. **Bilateral Symmetry-Preserving Micro-Coordinate Modulation ($\pm 10^{-5}$):**
-   The signature $(r, s)$ is bijectively quantized into a 9-dimensional perturbation vector $\vec{\delta} = (\delta_1, \dots, \delta_9) \in [-10^{-5}, +10^{-5}]^9$ applied to the 9 triangles:
-   $$\tilde{y}_{k,\text{base}} = y_{k,\text{base}} + \delta_k, \quad \tilde{y}_{k,\text{apex}} = y_{k,\text{apex}} - \delta_k, \quad \tilde{lx}_k = lx_k - \frac{\delta_k}{2}, \quad \tilde{rx}_k = rx_k + \frac{\delta_k}{2}$$
-   This identically preserves the bilateral symmetry invariant $\tilde{lx}_k + \tilde{rx}_k = 2 C_x = 600.000000000000$ ($\Delta_{\text{sym}} < 10^{-12}$) while enabling instantaneous detection of any single-byte text edit or geometric displacement exceeding $10^{-7}$ coordinate units.
+2. **Elliptic Curve Signature Mapping over $\mathbb{F}_{2^{257}}$ (DSTU 4145-2002 / ETSI PAdES-B-LTA):**
+   Normalized document text $M$ is hashed via **GOST 34.311-95**, **DSTU 7564:2014 ("Kupyna-256")**, and **FIPS 180-4 SHA-256**. A deterministic elliptic curve signature $(r, s)$ over $\mathbb{F}_{2^m}$ (polynomial-basis curve `DSTU_PB_257` over $\mathbb{F}_{2^{257}} = \mathbb{F}_2[t]/(t^{257}+t^{12}+1)$ or the signer's X.509 QES curve) is computed using **IETF RFC 6979** nonce derivation and bound into a public keyless binding vector:
+   $$V = \text{SHA-256}(r_{\text{hex}} \parallel \text{"::"} \parallel s_{\text{hex}})$$
+3. **24-Bit Block Quantization & Bilateral Symmetry-Preserving Modulation ($\pm 10^{-5}$):**
+   The first 27 bytes (216 bits) of $V$ are partitioned into nine 24-bit unsigned big-endian integers $u_k = \text{uint24}_{\text{BE}}(V[3k : 3k+3]) \in [0, 2^{24}-1]$ ($2^{24}-1 = 16\,777\,215$) and quantized into $\vec{\delta} = (\delta_1, \dots, \delta_9) \in [-10^{-5}, +10^{-5}]^9$:
+   $$\delta_{k+1} = \text{round}_9\!\left(\left(\frac{2 \cdot u_k}{16\,777\,215} - 1\right) \times 10^{-5}\right), \qquad k = 0, \dots, 8$$
+   Applying the affine antisymmetric modulation operator with homogeneous scale factor $\lambda \in \{1, 2\}$ ($C_x = 150\lambda$):
+   $$\tilde{lx}_k = lx_k + \lambda \delta_k, \quad \tilde{rx}_k = 2 C_x - \tilde{lx}_k = rx_k - \lambda \delta_k, \quad \tilde{by}_k = by_k + \frac{\lambda \delta_k}{2}, \quad \tilde{ay}_k = ay_k$$
+   identically preserves the bilateral symmetry invariant $\tilde{lx}_k + \tilde{rx}_k = 2 C_x$ ($\Delta_{\text{sym}} < 10^{-12}$) while enabling deterministic zero-tolerance detection of any single-byte text modification or geometric displacement exceeding $\tau_{\text{coord}} = 10^{-7}$ coordinate units.
 
 ---
 
