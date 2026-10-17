@@ -61,7 +61,7 @@ const sandbox = {{
       return elems[id];
     }},
     querySelectorAll: () => [],
-    createElement: () => ({{ innerHTML: "", className: "" }})
+    createElement: () => ({{ innerHTML: "", className: "", style: {{}} }})
   }},
   TextEncoder,
   TextDecoder,
@@ -829,9 +829,118 @@ print(json.dumps(out))
             self.assertIn("M&A-Party-07", js_canary["traceResultText"])
             self.assertTrue(js_canary["forgedRejected"])
 
+    def test_12_browser_sealer_to_python_cli_bidirectional_parity(self) -> None:
+        """Verify that PDF and SVG files sealed in the Browser JS Studio pass Python CLI verify & trace with zero drift."""
+        with tempfile.TemporaryDirectory(prefix="marma_browser_sealer_") as tmp:
+            tmp_dir = Path(tmp)
+            browser_pdf = tmp_dir / "browser_sealed_ma_party_07.pdf"
+            browser_svg = tmp_dir / "browser_sealed_ma_party_07.svg"
+            secret = "DEAL-ROOM-MASTER-SECRET-2026"
+            recipient = "M&A-Party-07"
+            suspect_pool = ["Investor-Alpha", "M&A-Party-07", "Legal-Counsel-B", "Board-Observer-X"]
+
+            js_seal_res = run_browser_js_harness(f"""
+              document.getElementById("sealerSignerInput").value = "GOLAW-Deal-Room-Authority";
+              document.getElementById("sealerSecretInput").value = {json.dumps(secret)};
+              document.getElementById("sealerRecipientsInput").value = "Investor-Alpha, M&A-Party-07, Legal-Counsel-B";
+
+              // 1. Trigger 1-Click Deal-Room Leak Simulation in Browser Studio
+              runOneClickDealRoomDemo();
+              const demoBannerOk = elems.statusBanner.className.includes("ok");
+              const demoTraceText = elems.canaryTraceResult.textContent;
+              const copiesCount = generatedSealedCopies.length;
+
+              // Save the 2nd sealed PDF copy (M&A-Party-07) to disk for Python CLI verification
+              fs.writeFileSync({json.dumps(str(browser_pdf))}, Buffer.from(generatedSealedCopies[1].sealedBytes));
+
+              // 2. Also seal an SVG in the Browser Studio for M&A-Party-07 and save to disk
+              const svgSealed = sealSvgInBrowser("BROWSER-SVG-PAYLOAD-V1.3::MA-DEAL-108", {{
+                secretKey: {json.dumps(secret)},
+                signerName: "GOLAW-Deal-Room-Authority",
+                recipientId: {json.dumps(recipient)}
+              }});
+              fs.writeFileSync({json.dumps(str(browser_svg))}, Buffer.from(svgSealed.sealedBytes));
+
+              return {{
+                demoBannerOk,
+                demoTraceText,
+                copiesCount,
+                pdfBeacon: generatedSealedCopies[1].beaconWord,
+                svgBeacon: svgSealed.sealPacket.canary.beacon_word
+              }};
+            """)
+
+            self.assertTrue(js_seal_res["demoBannerOk"])
+            self.assertEqual(js_seal_res["copiesCount"], 3)
+            self.assertIn("M&A-Party-07", js_seal_res["demoTraceText"])
+            self.assertGreater(js_seal_res["pdfBeacon"], 0)
+            self.assertGreater(js_seal_res["svgBeacon"], 0)
+
+            # 3. Verify Browser-sealed PDF in Python CLI (both public mode and strict-key + recipient mode)
+            py_pdf_pub = mw.verify_pdf_document(browser_pdf)
+            self.assertTrue(py_pdf_pub["verified"], f"Python public verify failed on Browser PDF: {py_pdf_pub}")
+            self.assertEqual(py_pdf_pub["protocol"], "MARMA-DSTU4145-V1.3")
+            self.assertEqual(py_pdf_pub["marma_bits"], 256)
+            self.assertTrue(py_pdf_pub["bijective_256bit_match"])
+            self.assertTrue(py_pdf_pub["dstu4145_verified"])
+            self.assertEqual(py_pdf_pub["max_coordinate_signature_drift"], 0.0)
+            self.assertEqual(py_pdf_pub["max_bilateral_symmetry_error"], 0.0)
+
+            py_pdf_strict = mw.verify_pdf_document(browser_pdf, secret_key=secret, recipient_id=recipient)
+            self.assertTrue(py_pdf_strict["verified"])
+            self.assertTrue(py_pdf_strict["canary_recipient_verified"])
+
+            py_pdf_wrong_key = mw.verify_pdf_document(browser_pdf, secret_key="WRONG-KEY")
+            self.assertFalse(py_pdf_wrong_key["verified"])
+
+            # 4. Run Python CLI Canary Trace on Browser-sealed PDF
+            py_pdf_trace = mw.trace_canary_suspects(browser_pdf, suspect_pool, secret_key=secret)
+            self.assertTrue(py_pdf_trace["document_verified"])
+            self.assertEqual(py_pdf_trace["matched_recipient"], recipient)
+            self.assertEqual(py_pdf_trace["matched_count"], 1)
+
+            # 5. Verify Browser-sealed SVG in Python CLI + Canary Trace
+            py_svg_ver = mw.verify_sri_yantra_svg(
+                browser_svg.read_text(encoding="utf-8"),
+                secret_key=secret,
+                recipient_id=recipient,
+            )
+            self.assertTrue(py_svg_ver["verified"], f"Python verify failed on Browser SVG: {py_svg_ver}")
+            self.assertTrue(py_svg_ver["bijective_256bit_match"])
+            self.assertTrue(py_svg_ver["canary_recipient_verified"])
+            self.assertEqual(py_svg_ver["max_coordinate_signature_drift"], 0.0)
+
+            py_svg_trace = mw.trace_canary_suspects(browser_svg, suspect_pool, secret_key=secret)
+            self.assertEqual(py_svg_trace["matched_recipient"], recipient)
+
+            # 6. Tamper 1 byte in Browser-sealed PDF body -> rejected by BOTH Python CLI and Browser Verifier
+            tampered_pdf = tmp_dir / "browser_sealed_tampered.pdf"
+            raw_b = bytearray(browser_pdf.read_bytes())
+            idx_val = raw_b.find(b"42,500,000")
+            self.assertNotEqual(idx_val, -1)
+            raw_b[idx_val] = ord("9")  # alter valuation from 42,500,000 to 92,500,000
+            tampered_pdf.write_bytes(bytes(raw_b))
+
+            py_tamper_ver = mw.verify_pdf_document(tampered_pdf)
+            self.assertFalse(py_tamper_ver["verified"])
+            self.assertIn("modified", py_tamper_ver["reason"])
+
+            js_tamper_ver = run_browser_js_harness(f"""
+              const buf = fs.readFileSync({json.dumps(str(tampered_pdf))});
+              const seal = extractMarmaSealFromBytes(new Uint8Array(buf), "browser_sealed_tampered.pdf");
+              renderVerificationState(seal, "browser_sealed_tampered.pdf", false);
+              return {{
+                tamperedTextFlag: Boolean(seal.tamperedText),
+                bannerErr: elems.statusBanner.className.includes("err")
+              }};
+            """)
+            self.assertTrue(js_tamper_ver["tamperedTextFlag"])
+            self.assertTrue(js_tamper_ver["bannerErr"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
 
 
 
