@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """marma-dialog — GNOME HIG Adwaita / Libadwaita Dialog Engine for Marma-Crypto Watermark.
 
-Modeled after qes-dialog ($HOME/legaltech/packages/qes-tools/bin/qes-dialog).
+Modeled after qes-dialog (/home/attor/legaltech/packages/qes-tools/bin/qes-dialog).
 Provides native GTK4 + Libadwaita dialogs for:
 1. select-medium: Selecting a key from ~/.secure_keys/ (.pfx, .p12, .key, .cer),
    hardware USB token (DepositSign / Almaz-1K / SecureToken-337), browsing disk,
@@ -601,15 +601,25 @@ def run_verify_report(args: argparse.Namespace) -> int:
         main_box.append(badge)
 
         group = Adw.PreferencesGroup()
-        dstu_ok = data.get("dstu4145_ec_verified", False)
-        pades_ok = data.get("pades_cades_verified", False)
+        dstu_ok = bool(data.get("dstu4145_verified") or data.get("dstu4145_ec_verified"))
+        pades_ok = bool(
+            data.get("pades_cades_verified")
+            or data.get("qes_container_report")
+            or data.get("pades_embedded")
+        )
         dstu_status = (
             f"ДСТУ 4145-2002 EC: {'✅ OK' if dstu_ok else '—'}  |  "
-            f"PAdES/CAdES КНЕДП: {'✅ OK' if pades_ok else 'Внутрішній контур'}"
+            f"PAdES/CAdES КНЕДП: {'✅ OK (КНЕДП / PAdES-LTA)' if pades_ok else ('✅ OK (Криптосейф ДСТУ 4145)' if dstu_ok else '—')}"
+        )
+        s_info = data.get("signer_info") or {}
+        signer_display = (
+            f"{s_info['common_name']} (РНОКПП {s_info.get('rnokpp', '—')}) · {s_info.get('issuer_name', '')}"
+            if s_info.get("common_name")
+            else data.get("signer_key_name", "Sovereign-Vedic-Key-108")
         )
         rows_data = [
             ("Документ / File", os.path.basename(doc_path) if doc_path else "N/A"),
-            ("Підписувач / Сертифікат КЕП", data.get("signer_key_name", "Sovereign-Vedic-Key-108")),
+            ("Підписувач / Сертифікат КЕП", signer_display),
             ("Стандарт підпису (ДСТУ 4145-2002)", dstu_status),
             ("ГОСТ 34.311-95 / ДСТУ 7564", f"{str(data.get('gost34311_digest', '—'))[:24]}... / {str(data.get('dstu7564_digest', '—'))[:24]}..."),
             ("Геометричний вектор (r,s / HMAC)", str(data.get("embedded_hmac_sha256", data.get("expected_hmac_sha256", "—")))[:32] + "..."),

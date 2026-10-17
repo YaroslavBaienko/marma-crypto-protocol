@@ -692,20 +692,20 @@
       docName: "Marma_Crypto_Whitepaper_UA.pdf",
       coordSpace: 300,
       protocol: "MARMA-DSTU4145-V1.2",
-      signer_key_name: "Баєнко_Я_В_monoКЕП_2025-09-15T20_12_28.cer",
-      key_fingerprint: "49d05cdf120e88d60ea3f5c794fe8ec28c97781cab195ed43479528709c211e8",
+      signer_key_name: "Баєнко_Я_В_monoКЕП_2025-09-15T20_12_28.pfx",
+      key_fingerprint: "b5913a2f269eb107db3ecf3057cd8b37cb4591eacc8492bada510edb471b583b",
       content_sha256: "c36cb1d8792286c46193cbb5e3eea61d3bc669f983258869b5e7a8b93fd17ff5",
-      hmac_sha256: "4b930a26cc930d2f1015e615e10fbb28cdafb2fa240744456f91f35c85f719df",
+      hmac_sha256: "adb8a544b2d5dac2508f5891cdfe415117f6544d461246e07534916146339d77",
       dstu4145: {
-        standard: "ДСТУ 4145-2002 (Крива DSTU_PB_257 над GF(2^257)) / ГОСТ 34.311-95 / ДСТУ 7564:2014",
+        standard: "ДСТУ 4145-2002 (КЕП КНЕДП · PAdES-LTA) / ДСТУ ГОСТ 34.311-95 / ДСТУ 7564:2014",
         gost34311_hex: "cf9ed2820d619b7e5fe69d637ec8ca6de2cfbfae76f4584902b5794da1045116",
         dstu7564_hex: "4e3eb87212be9ccd314125b3667dd61b40d890bac845d28f740841753bf717c1",
-        r_hex: "000000005d5ad090e12b89a9e3c478064a43a91483c743dba0c6ce4a79a5bffed7411bb2",
-        s_hex: "000000005d183de91be4b385c7e59cc5b4aff51837768d7d59d57606b4bf41776540dd7d",
+        r_hex: "0000000033d8554aa73c54b6b8021d461602a2365c5faa8d214901f1b7f26ea219636fbc",
+        s_hex: "00000000328088344e07a4e60334ae1f913a51e9c02a9db967b30cfab3be2bbb7c2ec9e0",
         signer_info: {
           common_name: "Баєнко Ярослав Володимирович",
           rnokpp: "3255419579",
-          issuer_name: "КНЕДП monobank | Universal Bank (Криптосейф Marma-ДСТУ 4145)",
+          issuer_name: "КНЕДП monobank | Universal Bank (PAdES-LTA · ЦЗО)",
           serial_hex: "10FF6F932221FA00CB4407000000000130616768"
         }
       }
@@ -777,8 +777,8 @@
 
       if (verified) {
         banner.className = "status-banner ok";
-        headline.textContent = "✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED · ДСТУ 4145-2002)";
-        sub.textContent = "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s) над GF(2^257) та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою.";
+        headline.textContent = "✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED · ДСТУ 4145-2002 · PAdES-LTA)";
+        sub.textContent = "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s), кваліфікований електронний підпис КНЕДП та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою.";
       } else {
         banner.className = "status-banner err";
         headline.textContent = "❌ ПОРУШЕННЯ ЦІЛІСНОСТІ / ПІДРОБКУ ВИЯВЛЕНО (TAMPER DETECTED)";
@@ -914,7 +914,7 @@
       const marker = "MARMA_SEAL::";
       const pos = rawLatin.indexOf(marker);
       if (pos !== -1) {
-        let slice = rawLatin.slice(pos + marker.length, pos + marker.length + 6500);
+        let slice = rawLatin.slice(pos + marker.length, pos + marker.length + 25000);
         // Unescape PDF literal string escapes \( \) and \\
         slice = slice.replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\\/g, "\\");
         // Find balanced JSON braces

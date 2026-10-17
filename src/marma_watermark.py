@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Marma-Crypto Geometric Watermark & Zero-Tolerance Document Verifier (v1.1.0).
 
-Full LegalTech / Nautilus-integrated engine modeled after $HOME/legaltech (qes-tools).
+Full LegalTech / Nautilus-integrated engine modeled after /home/attor/legaltech (qes-tools).
 Supports:
 - Key selection from ~/.secure_keys/ (.pfx, .p12, .key, .cer), hardware USB tokens,
   arbitrary key files, or passphrase via GTK4/Libadwaita `marma-dialog`.
@@ -31,6 +31,11 @@ import docx
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Inches, Pt, RGBColor
 import pymupdf
+
+try:
+    pymupdf.TOOLS.mupdf_display_errors(False)
+except Exception:
+    pass
 
 VERSION = "1.2.0"
 
@@ -422,6 +427,46 @@ def sign_sri_yantra_svg(
     }
 
 
+def _check_strict_key_or_cert_match(
+    payload: str,
+    embedded_hmac: str,
+    dstu_bundle: dict,
+    dstu_ok: bool,
+    secret_key: str | None,
+    key_file_path: str,
+    raw_password: str,
+) -> tuple[str, list[float], bool]:
+    """Verify key derivation or matching owner certificate under --strict-key."""
+    if not secret_key:
+        expected_hex = embedded_hmac
+        expected_offsets = derive_offsets_from_hmac_hex(embedded_hmac) if len(embedded_hmac) == 64 else [0.0] * 9
+        return expected_hex, expected_offsets, len(embedded_hmac) == 64
+
+    try:
+        expected_hex, expected_offsets, derived_dstu = derive_micro_offsets(
+            payload, secret_key, key_file_path, raw_password
+        )
+    except Exception:
+        return "", [0.0] * 9, False
+
+    if not embedded_hmac or embedded_hmac == expected_hex:
+        return expected_hex, expected_offsets, True
+
+    # If the document has a valid DSTU 4145-2002 EC signature and the unlocked key/cert belongs to the same owner (serial_hex / rnokpp)
+    doc_signer = (dstu_bundle or {}).get("signer_info") or {}
+    key_signer = (derived_dstu or {}).get("signer_info") or {}
+    same_owner = bool(
+        dstu_ok
+        and len(embedded_hmac) == 64
+        and doc_signer.get("serial_hex")
+        and doc_signer.get("serial_hex") == key_signer.get("serial_hex")
+    )
+    if same_owner:
+        return embedded_hmac, derive_offsets_from_hmac_hex(embedded_hmac), True
+
+    return expected_hex, expected_offsets, False
+
+
 def verify_sri_yantra_svg(
     svg_text: str,
     payload: str | None = None,
@@ -451,17 +496,8 @@ def verify_sri_yantra_svg(
         except Exception:
             dstu_bundle = {}
 
-    if secret_key:
-        expected_hex, expected_offsets, _ = derive_micro_offsets(
-            payload, secret_key, key_file_path, raw_password
-        )
-        hmac_match = (not embedded_hmac) or (embedded_hmac == expected_hex)
-    else:
-        if not embedded_hmac or len(embedded_hmac) != 64:
-            return {"verified": False, "format": "svg", "reason": "Missing signature digest in SVG"}
-        expected_hex = embedded_hmac
-        expected_offsets = derive_offsets_from_hmac_hex(embedded_hmac)
-        hmac_match = True
+    if not secret_key and (not embedded_hmac or len(embedded_hmac) != 64):
+        return {"verified": False, "format": "svg", "reason": "Missing signature digest in SVG"}
 
     dstu_verify = {"dstu4145_valid": True}
     if dstu_bundle:
@@ -472,6 +508,11 @@ def verify_sri_yantra_svg(
                 "dstu4145": dstu_bundle,
             }
         )
+    dstu_ok = bool(dstu_verify.get("dstu4145_valid", True))
+
+    expected_hex, expected_offsets, hmac_match = _check_strict_key_or_cert_match(
+        payload, embedded_hmac, dstu_bundle, dstu_ok, secret_key, key_file_path, raw_password
+    )
 
     extracted_offsets = []
     symmetry_errors = []
@@ -490,7 +531,6 @@ def verify_sri_yantra_svg(
 
     max_offset_diff = max(abs(a - b) for a, b in zip(extracted_offsets, expected_offsets))
     max_sym_err = max(symmetry_errors)
-    dstu_ok = bool(dstu_verify.get("dstu4145_valid", True))
     verified = hmac_match and dstu_ok and (max_offset_diff < 1e-8) and (max_sym_err < 1e-8)
 
     return {
@@ -498,6 +538,8 @@ def verify_sri_yantra_svg(
         "format": "svg",
         "standard": dstu_bundle.get("standard", "ДСТУ 4145-2002 / ГОСТ 34.311-95"),
         "dstu4145_verified": dstu_ok,
+        "dstu4145_ec_verified": dstu_ok,
+        "pades_cades_verified": bool(dstu_verify.get("qes_container_report")),
         "gost34311_digest": dstu_bundle.get("gost34311_hex", ""),
         "dstu7564_digest": dstu_bundle.get("dstu7564_hex", ""),
         "dstu4145_r": dstu_bundle.get("r_hex", ""),
@@ -694,16 +736,6 @@ def verify_pdf_document(
 
     content_matches = content_hash == embedded_content_sha
 
-    if secret_key:
-        expected_hex, expected_offsets, _ = derive_micro_offsets(
-            payload, secret_key, key_file_path, raw_password
-        )
-        hmac_match = embedded_hmac == expected_hex
-    else:
-        expected_hex = embedded_hmac
-        expected_offsets = derive_offsets_from_hmac_hex(embedded_hmac) if len(embedded_hmac) == 64 else [0.0] * 9
-        hmac_match = content_matches and len(embedded_hmac) == 64
-
     dstu_verify = {"dstu4145_valid": True}
     if dstu_bundle:
         dstu_verify = call_dstu4145_bridge(
@@ -715,6 +747,11 @@ def verify_pdf_document(
             }
         )
     dstu_ok = bool(dstu_verify.get("dstu4145_valid", True))
+
+    expected_hex, expected_offsets, hmac_raw_match = _check_strict_key_or_cert_match(
+        payload, embedded_hmac, dstu_bundle, dstu_ok, secret_key, key_file_path, raw_password
+    )
+    hmac_match = content_matches and hmac_raw_match
 
     extracted_offsets = []
     symmetry_errors = []
@@ -746,6 +783,8 @@ def verify_pdf_document(
         "file": str(pdf_path),
         "standard": dstu_bundle.get("standard", "ДСТУ 4145-2002 / ГОСТ 34.311-95"),
         "dstu4145_verified": dstu_ok,
+        "dstu4145_ec_verified": dstu_ok,
+        "pades_cades_verified": bool(dstu_verify.get("qes_container_report")),
         "gost34311_digest": dstu_bundle.get("gost34311_hex", ""),
         "dstu7564_digest": dstu_bundle.get("dstu7564_hex", ""),
         "dstu4145_r": dstu_bundle.get("r_hex", ""),
@@ -943,15 +982,6 @@ def verify_docx_document(
     embedded_tris = seal_packet.get("triangles", [])
 
     content_matches = content_hash == embedded_content_sha
-    if secret_key:
-        expected_hex, expected_offsets, _ = derive_micro_offsets(
-            payload, secret_key, key_file_path, raw_password
-        )
-        hmac_match = embedded_hmac == expected_hex
-    else:
-        expected_hex = embedded_hmac
-        expected_offsets = derive_offsets_from_hmac_hex(embedded_hmac) if len(embedded_hmac) == 64 else [0.0] * 9
-        hmac_match = content_matches and len(embedded_hmac) == 64
 
     dstu_verify = {"dstu4145_valid": True}
     if dstu_bundle:
@@ -964,6 +994,11 @@ def verify_docx_document(
             }
         )
     dstu_ok = bool(dstu_verify.get("dstu4145_valid", True))
+
+    expected_hex, expected_offsets, hmac_raw_match = _check_strict_key_or_cert_match(
+        payload, embedded_hmac, dstu_bundle, dstu_ok, secret_key, key_file_path, raw_password
+    )
+    hmac_match = content_matches and hmac_raw_match
 
     extracted_offsets = []
     symmetry_errors = []
@@ -995,11 +1030,14 @@ def verify_docx_document(
         "file": str(docx_path),
         "standard": dstu_bundle.get("standard", "ДСТУ 4145-2002 / ГОСТ 34.311-95"),
         "dstu4145_verified": dstu_ok,
+        "dstu4145_ec_verified": dstu_ok,
+        "pades_cades_verified": bool(dstu_verify.get("qes_container_report")),
         "gost34311_digest": dstu_bundle.get("gost34311_hex", ""),
         "dstu7564_digest": dstu_bundle.get("dstu7564_hex", ""),
         "dstu4145_r": dstu_bundle.get("r_hex", ""),
         "dstu4145_s": dstu_bundle.get("s_hex", ""),
         "signer_info": dstu_bundle.get("signer_info"),
+        "qes_container_report": dstu_verify.get("qes_container_report"),
         "signer_key_name": signer_name,
         "key_fingerprint": key_fp,
         "hmac_match": hmac_match,
