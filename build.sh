@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# build.sh — Збірка .deb пакета marma-crypto-watermark v1.1.0 (Nautilus + GTK4/Adwaita)
+# build.sh — Збірка .deb пакета marma-crypto-watermark v1.2.1 (Nautilus + GTK4/Adwaita)
 # За зразком архітектури $HOME/legaltech (qes-tools)
 #
 # Встановлює у систему:
@@ -24,9 +24,9 @@ BIN_DIR="${SCRIPT_DIR}/bin"
 NAUTILUS_SRC="${SCRIPT_DIR}/nautilus-scripts"
 
 PKG_NAME="marma-crypto-watermark"
-PKG_VERSION="1.2.0-1"
+PKG_VERSION="1.2.1-1"
 PKG_ARCH="all"
-PKG_MAINTAINER="Yaroslav <attor@enigma>"
+PKG_MAINTAINER="Yaroslav Baienko <yaroslav@advocacy.uno>"
 
 BUILD_DIR="${SCRIPT_DIR}/build"
 PKGROOT="${BUILD_DIR}/pkgroot"
@@ -160,7 +160,7 @@ if [ "$1" = "configure" ]; then
     fi
 
     echo "================================================================================"
-    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v1.1.0"
+    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v1.2.1"
     echo " • marma-watermark sign     — накладання водяного знака та Золотої печатки (PDF, DOCX, SVG)"
     echo " • marma-watermark verify   — перевірка цілісності тексту та 9 трикутників Шрі Янтри"
     echo " • marma-watermark protocol — формування офіційного PDF-протоколу перевірки"
@@ -201,9 +201,10 @@ chmod 0755 "${PKGROOT}/DEBIAN/postrm"
 
 {
     echo "Package: ${PKG_NAME} ${PKG_VERSION} (${PKG_ARCH})"
-    echo "Built: $(date -Iseconds) on $(hostname)"
-    echo "Source Project: $HOME/002_AI/PROJECTS/EDU-VEDI (Module 5: Marma-Crypto Watermark)"
-    echo "Architecture Reference: $HOME/legaltech (qes-tools Nautilus + GTK4/Adwaita)"
+    echo "Built: $(date -u -Iseconds)"
+    echo "Upstream Repository: https://github.com/YaroslavBaienko/marma-crypto-protocol"
+    echo "CERN Zenodo DOI: 10.5281/zenodo.23436152"
+    echo "Ecosystem Suite: https://github.com/YaroslavBaienko/legaltech"
     echo "Engine SHA-256: $(sha256sum "${SOURCE_DIR}/marma_watermark.py" | awk '{print $1}')"
     echo "Dialog SHA-256: $(sha256sum "${BIN_DIR}/marma-dialog" | awk '{print $1}')"
     echo "Config SHA-256: $(sha256sum "${BIN_DIR}/marma-config" | awk '{print $1}')"

@@ -12,3 +12,17 @@ build/
 dist/
 __pycache__/
 *.pyc
+
+# Local Knowledge OS tenant state & workstation symlinks (never push to public repo)
+marma_spec.py
+sri_yantra_crypto_spec.py
+pipeline.py
+Makefile
+edu-vedi-link
+legaltech-link
+inbox/
+manifests/
+metadata/
+reports/
+.qdrant_key
+.litellm_key
