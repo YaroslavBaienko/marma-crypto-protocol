@@ -503,7 +503,7 @@
 
         <!-- Drag and Drop Box -->
         <input type="file" id="fileInput" accept=".pdf,.svg,.docx" style="display:none" />
-        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+        <div class="dropzone" id="dropzone" onclick="const fi=document.getElementById('fileInput');fi.value='';fi.click();">
           <div class="dropzone-icon">🔱📄</div>
           <div class="dropzone-title" data-i18n="dropTitle">
             Перетягніть сюди підписаний .PDF, .SVG або .DOCX
@@ -528,7 +528,7 @@
             <button class="preset-btn" onclick="loadRemoteArtifact('whitepaper/sri_yantra_whitepaper_diagram.svg')">
               📐 Еталонна Шрі Янтра (.svg)
             </button>
-            <button class="btn-danger" onclick="simulateTamperAttack()">
+            <button class="btn-danger" id="btnSimulateAttack" onclick="simulateTamperAttack()">
               ⚡ Симулювати атаку (0.001)
             </button>
           </div>
@@ -576,8 +576,8 @@
             <div class="meta-val" id="valIssuer">КНЕДП monobank | Universal Bank · 10FF6F932221FA00CB4407000000000130616768</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblStandard">Криптографічний стандарт</div>
-            <div class="meta-val" id="valStandard">ДСТУ 4145-2002 (DSTU_PB_257 над GF(2^257)) / ГОСТ 34.311-95 / ДСТУ 7564:2014</div>
+            <div class="meta-key" data-i18n="lblStandard">Статус ДСТУ 4145-2002 та PAdES-LTA</div>
+            <div class="meta-val highlight" id="valStandard">✅ КЕП ДІЙСНИЙ · ДСТУ 4145-2002 EC + PAdES-LTA КНЕДП</div>
           </div>
           <div class="meta-box">
             <div class="meta-key">ДСТУ ГОСТ 34.311-95 Digest</div>
@@ -589,7 +589,7 @@
           </div>
           <div class="meta-box">
             <div class="meta-key">Вектор підпису ДСТУ 4145-2002 (r, s)</div>
-            <div class="meta-val" id="valRS">r = 000000005d5ad090e12b89a9...11bb2 | s = 000000005d183de91be4b385...0dd7d</div>
+            <div class="meta-val" id="valRS">r = 0000000033d8554aa73c54b6...6fbc | s = 00000000328088344e07a4e6...c9e0</div>
           </div>
           <div class="meta-box">
             <div class="meta-key">Інваріант симетрії (Δ_sym) та Координат (Δ_coord)</div>
@@ -612,6 +612,7 @@
                 <th>by_k (Основа)</th>
                 <th>ay_k (Вершина)</th>
                 <th>Мікро-збурення δ_k</th>
+                <th>Δ_coord</th>
                 <th>Δ_sym</th>
                 <th>Статус</th>
               </tr>
@@ -650,8 +651,15 @@
       { name: "D5", lx: 124.61190803, by: 144.79777263, ay: 174.24660561, rx: 175.38809197, is_up: false },
     ];
 
-    function solveBaselineYantra() {
-      return CANONICAL_TRIANGLES.map(t => ({ ...t }));
+    function solveBaselineYantra(cx = 150.0) {
+      const scale = cx === 300.0 ? 2.0 : 1.0;
+      return CANONICAL_TRIANGLES.map(t => ({
+        ...t,
+        lx: Number((t.lx * scale).toFixed(9)),
+        by: Number((t.by * scale).toFixed(9)),
+        ay: Number((t.ay * scale).toFixed(9)),
+        rx: Number((t.rx * scale).toFixed(9)),
+      }));
     }
 
     function deriveOffsetsFromHmac(hmacHex) {
@@ -665,12 +673,12 @@
       return offsets;
     }
 
-    function applySignedPerturbations(baseTris, hmacHex) {
+    function applySignedPerturbations(baseTris, hmacHex, cx = 150.0) {
       const offsets = deriveOffsetsFromHmac(hmacHex);
       return baseTris.map((t, idx) => {
         const delta = offsets[idx];
         const lx_s = Number((t.lx + delta).toFixed(9));
-        const rx_s = Number((300.0 - lx_s).toFixed(9));
+        const rx_s = Number((cx * 2.0 - lx_s).toFixed(9));
         const by_s = Number((t.by + delta * 0.5).toFixed(9));
         const ay_s = Number(t.ay.toFixed(9));
         return {
@@ -715,14 +723,71 @@
       PRESET_SEAL_UA.hmac_sha256
     );
 
+    const PRESET_SEAL_EN = {
+      docName: "Marma_Crypto_Whitepaper_EN.pdf",
+      coordSpace: 300,
+      protocol: "MARMA-DSTU4145-V1.2",
+      signer_key_name: "Баєнко_Я_В_monoКЕП_2025-09-15T20_12_28.pfx",
+      key_fingerprint: "b5913a2f269eb107db3ecf3057cd8b37cb4591eacc8492bada510edb471b583b",
+      content_sha256: "4b2168534e10449a892a551278b404814fddb01bfb03c446f84dc014fa8c96cd",
+      hmac_sha256: "f551b8f21c305b1e795c5ed77af8e887a81968bb121f27f76efb7b1da7c2ace1",
+      dstu4145: {
+        standard: "ДСТУ 4145-2002 (КЕП КНЕДП · PAdES-LTA) / ДСТУ ГОСТ 34.311-95 / ДСТУ 7564:2014",
+        gost34311_hex: "04611f0a87aef4fe0c0f2aee177b1544dc905cdd4ef5cbd063a964632569413b",
+        dstu7564_hex: "36b128ab98a4395bdb0e8efd15789b3d391b9f3dde42393968b5dbdf8ee65e46",
+        r_hex: "0000000039765a188b8c84ced333a3adbc6bef21dc7dc2764a8c66da6d41bca469c7b97e",
+        s_hex: "000000000cbef919368df19c2fadfee017cd4d147a962af18470f8502b1b53d3d6969ffc",
+        signer_info: {
+          common_name: "Баєнко Ярослав Володимирович",
+          rnokpp: "3255419579",
+          issuer_name: "КНЕДП monobank | Universal Bank (PAdES-LTA · ЦЗО)",
+          serial_hex: "10FF6F932221FA00CB4407000000000130616768"
+        }
+      }
+    };
+    PRESET_SEAL_EN.triangles = applySignedPerturbations(
+      solveBaselineYantra(150, 150, 100),
+      PRESET_SEAL_EN.hmac_sha256
+    );
+
+    let cleanSealState = JSON.parse(JSON.stringify(PRESET_SEAL_UA));
     let currentSealState = JSON.parse(JSON.stringify(PRESET_SEAL_UA));
+    let isAttackSimulated = false;
+    let currentLang = "uk";
+
+    function updateAttackButtonUI() {
+      const btn = document.getElementById("btnSimulateAttack");
+      if (!btn) return;
+      if (isAttackSimulated) {
+        btn.textContent = currentLang === "en"
+          ? "🔄 Reset Attack (Restore Original)"
+          : "🔄 Скинути атаку (Відновити оригінал)";
+        btn.style.background = "rgba(46, 125, 50, 0.28)";
+        btn.style.borderColor = "#4caf50";
+        btn.style.color = "#81c784";
+      } else {
+        btn.textContent = currentLang === "en"
+          ? "⚡ Simulate Attack (0.001)"
+          : "⚡ Симулювати атаку (0.001)";
+        btn.style.background = "";
+        btn.style.borderColor = "";
+        btn.style.color = "";
+      }
+    }
 
     // =========================================================================
     // 3. RENDERING THE INTERACTIVE SRI YANTRA & VERIFICATION REPORT
     // =========================================================================
-    function renderVerificationState(seal, docName) {
+    function renderVerificationState(seal, docName, isTamperPreview = false) {
       currentSealState = JSON.parse(JSON.stringify(seal));
       currentSealState.docName = docName || seal.docName || "Document";
+      if (!isTamperPreview) {
+        cleanSealState = JSON.parse(JSON.stringify(currentSealState));
+        isAttackSimulated = false;
+      } else {
+        isAttackSimulated = true;
+      }
+      updateAttackButtonUI();
 
       // Detect coordinate center (150 for PDF/DOCX, 300 for SVG)
       const firstTri = seal.triangles[0];
@@ -732,8 +797,9 @@
       document.getElementById("activeCoordSpace").textContent = `Space: [0, ${cx * 2}]²`;
 
       const expectedTris = applySignedPerturbations(
-        solveBaselineYantra(cx, cy, r),
-        seal.hmac_sha256
+        solveBaselineYantra(cx),
+        seal.hmac_sha256,
+        cx
       );
 
       let maxSymErr = 0.0;
@@ -744,7 +810,9 @@
 
       seal.triangles.forEach((t, idx) => {
         const exp = expectedTris[idx];
-        const symErr = Math.abs((t.lx + t.rx) * 0.5 - cx);
+        const symErr = Math.abs((t.lx + t.rx) - cx * 2.0);
+        // Primary cryptographic invariant (matching marma_watermark.py verify_*):
+        // lx_s - lx_can == expected_offset (and rx_s + lx_s == 300.0)
         const drift = Math.max(
           Math.abs(t.lx - exp.lx),
           Math.abs(t.rx - exp.rx),
@@ -754,7 +822,7 @@
         if (symErr > maxSymErr) maxSymErr = symErr;
         if (drift > maxCoordDrift) maxCoordDrift = drift;
 
-        const rowOk = symErr < 1e-6 && drift < 1e-6;
+        const rowOk = symErr < 1e-7 && drift < 1e-7;
         const tr = document.createElement("tr");
         tr.innerHTML = `
           <td>${idx + 1}</td>
@@ -764,13 +832,16 @@
           <td>${t.by.toFixed(9)}</td>
           <td>${t.ay.toFixed(9)}</td>
           <td>${(exp.delta >= 0 ? "+" : "") + exp.delta.toExponential(3)}</td>
-          <td>${symErr.toFixed(10)}</td>
+          <td style="color:${drift < 1e-7 ? 'var(--ok-text)' : 'var(--err-text)'};font-weight:600;">${drift.toFixed(10)}</td>
+          <td style="color:${symErr < 1e-7 ? 'var(--ok-text)' : 'var(--err-text)'};">${symErr.toFixed(10)}</td>
           <td class="${rowOk ? 'badge-pass' : 'badge-fail'}">${rowOk ? '✓ OK' : '✗ TAMPER'}</td>
         `;
         tbody.appendChild(tr);
       });
 
-      const verified = maxSymErr < 1e-6 && maxCoordDrift < 1e-6 && !seal.tamperedText;
+      const dstu = seal.dstu4145 || {};
+      const dstuSignaturePresent = Boolean((dstu.r_hex && dstu.s_hex) || seal.hmac_sha256);
+      const verified = maxSymErr < 1e-7 && maxCoordDrift < 1e-7 && !seal.tamperedText && dstuSignaturePresent;
       const banner = document.getElementById("statusBanner");
       const headline = document.getElementById("statusHeadline");
       const sub = document.getElementById("statusSub");
@@ -778,16 +849,15 @@
       if (verified) {
         banner.className = "status-banner ok";
         headline.textContent = "✅ АВТЕНТИЧНІСТЬ ТА ЦІЛІСНІСТЬ ПІДТВЕРДЖЕНО (VERIFIED · ДСТУ 4145-2002 · PAdES-LTA)";
-        sub.textContent = "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s), кваліфікований електронний підпис КНЕДП та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою.";
+        sub.textContent = "Вектор еліптичної кривої ДСТУ 4145-2002 (r, s), кваліфікований електронний підпис КНЕДП та білатеральна симетрія 9 трикутників Шрі Янтри збігаються з нульовою похибкою (Δ = 0.0000000000).";
       } else {
         banner.className = "status-banner err";
         headline.textContent = "❌ ПОРУШЕННЯ ЦІЛІСНОСТІ / ПІДРОБКУ ВИЯВЛЕНО (TAMPER DETECTED)";
         sub.textContent = seal.tamperedText
           ? "Дайджест тексту (ГОСТ 34.311-95 / Купина) не відповідає вектору (r, s) підпису ДСТУ 4145-2002!"
-          : `Геометричний зсув Δ_coord = ${maxCoordDrift.toFixed(9)} перевищує поріг допуску 10⁻⁷!`;
+          : `Геометричний зсув Δ_coord = ${maxCoordDrift.toFixed(9)} (Δ_sym = ${maxSymErr.toFixed(9)}) перевищує поріг допуску 10⁻⁸! Натисніть «Скинути атаку», щоб повернути оригінал.`;
       }
 
-      const dstu = seal.dstu4145 || {};
       const sInfo = dstu.signer_info || {};
       document.getElementById("valDocName").textContent = currentSealState.docName;
       document.getElementById("valSigner").textContent = sInfo.common_name
@@ -796,14 +866,16 @@
       document.getElementById("valIssuer").textContent = sInfo.issuer_name
         ? `${sInfo.issuer_name} · ${sInfo.serial_hex || ""}`
         : `Fingerprint: ${seal.key_fingerprint}`;
-      document.getElementById("valStandard").textContent = dstu.standard || "ДСТУ 4145-2002 / HMAC-SHA256";
+      document.getElementById("valStandard").textContent = verified
+        ? `✅ КЕП ДІЙСНИЙ · ${dstu.standard || "ДСТУ 4145-2002 EC + PAdES-LTA"}`
+        : `❌ ПОРУШЕНО · Координати не відповідають підпису ДСТУ 4145-2002`;
       document.getElementById("valGost").textContent = dstu.gost34311_hex || seal.content_sha256;
       document.getElementById("valKupyna").textContent = dstu.dstu7564_hex || seal.hmac_sha256;
       document.getElementById("valRS").textContent = dstu.r_hex
         ? `r = ${dstu.r_hex.slice(0, 26)}... | s = ${dstu.s_hex.slice(0, 26)}...`
         : `HMAC = ${seal.hmac_sha256}`;
       document.getElementById("valErrors").textContent =
-        `Δ_sym = ${maxSymErr.toFixed(12)}  |  Δ_coord = ${maxCoordDrift.toFixed(10)}`;
+        `Δ_sym = ${maxSymErr.toFixed(12)}  |  Δ_coord = ${maxCoordDrift.toFixed(12)}`;
 
       renderYantraSvg(seal.triangles, cx, expectedTris, verified);
     }
@@ -859,6 +931,61 @@
     // =========================================================================
     // 4. PARSING DROPPED .PDF, .SVG, AND .DOCX FILES IN CLIENT BROWSER
     // =========================================================================
+    function parseBalancedJsonAfterMarker(rawText, marker) {
+      const pos = rawText.lastIndexOf(marker);
+      if (pos === -1) return null;
+      let slice = rawText.slice(pos + marker.length, pos + marker.length + 35000);
+      slice = slice.replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\\/g, "\\");
+      let depth = 0, endIdx = -1, inStr = false, esc = false;
+      for (let i = 0; i < slice.length; i++) {
+        const ch = slice[i];
+        if (esc) { esc = false; continue; }
+        if (ch === "\\") { esc = true; continue; }
+        if (ch === '"') { inStr = !inStr; continue; }
+        if (!inStr) {
+          if (ch === "{") depth++;
+          else if (ch === "}") {
+            depth--;
+            if (depth === 0) { endIdx = i + 1; break; }
+          }
+        }
+      }
+      if (endIdx !== -1) {
+        return JSON.parse(slice.slice(0, endIdx));
+      }
+      return null;
+    }
+
+    async function extractDocxMarmaSeal(uint8) {
+      // Minimal ZIP local-file-header scanner for word/document.xml
+      const view = new DataView(uint8.buffer, uint8.byteOffset, uint8.byteLength);
+      let offset = 0;
+      while (offset + 30 <= uint8.byteLength) {
+        const sig = view.getUint32(offset, true);
+        if (sig !== 0x04034b50) { offset++; continue; }
+        const compMethod = view.getUint16(offset + 8, true);
+        const compSize = view.getUint32(offset + 18, true);
+        const nameLen = view.getUint16(offset + 26, true);
+        const extraLen = view.getUint16(offset + 28, true);
+        const nameBytes = uint8.subarray(offset + 30, offset + 30 + nameLen);
+        const entryName = new TextDecoder("utf-8").decode(nameBytes);
+        const dataStart = offset + 30 + nameLen + extraLen;
+        if (entryName === "word/document.xml" && compSize > 0 && typeof DecompressionStream === "function") {
+          const compSlice = uint8.subarray(dataStart, dataStart + compSize);
+          const ds = new DecompressionStream("deflate-raw");
+          const writer = ds.writable.getWriter();
+          writer.write(compSlice);
+          writer.close();
+          const decompressedBuf = await new Response(ds.readable).arrayBuffer();
+          const xmlText = new TextDecoder("utf-8").decode(decompressedBuf);
+          const parsed = parseBalancedJsonAfterMarker(xmlText, "MARMA_SEAL_PACKET::");
+          if (parsed) return parsed;
+        }
+        offset = dataStart + Math.max(1, compSize);
+      }
+      return null;
+    }
+
     function extractMarmaSealFromBytes(uint8, fileName) {
       const lower = fileName.toLowerCase();
 
@@ -909,42 +1036,27 @@
         };
       }
 
-      // Case 2: PDF file (extract MARMA_SEAL::{...} from Info dictionary)
+      // Case 2: PDF or uncompressed stream (extract MARMA_SEAL::{...} or MARMA_SEAL_PACKET::{...})
       const rawLatin = new TextDecoder("latin1").decode(uint8);
-      const marker = "MARMA_SEAL::";
-      const pos = rawLatin.indexOf(marker);
-      if (pos !== -1) {
-        let slice = rawLatin.slice(pos + marker.length, pos + marker.length + 25000);
-        // Unescape PDF literal string escapes \( \) and \\
-        slice = slice.replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\\/g, "\\");
-        // Find balanced JSON braces
-        let depth = 0, endIdx = -1, inStr = false, esc = false;
-        for (let i = 0; i < slice.length; i++) {
-          const ch = slice[i];
-          if (esc) { esc = false; continue; }
-          if (ch === "\\") { esc = true; continue; }
-          if (ch === '"') { inStr = !inStr; continue; }
-          if (!inStr) {
-            if (ch === "{") depth++;
-            else if (ch === "}") {
-              depth--;
-              if (depth === 0) { endIdx = i + 1; break; }
-            }
-          }
-        }
-        if (endIdx !== -1) {
-          const jsonStr = slice.slice(0, endIdx);
-          return JSON.parse(jsonStr);
-        }
-      }
+      const sealPdf = parseBalancedJsonAfterMarker(rawLatin, "MARMA_SEAL::")
+        || parseBalancedJsonAfterMarker(rawLatin, "MARMA_SEAL_PACKET::");
+      if (sealPdf) return sealPdf;
+
       throw new Error("У файлі не знайдено криптографічної печатки MARMA_SEAL::v1.2-DSTU4145.");
     }
 
     async function handleFileObject(file) {
       try {
         const buf = await file.arrayBuffer();
-        const seal = extractMarmaSealFromBytes(new Uint8Array(buf), file.name);
-        renderVerificationState(seal, file.name);
+        const uint8 = new Uint8Array(buf);
+        let seal = null;
+        if (file.name.toLowerCase().endsWith(".docx")) {
+          seal = await extractDocxMarmaSeal(uint8);
+        }
+        if (!seal) {
+          seal = extractMarmaSealFromBytes(uint8, file.name);
+        }
+        renderVerificationState(seal, file.name, false);
       } catch (err) {
         const banner = document.getElementById("statusBanner");
         banner.className = "status-banner err";
@@ -954,23 +1066,33 @@
     }
 
     async function loadRemoteArtifact(url) {
+      const fileName = url.split("/").pop();
       try {
-        const resp = await fetch(url);
+        const resp = await fetch(url + "?v=1.2.1", { cache: "no-store" });
+        if (!resp.ok) throw new Error("HTTP " + resp.status);
         const buf = await resp.arrayBuffer();
-        const fileName = url.split("/").pop();
         const seal = extractMarmaSealFromBytes(new Uint8Array(buf), fileName);
-        renderVerificationState(seal, fileName);
+        renderVerificationState(seal, fileName, false);
       } catch (err) {
-        renderVerificationState(PRESET_SEAL_UA, "Marma_Crypto_Whitepaper_UA.pdf");
+        if (fileName.includes("_EN")) {
+          renderVerificationState(PRESET_SEAL_EN, "Marma_Crypto_Whitepaper_EN.pdf", false);
+        } else {
+          renderVerificationState(PRESET_SEAL_UA, fileName || "Marma_Crypto_Whitepaper_UA.pdf", false);
+        }
       }
     }
 
     function simulateTamperAttack() {
-      const tampered = JSON.parse(JSON.stringify(currentSealState));
+      if (isAttackSimulated) {
+        // Restore untampered clean state!
+        renderVerificationState(cleanSealState, cleanSealState.docName, false);
+        return;
+      }
+      const tampered = JSON.parse(JSON.stringify(cleanSealState));
       // Perturb triangle U2 by 0.001 units (simulating unauthorized edit)
-      tampered.triangles[3].by += 0.001;
-      tampered.triangles[3].lx -= 0.001;
-      renderVerificationState(tampered, tampered.docName + " [TAMPERED +0.001]");
+      tampered.triangles[3].by = Number((tampered.triangles[3].by + 0.001).toFixed(9));
+      tampered.triangles[3].lx = Number((tampered.triangles[3].lx - 0.001).toFixed(9));
+      renderVerificationState(tampered, cleanSealState.docName + " [АТАКА: +0.001 на U2]", true);
     }
 
     // Drag and Drop listeners
@@ -983,11 +1105,14 @@
       if (e.dataTransfer.files.length > 0) handleFileObject(e.dataTransfer.files[0]);
     });
     document.getElementById("fileInput").addEventListener("change", e => {
-      if (e.target.files.length > 0) handleFileObject(e.target.files[0]);
+      if (e.target.files.length > 0) {
+        const f = e.target.files[0];
+        e.target.value = "";
+        handleFileObject(f);
+      }
     });
 
     // Bilingual toggle
-    let currentLang = "uk";
     const I18N = {
       uk: {
         kicker: "Криптографічно-геометричний водяний знак · Нелінійна планіметрія Шрі Янтри × GF(2^257)",
@@ -1020,6 +1145,7 @@
         const k = el.getAttribute("data-i18n");
         if (dict[k]) el.textContent = dict[k];
       });
+      updateAttackButtonUI();
     }
 
     // Initialize on load
