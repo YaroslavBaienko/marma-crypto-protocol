@@ -1,0 +1,52 @@
+================================================================================
+CRYPTOGRAPHIC AUTHORSHIP & PRIORITY MANIFEST (MARMA-CRYPTO PROTOCOL v1.2.0)
+================================================================================
+Title (UA):      Marma-Crypto: Протокол криптографічно-геометричного водяного
+                 знака та суверенного запечатування документів на основі
+                 нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002
+Title (EN):      Marma-Crypto: A Cryptographic Geometric Watermarking and
+                 Sovereign Document Sealing Protocol via Sri Yantra Nonlinear
+                 Concurrency and Elliptic Curves over GF(2^257) (DSTU 4145-2002)
+Author:          Ярослав Володимирович Баєнко (Yaroslav V. Baienko)
+RNOKPP (Tax ID): 3255419579
+Email:           zerhug@gmail.com
+QES Certificate: КНЕДП monobank | Universal Bank
+QES Serial Hex:  10FF6F932221FA00CB4407000000000130616768
+Key Fingerprint: 49d05cdf120e88d60ea3f5c794fe8ec28c97781cab195ed43479528709c211e8
+GPG Key ID:      rsa4096/D2A2C1C49164673B
+GPG Fingerprint: 3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B
+Timestamp (UTC): 2026-10-17T02:06:52.068091+00:00
+================================================================================
+
+1. UKRAINIAN WHITEPAPER EDITION (Marma_Crypto_Whitepaper_UA.pdf)
+--------------------------------------------------------------------------------
+Content SHA-256:        c36cb1d8792286c46193cbb5e3eea61d3bc669f983258869b5e7a8b93fd17ff5
+ГОСТ 34.311-95 Digest:  cf9ed2820d619b7e5fe69d637ec8ca6de2cfbfae76f4584902b5794da1045116
+ДСТУ 7564:2014 Digest:  4e3eb87212be9ccd314125b3667dd61b40d890bac845d28f740841753bf717c1
+ДСТУ 4145-2002 Vector r:000000005d5ad090e12b89a9e3c478064a43a91483c743dba0c6ce4a79a5bffed7411bb2
+ДСТУ 4145-2002 Vector s:000000005d183de91be4b385c7e59cc5b4aff51837768d7d59d57606b4bf41776540dd7d
+Geometric HMAC-SHA256:  4b930a26cc930d2f1015e615e10fbb28cdafb2fa240744456f91f35c85f719df
+Symmetry Error Δ_sym:   0.000000000000
+Coord Drift Δ_coord:    0.000000000000
+
+2. ENGLISH WHITEPAPER EDITION (Marma_Crypto_Whitepaper_EN.pdf)
+--------------------------------------------------------------------------------
+Content SHA-256:        4b2168534e10449a892a551278b404814fddb01bfb03c446f84dc014fa8c96cd
+ГОСТ 34.311-95 Digest:  04611f0a87aef4fe0c0f2aee177b1544dc905cdd4ef5cbd063a964632569413b
+ДСТУ 7564:2014 Digest:  36b128ab98a4395bdb0e8efd15789b3d391b9f3dde42393968b5dbdf8ee65e46
+ДСТУ 4145-2002 Vector r:0000000062174c709f477657dab9303b0832c7d7946af4a5ac274952704709a12f3781d4
+ДСТУ 4145-2002 Vector s:36b128ab... / 000000000b8bb051029d7ca4e0533041e840db39e65315e0e36cd8c4c0c126dfa968ab7d
+Geometric HMAC-SHA256:  6b081559afbd37e1c58badb481f03bd3d78df11af3fd0b0f8bb45b5bca6ddcc9
+Symmetry Error Δ_sym:   0.000000000000
+Coord Drift Δ_coord:    0.000000000000
+
+3. FILE INTEGRITY DIGESTS (SHA-256)
+--------------------------------------------------------------------------------
+c2af1538e488596915b137a9f22c6a16505219aa83443c56fb2cc7aa66207335  Marma_Crypto_Whitepaper_UA.pdf
+17bc342fa4d91a31c3be63fddc1e93101f5d1388a92f1e7b35c1a6effb33ad34  Marma_Crypto_Whitepaper_EN.pdf
+3fd117a21269b4a236ae24fc53d60a5d4383a2d7cfdc0a2c97b3bdfe0f323249  Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf
+f85336c8f12a92b5df868e7cd89995a294700a10d4a215b3fe0abc9c0eb2d717  Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf
+dc49555ebd0db9d185c9dbb8e7f47e265f3d358922368058d57f298b9d593aae  sri_yantra_whitepaper_diagram.svg
+4239839f0e5580952c3ffd78d0342aa871e15635cba7041353f9057055beab0e  Marma_Crypto_Whitepaper_UA.typ
+eeb2786540bf1e53ed631125bdcb287da7cae6930caca3660d2be4b2a63bbced  Marma_Crypto_Whitepaper_EN.typ
+================================================================================
