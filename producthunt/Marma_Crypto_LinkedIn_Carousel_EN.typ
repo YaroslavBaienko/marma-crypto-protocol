@@ -115,7 +115,7 @@
     columns: (1fr, auto),
     align: (left + horizon, right + horizon),
     pill(kicker, bg: bg-card-alt, border: gold.transparentize(35%), fg: gold-bright, size: 14pt),
-    pill("SLIDE " + num + " / 10", bg: bg-card, border: gold.transparentize(50%), fg: text-muted, size: 14pt),
+    pill("SLIDE " + num + " / 11", bg: bg-card, border: gold.transparentize(50%), fg: text-muted, size: 14pt),
   )
   v(22pt)
   serif(title, size: 42pt, color: gold-bright)
@@ -146,7 +146,7 @@
   columns: (1fr, auto),
   align: (left + horizon, right + horizon),
   pill("CERN ZENODO DOI: 10.5281/zenodo.23436152 · APACHE 2.0", size: 14pt),
-  pill("SLIDE 01 / 10", bg: bg-card, border: gold.transparentize(50%), fg: text-muted, size: 14pt),
+  pill("SLIDE 01 / 11", bg: bg-card, border: gold.transparentize(50%), fg: text-muted, size: 14pt),
 )
 
 #v(24pt)
@@ -593,10 +593,122 @@
 #pagebreak()
 
 // =============================================================================
-// SLIDE 07: STATUTORY LEGAL VALIDITY (eIDAS & LAW NO. 2155-VIII)
+// SLIDE 07: COMPARATIVE BENCHMARK VS. OTHER CRYPTOGRAPHIC ALGORITHMS
 // =============================================================================
 #slide-frame(
   "07",
+  "CRYPTOGRAPHIC & GEOMETRIC BENCHMARK · ALGORITHMIC COMPARISON",
+  "Why Marma-Crypto Outperforms Classical Signatures & Watermarks",
+  subtitle: "Side-by-side comparison against RSA-3072, ECDSA P-256 / Ed25519, Detached CAdES, and Raster Steganography."
+)[
+  #card(
+    tag: "MULTI-DIMENSIONAL BENCHMARK MATRIX · CRYPTOGRAPHY × GEOMETRY × EVIDENTIARY LAW",
+    title: "Comparative Architecture Matrix",
+    inset-val: 14pt,
+    [
+      #set text(size: 13.5pt)
+      #table(
+        columns: (1.45fr, 1.15fr, 1.2fr, 1.15fr, 1.65fr),
+        align: (left + horizon, center + horizon, center + horizon, center + horizon, center + horizon),
+        stroke: 0.6pt + gold.transparentize(60%),
+        inset: 8.5pt,
+        table.header(
+          [*Criterion / Layer*],
+          [*RSA-3072*\ (PKCS\#1 v2.2)],
+          [*ECDSA P-256*\ / Ed25519],
+          [*Raster / QR*\ Watermark],
+          [#text(fill: gold-bright, weight: "bold")[*🔱 Marma-Crypto v1.2.1*\ (DSTU 4145 × Sri Yantra)]]
+        ),
+        [*Algebraic Group*],
+        [Integer Ring $ZZ_n^*$],
+        [Prime Field $FF_p$],
+        [None (Pixels)],
+        [#text(fill: gold-bright, weight: "bold")[Binary Field $FF_(2^257)$]],
+
+        [*Key / Sig Size (128-bit)*],
+        [`3072 / 3072 bit`],
+        [`256 / 512 bit`],
+        [`N/A`],
+        [#text(fill: ok-green, weight: "bold")[`257 / 512 bit` (Carry-less)]],
+
+        [*Digest Primitives*],
+        [Single (`SHA-256`)],
+        [Single (`SHA-256`)],
+        [None / CRC],
+        [#text(fill: ok-green, weight: "bold")[Triple (`GOST`+`Kupyna`+`SHA256`)]],
+
+        [*Nonce RNG Safety*],
+        [Deterministic / PSS],
+        [#text(fill: err-red)[Vulnerable if RNG weak]],
+        [`N/A`],
+        [#text(fill: ok-green, weight: "bold")[Deterministic `RFC 6979`]],
+
+        [*Visible Vector Binding*],
+        [#text(fill: err-red)[❌ None (Hidden ASN.1)]],
+        [#text(fill: err-red)[❌ None (Hidden ASN.1)]],
+        [#text(fill: err-red)[⚠️ Decorative only]],
+        [#text(fill: ok-green, weight: "bold")[✅ 54 Marmas ($|delta_k| <= 10^(-5)$)]],
+
+        [*Tamper Localization*],
+        [#text(fill: err-red)[❌ Binary Pass/Fail]],
+        [#text(fill: err-red)[❌ Binary Pass/Fail]],
+        [#text(fill: err-red)[⚠️ Visual degradation]],
+        [#text(fill: ok-green, weight: "bold")[✅ Exact Layer $T_1..T_9$ (36 coords)]],
+
+        [*Cross-Format Survival*],
+        [#text(fill: err-red)[❌ Lost on export]],
+        [#text(fill: err-red)[❌ Lost on export]],
+        [#text(fill: err-red)[❌ Breaks on scaling]],
+        [#text(fill: ok-green, weight: "bold")[✅ Native `.pdf`, `.docx`, `.svg`]],
+
+        [*Archival Legal Force*],
+        [Requires PAdES],
+        [Requires PAdES],
+        [#text(fill: err-red)[❌ Zero legal force]],
+        [#text(fill: ok-green, weight: "bold")[✅ `PAdES-B-LTA` + `TSP` + `OTS`]],
+      )
+    ]
+  )
+
+  #v(12pt)
+
+  #grid(
+    columns: (1fr, 1fr, 1fr),
+    gutter: 14pt,
+    card(
+      tag: "ADVANTAGE 01 · ALGEBRA",
+      title: "GF(2^257) Efficiency",
+      inset-val: 14pt,
+      text(size: 15pt, fill: text-muted)[
+        Polynomial-basis arithmetic over $FF_2[t]\/(t^257+t^12+1)$ uses carry-less XOR addition and provides cryptographic diversity beyond prime curves.
+      ]
+    ),
+    card(
+      tag: "ADVANTAGE 02 · RESILIENCE",
+      title: "Dual-Channel Survival",
+      inset-val: 14pt,
+      text(size: 15pt, fill: text-muted)[
+        Even if ASN.1 metadata is stripped by a document gateway, the 9-triangle vector coordinates retain the 216-bit signature commitment.
+      ]
+    ),
+    card(
+      tag: "ADVANTAGE 03 · FORENSICS",
+      title: "Sub-Micron Pinpointing",
+      inset-val: 14pt,
+      text(size: 15pt, fill: text-muted)[
+        Instead of an opaque "Invalid Signature" error, forensic auditors can localize the exact modified triangle and coordinate drift $Delta_("coord")$.
+      ]
+    )
+  )
+]
+
+#pagebreak()
+
+// =============================================================================
+// SLIDE 08: STATUTORY LEGAL VALIDITY (eIDAS & LAW NO. 2155-VIII)
+// =============================================================================
+#slide-frame(
+  "08",
   "EVIDENTIARY ADMISSIBILITY · PAdES-B-LTA & RFC 3161 TSP",
   "Statutory Legal Validity & 25-Year Archival Non-Repudiation",
   subtitle: "Engineered by a practicing litigation & digital economy attorney to satisfy strict courtroom evidentiary standards."
@@ -662,10 +774,10 @@
 #pagebreak()
 
 // =============================================================================
-// SLIDE 08: ZERO-TRUST CLIENT-SIDE BROWSER VERIFIER
+// SLIDE 09: ZERO-TRUST CLIENT-SIDE BROWSER VERIFIER
 // =============================================================================
 #slide-frame(
-  "08",
+  "09",
   "PRIVILEGE-PRESERVING VERIFICATION · 100% CLIENT-SIDE",
   "Zero-Trust Online Verifier & Interactive 9-Triangle Inspector",
   subtitle: "Verify privileged legal contracts (.pdf, .docx, .svg) directly in your browser — zero bytes ever leave your device."
@@ -732,10 +844,10 @@
 #pagebreak()
 
 // =============================================================================
-// SLIDE 09: LINUX APT REPOSITORY & CLI ECOSYSTEM
+// SLIDE 10: LINUX APT REPOSITORY & CLI ECOSYSTEM
 // =============================================================================
 #slide-frame(
-  "09",
+  "10",
   "LINUX PACKAGING · GPG-SIGNED DEBIAN / UBUNTU APT REPOSITORY",
   "1-Command Installation & GNOME Desktop Integration",
   subtitle: "Production-tested packages published in our official GPG-signed Debian/Ubuntu APT repository."
@@ -784,10 +896,10 @@
 #pagebreak()
 
 // =============================================================================
-// SLIDE 10: ENTERPRISE INTEGRATION & FORENSIC LEGAL ADVISORY (CTA)
+// SLIDE 11: ENTERPRISE INTEGRATION & FORENSIC LEGAL ADVISORY (CTA)
 // =============================================================================
 #slide-frame(
-  "10",
+  "11",
   "OPEN-CORE MONETIZATION · B2B & INSTITUTIONAL SERVICES",
   "Enterprise Integration & Forensic Legal Advisory",
   subtitle: "Partner with us to deploy mathematical document non-repudiation across banking, legal, M&A, and Web3 workflows."
