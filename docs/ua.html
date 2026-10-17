@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Протокол «Марма-Крипто» (v1.2.1) — Криптографічно-геометричний водяний знак Шрі Янтри та ДСТУ 4145-2002</title>
+  <meta name="description" content="Офіційне українське академічне видання Whitepaper Протоколу «Марма-Крипто» (v1.2.1): нелінійна планіметрія Шрі Янтри та еліптичні криві ДСТУ 4145-2002 над GF(2^257). Автор: Баєнко Ярослав Володимирович. DOI: 10.5281/zenodo.23436152." />
+  <link rel="canonical" href="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
+
+  <!-- Google Scholar Highwire Press Citation Meta Tags (Ukrainian Edition) -->
+  <meta name="citation_title" content="Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257)" />
+  <meta name="citation_author" content="Баєнко, Ярослав Володимирович" />
+  <meta name="citation_author" content="Baienko, Yaroslav" />
+  <meta name="citation_publication_date" content="2026/10/17" />
+  <meta name="citation_online_date" content="2026/10/17" />
+  <meta name="citation_doi" content="10.5281/zenodo.23436152" />
+  <meta name="citation_technical_report_institution" content="CERN Zenodo" />
+  <meta name="citation_technical_report_number" content="MARMA-DSTU4145-V1.2.1-UA" />
+  <meta name="citation_pdf_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/whitepaper/Marma_Crypto_Whitepaper_UA.pdf" />
+  <meta name="citation_fulltext_html_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
+  <meta name="citation_language" content="uk" />
+  <meta name="citation_keywords" content="Прикладна криптографія; Цифровий водяний знак; Шрі Янтра; ДСТУ 4145-2002; Еліптичні криві; GF(2^257); PAdES-LTA; Кваліфікований електронний підпис; LegalTech" />
+  <meta name="citation_abstract" content="У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.2.1), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP." />
+
+  <style>
+    body {
+      background: #0b111e;
+      color: #f4f1ea;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      max-width: 920px;
+      margin: 40px auto;
+      padding: 24px;
+      line-height: 1.65;
+    }
+    .card {
+      background: #111a2e;
+      border: 1px solid rgba(212, 168, 67, 0.28);
+      border-radius: 12px;
+      padding: 28px;
+    }
+    h1 { color: #f3c969; font-size: 1.55rem; margin-bottom: 12px; }
+    a { color: #f3c969; }
+    .btn {
+      display: inline-block;
+      margin-top: 14px;
+      margin-right: 10px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      background: #d4a843;
+      color: #0b111e;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .btn-alt {
+      background: transparent;
+      border: 1px solid rgba(212, 168, 67, 0.45);
+      color: #f3c969;
+    }
+    pre {
+      background: #0b111e;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(212, 168, 67, 0.22);
+      overflow-x: auto;
+      color: #f3c969;
+      font-size: 0.82rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257)</h1>
+    <p><strong>Автор:</strong> Баєнко Ярослав Володимирович (Yaroslav Baienko) · <strong>Дата публікації:</strong> 17 жовтня 2026 р. · <strong>Версія:</strong> 1.2.1 · <strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.23436152">10.5281/zenodo.23436152</a></p>
+    <p><strong>Анотація:</strong> У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.2.1), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP.</p>
+    <div>
+      <a class="btn" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf">📕 Завантажити PDF (Українське видання · КЕП PAdES-LTA)</a>
+      <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf">📘 English Edition PDF</a>
+      <a class="btn btn-alt" href="index.html">🔍 Перейти до Онлайн-Верифікатора</a>
+    </div>
+    <h3 style="margin-top:24px;color:#f3c969;">Цитування за ДСТУ 8302:2015 / APA:</h3>
+    <pre>Баєнко Я. В. Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257) (Версія 1.2.1). CERN Zenodo, 2026. 9 с. DOI: https://doi.org/10.5281/zenodo.23436152</pre>
+  </div>
+</body>
+</html>
