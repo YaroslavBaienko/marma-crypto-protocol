@@ -32,6 +32,7 @@
 | **IACR Cryptology ePrint Archive** | Submission `xxxx/112645` (Category: *Cryptographic protocols*) | https://eprint.iacr.org | International Association for Cryptologic Research preprint registry (submitted 2026-10-19, awaiting editorial review) |
 | **Elsevier SSRN (Legal & Computer Science Research Networks)** | `SSRN Abstract ID: 7631458` | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458 | Law & Technology / Computer Science eJournals (submitted 2026-10-19, `Public View: Yes`, `CC BY 4.0`) |
 | **ResearchGate** | Researcher Profile & Preprint Onboarding | https://www.researchgate.net | Submitted 2026-10-19 (linked with ORCID `0009-0006-7498-2133`, Zenodo DOI `10.5281/zenodo.23436152`, SSRN `7631458`; awaiting account approval) |
+| **Academia.edu** | Published Paper (`Yaroslav Baienko`) | https://www.academia.edu | Published 2026-10-19 (*2026 • CERN Zenodo / IACR Cryptology ePrint / Elsevier SSRN*, DOI `10.5281/zenodo.23436152`) |
 | **European Commission OpenAIRE Research Graph** | Indexed via Zenodo / ORCID `0009-0006-7498-2133` | https://explore.openaire.eu/search/find?fv0=0009-0006-7498-2133&f0=relpersonid | European Open Science Cloud (EOSC) publication + software graph |
 | **Bitcoin Blockchain OpenTimestamps** | `.ots` Proofs (`whitepaper/*.ots`) | [`whitepaper/AUTHORSHIP_MANIFEST.txt.ots`](whitepaper/AUTHORSHIP_MANIFEST.txt.ots) | Decentralized cryptographic timestamp proof of EN/UA Whitepapers & Manifest |
 
