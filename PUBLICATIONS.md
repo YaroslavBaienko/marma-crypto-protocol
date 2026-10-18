@@ -24,13 +24,14 @@
 |---|---|---|---|
 | **CERN Zenodo (Concept DOI — All Versions)** | `10.5281/zenodo.23429017` | https://doi.org/10.5281/zenodo.23429017 | Always resolves to the latest version of the specification (334+ views, 59+ downloads) |
 | **CERN Zenodo — Version 1 (`v1.2.0`)** | `10.5281/zenodo.23429018` | https://doi.org/10.5281/zenodo.23429018 | Initial Defensive Prior Art deposit (2026-10-17) |
-| **CERN Zenodo — Version 2 (`v1.2.1` + `v1.3.0` SWHID link)** | `10.5281/zenodo.23436152` | https://doi.org/10.5281/zenodo.23436152 | Universal Academic Edition (EN + UA PDFs + CAdES `.p7s` + OpenTimestamps `.ots` + Software Heritage SWHID) |
+| **CERN Zenodo — Version 2 (`v1.2.1` + `v1.3.0` SWHID link)** | `10.5281/zenodo.23436152` | https://doi.org/10.5281/zenodo.23436152 | Universal Academic Edition (EN + UA PDFs + CAdES `.p7s` + OpenTimestamps `.ots` + Software Heritage SWHID; submitted to Zenodo Communities: *CiphIR — Bridging Cryptography and Information Security* & *CyberSafeNet*) |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Snapshot)** | `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` | https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol | ISO/IEC 18670 Merkle DAG repository snapshot |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Revision)** | `swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c` | https://archive.softwareheritage.org/swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c | ISO/IEC 18670 immutable commit revision |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Directory)** | `swh:1:dir:42b5547ee94691ccb541e10df453c2997e5cb302` | https://archive.softwareheritage.org/swh:1:dir:42b5547ee94691ccb541e10df453c2997e5cb302 | ISO/IEC 18670 root source tree |
 | **UNESCO / Inria Software Heritage (`legaltech` APT Repo Snapshot)** | `swh:1:snp:2c6f70446da45cc2a48e64327d772577f29d01e1` | https://archive.softwareheritage.org/swh:1:snp:2c6f70446da45cc2a48e64327d772577f29d01e1;origin=https://github.com/YaroslavBaienko/legaltech | ISO/IEC 18670 snapshot of Debian APT ecosystem |
-| **IACR Cryptology ePrint Archive** | Submission `xxxx/112645` (Category: *Cryptographic protocols*) | https://eprint.iacr.org | International Association for Cryptologic Research preprint registry (submitted 2026-10-19) |
-| **Elsevier SSRN (Legal & Computer Science Research Networks)** | `SSRN Abstract ID: 7631458` | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458 | Law & Technology / Computer Science eJournals (submitted 2026-10-19, `CC BY 4.0`) |
+| **IACR Cryptology ePrint Archive** | Submission `xxxx/112645` (Category: *Cryptographic protocols*) | https://eprint.iacr.org | International Association for Cryptologic Research preprint registry (submitted 2026-10-19, awaiting editorial review) |
+| **Elsevier SSRN (Legal & Computer Science Research Networks)** | `SSRN Abstract ID: 7631458` | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458 | Law & Technology / Computer Science eJournals (submitted 2026-10-19, `Public View: Yes`, `CC BY 4.0`) |
+| **ResearchGate** | Researcher Profile & Preprint Onboarding | https://www.researchgate.net | Submitted 2026-10-19 (linked with ORCID `0009-0006-7498-2133`, Zenodo DOI `10.5281/zenodo.23436152`, SSRN `7631458`; awaiting account approval) |
 | **European Commission OpenAIRE Research Graph** | Indexed via Zenodo / ORCID `0009-0006-7498-2133` | https://explore.openaire.eu/search/find?fv0=0009-0006-7498-2133&f0=relpersonid | European Open Science Cloud (EOSC) publication + software graph |
 | **Bitcoin Blockchain OpenTimestamps** | `.ots` Proofs (`whitepaper/*.ots`) | [`whitepaper/AUTHORSHIP_MANIFEST.txt.ots`](whitepaper/AUTHORSHIP_MANIFEST.txt.ots) | Decentralized cryptographic timestamp proof of EN/UA Whitepapers & Manifest |
 
@@ -56,5 +57,6 @@
 | **LinkedIn** | 2026-10-18 | Published (Announcement + 11-slide vector PDF carousel `Marma_Crypto_LinkedIn_Carousel_EN/UA.pdf`) |
 | **Reddit (`r/cryptography` / tech communities)** | 2026-10-18 | Published technical deep-dive post |
 | **X (Twitter) & Facebook** | 2026-10-17 / 18 | Published bilingual visual cards & hero posters (`facebook_hero_poster_en/ua.png`) |
-| **DOU.ua (Українська ІТ-спільнота)** | 2026-10-19 | Submitted to Forum («Оцініть проєкт» / DOU Tech) |
+| **DOU.ua (Українська ІТ-спільнота)** | 2026-10-19 | Submitted to Forum («Оцініть проєкт» / DOU Tech, awaiting moderator approval) |
 | **Dev.to (Global Developer Community)** | 2026-10-19 | Published technical deep-dive: https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72 |
+| **Medium** | 2026-10-19 | Published technical deep-dive (imported from Dev.to with canonical link, topics: `Cryptography`, `Cybersecurity`, `Mathematics`, `Open Source`, `Legaltech`) |
