@@ -14,6 +14,7 @@
 [![OSF Law Archive](https://img.shields.io/badge/OSF_Law_Archive-a8q5x__v1-214761.svg)](https://osf.io/preprints/lawarchive/a8q5x_v1)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7498--2133-a6ce39.svg)](https://orcid.org/0009-0006-7498-2133)
 [![Dev.to](https://img.shields.io/badge/DEV.to-Engineering_Deep--Dive-0A0A0A.svg)](https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72)
+[![DOU.ua](https://img.shields.io/badge/DOU.ua-Topic_62699-111111.svg)](https://dou.ua/forums/topic/62699/)
 [![Product Hunt](https://img.shields.io/badge/🚀_Product_Hunt-Marma--Crypto_Protocol-da552f.svg)](https://www.producthunt.com/products/marma-crypto-protocol)
 [![X @baienko](https://img.shields.io/badge/𝕏-@baienko-000000.svg)](https://x.com/baienko)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)

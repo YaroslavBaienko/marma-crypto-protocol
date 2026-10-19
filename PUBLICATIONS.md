@@ -60,6 +60,6 @@
 | **LinkedIn** | 2026-10-18 | Published (Announcement + 11-slide vector PDF carousel `Marma_Crypto_LinkedIn_Carousel_EN/UA.pdf`) |
 | **Reddit (`r/cryptography` / tech communities)** | 2026-10-18 | Published technical deep-dive post |
 | **X (Twitter) & Facebook** | 2026-10-17 / 18 | Published bilingual visual cards & hero posters (`facebook_hero_poster_en/ua.png`) |
-| **DOU.ua (Українська ІТ-спільнота)** | 2026-10-19 | Submitted to Forum («Оцініть проєкт» / DOU Tech, awaiting moderator approval) |
+| **DOU.ua (Українська ІТ-спільнота)** | 2026-10-19 | Published on DOU Forum («Оцініть проєкт» / DOU Tech): https://dou.ua/forums/topic/62699/ |
 | **Dev.to (Global Developer Community)** | 2026-10-19 | Published technical deep-dive: https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72 |
 | **Medium** | 2026-10-19 | Published technical deep-dive (imported from Dev.to with canonical link, topics: `Cryptography`, `Cybersecurity`, `Mathematics`, `Open Source`, `Legaltech`) |
