@@ -58,16 +58,21 @@
 
 ---
 
-## 🛡️ Phase 5 — Patent & IP Protection Calendar (Inventor's Grace Period)
+## 🛡️ Phase 5 — Sovereign Patent & International Priority Plan (`docs/PATENT_STRATEGY_UA_US.md`)
 
+> **Canonical Strategy Document:** [`docs/PATENT_STRATEGY_UA_US.md`](docs/PATENT_STRATEGY_UA_US.md) · **Calendar (`.ics`):** [`docs/marma_ukrnoivi_patent_schedule.ics`](docs/marma_ukrnoivi_patent_schedule.ics)
 > **First Public Disclosure Date (Prior Art Anchor):** `2026-10-17` (CERN Zenodo `10.5281/zenodo.23429018`)
-> **Legal Basis (Ukraine):** Art. 6, Part 6 of the Law of Ukraine *"On Protection of Rights to Inventions and Utility Models"* (No. 3687-XII) — **6-month novelty grace period for the inventor**.
-> **Legal Basis (USA):** 35 U.S.C. § 102(b)(1)(A) (America Invents Act) — **12-month novelty grace period for the inventor**.
+> **Why UKRNOIVI First (Mandatory & Optimal):**
+> 1. **Ukrainian Mandatory First-Filing Rule (`Art. 37 of Law No. 3687-XII`):** Inventions created in Ukraine by Ukrainian citizens must first be filed in UKRNOIVI (followed by a 3-month state-secrecy clearance window) before any foreign patent filing.
+> 2. **USPTO Foreign Domicile Rule (`37 CFR § 1.31(a)(2)`, effective July 20, 2026):** Foreign-domiciled applicants can no longer sign Micro Entity certifications (`Form PTO/SB/15A`) or ADS forms *pro se* in the USPTO without hiring a US patent attorney ($350–$600).
+> 3. **Paris Convention & AIA Effective Filing Date Synergy (`Paris Convention Art. 4` + `35 U.S.C. §§ 100(i)(1)(B), 102(b)(1)(A), 119(a)`):** Filing the Ukrainian invention application in **UKRNOIVI** (self-filed via QES at `sis.nipo.gov.ua` for **64 UAH / ~$1.50** under CMU Resolution No. 1716, 5% individual inventor rate + 20% e-filing discount) automatically establishes the **Effective Filing Date for the United States**, locks in the US 1-year grace period against the `2026-10-17` Zenodo disclosure, grants **12 months of international priority worldwide (until `2028-03-15`)**, and immediately confers legal **`Patent Pending (Paris Convention Art. 4 / 35 U.S.C. § 119)`** status at zero attorney cost.
 
-| Date | Milestone / Deadline | Jurisdiction & Action |
+| Date | Milestone / Deadline | Jurisdiction, Fee & Legal Effect |
 | :--- | :--- | :--- |
-| **`2027-02-15`** | **Milestone P1 (T-60 days): Draft Claims & Drawings** | Prepare formal Ukrainian patent specification, multi-independent claims (*"Спосіб криптографічно-геометричного маркування та трасування витоків електронних документів"*), and black-and-white technical drawings from `Marma_Crypto_Whitepaper_UA.typ`. |
-| **`2027-03-15`** | **Milestone P2 (T-30 days): Target Filing in UKRNOIVI** | Submit electronic applications via UKRNOIVI online filing system (`sis.nipo.gov.ua`) signed with author's QES (`DSTU 4145-2002`): **1) Utility Model Patent** (fast-track 6-month grant) + **2) Invention Patent** (20-year monopoly, reduced fee for individual inventor). |
+| **`2027-02-15`** | **Milestone P1 (T-60 days): Draft Claims & Drawings** | Convert `Marma_Crypto_Whitepaper_UA.typ` into formal UKRNOIVI specification (*«Спосіб криптографічно-геометричного маркування, верифікації цілісності та трасування витоків електронних документів»*), multi-independent claims, and black-and-white drawings with full `35 U.S.C. § 112(a)` enablement. |
+| **`2027-03-15`** | **Milestone P2 (T-30 days): E-Filing in UKRNOIVI (`sis.nipo.gov.ua`)** | Self-file with author's QES (`DSTU 4145-2002`) under CMU Resolution No. 1716:<br>1) **Invention Patent Application** (**64 UAH** filing + **300 UAH** exam = **~489 UAH total**, 20-year term + Paris Convention Priority anchor under `35 U.S.C. § 119(a)`);<br>2) **Utility Model Patent Application** (**192 UAH** filing = **~317 UAH total**, fast-track ~6-month grant).<br>Activates global **`Patent Pending`** status. |
 | **`2027-04-17`** | **🚨 HARD STATUTORY DEADLINE (UKRNOIVI — 6 Months)** | **Final day of the 6-month Inventor's Novelty Grace Period in Ukraine** under Art. 6(6) of Law No. 3687-XII (counting from `2026-10-17`). |
-| **`2027-10-17`** | **🚨 HARD STATUTORY DEADLINE (USPTO / PCT — 12 Months)** | **Final day of the 12-month Inventor's Grace Period in the United States** under 35 U.S.C. § 102(b)(1) for filing a US Provisional / Non-Provisional Patent Application. |
+| **`2027-06-15`** | **Milestone P3 (T+90 days): Art. 37 Clearance** | **Completion of the 3-month statutory review in UKRNOIVI** under Art. 37 of Law No. 3687-XII, authorizing foreign/international (PCT / USPTO) patent filings. |
+| **`2028-03-15`** | **🚨 PARIS CONVENTION PRIORITY DEADLINE (+12 Months)** | **12-month international priority deadline** under Paris Convention Art. 4 & `35 U.S.C. §§ 100(i)(1)(B), 119(a)` (measured from the `2027-03-15` UKRNOIVI filing) to enter USPTO / PCT if commercially warranted. |
+
 
