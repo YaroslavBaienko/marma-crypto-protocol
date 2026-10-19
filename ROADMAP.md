@@ -55,3 +55,19 @@
    - Launch `Show HN` on Hacker News during US East Coast morning peak (16:00 Kyiv / 09:00 EST) and engage in technical discussions on `r/SideProject`, `r/LegalTech`, and `r/cryptography`.
 3. **Enterprise & LegalTech B2B Pilots (GOLAW Digital Economy & Litigation):**
    - Deploy custom corporate geometric seals and Deal-Room Canary protection for high-stakes M&A transactions, RWA tokenization certificates (MiCA), and forensic electronic evidence reports.
+
+---
+
+## 🛡️ Phase 5 — Patent & IP Protection Calendar (Inventor's Grace Period)
+
+> **First Public Disclosure Date (Prior Art Anchor):** `2026-10-17` (CERN Zenodo `10.5281/zenodo.23429018`)
+> **Legal Basis (Ukraine):** Art. 6, Part 6 of the Law of Ukraine *"On Protection of Rights to Inventions and Utility Models"* (No. 3687-XII) — **6-month novelty grace period for the inventor**.
+> **Legal Basis (USA):** 35 U.S.C. § 102(b)(1)(A) (America Invents Act) — **12-month novelty grace period for the inventor**.
+
+| Date | Milestone / Deadline | Jurisdiction & Action |
+| :--- | :--- | :--- |
+| **`2027-02-15`** | **Milestone P1 (T-60 days): Draft Claims & Drawings** | Prepare formal Ukrainian patent specification, multi-independent claims (*"Спосіб криптографічно-геометричного маркування та трасування витоків електронних документів"*), and black-and-white technical drawings from `Marma_Crypto_Whitepaper_UA.typ`. |
+| **`2027-03-15`** | **Milestone P2 (T-30 days): Target Filing in UKRNOIVI** | Submit electronic applications via UKRNOIVI online filing system (`sis.nipo.gov.ua`) signed with author's QES (`DSTU 4145-2002`): **1) Utility Model Patent** (fast-track 6-month grant) + **2) Invention Patent** (20-year monopoly, reduced fee for individual inventor). |
+| **`2027-04-17`** | **🚨 HARD STATUTORY DEADLINE (UKRNOIVI — 6 Months)** | **Final day of the 6-month Inventor's Novelty Grace Period in Ukraine** under Art. 6(6) of Law No. 3687-XII (counting from `2026-10-17`). |
+| **`2027-10-17`** | **🚨 HARD STATUTORY DEADLINE (USPTO / PCT — 12 Months)** | **Final day of the 12-month Inventor's Grace Period in the United States** under 35 U.S.C. § 102(b)(1) for filing a US Provisional / Non-Provisional Patent Application. |
+
