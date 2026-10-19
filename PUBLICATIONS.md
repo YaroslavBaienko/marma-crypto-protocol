@@ -1,7 +1,8 @@
 # Marma-Crypto Protocol — Canonical Registry of Versions, Archival Identifiers & Publications
 
 **Author:** Yaroslav V. Baienko (Advocate, Master of Laws, M.Sc. in Computer Science)  
-**ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133)  
+**ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133) · **Elsevier SSRN Author ID:** [`13668748`](https://ssrn.com/author=13668748)  
+**Patent Status:** **`Patent Pending — UKRNOIVI Invention Application No. a 2026 06266`** (`Incoming No. Вх-72320/2026`, filed 2026-10-19; Paris Convention Priority Date)  
 **OpenPGP Fingerprint (RSA-4096):** `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`  
 **Qualified X.509 Certificate Serial (DSTU 4145-2002 / KNEDP DIIA):** `10FF6F932221FA00CB4407000000000130616768`
 
@@ -19,24 +20,25 @@
 
 ---
 
-## 2. Scientific & Institutional Archival Identifiers (Prior Art)
+## 2. Scientific & Institutional Archival Identifiers (Prior Art & Patent Priority)
 
 | Institution / Registry | Identifier / Record | Direct URL | Role / Standard |
 |---|---|---|---|
+| **UKRNOIVI (National IP Office of Ukraine — Invention Patent)** | `Application No. a 2026 06266` (`Вх-72320/2026`) | [`patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md`](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md) | **Official 20-Year Invention Patent Application (`Patent Pending`)** filed 2026-10-19 via SEV ZES (IPC `G06F 21/64`, `H04L 9/32`, `G06T 1/00`; Paris Convention Art. 4 priority date for USPTO / EPO / PCT; Art. 6(6) Law No. 3687-XII grace period) |
 | **CERN Zenodo (Concept DOI — All Versions)** | `10.5281/zenodo.23429017` | https://doi.org/10.5281/zenodo.23429017 | Always resolves to the latest version of the specification (334+ views, 59+ downloads) |
 | **CERN Zenodo — Version 1 (`v1.2.0`)** | `10.5281/zenodo.23429018` | https://doi.org/10.5281/zenodo.23429018 | Initial Defensive Prior Art deposit (2026-10-17) |
 | **CERN Zenodo — Version 2 (`v1.2.1` + `v1.3.0` SWHID link)** | `10.5281/zenodo.23436152` | https://doi.org/10.5281/zenodo.23436152 | Universal Academic Edition (EN + UA PDFs + CAdES `.p7s` + OpenTimestamps `.ots` + Software Heritage SWHID; submitted to Zenodo Communities: *CiphIR — Bridging Cryptography and Information Security* & *CyberSafeNet*) |
+| **Elsevier SSRN (Cyberspace Law & Cybersecurity Research Networks)** | `DOI: 10.2139/ssrn.7631458` · `Abstract ID: 7631458` | https://ssrn.com/abstract=7631458 · https://doi.org/10.2139/ssrn.7631458 | **Published / Posted 2026-10-19** on Elsevier SSRN (*Cyberspace Law* & *Cybersecurity & Data Privacy Law & Policy* eJournals; [Author Page `13668748`](https://ssrn.com/author=13668748), `8 Pages`, `CC BY 4.0`) |
 | **Figshare (Digital Science / Springer Nature Group)** | `10.6084/m9.figshare.34697025` | https://doi.org/10.6084/m9.figshare.34697025 | Independent UK DataCite DOI & Dimensions.ai / Google Scholar index (published 2026-10-19, `CC BY 4.0`) |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Snapshot)** | `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` | https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol | ISO/IEC 18670 Merkle DAG repository snapshot |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Revision)** | `swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c` | https://archive.softwareheritage.org/swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c | ISO/IEC 18670 immutable commit revision |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Directory)** | `swh:1:dir:42b5547ee94691ccb541e10df453c2997e5cb302` | https://archive.softwareheritage.org/swh:1:dir:42b5547ee94691ccb541e10df453c2997e5cb302 | ISO/IEC 18670 root source tree |
 | **UNESCO / Inria Software Heritage (`legaltech` APT Repo Snapshot)** | `swh:1:snp:2c6f70446da45cc2a48e64327d772577f29d01e1` | https://archive.softwareheritage.org/swh:1:snp:2c6f70446da45cc2a48e64327d772577f29d01e1;origin=https://github.com/YaroslavBaienko/legaltech | ISO/IEC 18670 snapshot of Debian APT ecosystem |
-| **Elsevier SSRN (Legal & Computer Science Research Networks)** | `SSRN Abstract ID: 7631458` | https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458 | Law & Technology / Computer Science eJournals (submitted 2026-10-19, `Public View: Yes`, `CC BY 4.0`) |
 | **Center for Open Science — OSF / Law Archive** | Preprint `a8q5x_v1` (`osf.io/a8q5x`) | https://osf.io/preprints/lawarchive/a8q5x_v1 | US Legal Scholarship & LegalTech Archive (submitted 2026-10-19, linked to DOI `10.5281/zenodo.23436152`, `CC BY 4.0`) |
 | **Academia.edu** | Published Paper (`Yaroslav Baienko`) | https://www.academia.edu | Published 2026-10-19 (*2026 • CERN Zenodo / Elsevier SSRN*, DOI `10.5281/zenodo.23436152`) |
-| **ResearchGate** | Researcher Profile & Preprint Onboarding | https://www.researchgate.net | Submitted 2026-10-19 (linked with ORCID `0009-0006-7498-2133`, Zenodo DOI `10.5281/zenodo.23436152`, SSRN `7631458`; awaiting account approval) |
+| **ResearchGate** | Researcher Profile & Preprint Onboarding | https://www.researchgate.net | Submitted 2026-10-19 (linked with ORCID `0009-0006-7498-2133`, Zenodo DOI `10.5281/zenodo.23436152`, SSRN `10.2139/ssrn.7631458`; awaiting account approval) |
 | **IACR Cryptology ePrint Archive** | `Submission xxxx/112661` (LNCS `14 pp.`) | https://eprint.iacr.org | Submitted 2026-10-19 (*Bijective Vector Commitments and Constant-Rate Traitor Tracing for PAdES-B-LTA Signatures via Overdetermined Planar Incidence Lattices over $\mathbb{F}_{2^{257}}$*, `Cryptographic protocols`, `CC BY 4.0`, under editorial review) |
-| **ORCID Registry & OpenAIRE Research Graph** | `0009-0006-7498-2133` / `0000-0001-6690-2603` | https://orcid.org/0009-0006-7498-2133 | Verified researcher records populated with Zenodo DOI (`10.5281/zenodo.23436152`), Figshare DOI (`10.6084/m9.figshare.34697025`), SSRN (`7631458`), Software Heritage SWHID, GitHub, and Web Studio; indexed in European Open Science Cloud ([OpenAIRE](https://explore.openaire.eu/search/find?fv0=0009-0006-7498-2133&f0=relpersonid)) |
+| **ORCID Registry & OpenAIRE Research Graph** | `0009-0006-7498-2133` / `0000-0001-6690-2603` | https://orcid.org/0009-0006-7498-2133 | Verified researcher records populated with Zenodo DOI (`10.5281/zenodo.23436152`), Figshare DOI (`10.6084/m9.figshare.34697025`), Elsevier SSRN DOI (`10.2139/ssrn.7631458`), Software Heritage SWHID, GitHub, and Web Studio; indexed in European Open Science Cloud ([OpenAIRE](https://explore.openaire.eu/search/find?fv0=0009-0006-7498-2133&f0=relpersonid)) |
 | **Bitcoin Blockchain OpenTimestamps** | `.ots` Proofs (`whitepaper/*.ots`) | [`whitepaper/AUTHORSHIP_MANIFEST.txt.ots`](whitepaper/AUTHORSHIP_MANIFEST.txt.ots) | Decentralized cryptographic timestamp proof of EN/UA Whitepapers & Manifest |
 
 ---
@@ -48,7 +50,7 @@
 | **Interactive Client-Side Web Studio (EN)** | https://yaroslavbaienko.github.io/marma-crypto-protocol/ | Zero-backend HTML5 Canvas generator, PDF/SVG Canary Sealer (`pdf-lib`), and Tamper Detector (`pdf.js`) |
 | **Interactive Client-Side Web Page (UA)** | https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html | Ukrainian overview and specification portal |
 | **Primary GitHub Repository** | https://github.com/YaroslavBaienko/marma-crypto-protocol | Source code, bilingual Typst/PDF whitepapers, 12-suite verification harness |
-| **Debian / Ubuntu APT Repository (`legaltech`)** | https://github.com/YaroslavBaienko/legaltech | Hosts `marma-crypto-watermark` (`1.3.0-1`) and `qes-tools` (`1.0.26`) |
+| **Debian / Ubuntu APT Repository (`legaltech`)** | https://github.com/YaroslavBaienko/legaltech | Hosts `marma-crypto-watermark` (`1.3.0-1`) and `qes-tools` (`1.0.27`) |
 | **One-Line APT Installer** | `curl -fsSL https://yaroslavbaienko.github.io/legaltech/install.sh \| sudo bash` | Configures GPG key and `/etc/apt/sources.list.d/legaltech.list` |
 
 ---

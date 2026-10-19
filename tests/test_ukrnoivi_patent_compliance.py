@@ -163,10 +163,20 @@ class TestUkrnoiviPatentCompliance(unittest.TestCase):
             )
 
     def test_05_drawings_sheets_and_reference_numerals_consistency(self):
-        """Verify 03_Kreslennia.pdf has 3 sheets (Фіг. 1..3) and all reference numerals 1..22 match Description & Claims."""
+        """Verify 03_Kreslennia.pdf has 3 sheets (Фіг. 1..3), vector geometry stays strictly inside margins, and all reference numerals 1..22 match Description & Claims."""
         with fitz.open(PATENT_DIR / "03_Kreslennia.pdf") as doc:
             self.assertEqual(len(doc), 3, "Drawings must have 3 sheets (Фіг. 1, Фіг. 2, Фіг. 3)")
             drawings_text = "\n".join(page.get_text("text") for page in doc)
+            for pno, page in enumerate(doc):
+                drawings = page.get_drawings()
+                self.assertGreater(len(drawings), 0, f"Page {pno+1} of 03_Kreslennia.pdf has no vector paths")
+                for d in drawings:
+                    r = d["rect"]
+                    # Order No. 23301 Section VII drawing margins: top >= 25mm (70.8pt), left >= 25mm (70.8pt), right >= 15mm (42.5pt), bottom >= 10mm (28.3pt)
+                    self.assertGreaterEqual(r.x0, 70.0, f"03_Kreslennia.pdf p.{pno+1} vector path overflows left margin: x0={r.x0:.1f}pt")
+                    self.assertGreaterEqual(r.y0, 70.0, f"03_Kreslennia.pdf p.{pno+1} vector path overflows top margin: y0={r.y0:.1f}pt")
+                    self.assertLessEqual(r.x1, 595.28 - 42.0, f"03_Kreslennia.pdf p.{pno+1} vector path overflows right margin: x1={r.x1:.1f}pt")
+                    self.assertLessEqual(r.y1, 660.0, f"03_Kreslennia.pdf p.{pno+1} vector path overflows drawing frame bottom: y1={r.y1:.1f}pt")
 
         for fig_no in [1, 2, 3]:
             self.assertIn(f"Фіг. {fig_no}", drawings_text)

@@ -27,3 +27,9 @@ reports/
 .qdrant_key
 .litellm_key
 producthunt/facebook_slides_*/
+
+# UKRNOIVI Application Form with personal applicant PII (Rule 4 LDB)
+patent_ukrnoivi/00_Zajava_*
+
+patent_ukrnoivi/*.p7s
+

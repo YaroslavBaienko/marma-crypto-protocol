@@ -7,9 +7,10 @@
 [![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 [![APT Repository](https://img.shields.io/badge/🐧_Debian%2FUbuntu_APT-yaroslavbaienko.github.io%2Flegaltech-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
+[![Elsevier SSRN DOI](https://img.shields.io/badge/Elsevier_SSRN_DOI-10.2139%2Fssrn.7631458-ff6c00.svg)](https://ssrn.com/abstract=7631458)
 [![Figshare DOI](https://img.shields.io/badge/Figshare_DOI-10.6084%2Fm9.figshare.34697025-562572.svg)](https://doi.org/10.6084/m9.figshare.34697025)
+[![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
-[![Elsevier SSRN](https://img.shields.io/badge/Elsevier_SSRN-Abstract_7631458-ff6c00.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458)
 [![OSF Law Archive](https://img.shields.io/badge/OSF_Law_Archive-a8q5x__v1-214761.svg)](https://osf.io/preprints/lawarchive/a8q5x_v1)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7498--2133-a6ce39.svg)](https://orcid.org/0009-0006-7498-2133)
 [![Dev.to](https://img.shields.io/badge/DEV.to-Engineering_Deep--Dive-0A0A0A.svg)](https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72)
@@ -120,19 +121,22 @@ sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
 
 * **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*)
 * **Affiliation:** Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine)
+* **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133) · **Elsevier SSRN Author Page:** [`https://ssrn.com/author=13668748`](https://ssrn.com/author=13668748)
+* **Patent Pending (UKRNOIVI):** Invention Application No. **`a 2026 06266`** (`Вх-72320/2026`, filed 2026-10-19)
 * **GPG Fingerprint (RSA-4096):** `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`
 * **Qualified Certificate Serial (КНЕДП):** `10FF6F932221FA00CB4407000000000130616768`
 
 ```bibtex
 @techreport{baienko2026marmacrypto,
   author      = {Baienko, Yaroslav V.},
-  title       = {Marma-Crypto: A Cryptographic Geometric Watermarking and Sovereign Document Sealing Protocol via Sri Yantra Nonlinear Concurrency and Elliptic Curves over GF(2\^{}257) (DSTU 4145-2002)},
+  title       = {Marma-Crypto Protocol: Deterministic Cryptographic Geometric Watermarking and Sovereign Document Sealing via Coupled Sri Yantra Phase Spaces (DSTU 4145-2002 / PAdES-B-LTA)},
   year        = {2026},
   version     = {1.3.0},
-  institution = {Independent Legal Engineering \& Applied Cryptography Research},
-  number      = {MARMA-DSTU4145-V1.3.0},
+  institution = {CERN Zenodo / Elsevier SSRN},
+  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266},
   doi         = {10.5281/zenodo.23436152},
-  url         = {https://zenodo.org/records/23436152}
+  note        = {Available at SSRN: https://ssrn.com/abstract=7631458 or http://dx.doi.org/10.2139/ssrn.7631458},
+  url         = {https://doi.org/10.5281/zenodo.23436152}
 }
 ```
 

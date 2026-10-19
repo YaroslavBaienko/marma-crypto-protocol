@@ -24,8 +24,13 @@ import unittest
 import docx
 import pymupdf
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-SRC_DIR = REPO_ROOT / "src"
+PACKAGE_ROOT = Path(__file__).resolve().parent.parent
+SRC_DIR = PACKAGE_ROOT / "src"
+REPO_ROOT = PACKAGE_ROOT
+if not (REPO_ROOT / "docs" / "index.html").exists() and (PACKAGE_ROOT / "subproject_link.json").exists():
+    _link = json.loads((PACKAGE_ROOT / "subproject_link.json").read_text(encoding="utf-8"))
+    if _link.get("canonical_source_dir") and Path(_link["canonical_source_dir"]).exists():
+        REPO_ROOT = Path(_link["canonical_source_dir"])
 sys.path.insert(0, str(SRC_DIR))
 
 import marma_watermark as mw  # noqa: E402
