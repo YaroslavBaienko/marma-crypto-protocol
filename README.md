@@ -6,15 +6,20 @@
 
 [![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 [![APT Repository](https://img.shields.io/badge/🐧_Debian%2FUbuntu_APT-yaroslavbaienko.github.io%2Flegaltech-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
-[![Product Hunt](https://img.shields.io/badge/🚀_Product_Hunt-Marma--Crypto_Protocol-da552f.svg)](https://www.producthunt.com/products/marma-crypto-protocol)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
-[![Zenodo Record](https://img.shields.io/badge/CERN_Zenodo-23436152-024289.svg)](https://zenodo.org/records/23436152)
+[![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
+[![Elsevier SSRN](https://img.shields.io/badge/Elsevier_SSRN-Abstract_7631458-ff6c00.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458)
+[![IACR ePrint](https://img.shields.io/badge/IACR_ePrint-xxxx%2F112645-1034a6.svg)](https://eprint.iacr.org)
+[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7498--2133-a6ce39.svg)](https://orcid.org/0009-0006-7498-2133)
+[![Dev.to](https://img.shields.io/badge/DEV.to-Engineering_Deep--Dive-0A0A0A.svg)](https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72)
+[![Product Hunt](https://img.shields.io/badge/🚀_Product_Hunt-Marma--Crypto_Protocol-da552f.svg)](https://www.producthunt.com/products/marma-crypto-protocol)
 [![X @baienko](https://img.shields.io/badge/𝕏-@baienko-000000.svg)](https://x.com/baienko)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Whitepaper-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)**
+> **📚 [Canonical Registry of Versions, DOIs, SWHIDs & Global Publications (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
 
 ---
 
