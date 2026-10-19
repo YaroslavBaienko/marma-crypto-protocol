@@ -8,6 +8,7 @@
 [![APT Repository](https://img.shields.io/badge/🐧_Debian%2FUbuntu_APT-yaroslavbaienko.github.io%2Flegaltech-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
 [![Elsevier SSRN DOI](https://img.shields.io/badge/Elsevier_SSRN_DOI-10.2139%2Fssrn.7631458-ff6c00.svg)](https://ssrn.com/abstract=7631458)
+[![Elsevier JISA](https://img.shields.io/badge/Elsevier_JISA_(Scopus_Q1)-Submitted_%2F_Under_Review-ff6c00.svg)](PUBLICATIONS.md)
 [![Figshare DOI](https://img.shields.io/badge/Figshare_DOI-10.6084%2Fm9.figshare.34697025-562572.svg)](https://doi.org/10.6084/m9.figshare.34697025)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
