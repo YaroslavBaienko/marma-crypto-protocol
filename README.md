@@ -10,6 +10,7 @@
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![Elsevier SSRN](https://img.shields.io/badge/Elsevier_SSRN-Abstract_7631458-ff6c00.svg)](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=7631458)
 [![IACR ePrint](https://img.shields.io/badge/IACR_ePrint-xxxx%2F112645-1034a6.svg)](https://eprint.iacr.org)
+[![OSF Law Archive](https://img.shields.io/badge/OSF_Law_Archive-a8q5x__v1-214761.svg)](https://osf.io/preprints/lawarchive/a8q5x_v1)
 [![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7498--2133-a6ce39.svg)](https://orcid.org/0009-0006-7498-2133)
 [![Dev.to](https://img.shields.io/badge/DEV.to-Engineering_Deep--Dive-0A0A0A.svg)](https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72)
 [![Product Hunt](https://img.shields.io/badge/🚀_Product_Hunt-Marma--Crypto_Protocol-da552f.svg)](https://www.producthunt.com/products/marma-crypto-protocol)
