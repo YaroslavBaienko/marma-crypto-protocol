@@ -29,7 +29,7 @@
       #grid(
         columns: (1fr, auto),
         [Y. Baienko — Marma-Crypto (Marma-256): Bijective Vector Commitments over $"GF"(2^(257))$],
-        [Preprint v2.0 · DOI: 10.5281/zenodo.23436152],
+        [Preprint v2.0 · DOI: 10.5281/zenodo.23510005],
       )
       #v(-4pt)
       #line(length: 100%, stroke: 0.4pt + luma(180))
