@@ -103,7 +103,7 @@
 // =============================================================================
 #align(center)[
   #text(size: 8.5pt, weight: "bold", fill: rgb("#1e3a8a"))[
-    CRYPTOGRAPHIC ENGINEERING MANUSCRIPT (RELEASE V2.0) · ARCHIVAL RECORD: CERN ZENODO DOI 10.5281/zenodo.23436152
+    CRYPTOGRAPHIC ENGINEERING MANUSCRIPT (RELEASE V2.0) · ARCHIVAL RECORD: CERN ZENODO DOI 10.5281/zenodo.23510005
   ]
   #v(6pt)
   #text(size: 14.5pt, weight: "bold")[
@@ -642,7 +642,7 @@ We have presented *Marma-Crypto (`Marma-256`)*, a mathematical framework and ope
   fill: luma(250),
 )[
   #set text(size: 8.5pt)
-  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v1.3.0`, Apache 2.0 License), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 31-test cross-verification harness (`tests/`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23436152")[DOI: 10.5281/zenodo.23436152]), Software Heritage (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`), and GitHub (#link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
+  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v1.3.0`, Apache 2.0 License), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 31-test cross-verification harness (`tests/`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23510005")[DOI: 10.5281/zenodo.23510005] / `10.5281/zenodo.23436152`), Software Heritage (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`), and GitHub (#link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
 ]
 
 // =============================================================================

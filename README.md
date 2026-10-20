@@ -8,7 +8,7 @@
 [![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-signed--by_GPG_Keyring-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
-[![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
+[![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510005.svg)](https://doi.org/10.5281/zenodo.23510005)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Specification-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
@@ -187,20 +187,20 @@ python3 -m unittest discover -s tests -v
   * **Journal Submission (Under Peer Review):** Manuscript **`JISAS-D-26-07950`** submitted to *Journal of Information Security and Applications* (Elsevier, `2026-10-19`, currently `With Editor`).
   * **Patent Examination (Patent Pending):** Ukrainian 20-year Invention Patent Application No. **`a 2026 06266`** filed with the National IP Office of Ukraine (UKRNOIVI, `Вх-72320/2026` on `2026-10-19`; filing fee receipt registered under `Вх-72403/2026` on `2026-10-20`).
 * **Open Preprint Mirrors & Timestamp Archives (Non-Peer-Reviewed Prior Art):**
-  * **CERN Zenodo (`v1.3.0`):** [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
+  * **CERN Zenodo (`v3` / `Release v2.0`, 2026-10-20):** [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) (Concept DOI: [`10.5281/zenodo.23429017`](https://doi.org/10.5281/zenodo.23429017) · Prior `v2`: [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152)) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
 * **GPG Fingerprint (RSA-4096):** `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`
 * **Qualified Certificate Serial (КНЕДП):** `10FF6F932221FA00CB4407000000000130616768`
 
 ```bibtex
 @techreport{baienko2026marmacrypto,
   author      = {Baienko, Yaroslav V.},
-  title       = {Marma-Crypto Protocol: Deterministic Cryptographic Geometric Watermarking and Sovereign Document Sealing via Coupled Sri Yantra Phase Spaces (DSTU 4145-2002 / PAdES-B-LTA)},
+  title       = {Marma-Crypto (Marma-256): Bijective 256-Bit Vector Commitments, Constant-Rate Canary Leak Tracing, and Sovereign PAdES-B-LTA Document Sealing via Overdetermined Sri Yantra Planar Incidence Lattices over GF(2^257) (DSTU 4145-2002)},
   year        = {2026},
-  version     = {1.3.0},
+  version     = {v3 (1.3.0 / Release v2.0)},
   institution = {CERN Zenodo / Elsevier SSRN (Preprint)},
-  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266; Elsevier JISA Ms. JISAS-D-26-07950},
-  doi         = {10.5281/zenodo.23436152},
-  url         = {https://doi.org/10.5281/zenodo.23436152}
+  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266},
+  doi         = {10.5281/zenodo.23510005},
+  url         = {https://doi.org/10.5281/zenodo.23510005}
 }
 ```
 
