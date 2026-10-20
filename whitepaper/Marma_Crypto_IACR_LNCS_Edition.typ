@@ -115,9 +115,9 @@
   #text(size: 9pt, fill: luma(70))[
     #super[1] Senior Associate (Litigation) & Head of Digital Economy Practice, GOLAW;\
     Independent Cryptographic Systems Researcher, Kyiv, Ukraine\
-    ORCID: #link("https://orcid.org/0009-0004-9530-9843")[0009-0004-9530-9843] ·
-    Email: #raw("attorney.yaroslav@gmail.com") ·
-    Repository: #link("https://github.com/yaboyenko-stack/marma-crypto-protocol")[github.com/yaboyenko-stack/marma-crypto-protocol]
+    ORCID: #link("https://orcid.org/0009-0006-7498-2133")[0009-0006-7498-2133] ·
+    Email: #raw("zerhug@gmail.com") ·
+    Repository: #link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]
   ]
 ]
 
@@ -413,9 +413,9 @@ $ w_k = floor( V / 2^(256 - 10(k+1)) ) mod 1024 quad (k = 0, dots, 24), quad w_(
 Given any recovered word vector $(tilde(w)_0, dots, tilde(w)_(25)) in {0, dots, 1023}^(26)$, the exact 256-bit integer $V$ is reconstructed via:
 $ V = ( sum_(k=0)^(24) tilde(w)_k dot 2^(256 - 10(k+1)) ) + "round"(tilde(w)_(25) / 16). $
 
-== The Sub-Micron Affine Quantization Lattice ($s_0 = 18"npt"$)
+== The Sub-Micron Affine Quantization Lattice $cal(L)_(256)$ ($s_0 = 18"npt"$)
 
-Each 10-bit word $w in {0, dots, 1023}$ is mapped to a signed coordinate perturbation $delta(w)$ centered around zero via the affine lattice encoder:
+Each 10-bit word $w in {0, dots, 1023}$ is mapped onto the 256-bit sub-micron affine quantization lattice $cal(L)_(256) subset RR^(26)$ via the signed coordinate perturbation $delta(w)$ centered around zero:
 $ delta(w) = (18 w - 9207) times 10^(-9)"pt" = (18 w - 9207)"npt", $
 where the lattice step size is $s_0 = 18"npt" = 1.8 times 10^(-8)"pt" approx 6.35"pm"$ and the centering offset $9207 = 18 times 511.5$ ensures exact zero-mean symmetry:
 - For $w = 0$: $delta(0) = -9207"npt" = -9.207 times 10^(-6)"pt" approx -3.248"nm"$.
@@ -616,7 +616,7 @@ To situate `Marma-256` within the literature, we conducted a quantitative compar
 As shown in *Table 6* and *Figure 5*, `Marma-256` is the *only* scheme that embeds a full 256-bit cryptographic signature commitment plus a 10-bit traitor-tracing canary ($266"bits"$ primary + $264"bits"$ dual Marma layer $= 9.85"bits/vertex"$) directly inside the 27 symmetric coordinates of a compact visual stamp while achieving:
 1. *Zero Bit Error Rate ($"BER" = 0.0$):* Unlike polar/DCT vector watermarking [31] ($"BER" = 4.2 times 10^(-3)$ due to inverse `atan2`/`cos` floating-point drift), `Marma-256` uses an exact affine integer-nanopoint lattice aligned with base-10 `%.9f` serialization.
 2. *Order-of-Magnitude Superior Geometric Fidelity:* Because the perturbation is uniformly distributed over $[-9.207 times 10^(-6), +9.207 times 10^(-6)]"pt"$, its analytical and empirical root-mean-square error is $"RMSE" = 9.207 times 10^(-6) \/ sqrt(3) = 5.316 times 10^(-6)"pt" approx 1.875"nm"$, corresponding to $"PSNR"_("geom") = 20 log_(10)(300.0 \/ (5.316 times 10^(-6))) = 155.03"dB"$—a *$34.7"dB"$ ($54.4 times$) improvement* over Scalar QIM and a *$46.7"dB"$ ($216.3 times$) improvement* over 2D RDH Difference Expansion [28].
-3. *Sub-Millisecond Geometric Latency:* On a standard Linux workstation (Python 3.12 + Node.js 20), executing the 27-DOF geometric lattice encoding $cal(E)_(10)$ and inversion $cal(D)_(10)$ takes *$0.031"ms"$ per document*, while a complete multi-hash combiner + $"GF"(2^(257))$ elliptic curve sign-and-verify subprocess cycle takes $approx 11.8"ms"$ in native JS ($approx 240"ms"$ including cold CLI subprocess spawn).
+3. *Millisecond-Scale Verification Latency:* On a standard Linux workstation (Python 3.12 + Node.js 20), executing the pure 27-DOF geometric lattice encoding $cal(E)_(10)$ and inversion $cal(D)_(10)$ on $cal(L)_(256)$ takes *$0.031"ms"$ per document*, warm end-to-end document stream verification (PDF/SVG coordinate extraction + 3-way hash combiner + lattice commitment check) averages *$2.91"ms"$ per document*, and a complete $"GF"(2^(257))$ elliptic curve sign-and-verify cycle takes $approx 11.8"ms"$ in native JS ($approx 240"ms"$ including cold CLI subprocess spawn).
 
 == Limitations and Scope Boundaries
 
@@ -629,7 +629,7 @@ In accordance with rigorous engineering disclosure, we note two operational scop
 // =============================================================================
 = Conclusion
 
-We have presented *Marma-Crypto (`Marma-256`)*, a mathematical framework and open-source cryptographic protocol that resolves the container-stream decoupling vulnerability in long-term archival electronic signatures (PAdES-B-LTA and CAdES-X-Long). By proving the algebraic irrationality of the 9-triangle, 54-concurrency configuration $cal(C)_(9,54)$ (*Theorem 1*), constructing an L-BFGS-B baseline $B^*$ with squared concurrency residual $Delta E^2(B^*) = 3.76 times 10^(-21)"pt"^2 << epsilon.alt_("float64")$, binding a 3-way parallel hash combiner (GOST 34.311-95, Kupyna-256, SHA-256) to deterministic DSTU 4145-2002 signatures over $"GF"(2^(257))$ (*Theorem 2*), establishing bijective IEEE-754 `binary64` and ISO 32000-2 `%.9f` lattice exactness across $2.6 times 10^6$ Monte Carlo trials (*Theorem 3*), and isolating an orthogonal $O(1)$ traitor-tracing canary channel in `D5.ay` (*Theorem 4*), `Marma-256` turns a passive visual signature badge into a self-verifying, sub-nanometer geometric vector commitment.
+We have presented *Marma-Crypto (`Marma-256`)*, a mathematical framework and open-source cryptographic protocol that resolves the container-stream decoupling vulnerability in long-term archival electronic signatures (PAdES-B-LTA and CAdES-X-Long). By proving the algebraic irrationality of the 9-triangle, 54-concurrency configuration $cal(C)_(9,54)$ (*Theorem 1*), constructing an L-BFGS-B baseline $B^*$ with squared concurrency residual $Delta E^2(B^*) = 3.76 times 10^(-21)"pt"^2 << epsilon.alt_("float64")$, binding a 3-way parallel hash combiner (GOST 34.311-95, Kupyna-256, SHA-256) to deterministic DSTU 4145-2002 signatures over $"GF"(2^(257))$ (*Theorem 2*), establishing bijective IEEE-754 `binary64` and ISO 32000-2 `%.9f` exactness on the $cal(L)_(256)$ lattice across $2.6 times 10^6$ Monte Carlo trials (*Theorem 3*), and isolating an orthogonal $O(1)$ traitor-tracing canary channel in `D5.ay` (*Theorem 4*), `Marma-256` turns a passive visual signature badge into a self-verifying, sub-nanometer geometric vector commitment.
 
 // =============================================================================
 // DECLARATIONS & REPRODUCIBILITY
@@ -642,7 +642,7 @@ We have presented *Marma-Crypto (`Marma-256`)*, a mathematical framework and ope
   fill: luma(250),
 )[
   #set text(size: 8.5pt)
-  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v1.3.0`, Apache 2.0 License), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 19-test cross-verification harness (`tests/test_marma_cross_verification.py`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23436152")[DOI: 10.5281/zenodo.23436152]), Software Heritage (`swh:1:dir:a5e78c8b67486d1a5590be68757007c62b5be8a6`), and GitHub (#link("https://github.com/yaboyenko-stack/marma-crypto-protocol")[github.com/yaboyenko-stack/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
+  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v1.3.0`, Apache 2.0 License), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 31-test cross-verification harness (`tests/`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23436152")[DOI: 10.5281/zenodo.23436152]), Software Heritage (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`), and GitHub (#link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
 ]
 
 // =============================================================================
