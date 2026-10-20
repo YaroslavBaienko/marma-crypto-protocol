@@ -5,36 +5,30 @@
 *Криптографічно-геометричний водяний знак, 256-бітна бієктивна векторна стеганографія та суверенне запечатування документів на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002*
 
 [![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
-[![APT Repository](https://img.shields.io/badge/🐧_Debian%2FUbuntu_APT-yaroslavbaienko.github.io%2Flegaltech-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
-[![Elsevier SSRN DOI](https://img.shields.io/badge/Elsevier_SSRN_DOI-10.2139%2Fssrn.7631458-ff6c00.svg)](https://ssrn.com/abstract=7631458)
-[![Elsevier JISA](https://img.shields.io/badge/Elsevier_JISA_(Scopus_Q1)-JISAS--D--26--07950-ff6c00.svg)](PUBLICATIONS.md)
-[![Figshare DOI](https://img.shields.io/badge/Figshare_DOI-10.6084%2Fm9.figshare.34697025-562572.svg)](https://doi.org/10.6084/m9.figshare.34697025)
-[![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
-[![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
-[![OSF Law Archive](https://img.shields.io/badge/OSF_Law_Archive-a8q5x__v1-214761.svg)](https://osf.io/preprints/lawarchive/a8q5x_v1)
-[![ORCID](https://img.shields.io/badge/ORCID-0009--0006--7498--2133-a6ce39.svg)](https://orcid.org/0009-0006-7498-2133)
-[![Dev.to](https://img.shields.io/badge/DEV.to-Engineering_Deep--Dive-0A0A0A.svg)](https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72)
-[![DOU.ua](https://img.shields.io/badge/DOU.ua-Topic_62699-111111.svg)](https://dou.ua/forums/topic/62699/)
-[![Product Hunt](https://img.shields.io/badge/🚀_Product_Hunt-Marma--Crypto_Protocol-da552f.svg)](https://www.producthunt.com/products/marma-crypto-protocol)
-[![X @baienko](https://img.shields.io/badge/𝕏-@baienko-000000.svg)](https://x.com/baienko)
-[![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
-[![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Whitepaper-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
+[![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-signed--by_GPG_Keyring-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
+[![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
+[![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23436152.svg)](https://doi.org/10.5281/zenodo.23436152)
+[![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
+[![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
+[![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Specification-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)**
-> **📚 [Canonical Registry of Versions, DOIs, SWHIDs & Global Publications (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
+> **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
 
 ---
 
-## ✨ What's New in `v1.3.0` (`MARMA-DSTU4145-V1.3`)
+## ✨ What's New in `v1.3.0` (`MARMA-DSTU4145-V1.3` / `Marma-256`)
 
-1. **Multi-Collision-Resistant Parallel Hash Combiner:**
-   Replaces single-chain hashing with a parallel multi-standard combiner binding all three cryptographic hash families simultaneously:
-   $$H_{\text{comb}}(M) = \text{SHA-256}\Big(\text{GOST 34.311-95}(M) \;\|\; \text{"::"} \;\|\; \text{DSTU 7564:2014 Kupyna-256}(M) \;\|\; \text{"::"} \;\|\; \text{SHA-256}(M)\Big)$$
-   An adversary must find a simultaneous triple collision across all three independent compression functions to forge a message digest.
-2. **Full 256-Bit Bijective Geometric Mantissa Encoding (Lossless Inversion):**
-   Upgrades the geometric payload capacity from 24-bit per-triangle offsets to **all 256 bits** of the signature binding vector $V = \text{SHA-256}(r_{\text{hex}} \parallel \text{"::"} \parallel s_{\text{hex}})$:
+1. **Multi-Collision-Resistant Parallel Hash Combiner (Explicit 256-Bit Digest Standards):**
+   Replaces single-chain hashing with a parallel multi-standard combiner binding three distinct 256-bit cryptographic hash functions simultaneously:
+   - **`GOST 34.311-95`** — strictly **256-bit** message digest (legacy Ukrainian/CIS EDS hash standard);
+   - **`DSTU 7564:2014 ("Kupyna-256")`** — **256-bit** national Ukrainian hash standard operating over a **512-bit internal state matrix** (note: `DSTU 7564:2014` also defines `Kupyna-512` with a 512-bit output, whereas `GOST 34.311-95` is strictly 256-bit);
+   - **`FIPS 180-4 SHA-256`** — **256-bit** international standard digest:
+   $$H_{\text{comb}}(M) = \text{SHA-256}\Big(\text{GOST 34.311-95}_{256}(M) \;\|\; \text{"::"} \;\|\; \text{DSTU 7564:2014 Kupyna-256}(M) \;\|\; \text{"::"} \;\|\; \text{SHA-256}(M)\Big) \in \{0,1\}^{256}$$
+   An adversary must find a simultaneous collision across all three compression functions to forge $H_{\text{comb}}(M)$.
+2. **Full 256-Bit Bijective Geometric Mantissa Encoding (`Marma-256`, Lossless Inversion):**
+   Replaces the legacy `v1.2` 24-bit visual quantizer $K=(k_0,k_1,k_2,k_3)$ (which provided only $2^{24}$ visual states and a $2^{12}=4,096$ birthday bound) with a **full 256-bit bijective coordinate lattice** encoding all 256 bits of the binding vector $V = \text{SHA-256}(r_{\text{hex}} \parallel \text{"::"} \parallel s_{\text{hex}})$:
    - **9-Triangle Coordinate Lattice (26 Independent Symmetric Channels):** Partitions the 256-bit digest into twenty-five 10-bit words ($w_0\dots w_{24} \in [0, 1023]$) plus one 6-bit word ($w_{25} \in [0, 63]$) mapped onto an exact integer-nanometer lattice:
      $$\delta(w) = (18w - 9207) \times 10^{-9} \in [-9.207\times 10^{-6}, +9.207\times 10^{-6}]$$
      Because every step is an exact integer multiple of $18\,\text{nm}$ ($18 \times 10^{-9}$), `recover_256bit_from_triangles()` losslessly reconstructs all 64 hex characters of $V$ directly from the 9 triangle polygons alone with zero IEEE-754 rounding drift between Python and JavaScript.
@@ -52,7 +46,23 @@
 
 ---
 
-## 📄 Official Academic Whitepapers & Self-Referential Cryptographic Proofs
+## 🛡️ Threat Model, Operating Modes & Security Boundaries
+
+To prevent any ambiguity between cryptographic non-repudiation, symmetric deal-room tagging, and unkeyed integrity checksums, **Marma-Crypto** strictly separates three operating modes:
+
+| Operating Mode | Cryptographic Secret / Anchor | What It Guarantees | What It Does NOT Guarantee (Limitations) |
+| :--- | :--- | :--- | :--- |
+| **Mode 1: Asymmetric QES-Bound** (`PAdES-B-LTA` / `CAdES-X-Long` via hardware token ЗНОК or `.pfx`/`.zs2` private key over `DSTU 4145-2002`) | Signer's private elliptic-curve key $d \in \mathbb{F}_{2^{257}}$ + Qualified X.509 Certificate $Q_{\text{signer}}$ + RFC 3161 TSP | **Full cryptographic authenticity & non-repudiation.** The 256-bit vector lattice encodes $V = \text{SHA-256}(r \parallel s)$. An attacker without private key $d$ cannot forge $(r, s)$ for modified text. If the PKCS#7 container is stripped, the recovered 256-bit vector $V$ still binds the document to the original $(r, s)$ signature record. | **Visual geometry does not replace QES validation.** Verifiers must still validate the underlying signature $(r, s)$ against the signer's public key $Q_{\text{signer}}$ (or a previously recorded signature transcript). |
+| **Mode 2: Symmetric Deal-Room Keyed** (`--secret <key>` in CLI or Master Secret in Browser Sealer + Canary `D5.ay`) | Shared secret key $K_{\text{sec}}$ (`HMAC-SHA256` commitment + key-derived elliptic-curve scalar) | **Tamper detection & recipient leak attribution (`Canary`) against external parties.** Recipients who do not know $K_{\text{sec}}$ cannot forge a valid seal for a modified document or impersonate another recipient's Canary tag (`--strict-key`). | **Not asymmetric non-repudiation.** Any party who possesses the shared secret $K_{\text{sec}}$ can re-seal a modified document. For public/default demo keys in the browser, treat output as Mode 3 unless a private secret is set. |
+| **Mode 3: Unkeyed / Public Digest** (Empty secret / legacy `--hash auto` / public demo defaults) | **None** (computed deterministically from public document hash $H_{\text{comb}}(M)$) | **Deterministic visual-vector checksum (integrity fingerprint).** Detects accidental corruption or post-hoc alteration *only* if the original digest/seal was previously recorded in an external registry, email trail, or timestamp proof (`.ots`). | **Does NOT protect against intentional forgery on its own.** Because no secret key is involved, an adversary who modifies a document can recompute a new unkeyed seal and redraw the geometry to match the altered text. |
+
+### ⚠️ Optical Inspection (`24-bit` Legacy `v1.2`) vs. Vector Stream Parsing (`256-bit` `v1.3 Marma-256`)
+* **Never rely on naked-eye visual comparison alone:** Human vision cannot resolve $18\,\text{nm}$ ($1.8 \times 10^{-8}\text{ pt}$) vertex micro-perturbations. Furthermore, the legacy `v1.2` discrete visual quantizer $K = (k_0, k_1, k_2, k_3) \in \{0,1\}^{24}$ ($\approx 1.67 \times 10^7$ macroscopic configurations) has a birthday-paradox collision bound of only $2^{12} = 4,096$ trials and serves strictly as a macroscopic visual cue.
+* **Mandatory programmatic verification (`256-bit`):** Cryptographic collision resistance ($2^{128}$ security level) holds **only** when the verifier parses the exact floating-point vector coordinates (`q ... m l h S Q` in PDF or `<polygon points="...">` in SVG) across all 26 symmetric channels of `Marma-256` and verifies the cryptographic binding.
+
+---
+
+## 📄 Official Whitepapers & Self-Referential Cryptographic Proofs
 
 Both editions of the Whitepaper are sealed using the **Marma-Crypto** protocol they specify, signed with a Qualified Electronic Signature (**ETSI EN 319 142-1 PAdES-B-LTA** + **IETF RFC 3161 Time-Stamp Token** + **ISO 32000-2 `/DSS`**), and anchored in the Bitcoin blockchain via OpenTimestamps:
 
@@ -60,6 +70,7 @@ Both editions of the Whitepaper are sealed using the **Marma-Crypto** protocol t
 | :--- | :--- | :--- |
 | **English Whitepaper (PDF · PAdES-LTA)** | [`whitepaper/Marma_Crypto_Whitepaper_EN.pdf`](whitepaper/Marma_Crypto_Whitepaper_EN.pdf) | `53bfdc2070495eaf6bcd915e012324b6bbec1289b5f76b131d402b21b04d8753` |
 | **Ukrainian Whitepaper (PDF · PAdES-LTA)** | [`whitepaper/Marma_Crypto_Whitepaper_UA.pdf`](whitepaper/Marma_Crypto_Whitepaper_UA.pdf) | `4ee642f48ad9ced607a70b9ed575cecea4996b17d259be28a34c4f57d72a2c97` |
+| **Springer LNCS / Elsevier JISA Manuscript (14 pp.)** | [`whitepaper/Marma_Crypto_IACR_LNCS_Edition.pdf`](whitepaper/Marma_Crypto_IACR_LNCS_Edition.pdf) | Formal Bellare–Rogaway reductions (Theorems 1–5) |
 | **EN Verification Protocol (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf`](whitepaper/Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf) | Zero-tolerance 9-triangle audit report |
 | **UA Verification Protocol (PDF)** | [`whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf`](whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf) | Офіційний протокол перевірки 9 трикутників |
 | **Signed Reference Sri Yantra (SVG)** | [`whitepaper/sri_yantra_whitepaper_diagram.svg`](whitepaper/sri_yantra_whitepaper_diagram.svg) | `1dfebfa9a7154973512e3933d6a0c7a556319c6b7b3900dcce1f0f6eef01bbce` |
@@ -75,7 +86,7 @@ Conventional digital signatures (IETF RFC 5652 CMS / PKCS#7) detach the binary s
 1. **Nonlinear 9-Triangle Concurrency of the Sri Yantra (*Nava-Cakra*, Kulaichev 1984; Huet 2002):**
    Four upward-pointing *Śiva* triangles ($\Delta_{\text{U1}}\dots\Delta_{\text{U4}}$) and five downward-pointing *Śakti* triangles ($\nabla_{\text{D1}}\dots\nabla_{\text{D5}}$) intersect to form **43 sub-triangles** and **54 triple concurrency nodes (*marmas*)** governed by $\det[A_i, B_i, C_i] = 0$.
 2. **Elliptic Curve Signature Mapping over $\mathbb{F}_{2^{257}}$ & Parallel Multi-Hash Combiner (DSTU 4145-2002 / ETSI PAdES-B-LTA):**
-   Normalized document text $M$ is hashed in parallel via **GOST 34.311-95**, **DSTU 7564:2014 ("Kupyna-256")**, and **FIPS 180-4 SHA-256**, combined into $H_{\text{comb}}(M)$. A deterministic elliptic curve signature $(r, s)$ over $\mathbb{F}_{2^{257}} = \mathbb{F}_2[t]/(t^{257}+t^{12}+1)$ is computed using **IETF RFC 6979** nonce derivation and bound into a 256-bit signature vector:
+   Normalized document text $M$ is hashed in parallel via **GOST 34.311-95 (256-bit)**, **DSTU 7564:2014 ("Kupyna-256", 256-bit output / 512-bit state)**, and **FIPS 180-4 SHA-256 (256-bit)**, combined into the 256-bit digest $H_{\text{comb}}(M)$. A deterministic elliptic curve signature $(r, s)$ over $\mathbb{F}_{2^{257}} = \mathbb{F}_2[t]/(t^{257}+t^{12}+1)$ is computed using **IETF RFC 6979** nonce derivation and bound into a 256-bit signature vector:
    $$V = \text{SHA-256}(r_{\text{hex}} \parallel \text{"::"} \parallel s_{\text{hex}})$$
 3. **256-Bit Bijective Lattice Modulation & Canary Channel (`MARMA-DSTU4145-V1.3`):**
    Each of the 9 triangles exposes 3 independent bilateral-symmetry-preserving degrees of freedom $(\delta_{lx,k}, \delta_{by,k}, \delta_{ay,k})$, yielding $9 \times 3 = 27$ orthogonal channels:
@@ -87,15 +98,35 @@ Conventional digital signatures (IETF RFC 5652 CMS / PKCS#7) detach the binary s
 
 ---
 
-## 🚀 Quick Start, Canary Leak-Tracing & Independent Verification
+## 🚀 Installation (Signed APT Repository), Quick Start & Independent Verification
 
-### 1. Verify the Signed Whitepapers Right Now
+### 1. Install on Debian / Ubuntu via GPG-Signed APT Repository (`signed-by`)
+We do **not** recommend `curl | sudo bash` pipes for cryptographic tooling. Instead, add the dedicated GPG keyring (`/etc/apt/keyrings/legaltech.gpg`, RSA-4096 fingerprint `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`) using standard Debian `signed-by` verification:
+```bash
+# 1. Fetch and dearmor the repository public GPG key into /etc/apt/keyrings/
+curl -fsSL https://yaroslavbaienko.github.io/legaltech/public.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/legaltech.gpg
+
+# 2. Register the signed APT source
+echo "deb [signed-by=/etc/apt/keyrings/legaltech.gpg] https://yaroslavbaienko.github.io/legaltech stable main" | sudo tee /etc/apt/sources.list.d/legaltech.list
+
+# 3. Install marma-crypto-watermark and qes-tools
+sudo apt update
+sudo apt install marma-crypto-watermark qes-tools
+```
+Or build and inspect the `.deb` package locally from source:
+```bash
+./build.sh --test
+sha256sum dist/marma-crypto-watermark_1.3.0-1_all.deb
+sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
+```
+
+### 2. Verify the Signed Whitepapers Right Now
 ```bash
 python3 src/marma_watermark.py verify whitepaper/Marma_Crypto_Whitepaper_EN.pdf
 python3 src/marma_watermark.py verify whitepaper/Marma_Crypto_Whitepaper_UA.pdf
 ```
 
-### 2. Stamp a Confidential Copy with Canary Leak-Tracing & Trace Suspects
+### 3. Stamp a Confidential Copy with Canary Leak-Tracing & Trace Suspects
 ```bash
 # Stamp a recipient-specific copy (invisibly modulates D5.ay + zero-plaintext commitment)
 python3 src/marma_watermark.py sign contract.pdf -o contract_party07.pdf --recipient-id "M&A-Party-07"
@@ -104,26 +135,22 @@ python3 src/marma_watermark.py sign contract.pdf -o contract_party07.pdf --recip
 python3 src/marma_watermark.py trace contract_party07.pdf --suspects "Investor-A,M&A-Party-07,Counsel-C"
 ```
 
-### 3. Run the Full Cryptographic Self-Test & 12-Suite Cross-Runtime Verification
+### 4. Run the Full Cryptographic Self-Test & 12-Suite Cross-Runtime Verification
 ```bash
 python3 src/marma_watermark.py selftest
 python3 -m unittest discover -s tests -v
 ```
 
-### 4. Build and Install the Debian Package (`.deb`) with GNOME Files (Nautilus) Integration
-```bash
-./build.sh --test
-sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
-```
-
 ---
 
-## 📜 Author & Citation
+## 📜 Author, Review Status & Citation
 
-* **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*)
-* **Affiliation:** Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine)
-* **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133) · **Elsevier SSRN Author Page:** [`https://ssrn.com/author=13668748`](https://ssrn.com/author=13668748)
-* **Patent Pending (UKRNOIVI):** Invention Application No. **`a 2026 06266`** (`Вх-72320/2026`, filed 2026-10-19)
+* **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*) — Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine) · **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133)
+* **Formal Peer-Review & Patent Examination Status:**
+  * **Journal Submission (Under Peer Review):** Manuscript **`JISAS-D-26-07950`** submitted to *Journal of Information Security and Applications* (Elsevier, `2026-10-19`, currently `With Editor`).
+  * **Patent Examination (Patent Pending):** Ukrainian 20-year Invention Patent Application No. **`a 2026 06266`** filed with the National IP Office of Ukraine (UKRNOIVI, `Вх-72320/2026` on `2026-10-19`; filing fee receipt registered under `Вх-72403/2026` on `2026-10-20`).
+* **Open Preprint Mirrors & Timestamp Archives (Non-Peer-Reviewed Prior Art):**
+  * **CERN Zenodo (`v1.3.0`):** [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
 * **GPG Fingerprint (RSA-4096):** `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`
 * **Qualified Certificate Serial (КНЕДП):** `10FF6F932221FA00CB4407000000000130616768`
 
@@ -133,10 +160,9 @@ sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
   title       = {Marma-Crypto Protocol: Deterministic Cryptographic Geometric Watermarking and Sovereign Document Sealing via Coupled Sri Yantra Phase Spaces (DSTU 4145-2002 / PAdES-B-LTA)},
   year        = {2026},
   version     = {1.3.0},
-  institution = {CERN Zenodo / Elsevier SSRN},
-  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266},
+  institution = {CERN Zenodo / Elsevier SSRN (Preprint)},
+  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266; Elsevier JISA Ms. JISAS-D-26-07950},
   doi         = {10.5281/zenodo.23436152},
-  note        = {Available at SSRN: https://ssrn.com/abstract=7631458 or http://dx.doi.org/10.2139/ssrn.7631458},
   url         = {https://doi.org/10.5281/zenodo.23436152}
 }
 ```
@@ -145,4 +171,5 @@ sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
 
 * **Software & Source Code (`src/`, `bin/`, `nautilus-scripts/`):** Licensed under the **Apache License, Version 2.0** (including Explicit Patent Grant & Attribution Clauses).
 * **Whitepapers & Mathematical Specification (`whitepaper/`):** Licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+
 

@@ -578,7 +578,7 @@
         <span class="brand-badge" data-i18n="sealerBadge">100% Client-Side · CLI Compatible (marma-watermark verify / trace)</span>
       </div>
       <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;" data-i18n="sealerDesc">
-        Seal any local .PDF or .SVG (or use the built-in Confidential M&amp;A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Every file sealed here passes <code>marma-watermark verify</code> and <code>marma-watermark trace</code> in the Python CLI with Δ = 0.0.
+        Seal any local .PDF or .SVG (or use the built-in Confidential M&amp;A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice (18 nm step, 2¹²⁸ collision resistance) and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). <strong>Threat Model Note:</strong> Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:14px;">
@@ -717,7 +717,7 @@
             <div class="meta-val highlight" id="valStandard">✅ VALID QES · PAdES-LTA · TSP: 2026-10-17 12:47:03 UTC</div>
           </div>
           <div class="meta-box">
-            <div class="meta-key" data-i18n="lblGost">DSTU GOST 34.311-95 Digest</div>
+            <div class="meta-key" data-i18n="lblGost">DSTU GOST 34.311-95 (256-bit) Digest</div>
             <div class="meta-val" id="valGost">eaae0cae9783cd28c6f75600704b498d1b2924750c6e16a1ed01496e567d2b8c</div>
           </div>
           <div class="meta-box">
@@ -2143,7 +2143,7 @@
         btnHeroProto: "📋 Official Verification Protocol (PDF)",
         sealerTitle: "✍️ Client-Side Document Sealer & Deal-Room Canary Studio (256-Bit · Zero-Upload)",
         sealerBadge: "100% Client-Side · CLI Compatible (marma-watermark verify / trace)",
-        sealerDesc: "Seal any local .PDF or .SVG (or use the built-in Confidential M&A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Every file sealed here passes marma-watermark verify and marma-watermark trace in the Python CLI with Δ = 0.0.",
+        sealerDesc: "Seal any local .PDF or .SVG (or use the built-in Confidential M&A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice (18 nm step, 2^128 collision resistance) and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Threat Model Note: Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.",
         sealerLblFile: "Source Document (.PDF or .SVG)",
         sealerBtnChoose: "📂 Choose .PDF / .SVG",
         sealerLblSigner: "Signer / Organization Name",
@@ -2166,7 +2166,7 @@
         lblSigner: "Signer / QES Subject (KNEDP)",
         lblIssuer: "Qualified Trust Provider (CA) & Serial",
         lblStandard: "DSTU 4145-2002 QES & TSP Timestamp",
-        lblGost: "DSTU GOST 34.311-95 Digest",
+        lblGost: "DSTU GOST 34.311-95 (256-bit) Digest",
         lblKupyna: "DSTU 7564:2014 (Kupyna-256) Digest",
         lblRS: "DSTU 4145-2002 Signature Vector (r, s)",
         lblErrors: "Symmetry (Δ_sym) & Coordinate Drift (Δ_coord)",
@@ -2206,7 +2206,7 @@
         btnHeroProto: "📋 Офіційний PDF-протокол перевірки",
         sealerTitle: "✍️ Браузерна Студія Запечатування та Deal-Room Canary Маркування (256-Bit · Без Завантаження на Сервер)",
         sealerBadge: "100% Client-Side · Повна сумісність із CLI (marma-watermark verify / trace)",
-        sealerDesc: "Запечатайте будь-який локальний .PDF або .SVG (чи вбудований конфіденційний M&A Term Sheet) прямо у браузері 256-бітною бієктивною решіткою Шрі Янтри та прихованою Canary-міткою отримувача у вершині Бінду (D5.ay). Кожен запечатаний тут файл на 100% проходить marma-watermark verify та marma-watermark trace у Python CLI з Δ = 0.0.",
+        sealerDesc: "Запечатайте будь-який локальний .PDF або .SVG (чи вбудований конфіденційний M&A Term Sheet) прямо у браузері 256-бітною бієктивною решіткою Шрі Янтри (крок 18 нм, стійкість до колізій 2^128) та прихованою Canary-міткою отримувача у вершині Бінду (D5.ay). Модель загроз: браузерне запечатування працює у симетричному Deal-Room режимі (HMAC-SHA256 за Майстер-ключем нижче; без секретного ключа печатка виконує роль лише візуально-векторної контрольної суми цілісності). Повна асиметрична неспростовність КЕП (PAdES-B-LTA за ДСТУ 4145-2002) потребує підписання особистим ключем КЕП через CLI та обов'язкової перевірки самого підпису (r, s).",
         sealerLblFile: "Вихідний документ (.PDF або .SVG)",
         sealerBtnChoose: "📂 Обрати .PDF / .SVG",
         sealerLblSigner: "Підписувач / Організація",
@@ -2229,7 +2229,7 @@
         lblSigner: "Підписувач / Сертифікат КНЕДП",
         lblIssuer: "Кваліфікований надавач (CA) та Серія",
         lblStandard: "Статус КЕП ДСТУ 4145-2002 та Мітка часу TSP",
-        lblGost: "Дайджест ДСТУ ГОСТ 34.311-95",
+        lblGost: "Дайджест ДСТУ ГОСТ 34.311-95 (256 біт)",
         lblKupyna: "Дайджест ДСТУ 7564:2014 («Купина-256»)",
         lblRS: "Вектор підпису ДСТУ 4145-2002 (r, s)",
         lblErrors: "Інваріант симетрії (Δ_sym) та Координат (Δ_coord)",
