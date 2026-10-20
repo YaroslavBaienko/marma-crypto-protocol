@@ -13,8 +13,29 @@
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Specification-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 
-> **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)**
-> **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
+> **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)** · **🇺🇦 [Українська сторінка та Інженерний FAQ → `ua.html`](https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html)**
+> **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
+
+> **⚡ Engineering `TL;DR` (What `Marma-256` Is — and What It Is Not):**
+> - **What it is:** A **bijective vector-graphic encoding layer ($\mathcal{E}_{10}$)** for PDF (`ISO 32000-2`) and SVG that embeds all **256 bits** of a cryptographic signature digest $V = \text{SHA-256}(r \parallel s)$ (plus an orthogonal **10-bit recipient Canary beacon** on channel 27) directly into exact $18\text{ npt}$ ($1.8\times 10^{-8}\text{ pt}$) coordinate perturbations of a visible 9-triangle Sri Yantra seal (`43 sub-triangles`, `54 triple concurrency nodes`).
+> - **What it is NOT:** It does **not** invent a custom signature primitive, replace asymmetric QES validation, or compete with standard PAdES `/ByteRange` when a signed PDF remains intact. Instead, it bridges the gap when **(1)** signatures are detached (`.p7s` / CAdES) and the PDF carries only a "dumb" visual stamp, **(2)** enterprise DMS / archival gateways flatten PDFs (`print-to-PDF`) and strip `/Contents`, **(3)** civil servants reject valid PAdES files that lack a visible stamp on the page, or **(4)** deal rooms need zero-crosstalk recipient leak attribution (`Canary`).
+> - **100% Post-Quantum (NIST PQC) Agile:** Because $\mathcal{E}_{10}$ encodes any 256-bit signature digest $V \in \{0,1\}^{256}$, replacing classical elliptic curves (`DSTU 4145-2002` / `ECDSA`, vulnerable to Shor's algorithm) with **NIST FIPS 204 (`ML-DSA` / Dilithium)** or **NIST FIPS 205 (`SLH-DSA` / SPHINCS+)** requires **zero changes** to the geometric lattice.
+
+---
+
+## 🖼️ Visual Architecture & Geometric Lattice Showcase
+
+<p align="center">
+  <img src="whitepaper/sri_yantra_whitepaper_diagram.svg" alt="Signed Reference Sri Yantra Vector Seal (9 Triangles, 54 Marmas, 27 Orthogonal Channels)" width="360" />
+</p>
+
+<p align="center">
+  <img src="whitepaper/figures/fig1_architecture.svg" alt="End-to-End Marma-256 Cryptographic & Bijective Vector Pipeline" width="840" />
+</p>
+
+| Overdetermined Planar Incidence Lattice $\mathcal{C}_{9,54}$ | Comparative Payload & Robustness Benchmark |
+| :---: | :---: |
+| <img src="whitepaper/figures/fig2_c954_geometry.svg" alt="C9,54 Planar Incidence Lattice & 27-DOF Allocation" width="410" /> | <img src="whitepaper/figures/fig5_comparative_benchmarks.svg" alt="Comparative Analysis vs QIM, Spread-Spectrum, and Font-Manifold" width="410" /> |
 
 ---
 
@@ -59,6 +80,22 @@ To prevent any ambiguity between cryptographic non-repudiation, symmetric deal-r
 ### ⚠️ Optical Inspection (`24-bit` Legacy `v1.2`) vs. Vector Stream Parsing (`256-bit` `v1.3 Marma-256`)
 * **Never rely on naked-eye visual comparison alone:** Human vision cannot resolve $18\,\text{nm}$ ($1.8 \times 10^{-8}\text{ pt}$) vertex micro-perturbations. Furthermore, the legacy `v1.2` discrete visual quantizer $K = (k_0, k_1, k_2, k_3) \in \{0,1\}^{24}$ ($\approx 1.67 \times 10^7$ macroscopic configurations) has a birthday-paradox collision bound of only $2^{12} = 4,096$ trials and serves strictly as a macroscopic visual cue.
 * **Mandatory programmatic verification (`256-bit`):** Cryptographic collision resistance ($2^{128}$ security level) holds **only** when the verifier parses the exact floating-point vector coordinates (`q ... m l h S Q` in PDF or `<polygon points="...">` in SVG) across all 26 symmetric channels of `Marma-256` and verifies the cryptographic binding.
+
+---
+
+## 🔍 Architectural FAQ: Standard PAdES `/ByteRange` vs. `Marma-256` & Post-Quantum (NIST PQC) Agility
+
+### Q1. In standard embedded PAdES (`ISO 32000-2`), doesn't the `/ByteRange` array already cover the entire PDF (including the visual sticker coordinates) except `/Contents`? Why is `Marma-256` needed?
+**Yes — when an embedded PAdES file remains completely untouched, `/ByteRange` covers all byte offsets outside `/Contents`.** However, in real-world legal, banking, and government document workflows, four structural gaps arise where `/ByteRange` alone is either absent, destroyed, or bypassed:
+
+1. **Detached Signatures (`.p7s` / CAdES Detached) & "Dumb" Visual Stickers:** Across Ukrainian (`Вчасно`, `M.E.Doc`, `Дія`, courts) and EU workflows, a massive volume of PDFs are signed via a **detached `.p7s` container**, while a decorative visual stamp ("Signed with QES") is stamped onto the PDF page. In that PDF, there is **no `/ByteRange` at all**, and the visual stamp carries **0 bits** of cryptographic data (meanwhile, state agencies often reject valid electronically signed PDFs if they lack a visible stamp on the page). `Marma-256` turns the visible vector stamp itself into a lossless 256-bit carrier of $V = \text{SHA-256}(r \parallel s)$.
+2. **DMS Flattening & Archival Re-Serialization (`Print-to-PDF`):** Corporate Document Management Systems (DMS) and court registries frequently flatten incoming PDFs for archival storage or public extracts — stripping the binary `/Contents` PKCS#7 dictionary and `/ByteRange` while preserving page vector paths (`q ... m l h S Q`). Because `Marma-256` lives inside the page content stream with a $9.207\,\mu\text{pt}$ safety margin (surviving 5-decimal PDF coordinate truncation with $0\%$ bit error rate), the 256-bit signature commitment $V$ survives flattening and can still be verified against the original signature log.
+3. **Incremental Saving / Post-Signature "Shadow" Appends:** A classic PDF vulnerability highlighted in academic literature (Mladenov et al., ACM CCS 2019) occurs when an attacker appends an incremental PDF revision (`%%EOF`) after signing that alters the visible text rendered to the user without breaking the byte range of the earlier revision. `Marma-256` canonicalizes the **entire visible text stream** of the document and binds it bijectively to the 9-triangle vector coordinates.
+4. **Zero-Crosstalk Recipient Leak Tracing (`Canary` on `D5.ay`):** Standard PAdES `/ByteRange` cannot embed per-recipient forensic watermarks without re-signing the document for every recipient or leaking plaintext metadata. `Marma-256` isolates the 27th symmetric degree of freedom ($\delta_{ay,9}$ of the innermost triangle $\nabla_{\text{D5}}$) as a 10-bit Canary beacon ($w_c \in [1, 1023]$) with strictly zero mutual information leakage regarding the signature vector ($I(V; w_c) = 0$).
+
+### Q2. Does `Marma-Crypto` invent a custom signature algorithm, and what happens when quantum computers break classical elliptic curves (`DSTU 4145-2002` / `ECDSA`) in favor of NIST PQC?
+1. **Zero custom signature cryptography:** `Marma-Crypto` does **not** invent a new public-key primitive or attempt to replace standard signature schemes outside PDF/SVG. Cryptographic non-repudiation relies 100% on standard algorithms (`DSTU 4145-2002` over $\mathbb{F}_{2^{257}}$, `ECDSA`, `Ed25519`) and standard hashes (`GOST 34.311-95`, `DSTU 7564:2014 Kupyna-256`, `SHA-256`).
+2. **100% Post-Quantum Cryptographic Agility (NIST FIPS 204 `ML-DSA` & FIPS 205 `SLH-DSA`):** While classical elliptic curves (`DSTU 4145-2002` and `ECDSA`) are vulnerable to Shor's quantum algorithm for the discrete logarithm problem, the 27-channel bijective geometric encoder $\mathcal{E}_{10}: \{0,1\}^{256} \times \{0,\dots,1023\} \to \mathbb{R}^{9\times 4}$ is **completely signature-agnostic**. Whether the underlying signature $\sigma$ is a 64-byte `DSTU 4145-2002` pair $(r,s)$, a 2,420-byte **NIST FIPS 204 (`ML-DSA-44` / CRYSTALS-Dilithium)** lattice signature, or a **NIST FIPS 205 (`SLH-DSA` / SPHINCS+)** hash-based signature, `Marma-256` simply encodes the 256-bit commitment $V = \text{SHA3-256}(\sigma_{\text{PQC}}) \in \{0,1\}^{256}$ into the exact same 9 triangles without changing a single formula. Under Grover's quantum search algorithm, a 256-bit hash commitment retains a 128-qubit collision resistance bound.
 
 ---
 

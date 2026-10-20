@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 390" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #0f172a; }
+      .axis { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 10px; fill: #334155; }
+      .mono { font-family: 'Liberation Mono', Courier, monospace; font-size: 8.6px; fill: #1e293b; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="876" height="386" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="8"/>
+
+  <!-- Panel (a): IEEE-754 Error Histogram -->
+  <text x="28" y="26" class="title">(a) IEEE-754 binary64 Round-Trip Error |w~_k - w_k| (2.6M words)</text>
+  <rect x="70" y="50" width="340" height="260" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+
+  <rect x="70.00" y="70.00" width="14.62" height="240.00" fill="#2563eb" opacity="0.85"/><rect x="85.62" y="84.33" width="14.62" height="225.67" fill="#2563eb" opacity="0.85"/><rect x="101.25" y="139.45" width="14.62" height="170.55" fill="#2563eb" opacity="0.85"/><rect x="116.88" y="198.81" width="14.62" height="111.19" fill="#2563eb" opacity="0.85"/><rect x="132.50" y="214.07" width="14.62" height="95.93" fill="#2563eb" opacity="0.85"/><rect x="148.12" y="275.47" width="14.62" height="34.53" fill="#2563eb" opacity="0.85"/><rect x="163.75" y="279.40" width="14.62" height="30.60" fill="#2563eb" opacity="0.85"/><rect x="179.38" y="290.97" width="14.62" height="19.03" fill="#2563eb" opacity="0.85"/><rect x="195.00" y="308.28" width="14.62" height="1.72" fill="#2563eb" opacity="0.85"/><rect x="210.62" y="308.28" width="14.62" height="1.72" fill="#2563eb" opacity="0.85"/><rect x="226.25" y="308.40" width="14.62" height="1.60" fill="#2563eb" opacity="0.85"/><rect x="241.88" y="308.30" width="14.62" height="1.70" fill="#2563eb" opacity="0.85"/><rect x="257.50" y="308.17" width="14.62" height="1.83" fill="#2563eb" opacity="0.85"/><rect x="273.12" y="307.96" width="14.62" height="2.04" fill="#2563eb" opacity="0.85"/><rect x="288.75" y="308.01" width="14.62" height="1.99" fill="#2563eb" opacity="0.85"/><rect x="304.38" y="309.36" width="14.62" height="0.64" fill="#2563eb" opacity="0.85"/>
+
+  <!-- 3 Harmonized Bound Markers (Theorem 3) -->
+  <line x1="148.95" y1="50" x2="148.95" y2="310" stroke="#0284c7" stroke-width="1.4" stroke-dasharray="4,2"/>
+  <text x="151.9" y="68" class="mono" fill="#0369a1" font-weight="bold">0.5 ulp = 1.58e-6</text>
+
+  <line x1="306.62" y1="50" x2="306.62" y2="310" stroke="#d97706" stroke-width="1.6" stroke-dasharray="4,2"/>
+  <text x="204.6" y="90" class="mono" fill="#b45309" font-weight="bold">Emp. Max = 4.73e-6</text>
+
+  <line x1="385.80" y1="50" x2="385.80" y2="310" stroke="#dc2626" stroke-width="1.6" stroke-dasharray="5,2"/>
+  <text x="309.8" y="114" class="mono" fill="#b91c1c" font-weight="bold">2.0 ulp = 6.32e-6</text>
+
+  <!-- Summary Box inside Panel (a) -->
+  <rect x="166" y="142" width="234" height="78" fill="#ffffff" stroke="#cbd5e1" rx="4"/>
+  <text x="174" y="158" class="mono" font-weight="bold" fill="#0f172a">Theorem 3 Verification (N=10^5):</text>
+  <text x="174" y="173" class="mono">• Decision threshold: 0.500000 steps</text>
+  <text x="174" y="188" class="mono" fill="#065f46" font-weight="bold">• Safety margin: &gt; 105,656x</text>
+  <text x="174" y="203" class="mono" fill="#065f46" font-weight="bold">• Bit Error Rate: 0 / 25,600,000 bits</text>
+
+  <!-- X-axis ticks Panel (a) -->
+  <text x="66.0" y="325" class="mono">0.0</text>
+  <text x="162.0" y="325" class="mono">2.0</text>
+  <text x="262.0" y="325" class="mono">4.0</text>
+  <text x="362.0" y="325" class="mono">6.0</text>
+  <text x="120" y="346" class="axis" font-weight="bold">Word Recovery Error |w~_k - w_k| (x 10^-6 lattice steps)</text>
+  <text x="72" y="366" class="mono" fill="#475569">Viewport [0, 600]^2 pt^2, s_0 = 18 npt = 1.8e-8 pt, ulp(300) = 2^-44 pt</text>
+
+  <!-- Panel (b): ISO 32000-2 Decimal Serialization Threshold -->
+  <text x="468" y="26" class="title">(b) ISO 32000-2 Stream Decimal Precision (d fractional digits)</text>
+  <rect x="495" y="50" width="340" height="260" fill="#f8fafc" stroke="#94a3b8" stroke-width="1"/>
+
+  <rect x="495" y="149.71" width="340" height="160.29" fill="#ecfdf5" opacity="0.6"/>
+  <line x1="495" y1="149.71" x2="835" y2="149.71" stroke="#dc2626" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="502" y="143.7" class="mono" fill="#dc2626" font-weight="bold">Threshold = 0.5 steps</text>
+
+  <text x="458" y="53.0" class="mono">10^2</text>
+  <text x="458" y="139.7" class="mono">10^0</text>
+  <text x="454" y="226.3" class="mono">10^-2</text>
+  <text x="454" y="313.0" class="mono">10^-4</text>
+
+  <polyline points="515.00,50.00 565.00,50.00 615.00,61.65 665.00,104.58 715.00,160.77 765.00,310.00 815.00,310.00" fill="none" stroke="#334155" stroke-width="2"/>
+  <circle cx="515.00" cy="50.00" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/><circle cx="565.00" cy="50.00" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/><circle cx="615.00" cy="61.65" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/><circle cx="665.00" cy="104.58" r="4" fill="#dc2626" stroke="#ffffff" stroke-width="1"/><circle cx="715.00" cy="160.77" r="4" fill="#059669" stroke="#ffffff" stroke-width="1"/><circle cx="765.00" cy="310.00" r="4" fill="#059669" stroke="#ffffff" stroke-width="1"/><circle cx="815.00" cy="310.00" r="4" fill="#059669" stroke="#ffffff" stroke-width="1"/>
+
+  <rect x="508" y="220" width="192" height="74" fill="#ffffff" stroke="#059669" rx="4"/>
+  <text x="516" y="236" class="mono" fill="#065f46" font-weight="bold">Lossless Bijective Regime:</text>
+  <text x="516" y="252" class="mono">• d=8: max err = 0.278 &lt; 0.5</text>
+  <text x="516" y="268" class="mono" font-weight="bold">• d=9 (%.9f): err = 1e-6 &lt;&lt; 0.5</text>
+  <text x="516" y="284" class="mono" fill="#065f46">• BER(d &gt;= 8) = 0.000000%</text>
+
+  <text x="507.0" y="325" class="mono">d=4</text><text x="557.0" y="325" class="mono">d=5</text><text x="607.0" y="325" class="mono">d=6</text><text x="657.0" y="325" class="mono">d=7</text><text x="707.0" y="325" class="mono">d=8</text><text x="757.0" y="325" class="mono">d=9</text><text x="807.0" y="325" class="mono">d=10</text>
+  <text x="535" y="346" class="axis" font-weight="bold">Serialized Fractional Decimal Digits d (%.df)</text>
+  <text x="488" y="366" class="mono" fill="#475569">PDF re-writers truncating to d &lt;= 6 trigger fail-closed tamper alert</text>
+</svg>

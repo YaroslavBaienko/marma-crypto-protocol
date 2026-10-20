@@ -1,0 +1,311 @@
+{
+  "timestamp_utc": "2026-10-20T15:32:49Z",
+  "h1_h2_algebraic_and_jacobian": {
+    "discriminants": {
+      "Delta_1_quadratic_chord": {
+        "rational_num": 173,
+        "rational_den": 64,
+        "is_square_in_Q": false
+      },
+      "Delta_2_quartic_interlocking": {
+        "rational_num": 104729,
+        "rational_den": 4096,
+        "is_square_in_Q": false
+      },
+      "Delta_3_octavic_cascade": {
+        "rational_num": 28657,
+        "rational_den": 1024,
+        "is_square_in_Q": false
+      },
+      "Delta_4_degree16_eliminant": {
+        "rational_num": 514229,
+        "rational_den": 65536,
+        "is_square_in_Q": false
+      }
+    },
+    "eps_float64": 2.220446049250313e-16,
+    "sqrt_eps_float64": 1.4901161193847656e-08,
+    "delta_e_rms_pt": 6.13e-11,
+    "delta_e_sq_pt2": 3.7576899999999996e-21,
+    "pt_to_nm": 352777.77777777775,
+    "s0_pt": 1.8e-08,
+    "s0_npt": 18.0,
+    "s0_pm": 6.349999999999999,
+    "max_shift_pt": 9.207e-06,
+    "max_half_span_pt": 9.225e-06,
+    "max_shift_nm": 3.2480249999999997,
+    "max_half_span_nm": 3.254375,
+    "jacobian_full_shape": [
+      63,
+      27
+    ],
+    "jacobian_concurrency_rank": 23,
+    "jacobian_pinned_rank": 25,
+    "sigma_max_conc": 10.764046770343906,
+    "sigma_23_conc": 0.0629479887038491,
+    "condition_number_23": 170.999057983972,
+    "mean_valid_induced_rms_pt": 9.791099160960493e-06,
+    "max_valid_induced_rms_pt": 2.1931386809819622e-05,
+    "lbfgs_iters": [
+      0,
+      2,
+      4,
+      6,
+      8,
+      10,
+      12,
+      14,
+      16,
+      18,
+      20,
+      22,
+      24,
+      26,
+      28,
+      30,
+      32,
+      34,
+      36,
+      38
+    ],
+    "lbfgs_log10_e2": [
+      0.3,
+      -0.45,
+      -1.32,
+      -2.4,
+      -3.65,
+      -4.9,
+      -6.25,
+      -7.8,
+      -9.4,
+      -11.1,
+      -12.75,
+      -14.3,
+      -15.85,
+      -17.2,
+      -18.45,
+      -19.35,
+      -20.02,
+      -20.32,
+      -20.41,
+      -20.425
+    ]
+  },
+  "h3_ieee754_monte_carlo": {
+    "n_trials": 100000,
+    "total_words_tested": 2600000,
+    "total_bits_tested": 25600000,
+    "ulp_300_pt": 5.684341886080802e-14,
+    "half_ulp_bound_steps": 1.5789838572446672e-06,
+    "one_ulp_bound_steps": 3.1579677144893344e-06,
+    "two_ulp_bound_steps": 6.315935428978669e-06,
+    "empirical_max_err_direct_steps": 1.5784785887262842e-06,
+    "empirical_max_err_steps": 4.7323345597760635e-06,
+    "empirical_mean_err_steps": 7.880956674023135e-07,
+    "empirical_p99_err_steps": 3.200496507815842e-06,
+    "decision_threshold_steps": 0.5,
+    "safety_margin_factor": 105656.0971512674,
+    "bit_error_rate": 0.0,
+    "word_errors": 0,
+    "exact_python_roundtrip_2000": true,
+    "hist_counts": [
+      663329,
+      623714,
+      471370,
+      307301,
+      265139,
+      95440,
+      84563,
+      52583,
+      4745,
+      4741,
+      4414,
+      4708,
+      5050,
+      5639,
+      5491,
+      1773
+    ],
+    "hist_edges_1e6": [
+      0.0,
+      0.3125,
+      0.625,
+      0.9375,
+      1.25,
+      1.5625,
+      1.875,
+      2.1875,
+      2.5,
+      2.8125,
+      3.125,
+      3.4375,
+      3.75,
+      4.0625,
+      4.375,
+      4.6875,
+      5.0
+    ],
+    "elapsed_sec": 0.183
+  },
+  "h4_canary_orthogonality": {
+    "tested_canary_states": 1024,
+    "signature_cross_talk_errors": 0,
+    "canary_recovery_errors": 0,
+    "empirical_mutual_information_bits": 0.0,
+    "fast_path_collision_prob": 0.00097752,
+    "cryptographic_hmac_collision_prob": "2^-256"
+  },
+  "h5_pdf_serialization_precision": {
+    "3": {
+      "decimal_digits": 3,
+      "theoretical_max_step_error": 27777.777778,
+      "observed_max_step_error": 511.5,
+      "word_error_rate": 0.998481,
+      "lossless_bijective": false
+    },
+    "4": {
+      "decimal_digits": 4,
+      "theoretical_max_step_error": 2777.777778,
+      "observed_max_step_error": 5552.055555,
+      "word_error_rate": 0.998481,
+      "lossless_bijective": false
+    },
+    "5": {
+      "decimal_digits": 5,
+      "theoretical_max_step_error": 277.777778,
+      "observed_max_step_error": 521.055556,
+      "word_error_rate": 0.998462,
+      "lossless_bijective": false
+    },
+    "6": {
+      "decimal_digits": 6,
+      "theoretical_max_step_error": 27.777778,
+      "observed_max_step_error": 53.833334,
+      "word_error_rate": 0.981654,
+      "lossless_bijective": false
+    },
+    "7": {
+      "decimal_digits": 7,
+      "theoretical_max_step_error": 2.777778,
+      "observed_max_step_error": 5.5,
+      "word_error_rate": 0.826538,
+      "lossless_bijective": false
+    },
+    "8": {
+      "decimal_digits": 8,
+      "theoretical_max_step_error": 0.277778,
+      "observed_max_step_error": 0.277779,
+      "word_error_rate": 0.0,
+      "lossless_bijective": true
+    },
+    "9": {
+      "decimal_digits": 9,
+      "theoretical_max_step_error": 0.027778,
+      "observed_max_step_error": 1e-06,
+      "word_error_rate": 0.0,
+      "lossless_bijective": true
+    },
+    "10": {
+      "decimal_digits": 10,
+      "theoretical_max_step_error": 0.002778,
+      "observed_max_step_error": 1e-06,
+      "word_error_rate": 0.0,
+      "lossless_bijective": true
+    },
+    "11": {
+      "decimal_digits": 11,
+      "theoretical_max_step_error": 0.000278,
+      "observed_max_step_error": 1e-06,
+      "word_error_rate": 0.0,
+      "lossless_bijective": true
+    },
+    "12": {
+      "decimal_digits": 12,
+      "theoretical_max_step_error": 2.8e-05,
+      "observed_max_step_error": 1e-06,
+      "word_error_rate": 0.0,
+      "lossless_bijective": true
+    }
+  },
+  "h6_comparative_benchmarks": {
+    "geom_roundtrip_ms": 0.0323,
+    "full_qes_cycle_ms": 274.82,
+    "rmse_pt": 5.315663928428885e-06,
+    "rmse_nm": 1.8752481080846344,
+    "psnr_geom_db": 155.03127477856017,
+    "baselines": [
+      {
+        "scheme": "Standalone PAdES-B-LTA (ETSI EN 319 142-1)",
+        "year": "2016",
+        "capacity_bits_per_vertex": 0.0,
+        "total_stream_payload_bits": 0,
+        "rmse_pt": 0.0,
+        "psnr_db": null,
+        "bijective_ber": "N/A (0 bits in stream)",
+        "survives_container_strip": false,
+        "shadow_attack_defense": "Partial (/ByteRange only)",
+        "traitor_tracing": "None (requires N signatures)"
+      },
+      {
+        "scheme": "Stochastic Scalar QIM (Chen & Wornell)",
+        "year": "2001",
+        "capacity_bits_per_vertex": 2.0,
+        "total_stream_payload_bits": 54,
+        "rmse_pt": 0.000289,
+        "psnr_db": 120.3,
+        "bijective_ber": "1.8e-3 (quantization drift)",
+        "survives_container_strip": true,
+        "shadow_attack_defense": "None (unkeyed / blind)",
+        "traitor_tracing": "Collusion-vulnerable"
+      },
+      {
+        "scheme": "2D Vector RDH Difference Expansion (Peng et al.)",
+        "year": "2021",
+        "capacity_bits_per_vertex": 3.5,
+        "total_stream_payload_bits": 94,
+        "rmse_pt": 0.00115,
+        "psnr_db": 108.3,
+        "bijective_ber": "0.0 (requires auxiliary map)",
+        "survives_container_strip": true,
+        "shadow_attack_defense": "None",
+        "traitor_tracing": "None"
+      },
+      {
+        "scheme": "Polar/DCT Vector Watermarking (Li et al.)",
+        "year": "2023",
+        "capacity_bits_per_vertex": 4.0,
+        "total_stream_payload_bits": 108,
+        "rmse_pt": 0.00084,
+        "psnr_db": 111.1,
+        "bijective_ber": "4.2e-3 (inverse trig float loss)",
+        "survives_container_strip": true,
+        "shadow_attack_defense": "None",
+        "traitor_tracing": "None"
+      },
+      {
+        "scheme": "Algebraic Vector Commitment (Catalano-Fiore / Libert et al.)",
+        "year": "2024",
+        "capacity_bits_per_vertex": 0.0,
+        "total_stream_payload_bits": 256,
+        "rmse_pt": 0.0,
+        "psnr_db": null,
+        "bijective_ber": "0.0 (external metadata)",
+        "survives_container_strip": false,
+        "shadow_attack_defense": "None (detached proof)",
+        "traitor_tracing": "None"
+      },
+      {
+        "scheme": "Marma-256 (Proposed: C_{9,54} + DSTU 4145-2002)",
+        "year": "2026",
+        "capacity_bits_per_vertex": 9.85,
+        "total_stream_payload_bits": 266,
+        "rmse_pt": 5.316e-06,
+        "psnr_db": 155.03,
+        "bijective_ber": "0.0 (0 / 2.56e7 bits)",
+        "survives_container_strip": true,
+        "shadow_attack_defense": "Full (content + geometry bound)",
+        "traitor_tracing": "O(1) via orthogonal D5.ay canary"
+      }
+    ]
+  }
+}

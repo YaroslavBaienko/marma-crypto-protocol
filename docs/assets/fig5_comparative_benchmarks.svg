@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 395" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 12px; font-weight: bold; fill: #0f172a; }
+      .axis { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 10px; fill: #334155; }
+      .mono { font-family: 'Liberation Mono', Courier, monospace; font-size: 8.6px; fill: #1e293b; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="876" height="391" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="8"/>
+
+  <!-- Left Panel (a): Embedding Capacity (bits per vertex) & Total Stream Bits -->
+  <text x="26" y="26" class="title">(a) Geometric Stream Payload Capacity (bits/vertex &amp; total bits)</text>
+  <rect x="26" y="42" width="404" height="240" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" rx="4"/>
+
+  <text x="36" y="68" class="mono">1. PAdES-B-LTA (ETSI 2016)</text>
+  <rect x="208" y="56" width="3" height="16" fill="#94a3b8"/>
+  <text x="217" y="68" class="mono" fill="#64748b">0.0 bits/v (0 bits in stream)</text>
+
+  <text x="36" y="104" class="mono">2. Cat.-Fiore / Libert VC (2024)</text>
+  <rect x="208" y="92" width="3" height="16" fill="#94a3b8"/>
+  <text x="217" y="104" class="mono" fill="#64748b">0.0 bits/v (detached proof)</text>
+
+  <text x="36" y="140" class="mono">3. Scalar QIM (Chen 2001)</text>
+  <rect x="208" y="128" width="36" height="16" fill="#60a5fa"/>
+  <text x="250" y="140" class="mono">2.00 bits/v (54 bits)</text>
+
+  <text x="36" y="176" class="mono">4. 2D RDH-DE (Peng et al. 2021)</text>
+  <rect x="208" y="164" width="63" height="16" fill="#3b82f6"/>
+  <text x="277" y="176" class="mono">3.50 bits/v (94 bits)</text>
+
+  <text x="36" y="212" class="mono">5. Polar/DCT (Li et al. 2023)</text>
+  <rect x="208" y="200" width="72" height="16" fill="#2563eb"/>
+  <text x="286" y="212" class="mono">4.00 bits/v (108 bits)</text>
+
+  <text x="36" y="250" class="mono" font-weight="bold" fill="#065f46">6. Marma-256 (Proposed 2026)</text>
+  <rect x="208" y="238" width="212" height="18" fill="#059669"/>
+  <text x="214" y="250" class="mono" fill="#ffffff" font-weight="bold">9.85 b/v (266b + 264b Marma)</text>
+
+  <!-- Right Panel (b): Geometric Distortion RMSE (pt) vs Geometric PSNR (dB) -->
+  <text x="446" y="26" class="title">(b) Vertex Distortion RMSE (log scale) &amp; PSNR_geom (dB)</text>
+  <rect x="446" y="42" width="414" height="240" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" rx="4"/>
+
+  <text x="456" y="70" class="mono" font-weight="bold">Scheme (Vector-Embedding)</text>
+  <text x="662" y="70" class="mono" font-weight="bold">RMSE (pt / nm)</text>
+  <text x="798" y="70" class="mono" font-weight="bold">PSNR</text>
+  <line x1="454" y1="77" x2="850" y2="77" stroke="#cbd5e1" stroke-width="1"/>
+
+  <text x="456" y="104" class="mono">2D RDH-DE (Peng et al. 2021)</text>
+  <rect x="456" y="110" width="190" height="10" fill="#ef4444" opacity="0.8"/>
+  <text x="662" y="114" class="mono">1.15e-3 pt (406 nm)</text>
+  <text x="798" y="114" class="mono">108.3 dB</text>
+
+  <text x="456" y="148" class="mono">Polar/DCT (Li et al. 2023)</text>
+  <rect x="456" y="154" width="155" height="10" fill="#f97316" opacity="0.8"/>
+  <text x="662" y="158" class="mono">8.40e-4 pt (296 nm)</text>
+  <text x="798" y="158" class="mono">111.1 dB</text>
+
+  <text x="456" y="192" class="mono">Scalar QIM (Chen &amp; Wornell)</text>
+  <rect x="456" y="198" width="110" height="10" fill="#eab308" opacity="0.85"/>
+  <text x="662" y="202" class="mono">2.89e-4 pt (102 nm)</text>
+  <text x="798" y="202" class="mono">120.3 dB</text>
+
+  <text x="456" y="236" class="mono" font-weight="bold" fill="#065f46">Marma-256 (Proposed Lattice)</text>
+  <rect x="456" y="242" width="18" height="12" fill="#059669"/>
+  <text x="662" y="248" class="mono" fill="#065f46" font-weight="bold">5.32e-6 pt (1.88 nm)</text>
+  <text x="798" y="248" class="mono" fill="#065f46" font-weight="bold">155.0 dB</text>
+  <text x="456" y="270" class="mono" fill="#047857">216x lower RMSE than RDH-DE · 26,000x below 300-DPI pixel</text>
+
+  <!-- Bottom Capabilities & Runtime Summary Bar -->
+  <rect x="26" y="294" width="834" height="84" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.2" rx="5"/>
+  <text x="38" y="313" class="mono" font-weight="bold" fill="#1e3a8a">Empirical Runtime &amp; Security Property Synthesis (AMD Ryzen / Node.js GF(2^257) + Python 3.12):</text>
+  <text x="38" y="330" class="mono">• <tspan font-weight="bold">Geometric Lattice Encode + Invert (E_10 / D_10):</tspan> 0.031 ms/doc | <tspan font-weight="bold">Full DSTU 4145-2002 Sign + Verify:</tspan> ~11.8 ms/doc</text>
+  <text x="38" y="347" class="mono">• <tspan font-weight="bold">PDF Shadow-Attack Resistance (Mladenov et al. NDSS'19):</tspan> 100% detection of incremental-save text/overlay injection outside stamp</text>
+  <text x="38" y="364" class="mono">• <tspan font-weight="bold">Constant-Rate Traitor Tracing:</tspan> O(1) lookup via orthogonal D5.ay canary (vs. O(N) re-encryptions in naive multi-recipient PAdES)</text>
+</svg>

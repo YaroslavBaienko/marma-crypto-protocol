@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 410" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 11.5px; font-weight: bold; fill: #0f172a; }
+      .sub { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 9.8px; fill: #334155; }
+      .mono { font-family: 'Liberation Mono', Courier, monospace; font-size: 8.4px; fill: #1e293b; }
+    </style>
+  </defs>
+  <rect x="2" y="2" width="876" height="406" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="8"/>
+
+  <!-- Left Panel: Exact Canonical C_(9, 54) Diagram -->
+  <text x="18" y="23" class="title">(a) Planar Configuration C_{9,54} on S^1 (R = 100 pt)</text>
+  <rect x="16" y="32" width="368" height="362" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+
+  <!-- Symmetry axis x = c_x -->
+  <line x1="194.00" y1="42" x2="194.00" y2="384" stroke="#64748b" stroke-width="1" stroke-dasharray="4,4"/>
+  <text x="199.0" y="52" class="mono" fill="#475569">sigma_x: lx + rx = 300.0 pt</text>
+
+  <!-- Outer circle S^1 -->
+  <circle cx="194.00" cy="205.00" r="136.00" fill="none" stroke="#334155" stroke-width="1.4"/>
+
+  <!-- 9 Canonical Triangles -->
+  <polygon points="62.97,168.56 325.03,168.56 194.00,341.00" fill="none" stroke="#b45309" stroke-width="1.35"  opacity="0.88"/><polygon points="62.06,237.98 325.94,237.98 194.00,69.00" fill="none" stroke="#1d4ed8" stroke-width="1.35"  opacity="0.88"/><polygon points="124.26,300.25 263.74,300.25 194.00,168.56" fill="none" stroke="#1d4ed8" stroke-width="1.35"  opacity="0.88"/><polygon points="96.44,270.18 291.56,270.18 194.00,107.22" fill="none" stroke="#1d4ed8" stroke-width="1.35"  opacity="0.88"/><polygon points="113.06,107.22 274.94,107.22 194.00,219.50" fill="none" stroke="#b45309" stroke-width="1.35"  opacity="0.88"/><polygon points="100.14,141.25 287.86,141.25 194.00,300.25" fill="none" stroke="#b45309" stroke-width="1.35"  opacity="0.88"/><polygon points="146.33,219.50 241.67,219.50 194.00,141.25" fill="none" stroke="#1d4ed8" stroke-width="1.35"  opacity="0.88"/><polygon points="148.24,183.66 239.76,183.66 194.00,270.18" fill="none" stroke="#b45309" stroke-width="1.35"  opacity="0.88"/><polygon points="159.47,197.92 228.53,197.92 194.00,237.98" fill="none" stroke="#b45309" stroke-width="1.8" stroke-dasharray="3,1.5" opacity="0.88"/>
+  <text x="48.0" y="171.6" font-family="Liberation Mono, monospace" font-size="8" fill="#b45309" font-weight="bold">D1</text><text x="47.1" y="241.0" font-family="Liberation Mono, monospace" font-size="8" fill="#1d4ed8" font-weight="bold">U1</text><text x="109.3" y="303.3" font-family="Liberation Mono, monospace" font-size="8" fill="#1d4ed8" font-weight="bold">U3</text><text x="81.4" y="273.2" font-family="Liberation Mono, monospace" font-size="8" fill="#1d4ed8" font-weight="bold">U2</text><text x="98.1" y="110.2" font-family="Liberation Mono, monospace" font-size="8" fill="#b45309" font-weight="bold">D3</text><text x="85.1" y="144.2" font-family="Liberation Mono, monospace" font-size="8" fill="#b45309" font-weight="bold">D2</text><text x="131.3" y="222.5" font-family="Liberation Mono, monospace" font-size="8" fill="#1d4ed8" font-weight="bold">U4</text><text x="133.2" y="186.7" font-family="Liberation Mono, monospace" font-size="8" fill="#b45309" font-weight="bold">D4</text><text x="144.5" y="200.9" font-family="Liberation Mono, monospace" font-size="8" fill="#b45309" font-weight="bold">D5</text>
+
+  <!-- 54 Triple Concurrencies -->
+  <circle cx="209.55" cy="197.92" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="178.45" cy="197.92" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="115.72" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="272.28" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="247.81" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="140.19" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="116.26" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="271.74" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="157.24" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="230.76" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="230.72" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="157.28" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="137.59" cy="141.25" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="250.41" cy="141.25" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="219.84" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="168.16" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="167.02" cy="219.50" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="220.98" cy="219.50" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="148.24" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="239.76" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="239.76" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="148.24" cy="183.66" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="307.95" cy="107.22" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="80.05" cy="107.22" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="162.58" cy="109.24" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="225.42" cy="109.24" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="92.35" cy="360.50" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="295.65" cy="360.50" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="157.50" cy="201.17" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="230.50" cy="201.17" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="180.68" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="207.32" cy="237.98" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="252.22" cy="300.25" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="135.78" cy="300.25" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="157.50" cy="201.17" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="230.50" cy="201.17" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="247.75" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="140.25" cy="168.56" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="251.38" cy="203.06" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="136.62" cy="203.06" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="89.25" cy="203.15" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="298.75" cy="203.15" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="211.24" cy="136.01" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="176.76" cy="136.01" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="149.05" cy="281.85" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="238.95" cy="281.85" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="157.47" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="230.53" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="176.25" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="211.75" cy="270.18" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="164.15" cy="107.22" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="223.85" cy="107.22" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="220.21" cy="255.85" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/><circle cx="167.79" cy="255.85" r="2.1" fill="#dc2626" stroke="#ffffff" stroke-width="0.5"/>
+
+  <!-- Highlight D5.ay Canary Apex -->
+  <circle cx="194.00" cy="237.98" r="5.2" fill="#10b981" stroke="#064e3b" stroke-width="1.3"/>
+  <line x1="200.0" y1="238.0" x2="248.0" y2="256.0" stroke="#065f46" stroke-width="1.2"/>
+  <rect x="248.0" y="246.0" width="110" height="22" fill="#ecfdf5" stroke="#059669" rx="3"/>
+  <text x="253.0" y="260.0" class="mono" fill="#065f46" font-weight="bold">D5.ay (Canary w_c)</text>
+
+  <!-- Legend inside Left Panel -->
+  <circle cx="30" cy="368" r="3" fill="#dc2626"/>
+  <text x="38" y="371" class="sub">54 Triple Concurrencies E_3 (Delta E^2 = 3.76e-21 pt^2)</text>
+  <line x1="26" y1="382" x2="40" y2="382" stroke="#1d4ed8" stroke-width="1.5"/>
+  <text x="44" y="385" class="sub">Upward U1..U4 (4)</text>
+  <line x1="146" y1="382" x2="160" y2="382" stroke="#b45309" stroke-width="1.5"/>
+  <text x="164" y="385" class="sub">Downward D1..D5 (5)</text>
+
+  <!-- Right Panel: 27-DOF Channel Allocation & Algebraic Tower -->
+  <text x="398" y="23" class="title">(b) 27-DOF Symmetric Coordinate Lattice &amp; Discriminant Tower</text>
+  <rect x="396" y="32" width="468" height="362" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" rx="6"/>
+
+  <!-- Channel Allocation Matrix -->
+  <text x="408" y="51" class="mono" font-weight="bold" fill="#0f172a">Bijective Partition of 27 Symmetric DOFs (s_0 = 18 npt = 1.8e-8 pt ≈ 6.35 pm):</text>
+
+  <rect x="408" y="60" width="444" height="122" fill="#ffffff" stroke="#94a3b8" stroke-width="1" rx="4"/>
+  <text x="416" y="77" class="mono" font-weight="bold" fill="#1e40af">Triangles T_1..T_8 (D1, U1, U3, U2, D3, D2, U4, D4) — 24 Channels:</text>
+  <text x="416" y="93" class="mono">• Coordinates (lx_i, by_i, ay_i) for i=1..8 --&gt; 24 x 10-bit words (w_0..w_23)</text>
+  <text x="416" y="108" class="mono">• Right vertex rx_i = 2*c_x - lx_i --&gt; Enforces exact bilateral symmetry sigma_x</text>
+  <text x="416" y="126" class="mono" font-weight="bold" fill="#b45309">Innermost Triangle T_9 (D5) — 2 Signature Channels + 1 Orthogonal Canary:</text>
+  <text x="416" y="142" class="mono">• D5.lx --&gt; w_24 (10 bits: bits 240..249 of 256-bit signature digest)</text>
+  <text x="416" y="157" class="mono">• D5.by --&gt; w_25 (6 LSBs scaled by 2^4 = 16 in [0..1008]: bits 250..255)</text>
+  <text x="416" y="172" class="mono" fill="#065f46" font-weight="bold">• D5.ay --&gt; w_c in [1..1023] (10-bit Orthogonal Canary, I(V; w_c) = 0)</text>
+
+  <!-- Algebraic Irrationality & Jacobian Box -->
+  <rect x="408" y="194" width="444" height="186" fill="#ffffff" stroke="#94a3b8" stroke-width="1" rx="4"/>
+  <text x="416" y="212" class="mono" font-weight="bold" fill="#0f172a">Theorem 1 &amp; Proposition 1 (Algebraic Irrationality &amp; Jacobian Spectrum):</text>
+  <text x="416" y="230" class="mono">1. Elimination Tower over Q(t_1, t_2): deg(P_min) &gt;= 16, non-2-group Galois</text>
+  <text x="416" y="245" class="mono">   • Delta_1=173/64, Delta_2=104729/4096, Delta_3=28657/1024 (non-square in Q)</text>
+  <text x="416" y="260" class="mono">   • Exact coordinates lie outside Q_pyth (no finite dyadic PDF representation)</text>
+  <text x="416" y="278" class="mono">2. Concurrency Residual at L-BFGS-B Baseline B*:</text>
+  <text x="416" y="293" class="mono" fill="#065f46" font-weight="bold">   • Squared: Delta E^2(B*) = 3.76e-21 pt^2 &lt;&lt; eps_float64 (2.22e-16)</text>
+  <text x="416" y="308" class="mono" fill="#065f46" font-weight="bold">   • RMS:     Delta E(B*)   = 6.13e-11 pt   &lt;  sqrt(eps_float64) (1.49e-8)</text>
+  <text x="416" y="326" class="mono">3. Local Jacobian J_Phi(B*) in R^(54 x 25):</text>
+  <text x="416" y="341" class="mono">   • Rank(J_Phi) = 23 (23 independent constraints, 2 continuous DOFs)</text>
+  <text x="416" y="356" class="mono">   • sigma_max = 10.764, sigma_23 = 0.063, kappa_23(J_Phi) = 171.00</text>
+  <text x="416" y="371" class="mono">   • Max shift ||delta||_inf = 9.207e-6 pt (3.25 nm) --&gt; Delta E &lt;= 2.19e-05 pt</text>
+</svg>

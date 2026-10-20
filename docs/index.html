@@ -818,13 +818,43 @@
       </div>
     </section>
 
+    <!-- Architectural FAQ & Community Engineering Clarifications -->
+    <section class="card" style="margin-top:24px;">
+      <div class="card-header">
+        <div class="card-title">🔍 Architectural FAQ: Standard PAdES <code>/ByteRange</code> vs. <code>Marma-256</code> &amp; Post-Quantum (NIST PQC) Agility</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="pill-link" href="ua.html">🇺🇦 Український Інженерний FAQ та Схеми (UA)</a>
+          <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol/blob/main/docs/DOU_COMMUNITY_FEEDBACK.md" target="_blank" rel="noopener">🛠️ DOU Community Feedback Log</a>
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:14px;">
+        <div class="meta-box">
+          <div class="meta-key" style="color:var(--gold-bright);">Q1. Why is Marma-256 needed if embedded PAdES <code>/ByteRange</code> already covers the PDF?</div>
+          <div style="font-family:var(--font-sans);font-size:0.84rem;line-height:1.52;color:var(--text-muted);margin-top:4px;">
+            When an embedded PAdES file stays untouched, <code>/ByteRange</code> indeed covers all bytes outside <code>/Contents</code>. <code>Marma-256</code> addresses <strong>4 real-world workflow gaps</strong> where <code>/ByteRange</code> is absent, stripped, or bypassed:
+            <br />1. <strong>Detached <code>.p7s</code> / CAdES workflows:</strong> The PDF itself has no <code>/ByteRange</code>, only a decorative visual stamp carrying 0 bits of cryptography (while state agencies often reject PDFs lacking a visible page stamp).
+            <br />2. <strong>DMS Flattening (<code>Print-to-PDF</code>):</strong> Corporate DMS/archival pipelines strip binary <code>/Contents</code> containers, whereas vector paths (<code>q ... m l h S Q</code>) survive with a 9.207 µpt margin and retain all 256 bits of $V = \text{SHA-256}(r \parallel s)$.
+            <br />3. <strong>Incremental "Shadow" Appends:</strong> Binds the canonicalized visible text stream across the whole document to the 9-triangle geometry.
+            <br />4. <strong>Zero-Crosstalk Canary Leak Tracing (<code>D5.ay</code>):</strong> 27th orthogonal channel encodes a 10-bit recipient beacon ($I(V; w_c)=0$).
+          </div>
+        </div>
+        <div class="meta-box">
+          <div class="meta-key" style="color:var(--gold-bright);">Q2. Does this invent custom signature cryptography, and is it Post-Quantum (NIST PQC) ready?</div>
+          <div style="font-family:var(--font-sans);font-size:0.84rem;line-height:1.52;color:var(--text-muted);margin-top:4px;">
+            <strong>No custom signature primitive:</strong> Non-repudiation relies strictly on standard asymmetric algorithms (<code>DSTU 4145-2002</code> over $\mathbb{F}_{2^{257}}$, <code>ECDSA</code>) and parallel 256-bit hashes (<code>GOST 34.311-95</code>, <code>DSTU 7564:2014 Kupyna-256</code>, <code>SHA-256</code>).
+            <br /><strong>100% Post-Quantum Cryptographic Agility (NIST FIPS 204 / FIPS 205):</strong> While classical elliptic curves are vulnerable to Shor's algorithm, the 27-channel bijective geometric codec $\mathcal{E}_{10}$ is <strong>signature-agnostic</strong> — it encodes any 256-bit digest $V = \text{SHA3-256}(\sigma_{\text{PQC}}) \in \{0,1\}^{256}$. Migrating from <code>DSTU 4145-2002</code> to <strong>NIST FIPS 204 (<code>ML-DSA</code> / Dilithium)</strong> or <strong>NIST FIPS 205 (<code>SLH-DSA</code> / SPHINCS+)</strong> requires zero changes to the geometric lattice.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Academic Citation Block (Google Scholar / CERN Zenodo / BibTeX) -->
     <section class="card" style="margin-top:24px;">
       <div class="card-header">
         <div class="card-title">🎓 Academic Citation &amp; Google Scholar Indexing (DOI: 10.5281/zenodo.23436152)</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <a class="pill-link" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank" rel="noopener">📄 Direct PDF (EN)</a>
-          <a class="pill-link" href="ua.html">🇺🇦 Ukrainian Citation Metadata (UA)</a>
+          <a class="pill-link" href="ua.html">🇺🇦 Ukrainian Specification &amp; FAQ (UA)</a>
           <a class="pill-link" href="https://doi.org/10.5281/zenodo.23436152" target="_blank" rel="noopener">🏛️ CERN Zenodo Record</a>
         </div>
       </div>

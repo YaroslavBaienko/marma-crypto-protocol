@@ -23,7 +23,8 @@ legaltech-link
 inbox/
 manifests/
 metadata/
-reports/
+reports/*
+!reports/v2_hypothesis_verification_report.json
 .qdrant_key
 .litellm_key
 producthunt/facebook_slides_*/

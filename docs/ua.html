@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Протокол «Марма-Крипто» (v1.3.0) — Криптографічно-геометричний водяний знак Шрі Янтри та ДСТУ 4145-2002</title>
-  <meta name="description" content="Офіційне українське академічне видання Whitepaper Протоколу «Марма-Крипто» (v1.3.0): нелінійна планіметрія Шрі Янтри, 256-бітна бієктивна геометрія та еліптичні криві ДСТУ 4145-2002 над GF(2^257). Автор: Баєнко Ярослав Володимирович. DOI: 10.5281/zenodo.23436152." />
+  <title>Протокол «Марма-Крипто» (v1.3.0 / Marma-256) — 256-бітний бієктивний геометричний водяний знак PDF/SVG та ДСТУ 4145-2002</title>
+  <meta name="description" content="Офіційне українське видання та інженерна специфікація протоколу «Марма-Крипто» (v1.3.0 / Marma-256): нелінійна планіметрія Шрі Янтри, 256-бітне бієктивне кодування координат (18 нпт), Canary Leak-Tracing та еліптичні криві ДСТУ 4145-2002 над GF(2^257). Автор: Баєнко Ярослав Володимирович. DOI: 10.5281/zenodo.23436152." />
   <link rel="canonical" href="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
 
   <!-- Google Scholar Highwire Press Citation Meta Tags (Ukrainian Edition) -->
@@ -19,66 +19,277 @@
   <meta name="citation_pdf_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/whitepaper/Marma_Crypto_Whitepaper_UA.pdf" />
   <meta name="citation_fulltext_html_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
   <meta name="citation_language" content="uk" />
-  <meta name="citation_keywords" content="Прикладна криптографія; Цифровий водяний знак; Шрі Янтра; ДСТУ 4145-2002; Еліптичні криві; GF(2^257); PAdES-LTA; Кваліфікований електронний підпис; LegalTech" />
-  <meta name="citation_abstract" content="У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.3.0), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми, 256-бітне бієктивне кодування координат та Canary Leak-Tracing) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP." />
+  <meta name="citation_keywords" content="Прикладна криптографія; Цифровий водяний знак; Шрі Янтра; ДСТУ 4145-2002; Еліптичні криві; GF(2^257); PAdES-LTA; Кваліфікований електронний підпис; Постквантова криптографія; LegalTech" />
+  <meta name="citation_abstract" content="У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.3.0 / Marma-256), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми, 256-бітне бієктивне кодування координат із кроком 18 нпт та Canary Leak-Tracing) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP." />
 
   <style>
+    :root {
+      --bg: #0b111e;
+      --card: #111a2e;
+      --card-alt: #0d1526;
+      --gold: #d4a843;
+      --gold-bright: #f3c969;
+      --border: rgba(212, 168, 67, 0.28);
+      --text: #f4f1ea;
+      --muted: #b0b8c8;
+    }
+    * { box-sizing: border-box; }
     body {
-      background: #0b111e;
-      color: #f4f1ea;
+      background: var(--bg);
+      color: var(--text);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      max-width: 920px;
-      margin: 40px auto;
-      padding: 24px;
+      max-width: 1080px;
+      margin: 28px auto;
+      padding: 20px;
       line-height: 1.65;
     }
     .card {
-      background: #111a2e;
-      border: 1px solid rgba(212, 168, 67, 0.28);
+      background: var(--card);
+      border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 28px;
+      padding: 26px;
+      margin-bottom: 22px;
     }
-    h1 { color: #f3c969; font-size: 1.55rem; margin-bottom: 12px; }
-    a { color: #f3c969; }
+    h1 { color: var(--gold-bright); font-size: 1.55rem; margin-top: 0; margin-bottom: 12px; }
+    h2 { color: var(--gold-bright); font-size: 1.25rem; margin-top: 0; margin-bottom: 12px; border-bottom: 1px solid rgba(212, 168, 67, 0.2); padding-bottom: 8px; }
+    h3 { color: var(--gold-bright); font-size: 1.05rem; margin-top: 18px; margin-bottom: 8px; }
+    a { color: var(--gold-bright); }
     .btn {
       display: inline-block;
-      margin-top: 14px;
+      margin-top: 10px;
       margin-right: 10px;
       padding: 10px 18px;
       border-radius: 6px;
-      background: #d4a843;
+      background: var(--gold);
       color: #0b111e;
       font-weight: 700;
       text-decoration: none;
     }
     .btn-alt {
       background: transparent;
-      border: 1px solid rgba(212, 168, 67, 0.45);
-      color: #f3c969;
+      border: 1px solid rgba(212, 168, 67, 0.5);
+      color: var(--gold-bright);
+    }
+    .tldr-box {
+      background: rgba(212, 168, 67, 0.08);
+      border-left: 4px solid var(--gold);
+      padding: 14px 18px;
+      border-radius: 6px;
+      margin: 16px 0;
+      font-size: 0.94rem;
     }
     pre {
-      background: #0b111e;
+      background: #080d18;
       padding: 14px;
       border-radius: 8px;
       border: 1px solid rgba(212, 168, 67, 0.22);
       overflow-x: auto;
-      color: #f3c969;
+      color: var(--gold-bright);
       font-size: 0.82rem;
+    }
+    code {
+      font-family: "JetBrains Mono", Consolas, monospace;
+      background: rgba(255, 255, 255, 0.06);
+      padding: 2px 5px;
+      border-radius: 4px;
+      font-size: 0.86em;
+    }
+    pre code { background: transparent; padding: 0; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid rgba(212, 168, 67, 0.22);
+      padding: 10px 12px;
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: #182542;
+      color: var(--gold-bright);
+    }
+    .fig-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .fig-box {
+      background: #fff;
+      color: #111;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .fig-box.dark-svg {
+      background: #0b111e;
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .fig-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 4px;
+    }
+    .fig-cap {
+      font-size: 0.78rem;
+      margin-top: 8px;
+      opacity: 0.85;
     }
   </style>
 </head>
 <body>
+
+  <!-- Головна картка -->
   <div class="card">
-    <h1>Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257)</h1>
-    <p><strong>Автор:</strong> Баєнко Ярослав Володимирович (Yaroslav Baienko) · <strong>Дата публікації:</strong> 17 жовтня 2026 р. · <strong>Версія:</strong> 1.3.0 · <strong>DOI:</strong> <a href="https://doi.org/10.5281/zenodo.23436152">10.5281/zenodo.23436152</a></p>
-    <p><strong>Анотація:</strong> У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.3.0), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми, 256-бітне бієктивне кодування координат, Canary Leak-Tracing та клієнтську браузерну студію запечатування з двосторонньою сумісністю з CLI) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP.</p>
-    <div>
-      <a class="btn" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf">📕 Завантажити PDF (Українське видання · КЕП PAdES-LTA)</a>
-      <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf">📘 English Edition PDF</a>
-      <a class="btn btn-alt" href="index.html">✍️ Відкрити Браузерну Студію Запечатування та Верифікатор</a>
+    <h1>🔱 Протокол «Марма-Крипто» (v1.3.0 / Marma-256): 256-бітний бієктивний геометричний водяний знак PDF/SVG на основі нелінійної планіметрії Шрі Янтри та ДСТУ 4145-2002</h1>
+    <p>
+      <strong>Автор:</strong> Баєнко Ярослав Володимирович (Yaroslav V. Baienko, адвокат, магістр права, магістр комп'ютерних наук) ·
+      <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-7498-2133">0009-0006-7498-2133</a> ·
+      <strong>Патентна заявка УКРНОІВІ:</strong> <code>a 2026 06266</code> (<code>Вх-72320/2026</code>) ·
+      <strong>Архів препринту (CERN Zenodo DOI):</strong> <a href="https://doi.org/10.5281/zenodo.23436152">10.5281/zenodo.23436152</a>
+    </p>
+
+    <div class="tldr-box">
+      <strong>⚡ Інженерний TL;DR (що це таке і чим це НЕ є):</strong>
+      <ul style="margin:8px 0 0 0;padding-left:20px;">
+        <li><strong>Що це:</strong> Бієктивний векторно-графічний кодек ($\mathcal{E}_{10}$) для документів PDF (<code>ISO 32000-2</code>) та SVG, де <strong>сама видима на сторінці векторна печатка несе у своїх координатах усі 256 біт дайджесту криптографічного підпису</strong> $V = \text{SHA-256}(r \parallel s)$ з цілочисельним кроком $18\text{ нпт}$ ($1.8 \times 10^{-8}\text{ pt}$) плюс ортогональний <strong>10-бітний криміналістичний маяк отримувача (Canary Leak-Tracing)</strong> на 27-му каналі (<code>D5.ay</code>).</li>
+        <li><strong>Чим це НЕ є:</strong> Протокол <strong>не винаходить власний алгоритм ЕЦП</strong>, не замінює перевірку КЕП відкритим ключем підписанта і не конкурує зі штатним масивом <code>/ByteRange</code> у вбудованому PAdES, коли PDF лежить недоторканим. Він закриває 4 дірки реального документообігу: (1) зовнішні підписи <code>.p7s</code> без <code>/ByteRange</code> у PDF; (2) «сплющення» (<code>flatten</code>) PDF у корпоративних СЕД та канцеляріях; (3) інкрементальні дописування після підпису; (4) вимогу держорганів бачити візуальний штамп на сторінці та відстеження витоків між контрагентами.</li>
+        <li><strong>100% постквантова сумісність (NIST PQC Agility):</strong> Геометрична решітка $\mathcal{E}_{10}$ кодує довільний 256-бітний дайджест підпису, тому при міграції з класичних еліптичних кривих ДСТУ 4145-2002 / ECDSA (вразливих до квантового алгоритму Шора) на постквантові стандарти <strong>NIST FIPS 204 (ML-DSA / Dilithium)</strong> або <strong>NIST FIPS 205 (SLH-DSA / SPHINCS+)</strong> жодна формула геометричного шару не змінюється.</li>
+      </ul>
     </div>
-    <h3 style="margin-top:24px;color:#f3c969;">Цитування за ДСТУ 8302:2015 / APA:</h3>
+
+    <div>
+      <a class="btn" href="index.html">✍️ Відкрити Інтерактивну Браузерну Студію та Верифікатор (100% Client-Side)</a>
+      <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf">📕 Український Whitepaper (PDF · КЕП PAdES-LTA)</a>
+      <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf">📘 English Whitepaper (PDF)</a>
+      <a class="btn btn-alt" href="https://github.com/YaroslavBaienko/marma-crypto-protocol">💻 GitHub Репозиторій</a>
+    </div>
+  </div>
+
+  <!-- Візуальна архітектура та геометричні діаграми -->
+  <div class="card">
+    <h2>🖼️ Візуальна архітектура та геометрія решітки Marma-256</h2>
+    <p style="color:var(--muted);font-size:0.92rem;">
+      Наочна будова 9 взаємоперетинних трикутників Шрі Янтри ($\mathcal{C}_{9,54}$: 43 суб-трикутники, 54 потрійні вузли перетину — марми, 27 ортогональних симетричних ступенів свободи) та конвеєр бієктивного кодування:
+    </p>
+    <div class="fig-grid">
+      <div class="fig-box dark-svg">
+        <img src="assets/sri_yantra_whitepaper_diagram.svg" alt="Еталонна векторна печатка Шрі Янтри (Marma-256)" style="max-height:300px;" />
+        <div class="fig-cap">Рис. 1. Еталонна векторна печатка Шрі Янтри (9 трикутників, 54 марми, 26 каналів підпису + 27-й канал Canary <code>D5.ay</code>).</div>
+      </div>
+      <div class="fig-box">
+        <img src="assets/fig2_c954_geometry.svg" alt="Планарна конфігурація C9,54 та розподіл 27 каналів" />
+        <div class="fig-cap">Рис. 2. Перевизначена планарна конфігурація $\mathcal{C}_{9,54}$ та розподіл 27 ортогональних симетричних каналів.</div>
+      </div>
+    </div>
+    <div class="fig-box" style="margin-top:16px;">
+      <img src="assets/fig1_architecture.svg" alt="Архітектурний пайплайн Marma-256" />
+      <div class="fig-cap">Рис. 3. Повний конвеєр запечатування та верифікації: паралельний комбайнер <code>ГОСТ 34.311-95 (256 біт) || Купина-256 (ДСТУ 7564:2014) || SHA-256</code> → КЕП ДСТУ 4145-2002 / PQC → 256-бітна решітка з кроком 18 нпт.</div>
+    </div>
+  </div>
+
+  <!-- Моделі загроз та 3 режими роботи -->
+  <div class="card">
+    <h2>🛡️ Моделі загроз та 3 режими роботи (Threat Model Separation)</h2>
+    <p style="color:var(--muted);font-size:0.92rem;">
+      Для уникнення будь-якої плутанини між асиметричним кваліфікованим електронним підписом (КЕП), симетричним захистом конфіденційних кімнат угод (Deal-Room) та публічною контрольною сумою у браузері, протокол суворо розмежовує три режими:
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <thead>
+          <tr>
+            <th>Режим роботи</th>
+            <th>Криптографічний секрет / якір</th>
+            <th>Що гарантує</th>
+            <th>Обмеження (чого НЕ гарантує)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Mode 1: Асиметричний КЕП-режим</strong><br>(<code>PAdES-B-LTA</code> / <code>CAdES-X-Long</code> через апаратний ЗНОК або приватний ключ <code>.pfx</code>/<code>.zs2</code> за ДСТУ 4145-2002)</td>
+            <td>Приватний ключ підписанта $d \in \mathbb{F}_{2^{257}}$ + кваліфікований сертифікат X.509 $Q_{\text{signer}}$ + мітка часу RFC 3161 TSP</td>
+            <td><strong>Повна криптографічна автентичність та неспростовність.</strong> 256-бітна векторна решітка кодує $V = \text{SHA-256}(r \parallel s)$. Нападник без приватного ключа $d$ не може підробити $(r, s)$ для зміненого тексту. Якщо бінарний контейнер PKCS#7 зрізано при flatten, відновлений із геометрії вектор $V$ зберігає криптографічну прив'язку до запису підпису $(r, s)$.</td>
+            <td><strong>Візуальна геометрія не замінює перевірку КЕП.</strong> Верифікатор обов'язково перевіряє підпис $(r, s)$ відкритим ключем $Q_{\text{signer}}$ (або звіряє відновлений 256-бітний вектор $V$ із протоколом підпису).</td>
+          </tr>
+          <tr>
+            <td><strong>Mode 2: Симетричний корпоративний режим Deal-Room</strong><br>(<code>--secret &lt;key&gt;</code> у CLI або приватний Master Secret у браузері + Canary <code>D5.ay</code>)</td>
+            <td>Спільний секретний ключ $K_{\text{sec}}$ (<code>HMAC-SHA256</code> + скаляр еліптичної кривої)</td>
+            <td><strong>Виявлення модифікацій та трасування джерела витоку (<code>Canary</code>) проти третіх осіб.</strong> Отримувач без знання $K_{\text{sec}}$ не може підробити печатку після зміни тексту або видати свій екземпляр за копію іншого контрагента (<code>--strict-key</code>).</td>
+            <td><strong>Це не асиметричний КЕП.</strong> Будь-яка сторона, яка володіє секретним ключем $K_{\text{sec}}$, може перезапечатати змінений документ.</td>
+          </tr>
+          <tr>
+            <td><strong>Mode 3: Публічний безключовий дайджест</strong><br>(порожній/дефолтний ключ у демо або <code>--hash auto</code>)</td>
+            <td><strong>Відсутній</strong> (обчислюється детерміновано від публічного хешу документа $H_{\text{comb}}(M)$)</td>
+            <td><strong>Детермінована візуально-векторна контрольна сума (integrity checksum).</strong> Виявляє випадкове пошкодження або неузгоджені правки за умови, що оригінальний дайджест або OpenTimestamps-доказ (<code>.ots</code>) зафіксовано у зовнішньому реєстрі чи листуванні.</td>
+            <td><strong>Не захищає від навмисної підробки сам по собі.</strong> Оскільки секретного ключа немає, нападник, який змінює текст, може сам перерахувати безключовий штамп і перемалювати геометрію під змінений документ.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:0.86rem;color:var(--muted);margin-top:12px;">
+      <strong>⚠️ Оптична перевірка на око (<code>24-біт</code> у legacy <code>v1.2</code>) проти програмного парсингу (<code>256-біт</code> у <code>v1.3 Marma-256</code>):</strong>
+      людське око не здатне розрізнити мікрозсуви вершин у $18\text{ нпт}$ ($1.8 \times 10^{-8}\text{ pt}$). Дискретний візуальний індикатор <code>v1.2</code> $K=(k_0,k_1,k_2,k_3) \in \{0,1\}^{24}$ має поріг колізії за парадоксом днів народження лише $2^{12} = 4096$ спроб і слугує виключно макроскопічною підказкою. Повна криптографічна стійкість до колізій ($2^{128}$) забезпечується <strong>лише при програмній верифікації</strong> всіх 26 симетричних каналів векторного потоку PDF (<code>q ... m l h S Q</code>) або SVG.
+    </p>
+  </div>
+
+  <!-- Інженерний FAQ за мотивами обговорення на DOU -->
+  <div class="card">
+    <h2>🔍 Інженерний FAQ (за мотивами технічного обговорення спільноти DOU)</h2>
+    <p style="font-size:0.88rem;color:var(--muted);">
+      Повний реєстр конструктивних зауважень учасників обговорення на DOU (<a href="https://dou.ua/forums/topic/62699/">dou.ua/forums/topic/62699/</a>) та змін у репозиторії задокументовано у файлі <a href="https://github.com/YaroslavBaienko/marma-crypto-protocol/blob/main/docs/DOU_COMMUNITY_FEEDBACK.md"><code>docs/DOU_COMMUNITY_FEEDBACK.md</code></a>.
+    </p>
+
+    <h3>1. У штатному вбудованому PAdES масив <code>/ByteRange</code> і так покриває всі байти PDF (включно з координатами видимого стікера), окрім <code>/Contents</code>. Навіщо тоді потрібен Marma-256?</h3>
+    <p>
+      Коли файл із вбудованим PAdES зберігається в ідеальному середовищі без перетворень, штатний <code>/ByteRange</code> справді захищає байти документа. Проте в реальному юридичному, банківському та державному документообігу виникають <strong>чотири структурні дірки</strong>, які штатний <code>/ByteRange</code> не закриває:
+    </p>
+    <ol>
+      <li><strong>Зовнішні підписи (<code>.p7s</code> / CAdES Detached) та «німа» візуальна плашка:</strong> Величезна частка документів в Україні («Вчасно», «M.E.Doc», ЦЗО, суди) підписується відділеним файлом <code>.p7s</code>, а на сам PDF накладається декоративний штамп «Підписано КЕП». У такому PDF <strong>взагалі немає <code>/ByteRange</code></strong>, а візуальний штамп несе <strong>0 біт</strong> криптографії (водночас держоргани часто відмовляються приймати підписаний PDF, якщо на сторінці немає видимого штампа печатки). <code>Marma-256</code> перетворює саму видиму векторну печатку на безвтратний 256-бітний носій вектора підпису $V = \text{SHA-256}(r \parallel s)$.</li>
+      <li><strong>«Сплющення» PDF (DMS Flattening / Print-to-PDF) у корпоративних СЕД:</strong> Під час проходження документа через корпоративні шлюзи СЕД або архівну нормалізацію бінарний контейнер PKCS#7 (<code>/Contents</code> та <code>/ByteRange</code>) часто зрізається під час перезбереження сторінок, але векторна графіка сторінки (оператори <code>q ... m l h S Q</code>) виживає. Завдяки запасу стійкості $9.207\,\mu\text{pt}$ (що витримує округлення PDF-координат до 5 знаків після коми з $0\%$ бітових помилок) 256-бітний відбиток підпису $V$ зберігається всередині векторного малюнка печатки.</li>
+      <li><strong>Інкрементальні дописування після підпису (Incremental Updates / Shadow Attacks):</strong> Відома вразливість PDF-підписів (Mladenov et al., ACM CCS 2019), коли після підписання у кінець PDF дописується інкрементальна ревізія (<code>%%EOF</code>), що змінює видимий текст без руйнування старого <code>/ByteRange</code>. <code>Marma-256</code> канонізує весь видимий текстовий потік документа і прив'язує його до координат 9 трикутників.</li>
+      <li><strong>Криміналістичне трасування витоків (Canary Leak-Tracing на <code>D5.ay</code>):</strong> Штатний PAdES не дозволяє непомітно маркувати копії документа для різних контрагентів у Deal-Room без перепідписання або відкритих метаданих. 27-й ортогональний канал <code>Marma-256</code> кодує 10-бітний маяк отримувача з нульовим взаємним витоком інформації про підпис автора ($I(V; w_c) = 0$).</li>
+    </ol>
+
+    <h3>2. Чи намагається Marma-Crypto замінити стандартні алгоритми підпису на «власну криптографію», і що буде в епоху квантових комп'ютерів (NIST PQC)?</h3>
+    <ul>
+      <li><strong>Жодної «саморобної криптографії підпису»:</strong> <code>Marma-Crypto</code> принципово <strong>не винаходить новий алгоритм ЕЦП чи хешування</strong>. Вся криптографічна стійкість базується виключно на перевірених стандартах (ДСТУ 4145-2002 над $\mathbb{F}_{2^{257}}$, ГОСТ 34.311-95, ДСТУ 7564:2014 «Купина-256», FIPS 180-4 SHA-256). Геометрія Шрі Янтри виступає виключно як <strong>бієктивний векторний кодек (transport layer)</strong>.</li>
+      <li><strong>Повна постквантова криптографічна гнучкість (Post-Quantum Agility — NIST FIPS 204 / FIPS 205):</strong> Класичні еліптичні криві (зокрема ДСТУ 4145-2002 та ECDSA) справді є вразливими до квантового алгоритму Шора. Проте 27-канальний геометричний кодек $\mathcal{E}_{10}: \{0,1\}^{256} \times \{0,\dots,1023\} \to \mathbb{R}^{9\times 4}$ є <strong>повністю агностичним до схеми підпису</strong>: він приймає будь-який 256-бітний хеш-комітмент $V = \text{SHA3-256}(\sigma_{\text{PQC}}) \in \{0,1\}^{256}$. Тому при переході з ДСТУ 4145-2002 на постквантові стандарти <strong>NIST FIPS 204 (ML-DSA / CRYSTALS-Dilithium)</strong> або <strong>NIST FIPS 205 (SLH-DSA / SPHINCS+)</strong> геометричний шар залишається на 100% незмінним (стійкість 256-бітного хешу проти алгоритму Гровера становить $2^{128}$ кубітних операцій).</li>
+    </ul>
+
+    <h3>3. Яка точна бітність ГОСТ 34.311-95 та ДСТУ 7564:2014 «Купина» у паралельному комбайнері?</h3>
+    <p>
+      Усі три паралельні гілки комбайнера $H_{\text{comb}}(M)$ формують строго <strong>256-бітні дайджести</strong>:
+      <strong>ГОСТ 34.311-95</strong> (строго 256-бітний вихід),
+      <strong>ДСТУ 7564:2014 «Купина-256»</strong> (256-бітний вихід, що обчислюється над 512-бітною внутрішньою матрицею стану; стандарт ДСТУ 7564:2014 також визначає варіант <code>Kupyna-512</code>) та
+      <strong>FIPS 180-4 SHA-256</strong> (256 біт). Щоб підробити $H_{\text{comb}}(M)$, супротивник має знайти одночасну колізію у всіх трьох функціях стиснення.
+    </p>
+
+    <h3>4. Як безпечно встановити пакет на Debian / Ubuntu без <code>curl | sudo bash</code>?</h3>
+    <p>
+      Ми підтримуємо стандартну практику Debian через ізольований GPG-ключ у <code>/etc/apt/keyrings/legaltech.gpg</code> (RSA-4096 відбиток <code>3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B</code>) та атрибут <code>signed-by</code>:
+    </p>
+    <pre><code># 1. Завантажити та деарморувати відкритий GPG-ключ репозиторію
+curl -fsSL https://yaroslavbaienko.github.io/legaltech/public.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/legaltech.gpg
+
+# 2. Додати підписане джерело APT
+echo "deb [signed-by=/etc/apt/keyrings/legaltech.gpg] https://yaroslavbaienko.github.io/legaltech stable main" | sudo tee /etc/apt/sources.list.d/legaltech.list
+
+# 3. Встановити пакети
+sudo apt update && sudo apt install marma-crypto-watermark qes-tools</code></pre>
+  </div>
+
+  <!-- Цитування -->
+  <div class="card">
+    <h2>🎓 Академічне цитування та статус публікацій</h2>
+    <p style="font-size:0.88rem;color:var(--muted);">
+      <strong>Примітка щодо статусу архівів:</strong> відкриті репозиторії (<code>CERN Zenodo</code>, <code>Elsevier SSRN</code>, <code>Figshare</code>, <code>UNESCO / Inria Software Heritage</code>) є <strong>нерецензованими архівами самодепонування (non-peer-reviewed prior-art archives)</strong> для незмінної фіксації пріоритету за часом та відтворюваності коду (ISO/IEC 18670). Офіційна патентна експертиза на винахід триває в УКРНОІВІ (заявка <code>a 2026 06266</code> від 19.10.2026).
+    </p>
     <pre>Баєнко Я. В. Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257) (Версія 1.3.0). CERN Zenodo, 2026. 9 с. DOI: https://doi.org/10.5281/zenodo.23436152</pre>
   </div>
+
 </body>
 </html>
