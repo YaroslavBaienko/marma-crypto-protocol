@@ -977,22 +977,53 @@
       return Math.max(0, Math.min(1023, w));
     }
 
-    function applySignedPerturbations(baseTris, hmacHex, cx = 150.0, protocol = "MARMA-DSTU4145-V1.2", canaryWord = 0) {
+    function deriveKeyedQimSchedule(secretKey, docNonce = "") {
+      const perm = Array.from({ length: 27 }, (_, k) => k);
+      const seedHex = hmacSha256Hex(secretKey, `MARMA-QIM-PERM-V2::${docNonce}`);
+      for (let i = 26; i > 0; i--) {
+        const stepHex = hmacSha256Hex(secretKey, `MARMA-QIM-PERM-STEP-V2::${seedHex}::${i}`);
+        const j = (parseInt(stepHex.slice(0, 8), 16) >>> 0) % (i + 1);
+        const tmp = perm[i];
+        perm[i] = perm[j];
+        perm[j] = tmp;
+      }
+      const dither = [];
+      for (let k = 0; k < 27; k++) {
+        const dhHex = hmacSha256Hex(secretKey, `MARMA-QIM-DITHER-V2::${docNonce}::${k}`);
+        dither.push(parseInt(dhHex.slice(0, 4), 16) & 0x3ff);
+      }
+      return { perm, dither };
+    }
+
+    function applySignedPerturbations(baseTris, hmacHex, cx = 150.0, protocol = "MARMA-DSTU4145-V1.2", canaryWord = 0, qimKey = "", docNonce = "") {
       if (protocol === "MARMA-DSTU4145-V1.3") {
         const words = split256BitsTo26Words(hmacHex);
-        return baseTris.map((t, idx) => {
-          const wLx = words[idx * 3];
-          const wBy = words[idx * 3 + 1];
-          const dLx = word10ToDelta(wLx);
-          const dBy = word10ToDelta(wBy);
-          let wAy, dAy;
-          if (idx < 8) {
-            wAy = words[idx * 3 + 2];
-            dAy = word10ToDelta(wAy);
-          } else {
-            wAy = Number(canaryWord) | 0;
-            dAy = wAy === 0 ? 0.0 : word10ToDelta(wAy);
+        const logicalWords = words.concat([Number(canaryWord) & 0x3ff]);
+        const physicalDeltas = new Array(27).fill(0.0);
+        const physicalWords = new Array(27).fill(0);
+        if (qimKey) {
+          const { perm, dither } = deriveKeyedQimSchedule(qimKey, docNonce);
+          for (let k = 0; k < 27; k++) {
+            const ditheredW = (logicalWords[k] + dither[k]) & 0x3ff;
+            physicalWords[perm[k]] = ditheredW;
+            physicalDeltas[perm[k]] = word10ToDelta(ditheredW);
           }
+        } else {
+          for (let k = 0; k < 26; k++) {
+            physicalWords[k] = words[k];
+            physicalDeltas[k] = word10ToDelta(words[k]);
+          }
+          const cw = Number(canaryWord) | 0;
+          physicalWords[26] = cw;
+          physicalDeltas[26] = cw === 0 ? 0.0 : word10ToDelta(cw);
+        }
+        return baseTris.map((t, idx) => {
+          const wLx = physicalWords[idx * 3];
+          const wBy = physicalWords[idx * 3 + 1];
+          const wAy = physicalWords[idx * 3 + 2];
+          const dLx = physicalDeltas[idx * 3];
+          const dBy = physicalDeltas[idx * 3 + 1];
+          const dAy = physicalDeltas[idx * 3 + 2];
           const lx_s = Number((t.lx + dLx).toFixed(9));
           const rx_s = Number((cx * 2.0 - lx_s).toFixed(9));
           const by_s = Number((t.by + dBy).toFixed(9));
@@ -1032,27 +1063,38 @@
       });
     }
 
-    function recover256BitFromTriangles(triangles, cx = 150.0) {
+    function recover256BitFromTriangles(triangles, cx = 150.0, qimKey = "", docNonce = "") {
       const base = solveBaselineYantra(cx);
       const baseMap = {};
       base.forEach(b => { baseMap[b.name] = b; });
-      const words = [];
-      let canaryWord = 0;
-      let canaryDelta = 0.0;
-      triangles.forEach((t, idx) => {
+      const physicalDeltas = [];
+      triangles.forEach((t) => {
         const b = baseMap[t.name];
         const dLx = Number((Number(t.lx) - b.lx).toFixed(9));
         const dBy = Number((Number(t.by) - b.by).toFixed(9));
         const dAy = Number((Number(t.ay) - b.ay).toFixed(9));
-        words.push(deltaToWord10(dLx));
-        words.push(deltaToWord10(dBy));
-        if (idx < 8) {
-          words.push(deltaToWord10(dAy));
-        } else {
-          canaryDelta = dAy;
-          canaryWord = Math.abs(dAy) < 1e-12 ? 0 : deltaToWord10(dAy);
-        }
+        physicalDeltas.push(dLx, dBy, dAy);
       });
+      let words = [];
+      let canaryWord = 0;
+      let canaryDelta = physicalDeltas[26] || 0.0;
+      if (qimKey) {
+        const { perm, dither } = deriveKeyedQimSchedule(qimKey, docNonce);
+        const logicalWords = new Array(27).fill(0);
+        for (let k = 0; k < 27; k++) {
+          const physW = deltaToWord10(physicalDeltas[perm[k]]);
+          logicalWords[k] = (physW - dither[k] + 1024) & 0x3ff;
+        }
+        words = logicalWords.slice(0, 26);
+        canaryWord = logicalWords[26];
+        canaryDelta = physicalDeltas[perm[26]];
+      } else {
+        for (let k = 0; k < 26; k++) {
+          words.push(deltaToWord10(physicalDeltas[k]));
+        }
+        canaryDelta = physicalDeltas[26];
+        canaryWord = Math.abs(canaryDelta) < 1e-12 ? 0 : deltaToWord10(canaryDelta);
+      }
       return {
         recovered_hmac_hex: words26To256BitHex(words),
         words_26: words,

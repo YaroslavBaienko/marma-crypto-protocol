@@ -34,6 +34,7 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
         cls.jisa_typ_path = REPO_ROOT / "submission_elsevier_jisa" / "Marma_Crypto_Elsevier_JISA_Edition.typ"
         cls.iacr_typ_path = REPO_ROOT / "whitepaper" / "Marma_Crypto_IACR_LNCS_Edition.typ"
         cls.jisa_pdf_path = REPO_ROOT / "submission_elsevier_jisa" / "01_Manuscript_Marma_Crypto_JISA.pdf"
+        cls.sigpro_pdf_path = REPO_ROOT / "submission_elsevier_jisa" / "01_Manuscript_Marma_Signal_Processing.pdf"
         cls.iacr_pdf_path = REPO_ROOT / "whitepaper" / "Marma_Crypto_IACR_LNCS_Edition.pdf"
         cls.report_path = REPO_ROOT / "reports" / "v2_hypothesis_verification_report.json"
         cls.cover_letter_path = REPO_ROOT / "submission_elsevier_jisa" / "02_Cover_Letter_JISA.txt"
@@ -53,29 +54,40 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
     # =========================================================================
 
     def test_stage1_01_typ_and_pdf_parity(self) -> None:
-        """Cross-check that JISA and IACR .typ sources are byte-identical and PDFs compile cleanly."""
+        """Cross-check that JISA, SIGPRO, and IACR .typ/PDF sources are byte-identical and compile cleanly."""
         self.assertTrue(self.jisa_typ_path.exists())
         self.assertTrue(self.iacr_typ_path.exists())
         self.assertEqual(
             self.jisa_typ_path.read_bytes(),
             self.iacr_typ_path.read_bytes(),
-            "JISA and IACR .typ manuscript files must be byte-for-byte identical",
+            "JISA/SIGPRO and IACR .typ manuscript files must be byte-for-byte identical",
         )
         self.assertTrue(self.jisa_pdf_path.exists())
+        self.assertTrue(self.sigpro_pdf_path.exists())
         self.assertTrue(self.iacr_pdf_path.exists())
+        self.assertEqual(
+            self.jisa_pdf_path.read_bytes(),
+            self.sigpro_pdf_path.read_bytes(),
+            "01_Manuscript_Marma_Crypto_JISA.pdf and 01_Manuscript_Marma_Signal_Processing.pdf must match",
+        )
         self.assertGreaterEqual(self.pdf_page_count, 18)
         self.assertLessEqual(self.pdf_page_count, 22)
         with pymupdf.open(self.iacr_pdf_path) as doc2:
             self.assertEqual(self.pdf_page_count, len(doc2))
+        # Verify Signal Processing formatting: line numbering enabled and CRYPTOGRAPHIC ENGINEERING removed from header
+        self.assertIn("#set par.line(\n  numbering: n =>", self.typ_text)
+        self.assertNotIn("CRYPTOGRAPHIC ENGINEERING", self.typ_text)
+        self.assertIn("SIGNAL PROCESSING & INFORMATION HIDING MANUSCRIPT", self.typ_text)
 
     def test_stage1_02_theorems_figures_tables_and_sections(self) -> None:
-        """Cross-check presence of all Theorems 1-4, Proposition 1, Definitions 1-2, Figures 1-5, Tables 1-6."""
+        """Cross-check presence of all Theorems 1-5, Proposition 1, Definitions 1-2, Figures 1-5, Tables 1-6."""
         required_markers = [
             "Theorem 1 (Algebraic Irrationality",
             "Proposition 1 (L-BFGS-B Baseline Convergence and Local Jacobian Spectrum)",
             "Theorem 2 (Robustness of Parallel Combiner and EUF-CMA Security of Marma-256)",
             "Theorem 3 (IEEE-754 binary64 Bijective Lattice Inversion and Multi-Bound Reconciliation)",
             "Theorem 4 (Zero Cross-Talk Orthogonality and Constant-Rate Attribution)",
+            "Theorem 5 (Unobservability of Canary Allocation and Active Erasure Deterrence)",
             "Definition 1 (The 9-Triangle Configuration",
             "Definition 2 (Triple Concurrency Locus",
             "<fig1>",
@@ -366,6 +378,68 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
         )
         self.assertFalse(ver_bad["dstu4145_valid"])
 
+    def test_stage3_03_keyed_dithered_qim_and_active_traitor_defense(self) -> None:
+        """Cross-verify Theorem 5: Keyed Dithered QIM (d_K), permutation (pi_K), Python/JS parity, and 96.30% single-slot active-traitor tamper detection."""
+        import copy
+
+        sig_hex = hashlib.sha256(b"Theorem-5-Signal-Processing-Keyed-QIM-Payload").hexdigest()
+        canary_word = 733
+        qim_key = "SIGPRO-QIM-MASTER-KEY-2026"
+        doc_nonce = hashlib.sha256(b"Document-Canonical-Text-Stream-V2").hexdigest()
+
+        perm, dither = mw.derive_keyed_qim_schedule(qim_key, doc_nonce)
+        self.assertEqual(sorted(perm), list(range(27)), "pi_K must be a bijection on 0..26")
+        self.assertEqual(len(dither), 27)
+        self.assertTrue(all(0 <= d <= 1023 for d in dither))
+
+        # 1. Exact lossless inversion with correct key
+        tris_keyed = mw.build_perturbed_triangles_v13(
+            sig_hex, canary_beacon_word=canary_word, cx=150.0, qim_key=qim_key, doc_nonce=doc_nonce
+        )
+        rec_sig, rec_canary = mw.recover_256bit_from_triangles(
+            tris_keyed, cx=150.0, qim_key=qim_key, doc_nonce=doc_nonce
+        )
+        self.assertEqual(rec_sig, sig_hex)
+        self.assertEqual(rec_canary, canary_word)
+
+        # 2. Without the correct key (or with wrong key), extraction yields pseudorandom noise
+        wrong_sig, wrong_canary = mw.recover_256bit_from_triangles(
+            tris_keyed, cx=150.0, qim_key="WRONG-ADVERSARY-KEY", doc_nonce=doc_nonce
+        )
+        self.assertNotEqual(wrong_sig, sig_hex)
+
+        # 3. Exhaustive 27-slot Active White-Box Traitor Attack simulation (Theorem 5 bound):
+        # An attacker without K attempts to strip the canary by resetting 1 physical coordinate
+        # to its unperturbed canonical baseline value B*_k.
+        sig_corrupted_count = 0
+        canary_corrupted_to_nonzero_count = 0
+        coord_keys = ("lx", "by", "ay")
+        for slot in range(27):
+            tri_idx = slot // 3
+            coord_idx = slot % 3
+            ckey = coord_keys[coord_idx]
+            base_val = mw.CANONICAL_TRIANGLES[tri_idx][1 + coord_idx]
+
+            attacked = copy.deepcopy(tris_keyed)
+            attacked[tri_idx][ckey] = round(base_val, 9)
+            if ckey == "lx":
+                attacked[tri_idx]["rx"] = round(300.0 - round(base_val, 9), 9)
+
+            atk_sig, atk_canary = mw.recover_256bit_from_triangles(
+                attacked, cx=150.0, qim_key=qim_key, doc_nonce=doc_nonce
+            )
+            if atk_sig != sig_hex:
+                sig_corrupted_count += 1
+            elif atk_canary != canary_word and atk_canary != 0:
+                canary_corrupted_to_nonzero_count += 1
+
+        # Exactly 26 out of 27 single-coordinate attacks (96.296%) corrupt the 256-bit signature digest V!
+        self.assertEqual(sig_corrupted_count, 26)
+        self.assertAlmostEqual(sig_corrupted_count / 27.0, 26.0 / 27.0, places=6)
+        # And in the remaining 1/27 slot (k* = pi_K(26)), overwriting with B* shifts canary to a random dither residue != 0
+        self.assertEqual(canary_corrupted_to_nonzero_count, 1)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+

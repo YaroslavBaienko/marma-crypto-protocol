@@ -387,22 +387,59 @@ def compute_canary_tag(
     }
 
 
+def derive_keyed_qim_schedule(secret_key: str, doc_nonce: str = "") -> tuple[list[int], list[int]]:
+    """Derive a keyed pseudorandom channel permutation pi_K in S_27 and 27-word Chen-Wornell dither vector d_K in [0..1023]^27."""
+    key_bytes = secret_key.encode("utf-8")
+    perm = list(range(27))
+    seed_hex = hmac.new(
+        key_bytes, f"MARMA-QIM-PERM-V2::{doc_nonce}".encode("utf-8"), hashlib.sha256
+    ).hexdigest()
+    for i in range(26, 0, -1):
+        step_hex = hmac.new(
+            key_bytes, f"MARMA-QIM-PERM-STEP-V2::{seed_hex}::{i}".encode("utf-8"), hashlib.sha256
+        ).hexdigest()
+        j = int(step_hex[:8], 16) % (i + 1)
+        perm[i], perm[j] = perm[j], perm[i]
+    dither: list[int] = []
+    for k in range(27):
+        dh_hex = hmac.new(
+            key_bytes, f"MARMA-QIM-DITHER-V2::{doc_nonce}::{k}".encode("utf-8"), hashlib.sha256
+        ).hexdigest()
+        dither.append(int(dh_hex[:4], 16) & 0x3FF)
+    return perm, dither
+
+
 def build_perturbed_triangles_v13(
     hex_sig: str,
     canary_beacon_word: int = 0,
     cx: float = 150.0,
+    qim_key: str = "",
+    doc_nonce: str = "",
 ) -> list[dict]:
-    """Encode all 256 bits of hex_sig + optional Canary beacon word into 9 triangles (27 symmetric DoF)."""
+    """Encode all 256 bits of hex_sig + optional Canary beacon word into 9 triangles (27 symmetric DoF).
+    When qim_key is provided, applies Keyed Dithered QIM (d_K) and pseudorandom channel permutation (pi_K).
+    """
     scale = 2.0 if cx == 300.0 else 1.0
     words_26 = split_256bits_to_26_words(hex_sig)
+    logical_words = list(words_26) + [int(canary_beacon_word) & 0x3FF]
+
+    if qim_key:
+        perm, dither = derive_keyed_qim_schedule(qim_key, doc_nonce)
+        physical_deltas = [0.0] * 27
+        for k in range(27):
+            dithered_w = (logical_words[k] + dither[k]) & 0x3FF
+            physical_deltas[perm[k]] = word10_to_delta(dithered_w)
+    else:
+        physical_deltas = [word10_to_delta(w) for w in words_26]
+        physical_deltas.append(
+            word10_to_delta(canary_beacon_word) if int(canary_beacon_word) > 0 else 0.0
+        )
+
     perturbed: list[dict] = []
     for idx, (name, lx, by, ay, rx, is_up) in enumerate(CANONICAL_TRIANGLES):
-        d_lx = word10_to_delta(words_26[idx * 3])
-        d_by = word10_to_delta(words_26[idx * 3 + 1])
-        if idx < 8:
-            d_ay = word10_to_delta(words_26[idx * 3 + 2])
-        else:
-            d_ay = word10_to_delta(canary_beacon_word) if int(canary_beacon_word) > 0 else 0.0
+        d_lx = physical_deltas[idx * 3]
+        d_by = physical_deltas[idx * 3 + 1]
+        d_ay = physical_deltas[idx * 3 + 2]
 
         lx_s = round(lx * scale + d_lx, 9)
         rx_s = round(cx * 2.0 - lx_s, 9)
@@ -424,27 +461,32 @@ def build_perturbed_triangles_v13(
 def recover_256bit_from_triangles(
     triangles: list[dict],
     cx: float = 150.0,
+    qim_key: str = "",
+    doc_nonce: str = "",
 ) -> tuple[str, int]:
     """Losslessly invert all 256 bits of the signature digest + Canary beacon word from the 9 triangles alone."""
     if len(triangles) != 9:
         return "", 0
     scale = 2.0 if cx == 300.0 else 1.0
-    words: list[int] = []
-    canary_word = 0
+    physical_deltas: list[float] = []
     for idx, (_, lx_can, by_can, ay_can, _, _) in enumerate(CANONICAL_TRIANGLES):
         t = triangles[idx]
         d_lx = round(float(t["lx"]) - round(lx_can * scale, 9), 9)
         d_by = round(float(t["by"]) - round(by_can * scale, 9), 9)
-        words.append(delta_to_word10(d_lx))
-        words.append(delta_to_word10(d_by))
         d_ay = round(float(t["ay"]) - round(ay_can * scale, 9), 9)
-        if idx < 8:
-            words.append(delta_to_word10(d_ay))
-        else:
-            if abs(d_ay) < 1e-11:
-                canary_word = 0
-            else:
-                canary_word = delta_to_word10(d_ay)
+        physical_deltas.extend([d_lx, d_by, d_ay])
+
+    if qim_key:
+        perm, dither = derive_keyed_qim_schedule(qim_key, doc_nonce)
+        logical_words: list[int] = [0] * 27
+        for k in range(27):
+            w_phys = delta_to_word10(physical_deltas[perm[k]])
+            logical_words[k] = (w_phys - dither[k]) & 0x3FF
+        return words_26_to_256bit_hex(logical_words[:26]), logical_words[26]
+
+    words = [delta_to_word10(d) for d in physical_deltas[:26]]
+    d_ay_last = physical_deltas[26]
+    canary_word = 0 if abs(d_ay_last) < 1e-11 else delta_to_word10(d_ay_last)
     return words_26_to_256bit_hex(words), canary_word
 
 

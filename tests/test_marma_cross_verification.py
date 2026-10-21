@@ -1039,6 +1039,52 @@ print(json.dumps(out))
             self.assertTrue(js_tamper_ver["tamperedTextFlag"])
             self.assertTrue(js_tamper_ver["bannerErr"])
 
+    def test_14_python_browser_js_keyed_dithered_qim_parity(self) -> None:
+        """Verify 100% bit-exact cross-runtime parity between Python and Browser JS for Keyed Dithered QIM (Theorem 5)."""
+        sig_hex = hashlib.sha256(b"Keyed-QIM-Cross-Runtime-Parity-Vector-2026").hexdigest()
+        canary_word = 819
+        qim_key = "EDU-VEDI::SIGPRO-KEYED-QIM-SECRET-2026"
+        doc_nonce = hashlib.sha256(b"Normalized-Document-Stream-Nonce-V2").hexdigest()
+
+        py_perm, py_dither = mw.derive_keyed_qim_schedule(qim_key, doc_nonce)
+        py_tris = mw.build_perturbed_triangles_v13(
+            sig_hex, canary_beacon_word=canary_word, cx=150.0, qim_key=qim_key, doc_nonce=doc_nonce
+        )
+        py_rec_sig, py_rec_canary = mw.recover_256bit_from_triangles(
+            py_tris, cx=150.0, qim_key=qim_key, doc_nonce=doc_nonce
+        )
+        self.assertEqual(py_rec_sig, sig_hex)
+        self.assertEqual(py_rec_canary, canary_word)
+
+        js_res = run_browser_js_harness(f"""
+          const sigHex = {json.dumps(sig_hex)};
+          const canaryWord = {canary_word};
+          const qimKey = {json.dumps(qim_key)};
+          const docNonce = {json.dumps(doc_nonce)};
+          const sched = deriveKeyedQimSchedule(qimKey, docNonce);
+          const base = solveBaselineYantra(150.0);
+          const tris = applySignedPerturbations(base, sigHex, 150.0, "MARMA-DSTU4145-V1.3", canaryWord, qimKey, docNonce);
+          const rec = recover256BitFromTriangles(tris, 150.0, qimKey, docNonce);
+          return {{
+            perm: sched.perm,
+            dither: sched.dither,
+            tris: tris.map(t => ({{ name: t.name, lx: t.lx, by: t.by, ay: t.ay, rx: t.rx }})),
+            recovered_hmac_hex: rec.recovered_hmac_hex,
+            canary_word: rec.canary_word
+          }};
+        """)
+
+        self.assertEqual(js_res["perm"], py_perm)
+        self.assertEqual(js_res["dither"], py_dither)
+        self.assertEqual(js_res["recovered_hmac_hex"], sig_hex)
+        self.assertEqual(js_res["canary_word"], canary_word)
+        for pt, jt in zip(py_tris, js_res["tris"]):
+            self.assertEqual(pt["name"], jt["name"])
+            self.assertEqual(pt["lx"], jt["lx"])
+            self.assertEqual(pt["by"], jt["by"])
+            self.assertEqual(pt["ay"], jt["ay"])
+            self.assertEqual(pt["rx"], jt["rx"])
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
