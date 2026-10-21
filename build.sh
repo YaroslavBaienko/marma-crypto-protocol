@@ -60,6 +60,7 @@ mkdir -p \
     "${PKGROOT}/DEBIAN" \
     "${PKGROOT}/usr/bin" \
     "${PKGROOT}/usr/lib/marma-crypto-watermark/bin" \
+    "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_crypto" \
     "${PKGROOT}/usr/share/marma-crypto-watermark/nautilus-scripts" \
     "${PKGROOT}/usr/share/icons/hicolor/scalable/apps" \
     "${PKGROOT}/usr/share/bash-completion/completions" \
@@ -67,6 +68,7 @@ mkdir -p \
 
 install -m 0755 "${SOURCE_DIR}/marma_watermark.py" "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_watermark.py"
 install -m 0755 "${SOURCE_DIR}/dstu4145_bridge.js" "${PKGROOT}/usr/lib/marma-crypto-watermark/dstu4145_bridge.js"
+install -m 0644 "${SOURCE_DIR}/marma_crypto/"*.py  "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_crypto/"
 install -m 0755 "${BIN_DIR}/marma-dialog"          "${PKGROOT}/usr/lib/marma-crypto-watermark/bin/marma-dialog"
 install -m 0755 "${BIN_DIR}/marma-config"          "${PKGROOT}/usr/lib/marma-crypto-watermark/bin/marma-config"
 install -m 0644 "${SCRIPT_DIR}/README.md"          "${PKGROOT}/usr/share/doc/marma-crypto-watermark/README.md"
@@ -103,7 +105,7 @@ _marma_watermark_completions() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="sign verify trace protocol keygen clear-session selftest --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --recipient-id --suspects --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
+    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
     if [[ ${cur} == -* ]] || [[ ${COMP_CWORD} -eq 1 ]]; then
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0
