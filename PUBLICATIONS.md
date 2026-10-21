@@ -43,7 +43,7 @@
 | **Center for Open Science — OSF / Law Archive** | Preprint `a8q5x_v1` (`osf.io/a8q5x`) | https://osf.io/preprints/lawarchive/a8q5x_v1 | Non-peer-reviewed legal scholarship preprint mirror (2026-10-19, `CC BY 4.0`) |
 | **Academia.edu** | Preprint Mirror (`Yaroslav Baienko`) | https://www.academia.edu | Academic profile preprint mirror (DOI `10.5281/zenodo.23436152`) |
 | **ResearchGate** | Preprint Mirror | https://www.researchgate.net | Preprint mirror linked with ORCID `0009-0006-7498-2133` |
-| **IACR Cryptology ePrint Archive** | `Submission xxxx/112661` (LNCS `14 pp.`) | https://eprint.iacr.org | Submitted 2026-10-19 (*Bijective Vector Commitments and Constant-Rate Traitor Tracing for PAdES-B-LTA Signatures via Overdetermined Planar Incidence Lattices over $\mathbb{F}_{2^{257}}$*, `Cryptographic protocols`, `CC BY 4.0`, awaiting moderation) |
+| **IACR Cryptology ePrint Archive** | `Submission xxxx/112662` (`v1.0` initial `14 pp.` draft) | https://eprint.iacr.org | Initial `14 pp.` draft submitted 2026-10-19 (`Cryptographic protocols`); declined by ePrint moderation on 2026-10-21 (applied vector steganography vs. pure cryptology scope; superseded by `Release v2.0` on Zenodo `10.5281/zenodo.23510005` & SSRN `10.2139/ssrn.7631458`) |
 | **ORCID Registry & OpenAIRE Research Graph** | `0009-0006-7498-2133` / `0000-0001-6690-2603` | https://orcid.org/0009-0006-7498-2133 | Author bibliographic index ([OpenAIRE](https://explore.openaire.eu/search/find?fv0=0009-0006-7498-2133&f0=relpersonid)) |
 | **Bitcoin Blockchain OpenTimestamps** | `.ots` Proofs (`whitepaper/*.ots`) | [`whitepaper/AUTHORSHIP_MANIFEST.txt.ots`](whitepaper/AUTHORSHIP_MANIFEST.txt.ots) | Decentralized cryptographic timestamp proof of EN/UA Whitepapers & Manifest |
 
