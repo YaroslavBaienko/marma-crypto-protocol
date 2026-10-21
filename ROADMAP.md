@@ -1,26 +1,29 @@
 # 🔱 Marma-Crypto Protocol — Strategic Roadmap & EU Grant Plan (`RES-MARMA-CRYPTO`)
 
-> **Current Production Release:** `v1.3.0` (`marma-crypto-watermark_1.3.0-1_all.deb`)
-> **CERN Zenodo DOI:** [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152) (Concept DOI: `10.5281/zenodo.23429017`)
+> **Current Production Release:** `v2.1.0` (`marma-crypto-watermark_2.1.0-1_all.deb` · Python SDK `marma_crypto v2.1.0`)
+> **Patent Status:** **`Patent Pending — UKRNOIVI Invention Application No. a 2026 06266`** (`Вх-72320/2026` · Fee Receipt `Вх-72403/2026`)
+> **Peer-Review Status:** **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** · **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)**
+> **CERN Zenodo DOI:** [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) (`v3` · Concept DOI: `10.5281/zenodo.23429017`)
 > **Software Heritage (ISO/IEC 18670 SWHID):** `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` (`swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c`)
 > **Live Client-Side Deal-Room Studio & Verifier:** [`https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 
 ---
 
-## ✅ Phase 1 & 2 — Completed (Core Protocol, `v1.3.0` Studio & Prior Art Triad)
+## ✅ Phase 1, 2 & 2.1 — Completed (Core Protocol, `v2.1.0` Universal/Optical/API Suite & Patent Pending)
 
-1. **Mathematical & Cryptographic Core (`v1.0.0` $\rightarrow$ `v1.3.0`):**
+1. **Mathematical & Cryptographic Core (`v1.0.0` $\rightarrow$ `v2.1.0`):**
    - Dual-layer binding between the 54 triple-intersection concurrency equations of the 9-triangle Sri Yantra (Kulaichev 1984 / Huet 2002) and Ukrainian National Standard **DSTU 4145-2002** over $GF(2^{257})$ (`PAdES-B-LTA` / `CAdES-X-Long` + `RFC 3161 TSP`).
-   - **Full 256-Bit Bijective Coordinate Inversion:** 26 independent 10-bit symmetric coordinate channels ($260\text{ bits} \ge 256\text{ bits}$) with exact bilateral symmetry preservation ($lx_k + rx_k = 2 C_x$, $\Delta_{\text{sym}} = 0.0$).
+   - **Full 266-Bit Keyed Dithered QIM $(d_K, \pi_K)$:** 26 independent 10-bit symmetric coordinate channels + 27th 10-bit canary channel (`D5.ay`, $18\text{ nm}$ step) with exact bilateral symmetry preservation ($lx_k + rx_k = 2 C_x$, $\Delta_{\text{sym}} = 0.0$) and zero Kullback–Leibler divergence ($D_{\text{KL}}=0$, Theorem 5).
    - **Parallel Multi-Hash Combiner:** $H_{\text{comb}} = \text{SHA-256}(\text{GOST 34.311-95} \parallel \text{DSTU 7564:2014 Kupyna-256} \parallel \text{FIPS 180-4 SHA-256})$.
-   - **27th Symmetric Channel — Steganographic Canary Leak-Tracing (`D5.ay`, $18\text{ nm}$ step):** Recipient-specific copy tagging (`--recipient-id`) and deterministic leak attribution (`marma-watermark trace`).
+   - **`Marma-Universal` (`src/marma_crypto/universal_qim.py`):** Generalized 27-DOF Keyed Dithered QIM for arbitrary vector contours ($\ge 14$ vertices) and built-in sovereign/enterprise templates (`sri-yantra`, `tryzub` Ukrainian State Trident, `corporate-shield`, `cad-polygon`).
+   - **`Marma-Optical` (`src/marma_crypto/optical_ecc.py`):** 32-sector Optical Lotus Ring (`[32, 16, d_min=8]` extended Reed–Muller/BCH block code + Soft-Decision ML Pearson correlation decoder) surviving 216 DPI screen-capture, Gaussian blur, sensor noise, and JPEG compression (`0.0% BER`).
+   - **Deal-Room Batch SDK & REST API (`src/marma_crypto/api_server.py`):** $O(1)$-amortized deal-room batch sealing (`1..1,024` recipients) and zero-dependency HTTP JSON microservice (`marma-watermark serve-api`).
 2. **Dual-Runtime Execution (Client-Side Browser Studio + Debian Linux CLI/GUI):**
    - Zero-server WebCrypto/JS Document Sealer, Deal-Room Canary Studio & Verifier (`docs/index.html`) with **1-Click Deal-Room Leak Simulation**.
-   - Production Debian/Ubuntu `.deb` package (`marma-crypto-watermark_1.3.0-1_all.deb`) with GNOME Nautilus integration and 12 cross-runtime automated test suites (`tests/test_marma_cross_verification.py`).
-3. **Institutional Archival & Prior Art Triad:**
-   - Self-referential hardware QES (`PAdES-LTA`) on both EN and UA Whitepapers.
-   - CERN Zenodo deposition (`10.5281/zenodo.23436152`) + OpenAIRE Research Graph indexing.
-   - UNESCO / Inria Software Heritage permanent Merkle DAG snapshot (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`).
+   - Production Debian/Ubuntu `.deb` package (`marma-crypto-watermark_2.1.0-1_all.deb`) with 12 GNOME Nautilus actions (`0_help.sh` – `11_trace_leak_optical.sh`) and **40 automated tests (`OK`)** across 4 test suites.
+3. **Institutional Archival, Patent Filing & Peer Review:**
+   - **UKRNOIVI 20-Year Invention Patent Application `No. a 2026 06266`** (`Вх-72320/2026`, filed 2026-10-19; fee receipt `Вх-72403/2026` registered 2026-10-20).
+   - **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** formal peer-review submission (`21 pp.`, Theorems 1–5) + **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)** + **CERN Zenodo `v3` (`10.5281/zenodo.23510005`)**.
 
 ---
 

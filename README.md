@@ -1,13 +1,14 @@
-# 🔱 Marma-Crypto Protocol (`v1.3.0`)
+# 🔱 Marma-Crypto Protocol (`v2.1.0` — `Marma-256` · `Universal` · `Deal-Room API` · `Optical ECC`)
 
-**Cryptographic Geometric Watermarking, 256-Bit Bijective Vector Steganography, and Sovereign Document Sealing via Sri Yantra Nonlinear Concurrency and Elliptic Curves over $\mathbb{F}_{2^{257}}$ (DSTU 4145-2002)**
+**Sub-Micron Keyed Dithered QIM Vector Watermarking, 256-Bit Bijective Vector Commitments, Universal 27-DOF Emblem Modulation (`Sri Yantra` / `Tryzub` / `Corporate` / `CAD`), and Optical Screen-Photo Traitor Tracing (`DSTU 4145-2002` / `PAdES-B-LTA`)**
 
-*Криптографічно-геометричний водяний знак, 256-бітна бієктивна векторна стеганографія та суверенне запечатування документів на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002*
+*Криптографічно-геометричний водяний знак, 256-бітна бієктивна векторна стеганографія, універсальний 27-DOF модулятор векторних емблем (Шрі Янтра / Тризуб / Корпоративний щит / CAD-креслення) та оптичний розшук витоків по фото екрана на основі еліптичних кривих ДСТУ 4145-2002*
 
 [![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
-[![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-signed--by_GPG_Keyring-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
+[![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-v2.1.0--1_signed--by_GPG-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
+[![Peer Review SIGPRO](https://img.shields.io/badge/📄_Elsevier_Signal_Processing-SIGPRO--D--26--04464-ff6c00.svg)](PUBLICATIONS.md)
 [![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510005.svg)](https://doi.org/10.5281/zenodo.23510005)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
@@ -16,9 +17,11 @@
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)** · **🇺🇦 [Українська сторінка та Інженерний FAQ → `ua.html`](https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html)**
 > **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
 
-> **⚡ Engineering `TL;DR` (What `Marma-256` Is — and What It Is Not):**
-> - **What it is:** A **bijective vector-graphic encoding layer ($\mathcal{E}_{10}$)** for PDF (`ISO 32000-2`) and SVG that embeds all **256 bits** of a cryptographic signature digest $V = \text{SHA-256}(r \parallel s)$ (plus an orthogonal **10-bit recipient Canary beacon** on channel 27) directly into exact $18\text{ npt}$ ($1.8\times 10^{-8}\text{ pt}$) coordinate perturbations of a visible 9-triangle Sri Yantra seal (`43 sub-triangles`, `54 triple concurrency nodes`).
-> - **What it is NOT:** It does **not** invent a custom signature primitive, replace asymmetric QES validation, or compete with standard PAdES `/ByteRange` when a signed PDF remains intact. Instead, it bridges the gap when **(1)** signatures are detached (`.p7s` / CAdES) and the PDF carries only a "dumb" visual stamp, **(2)** enterprise DMS / archival gateways flatten PDFs (`print-to-PDF`) and strip `/Contents`, **(3)** civil servants reject valid PAdES files that lack a visible stamp on the page, or **(4)** deal rooms need zero-crosstalk recipient leak attribution (`Canary`).
+> **⚡ Engineering `TL;DR` (What `Marma-256 v2.1.0` Is — and What It Is Not):**
+> - **What it is:** A **dual-layer vector & optical forensic watermarking suite** for PDF (`ISO 32000-2`), DOCX, and SVG/CAD drawings:
+>   1. **Layer 1 (`Marma-256` & `Marma-Universal` Vector Lattice):** A bijective vector-graphic encoding layer ($\mathcal{E}_{10}$) with **Chen–Wornell Keyed Dithered QIM** ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) and **Fisher–Yates Channel Permutation** ($\pi_K \in S_{27}$) that embeds all **256 bits** of a cryptographic signature digest $V = \text{SHA-256}(r \parallel s)$ plus an orthogonal **10-bit recipient Canary beacon** into exact $18\text{ npt}$ ($1.8\times 10^{-8}\text{ pt}$) coordinate perturbations of **any 2D vector emblem with $\ge 27$ degrees of freedom** — including the **9-triangle Sri Yantra** (`sri-yantra`), the **Ukrainian State Trident — Тризуб** (`tryzub`), a **Corporate B2B/LegalTech Heraldic Shield** (`corporate-shield`), or **arbitrary engineering CAD/SVG/GIS polygons** (`cad-polygon`).
+>   2. **Layer 2 (`Marma-Optical` Screen-Photo ECC Ring):** A surrounding **32-Sector Ceremonial Lotus Ring (`32-Petal Padma Dial`)** encoded with a systematic **$[32, 16, d_{\min}=8]$ error-correcting code** and decoded via **Soft-Decision Maximum-Likelihood (ML) Pearson Correlation**. Even when a traitor **photographs the monitor with a smartphone** or takes a blurry, noisy `JPEG`/`PNG` screenshot (destroying all PDF floating-point vector coordinates), `marma-watermark trace` extracts the 10-bit `canary_word` directly from the raster image and identifies the leaker.
+> - **What it is NOT:** It does **not** invent a custom signature primitive, replace asymmetric QES validation, or compete with standard PAdES `/ByteRange` when a signed PDF remains intact. Instead, it bridges the gap when **(1)** signatures are detached (`.p7s` / CAdES) and the PDF carries only a "dumb" visual stamp, **(2)** enterprise DMS / archival gateways flatten PDFs (`print-to-PDF`) and strip `/Contents`, **(3)** civil servants reject valid PAdES files that lack a visible stamp on the page, or **(4)** M&A deal rooms and defense contractors need zero-crosstalk recipient leak attribution across both vector files and smartphone screen photos.
 > - **100% Post-Quantum (NIST PQC) Agile:** Because $\mathcal{E}_{10}$ encodes any 256-bit signature digest $V \in \{0,1\}^{256}$, replacing classical elliptic curves (`DSTU 4145-2002` / `ECDSA`, vulnerable to Shor's algorithm) with **NIST FIPS 204 (`ML-DSA` / Dilithium)** or **NIST FIPS 205 (`SLH-DSA` / SPHINCS+)** requires **zero changes** to the geometric lattice.
 
 ---
@@ -39,7 +42,28 @@
 
 ---
 
-## ✨ What's New in `v1.3.0` (`MARMA-DSTU4145-V1.3` / `Marma-256`)
+## 🚀 What's New in `v2.1.0` (`Marma-Universal` · `Deal-Room Batch API` · `Marma-Optical` · `Theorem 5`)
+
+1. **`Marma-Universal` (`src/marma_crypto/universal_qim.py`) — Generalized 27-DOF Vector Emblem & CAD Modulator:**
+   - Extends the $s_0 = 18\text{ npt}$ Keyed Dithered QIM modulator beyond the 9 triangles of Sri Yantra (`--emblem sri-yantra`) to three new production vector geometries:
+     - **`--emblem tryzub` (Малий Державний Герб України — Тризуб):** 9 bilaterally symmetric heraldic contours ($x_L + x_R = 300.0$, $\Delta_{\text{sym}} < 10^{-12}\text{ pt}$) for ministries, courts, state registries, and defense agencies.
+     - **`--emblem corporate-shield` (B2B / LegalTech / Banking Heraldic Shield):** 9 bilaterally symmetric geometric chevrons and pillars for law firms, investment banks, and corporate boards.
+     - **`--emblem cad-polygon` & `modulate_arbitrary_2d_vertices()`:** Directly embeds all 266 bits (`256-bit signature + 10-bit Canary word`) into the first 27 scalar coordinates of **any arbitrary 2D CAD/SVG/DXF/GIS polygon or polyline** with $\ge 14$ vertices while leaving all remaining geometry untouched (`0.0 npt` quantization residual).
+2. **`Marma-Optical` (`src/marma_crypto/optical_ecc.py`) — Screen-Photo & Print-Cam Resilient Leak Tracing:**
+   - Adds a second physical modulation ring (`--optical-ring`) around the vector seal: a **32-Sector Ceremonial Lotus Ring (`32-Petal Padma Dial`)** encoding the 10-bit `canary_beacon_word` and a 6-bit document binding tag (`doc_tag6`) via a **systematic $[32, 16, d_{\min}=8]$ linear block code**.
+   - **Soft-Decision Maximum-Likelihood (ML) Pearson Correlation Decoder (`extract_canary_from_raster_image`):** Automatically locates the dark-navy & gold seal disc in any cropped or full-page raster image (`.png`, `.jpg`, `.jpeg`, `.webp`), samples radial sector luminance across a multi-scale grid, corrects up to 4 hard sector bit-flips (specular screen glare), and identifies the exact leaking recipient even after `216 DPI` rasterization, `GaussianBlur(radius=0.85)`, additive camera sensor noise ($\sigma = 7.5$), and lossy `JPEG(quality=72)` compression.
+3. **Python SDK (`pyproject.toml`) + Deal-Room Batch Engine & REST Microservice (`src/marma_crypto/api_server.py`):**
+   - **Installable Python Package (`pip install -e .`):** Clean modular SDK (`from marma_crypto import batch_seal_dealroom, trace_leak_any_medium, MarmaDealRoomServer, ...`).
+   - **$O(1)$-Amortized Deal-Room Batch Stamping (`marma-watermark batch-seal`):** Precomputes the document SHA-256 and `DSTU 4145-2002` signature once and generates $N$ individualized recipient-tracked PDF copies with unique vector + optical Canary beacons in $< 0.15\text{ s}$ per batch.
+   - **Embedded HTTP REST Microservice (`marma-watermark serve-api --port 8765`):** Zero-dependency HTTP server exposing `GET /v1/health`, `POST /v1/seal-batch`, `POST /v1/verify`, and `POST /v1/trace-leak` for turnkey integration with Nextcloud, SharePoint, Intralinks, Datasite, and M.E.Doc/Вчасно gateways.
+4. **Theorem 5 — Chen–Wornell Keyed Dithered QIM ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) & Active-TraitorPermutation ($\pi_K \in S_{27}$):**
+   - Formalized in our **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** submission (`Release v2.0-SIGPRO`, `21 pp.`): applies a keyed uniform dither vector $\mathbf{d}_K$ (rendering physical coordinate offsets statistically uniform over $\mathbb{Z}_{1024}^{27}$ with Kullback–Leibler divergence $D_{\text{KL}} = 0\text{ bits}$ against cover distributions) and a Fisher–Yates channel permutation $\pi_K \in S_{27}$ so an unkeyed traitor attempting to erase the Canary channel hits the 26 signature commitments with probability $26/27 \approx 96.30\%$ (`99.72%` for 2 guesses).
+5. **Expanded GNOME Files (`Nautilus`) Right-Click Suite (`11 Scripts` + `40/40` Automated Tests):**
+   - Adds 4 new localized (UA/EN) right-click actions in `🔱 Шрі Янтра · Marma-Crypto`: **Ukrainian Trident / Corporate Shield Stamping**, **CAD-SVG 27-DOF Protection**, **Deal-Room Batch Stamping ($N$ Recipients)**, and **Unified Vector + Screen-Photo Optical Leak Tracing**, backed by a **40-test cross-verification suite** (`tests/test_marma_v21_universal_optical_api.py`).
+
+---
+
+## ✨ Core Features Introduced in `v1.3.0` (`MARMA-DSTU4145-V1.3` / `Marma-256`)
 
 1. **Multi-Collision-Resistant Parallel Hash Combiner (Explicit 256-Bit Digest Standards):**
    Replaces single-chain hashing with a parallel multi-standard combiner binding three distinct 256-bit cryptographic hash functions simultaneously:
@@ -153,8 +177,8 @@ sudo apt install marma-crypto-watermark qes-tools
 Or build and inspect the `.deb` package locally from source:
 ```bash
 ./build.sh --test
-sha256sum dist/marma-crypto-watermark_1.3.0-1_all.deb
-sudo dpkg -i dist/marma-crypto-watermark_1.3.0-1_all.deb
+sha256sum dist/marma-crypto-watermark_2.1.0-1_all.deb
+sudo dpkg -i dist/marma-crypto-watermark_2.1.0-1_all.deb
 ```
 
 ### 2. Verify the Signed Whitepapers Right Now
@@ -163,28 +187,35 @@ python3 src/marma_watermark.py verify whitepaper/Marma_Crypto_Whitepaper_EN.pdf
 python3 src/marma_watermark.py verify whitepaper/Marma_Crypto_Whitepaper_UA.pdf
 ```
 
-### 3. Stamp a Confidential Copy with Canary Leak-Tracing & Trace Suspects
+### 3. Stamp with Universal Emblems (`Tryzub` / `Corporate Shield` / `CAD`), Deal-Room Batch & Optical Leak-Tracing
 ```bash
-# Stamp a recipient-specific copy (invisibly modulates D5.ay + zero-plaintext commitment)
-python3 src/marma_watermark.py sign contract.pdf -o contract_party07.pdf --recipient-id "M&A-Party-07"
+# 1. Stamp a PDF with the Ukrainian State Trident (Тризуб) + 32-Sector Optical Lotus ECC Ring
+python3 src/marma_watermark.py sign contract.pdf -o contract_tryzub.pdf --emblem tryzub --optical-ring --recipient-id "M&A-Party-07"
 
-# Forensically attribute a leaked copy against a list of suspect recipients
-python3 src/marma_watermark.py trace contract_party07.pdf --suspects "Investor-A,M&A-Party-07,Counsel-C"
+# 2. Batch-seal an M&A Deal-Room document for N recipients in a single pass (< 0.15 s)
+python3 src/marma_watermark.py batch-seal master_nda.pdf --recipients "Investor_Alpha,Investor_Beta,M&A-Party-07" --emblem corporate-shield --optical-ring
+
+# 3. Forensically trace a leak from EITHER a vector file (.pdf/.svg/.docx) OR a smartphone photo of the screen (.jpg/.png)
+python3 src/marma_watermark.py trace contract_tryzub.pdf --suspects "Investor_Alpha,M&A-Party-07,Counsel_C"
+python3 src/marma_watermark.py trace leaked_screen_photo.jpg --suspects "Investor_Alpha,M&A-Party-07,Counsel_C" --content-sha256 <doc_sha256>
+
+# 4. Launch the local Deal-Room REST API Microservice (/v1/health, /v1/seal-batch, /v1/verify, /v1/trace-leak)
+python3 src/marma_watermark.py serve-api --port 8765
 ```
 
-### 4. Run the Full Cryptographic Self-Test & 12-Suite Cross-Runtime Verification
+### 4. Run the Full Cryptographic Self-Test & 40-Test Cross-Runtime Verification Suite
 ```bash
 python3 src/marma_watermark.py selftest
-python3 -m unittest discover -s tests -v
+python3 -m unittest discover -s tests -p "test_*.py" -v
 ```
 
 ---
 
-## 📜 Author, Review Status & Citation
+## 📜 Author, Peer-Review Status & Citation
 
 * **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*) — Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine) · **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133)
 * **Formal Peer-Review & Patent Examination Status:**
-  * **Journal Manuscript (`Release v2.0`, `20 pp.`):** Prepared in full Elsevier/Springer Q1 format with 5 vector figures, 6 SOTA comparative tables, and 100,000 Monte Carlo trials (archived on CERN Zenodo [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) and published in Elsevier SSRN *Cybersecurity & Data Privacy Law & Policy* `Vol. 11, No. 189` [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458)).
+  * **Elsevier *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0) Submission:** Active peer-review manuscript **`SIGPRO-D-26-04464`** (*"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"*, `Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5, 5 vector figures, 6 SOTA tables, 100,000 Monte Carlo trials; archived on CERN Zenodo [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) and published in Elsevier SSRN *Cybersecurity & Data Privacy Law & Policy* `Vol. 11, No. 189` [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458)).
   * **Patent Examination (Patent Pending):** Ukrainian 20-year Invention Patent Application No. **`a 2026 06266`** filed with the National IP Office of Ukraine (UKRNOIVI, `Вх-72320/2026` on `2026-10-19`; filing fee receipt registered under `Вх-72403/2026` on `2026-10-20`).
 * **Open Preprint Mirrors & Timestamp Archives (Non-Peer-Reviewed Prior Art):**
   * **CERN Zenodo (`v3` / `Release v2.0`, 2026-10-20):** [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) (Concept DOI: [`10.5281/zenodo.23429017`](https://doi.org/10.5281/zenodo.23429017) · Prior `v2`: [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152)) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
@@ -194,11 +225,11 @@ python3 -m unittest discover -s tests -v
 ```bibtex
 @techreport{baienko2026marmacrypto,
   author      = {Baienko, Yaroslav V.},
-  title       = {Marma-Crypto (Marma-256): Bijective 256-Bit Vector Commitments, Constant-Rate Canary Leak Tracing, and Sovereign PAdES-B-LTA Document Sealing via Overdetermined Sri Yantra Planar Incidence Lattices over GF(2^257) (DSTU 4145-2002)},
+  title       = {Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication},
   year        = {2026},
-  version     = {v3 (1.3.0 / Release v2.0)},
-  institution = {CERN Zenodo / Elsevier SSRN (Preprint)},
-  number      = {MARMA-DSTU4145-V1.3.0; UKRNOIVI Patent Appl. a 2026 06266},
+  version     = {v2.1.0 (Release v2.0-SIGPRO)},
+  institution = {Elsevier Signal Processing (SIGPRO-D-26-04464) / CERN Zenodo / Elsevier SSRN},
+  number      = {SIGPRO-D-26-04464; UKRNOIVI Patent Appl. a 2026 06266},
   doi         = {10.5281/zenodo.23510005},
   url         = {https://doi.org/10.5281/zenodo.23510005}
 }

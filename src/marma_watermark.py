@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Marma-Crypto Geometric Watermark & Zero-Tolerance Document Verifier (v1.3.0).
+"""Marma-Crypto Geometric Watermark & Zero-Tolerance Document Verifier (v2.1.0).
 
 Full LegalTech / Nautilus-integrated engine modeled after /home/attor/legaltech (qes-tools).
 Supports:
@@ -8,7 +8,10 @@ Supports:
 - 15-minute RAM session cache (/run/user/$UID/marma-crypto-session.json, chmod 0600).
 - Parallel Multi-Hash Combiner: SHA-256(GOST 34.311-95 || Kupyna-256 || SHA-256).
 - Full 256-Bit Bijective Geometric Mantissa Encoding across 9 triangles & 24 symmetric Marma pairs.
-- Canary Leak-Tracing (`--recipient-id` & `trace --suspects`) via innermost Bindu apex (`D5.ay`).
+- Marma-Universal (v2.1): Generalized 27-DOF Keyed Dithered QIM (`sri-yantra`, `tryzub`, `corporate-shield`, `cad-polygon`).
+- Marma-Optical (v2.1): 32-Sector Optical Lotus ECC Ring (`[32, 16, d_min=8]`) for screen-photo / print-cam leak tracing.
+- Deal-Room Batch Engine & REST API (`batch-seal`, `serve-api`).
+- Canary Leak-Tracing (`--recipient-id` & `trace --suspects`) via innermost Bindu apex (`D5.ay`) or raster image.
 - Signing & Stamping PDF, DOCX, and SVG documents (--mode both | watermark | seal).
 - Instant public & cryptographic verification + strict key verification (--strict-key).
 - Official Vector PDF Verification Protocol generator (`marma-watermark protocol`).
@@ -49,7 +52,7 @@ try:
 except Exception:
     pymupdf = None  # type: ignore[assignment]
 
-VERSION = "1.3.0"
+VERSION = "2.1.0"
 
 # Canonical 9-Triangle Coordinates (lx, by, ay, rx, is_upward) in 300x300 space (R=100)
 CANONICAL_TRIANGLES: list[tuple[str, float, float, float, float, bool]] = [
@@ -2005,7 +2008,7 @@ def run_self_test(out_dir: Path | None = None) -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="marma-watermark",
-        description="Marma-Crypto v1.3.0 & DSTU 4145-2002 256-Bit Geometric Watermark & Canary Leak-Tracing CLI/GUI.",
+        description="Marma-Crypto v2.1.0 & DSTU 4145-2002 256-Bit Universal Geometric Watermark, Deal-Room API & Optical Leak-Tracing Suite.",
     )
     parser.add_argument(
         "action",

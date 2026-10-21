@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Протокол «Марма-Крипто» (v1.3.0 / Marma-256) — 256-бітний бієктивний геометричний водяний знак PDF/SVG та ДСТУ 4145-2002</title>
-  <meta name="description" content="Офіційне українське видання та інженерна специфікація протоколу «Марма-Крипто» (v1.3.0 / Marma-256): нелінійна планіметрія Шрі Янтри, 256-бітне бієктивне кодування координат (18 нпт), Canary Leak-Tracing та еліптичні криві ДСТУ 4145-2002 над GF(2^257). Автор: Баєнко Ярослав Володимирович. DOI: 10.5281/zenodo.23436152." />
+  <title>Протокол «Марма-Крипто» (v2.1.0 / Marma-256) — 266-бітний бієктивний геометричний водяний знак PDF/SVG та ДСТУ 4145-2002</title>
+  <meta name="description" content="Офіційне українське видання та інженерна специфікація протоколу «Марма-Крипто» (v2.1.0 / Marma-256): нелінійна планіметрія Шрі Янтри, Тризуба та CAD-полігонів, 266-бітне кодування Keyed Dithered QIM (18 нпт), Marma-Optical ECC та еліптичні криві ДСТУ 4145-2002 над GF(2^257). Автор: Баєнко Ярослав Володимирович. DOI: 10.5281/zenodo.23510005." />
   <link rel="canonical" href="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
 
   <!-- Google Scholar Highwire Press Citation Meta Tags (Ukrainian Edition) -->
@@ -12,15 +12,15 @@
   <meta name="citation_author" content="Баєнко, Ярослав Володимирович" />
   <meta name="citation_author" content="Baienko, Yaroslav" />
   <meta name="citation_publication_date" content="2026/10/17" />
-  <meta name="citation_online_date" content="2026/10/17" />
-  <meta name="citation_doi" content="10.5281/zenodo.23436152" />
+  <meta name="citation_online_date" content="2026/10/21" />
+  <meta name="citation_doi" content="10.5281/zenodo.23510005" />
   <meta name="citation_technical_report_institution" content="CERN Zenodo" />
-  <meta name="citation_technical_report_number" content="MARMA-DSTU4145-V1.3.0-UA" />
+  <meta name="citation_technical_report_number" content="MARMA-DSTU4145-V2.1.0-UA" />
   <meta name="citation_pdf_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/whitepaper/Marma_Crypto_Whitepaper_UA.pdf" />
   <meta name="citation_fulltext_html_url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html" />
   <meta name="citation_language" content="uk" />
-  <meta name="citation_keywords" content="Прикладна криптографія; Цифровий водяний знак; Шрі Янтра; ДСТУ 4145-2002; Еліптичні криві; GF(2^257); PAdES-LTA; Кваліфікований електронний підпис; Постквантова криптографія; LegalTech" />
-  <meta name="citation_abstract" content="У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v1.3.0 / Marma-256), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри (Нава-чакра, 43 суб-трикутники, 54 потрійні точки перетину — марми, 256-бітне бієктивне кодування координат із кроком 18 нпт та Canary Leak-Tracing) з національним стандартом кваліфікованого електронного підпису України ДСТУ 4145-2002 над розширеним бінарним полем Галуа GF(2^257) та довгостроковою архівною валідацією PAdES-B-LTA / RFC 3161 TSP." />
+  <meta name="citation_keywords" content="Прикладна криптографія; Цифровий водяний знак; Шрі Янтра; Тризуб; ДСТУ 4145-2002; Еліптичні криві; GF(2^257); PAdES-LTA; Кваліфікований електронний підпис; Постквантова криптографія; LegalTech" />
+  <meta name="citation_abstract" content="У роботі формалізовано криптографічно-геометричний протокол «Марма-Крипто» (v2.1.0 / Marma-256), який поєднує нелінійну планіметрію 9 взаємоперетинних трикутників канонічної Шрі Янтри, Малого Державного Герба України (Тризуба) та довільних CAD/SVG контурів (266-бітне кодування Keyed Dithered QIM із кроком 18 нпт, [32,16,8] оптичне коректуюче кільце Marma-Optical та Canary Leak-Tracing) з національним стандартом КЕП України ДСТУ 4145-2002 над GF(2^257) та PAdES-B-LTA / RFC 3161 TSP." />
 
   <style>
     :root {
@@ -145,12 +145,13 @@
 
   <!-- Головна картка -->
   <div class="card">
-    <h1>🔱 Протокол «Марма-Крипто» (v1.3.0 / Marma-256): 256-бітний бієктивний геометричний водяний знак PDF/SVG на основі нелінійної планіметрії Шрі Янтри та ДСТУ 4145-2002</h1>
+    <h1>🔱 Протокол «Марма-Крипто» (v2.1.0 / Marma-256): 266-бітний бієктивний геометричний водяний знак PDF/SVG на основі нелінійної планіметрії Шрі Янтри, Тризуба та ДСТУ 4145-2002</h1>
     <p>
       <strong>Автор:</strong> Баєнко Ярослав Володимирович (Yaroslav V. Baienko, адвокат, магістр права, магістр комп'ютерних наук) ·
       <strong>ORCID:</strong> <a href="https://orcid.org/0009-0006-7498-2133">0009-0006-7498-2133</a> ·
-      <strong>Патентна заявка УКРНОІВІ:</strong> <code>a 2026 06266</code> (<code>Вх-72320/2026</code>) ·
-      <strong>Архів препринту (CERN Zenodo DOI):</strong> <a href="https://doi.org/10.5281/zenodo.23436152">10.5281/zenodo.23436152</a>
+      <strong>Патентна заявка УКРНОІВІ:</strong> <code>a 2026 06266</code> (<code>Вх-72320/2026</code> · збір <code>Вх-72403/2026</code>) ·
+      <strong>Рецензування Elsevier Signal Processing:</strong> <code>SIGPRO-D-26-04464</code> ·
+      <strong>Архів препринту (CERN Zenodo v3 DOI):</strong> <a href="https://doi.org/10.5281/zenodo.23510005">10.5281/zenodo.23510005</a>
     </p>
 
     <div class="tldr-box">
