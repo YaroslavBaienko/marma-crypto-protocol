@@ -3,7 +3,7 @@
 > **Current Production Release:** `v2.1.0` (`marma-crypto-watermark_2.1.0-1_all.deb` · Python SDK `marma_crypto v2.1.0`)
 > **Patent Status:** **`Patent Pending — UKRNOIVI Invention Application No. a 2026 06266`** (`Вх-72320/2026` · Fee Receipt `Вх-72403/2026`)
 > **Peer-Review Status:** **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** · **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)**
-> **CERN Zenodo DOI:** [`10.5281/zenodo.23540160`](https://doi.org/10.5281/zenodo.23540160) (`v4` · Concept DOI: `10.5281/zenodo.23429017`)
+> **CERN Zenodo DOI:** [`10.5281/zenodo.23560975`](https://doi.org/10.5281/zenodo.23560975) (`v5` · Concept DOI: `10.5281/zenodo.23429017`)
 > **Software Heritage (ISO/IEC 18670 SWHID):** `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` (`swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c`)
 > **Live Client-Side Deal-Room Studio & Verifier:** [`https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 
@@ -23,7 +23,7 @@
    - Production Debian/Ubuntu `.deb` package (`marma-crypto-watermark_2.1.0-1_all.deb`) with 12 GNOME Nautilus actions (`0_help.sh` – `11_trace_leak_optical.sh`) and **40 automated tests (`OK`)** across 4 test suites.
 3. **Institutional Archival, Patent Filing & Peer Review:**
    - **UKRNOIVI 20-Year Invention Patent Application `No. a 2026 06266`** (`Вх-72320/2026`, filed 2026-10-19; fee receipt `Вх-72403/2026` registered 2026-10-20).
-   - **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** formal peer-review submission (`21 pp.`, Theorems 1–5) + **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)** + **CERN Zenodo `v4` (`10.5281/zenodo.23540160`)**.
+   - **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** formal peer-review submission (`21 pp.`, Theorems 1–5) + **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)** + **CERN Zenodo `v5` (`10.5281/zenodo.23560975`)**.
 
 ---
 
@@ -76,14 +76,15 @@
 > **Why UKRNOIVI First (Mandatory & Optimal):**
 > 1. **Ukrainian Mandatory First-Filing Rule (`Art. 37 of Law No. 3687-XII`):** Inventions created in Ukraine by Ukrainian citizens must first be filed in UKRNOIVI (followed by a 3-month state-secrecy clearance window) before any foreign patent filing.
 > 2. **USPTO Foreign Domicile Rule (`37 CFR § 1.31(a)(2)`, effective July 20, 2026):** Foreign-domiciled applicants can no longer sign Micro Entity certifications (`Form PTO/SB/15A`) or ADS forms *pro se* in the USPTO without hiring a US patent attorney ($350–$600).
-> 3. **Paris Convention & AIA Effective Filing Date Synergy (`Paris Convention Art. 4` + `35 U.S.C. §§ 100(i)(1)(B), 102(b)(1)(A), 119(a)`):** Filing the Ukrainian invention application in **UKRNOIVI** (self-filed via QES at `sis.nipo.gov.ua` for **64 UAH / ~$1.50** under CMU Resolution No. 1716, 5% individual inventor rate + 20% e-filing discount) automatically establishes the **Effective Filing Date for the United States**, locks in the US 1-year grace period against the `2026-10-17` Zenodo disclosure, grants **12 months of international priority worldwide (until `2028-03-15`)**, and immediately confers legal **`Patent Pending (Paris Convention Art. 4 / 35 U.S.C. § 119)`** status at zero attorney cost.
+> 3. **Paris Convention & AIA Effective Filing Date Synergy (`Paris Convention Art. 4` + `35 U.S.C. §§ 100(i)(1)(B), 102(b)(1)(A), 119(a)`):** Filing the Ukrainian invention application in **UKRNOIVI** (self-filed via QES at `sis.nipo.gov.ua` for **64 UAH / ~$1.50** under CMU Resolution No. 1716, 5% individual inventor rate + 20% e-filing discount) automatically establishes the **Effective Filing Date for the United States**, locks in the US 1-year grace period against the `2026-10-17` Zenodo disclosure, grants **12 months of international priority worldwide (until `2027-10-19`)**, and immediately confers legal **`Patent Pending (Paris Convention Art. 4 / 35 U.S.C. § 119)`** status at zero attorney cost.
 
 | Date | Milestone / Deadline | Jurisdiction, Fee & Legal Effect |
 | :--- | :--- | :--- |
-| **`2027-02-15`** | **Milestone P1 (T-60 days): Draft Claims & Drawings** | Convert `Marma_Crypto_Whitepaper_UA.typ` into formal UKRNOIVI specification (*«Спосіб криптографічно-геометричного маркування, верифікації цілісності та трасування витоків електронних документів»*), multi-independent claims, and black-and-white drawings with full `35 U.S.C. § 112(a)` enablement. |
-| **`2027-03-15`** | **Milestone P2 (T-30 days): E-Filing in UKRNOIVI (`sis.nipo.gov.ua`)** | Self-file with author's QES (`DSTU 4145-2002`) under CMU Resolution No. 1716:<br>1) **Invention Patent Application** (**64 UAH** filing + **300 UAH** exam = **~489 UAH total**, 20-year term + Paris Convention Priority anchor under `35 U.S.C. § 119(a)`);<br>2) **Utility Model Patent Application** (**192 UAH** filing = **~317 UAH total**, fast-track ~6-month grant).<br>Activates global **`Patent Pending`** status. |
-| **`2027-04-17`** | **🚨 HARD STATUTORY DEADLINE (UKRNOIVI — 6 Months)** | **Final day of the 6-month Inventor's Novelty Grace Period in Ukraine** under Art. 6(6) of Law No. 3687-XII (counting from `2026-10-17`). |
-| **`2027-06-15`** | **Milestone P3 (T+90 days): Art. 37 Clearance** | **Completion of the 3-month statutory review in UKRNOIVI** under Art. 37 of Law No. 3687-XII, authorizing foreign/international (PCT / USPTO) patent filings. |
-| **`2028-03-15`** | **🚨 PARIS CONVENTION PRIORITY DEADLINE (+12 Months)** | **12-month international priority deadline** under Paris Convention Art. 4 & `35 U.S.C. §§ 100(i)(1)(B), 119(a)` (measured from the `2027-03-15` UKRNOIVI filing) to enter USPTO / PCT if commercially warranted. |
+| **`2026-10-19`** ✅ | **Filed (done)** | Invention application `a 2026 06266` filed with UKRNOIVI via SEV ZES (`Вх-72320/2026`); filing-fee receipt `Вх-72403/2026` registered 2026-10-20. Paris Convention priority date established. |
+| **`2027-01-19`** | **Art. 37 clearance (T+90 days)** | Completion of the 3-month state-secrecy review under Art. 37 of Law No. 3687-XII — foreign / PCT filings become lawful. |
+| **`2027-04-17`** | **🚨 6-month inventor grace (filed subject matter)** | Final day of the 6-month novelty grace under Art. 6(6) of Law No. 3687-XII, counted from the 2026-10-17 disclosure. |
+| **`2027-04-21`** | **🚨 Decision: separate application for the `v2.1.0` delta** | Keyed Dithered QIM (Theorem 5), `Marma-Universal`, `Marma-Optical` and the Deal-Room API were first disclosed 2026-10-21 and are **not covered** by the filed claims; a separate Ukrainian application must be filed by this date (6-month grace). |
+| **`2027-10-19`** | **🚨 Paris / PCT priority deadline** | 12 months from the 2026-10-19 UKRNOIVI filing (`Paris Convention Art. 4`, `35 U.S.C. §§ 100(i)(1)(B), 119(a)`) for USPTO / PCT entry, limited to subject matter disclosed in the filed application. |
+| **`2027-10-21`** | **⚠️ US grace deadline for the `v2.1.0` delta** | 1-year inventor grace under `35 U.S.C. § 102(b)(1)(A)` for features first disclosed 2026-10-21 (the EPO has no general grace — those features are already unpatentable there). |
 
 

@@ -5,104 +5,119 @@ CALSCALE:GREGORIAN
 METHOD:PUBLISH
 X-WR-CALNAME:Marma-Crypto Patent Deadlines (УКРНОІВІ & Paris Convention / USPTO)
 X-WR-TIMEZONE:Europe/Kyiv
+X-WR-CALDESC:Фактичні дедлайни після подання заявки a 2026 06266 (19.10.2026). Оновлено 2026-10-22.
 
 BEGIN:VEVENT
-UID:marma-patent-p1-20270215@advocacy.uno
-DTSTAMP:20261019T111500Z
-DTSTART;VALUE=DATE:20270215
-DTEND;VALUE=DATE:20270216
-SUMMARY:[Marma-Crypto] T-60 дн.: Підготовка формули та опису для УКРНОІВІ (корисні моделі + винахід)
-DESCRIPTION:Контрольна точка Р1 (за 60 днів до кінця 6-місячного пільгового строку автора в Україні за ч. 6 ст. 6 ЗУ № 3687-XII).\n\nЩо зробити:\n1. Сформувати формулу та опис на основі Marma_Crypto_Whitepaper_UA.typ («Спосіб криптографічно-геометричного маркування, верифікації цілісності та трасування витоків електронних документів») з повним розкриттям за 35 U.S.C. § 112(a).\n2. Підготувати чорно-білі креслення 27-канальної геометрії Шрі Янтри.\n\nЖорсткий дедлайн УКРНОІВІ: 17.04.2027 (6 міс. від публікації 17.10.2026 на CERN Zenodo 10.5281/zenodo.23429018).
-BEGIN:VALARM
-TRIGGER:-P3D
-ACTION:DISPLAY
-DESCRIPTION:Через 3 дні: старт підготовки патентної заявки Marma-Crypto в УКРНОІВІ
-END:VALARM
-BEGIN:VALARM
-TRIGGER:PT9H
-ACTION:DISPLAY
-DESCRIPTION:Сьогодні: підготовка формули та креслень заявки Marma-Crypto для УКРНОІВІ
-END:VALARM
+UID:marma-patent-filed-20261019@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20261019
+DTEND;VALUE=DATE:20261020
+SUMMARY:✅ [Marma-Crypto] Заявку на винахід подано до УКРНОІВІ (a 2026 06266)
+DESCRIPTION:Подання через СЕРЗ УКРНОІВІ (Вх-72320/2026); збір код 40100 сплачено, квитанція Вх-72403/2026 (20.10.2026). Пріоритетна дата за ст. 4 Паризької конвенції — 19.10.2026.
 END:VEVENT
 
 BEGIN:VEVENT
-UID:marma-patent-p2-20270315@advocacy.uno
-DTSTAMP:20261019T111500Z
-DTSTART;VALUE=DATE:20270315
-DTEND;VALUE=DATE:20270316
-SUMMARY:[Marma-Crypto] T-30 дн.: Подача електронних заявок до УКРНОІВІ (sis.nipo.gov.ua — 64 грн + 192 грн)
-DESCRIPTION:Цільова дата подачі заявок у межах 6-місячного пільгового вікна автора.\n\nПодати особисто через СЕРЗ УКРНОІВІ (https://sis.nipo.gov.ua/) з КЕП автора (п. 3 Додатка до Постанови КМУ № 1716 — пільга 5% на винахід та 10% на корисну модель + 20% знижка за е-подачу):\n1. Заявка на патент України на винахід (64 грн за подання) — фіксує Effective Filing Date і для України, і для США за ст. 4 Паризької конвенції та 35 U.S.C. §§ 100(i)(1)(B), 102(b)(1)(A), 119(a) на наступні 12 місяців (до 15.03.2028) без необхідності найму патентного повіреного США за 37 CFR § 1.31(a)(2)!\n2. Заявка на патент України на корисну модель (192 грн за подання, швидка видача ~6 міс.).\n\nЗ моменту подання активується міжнародний статус: Patent Pending (UKRNOIVI App. No. a2027xxxxx / Paris Convention Art. 4 & 35 U.S.C. § 119).
-BEGIN:VALARM
-TRIGGER:-P7D
-ACTION:DISPLAY
-DESCRIPTION:Через 7 днів: цільова подача патентних заявок Marma-Crypto до УКРНОІВІ
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-P1D
-ACTION:DISPLAY
-DESCRIPTION:Завтра: подача електронних заявок Marma-Crypto до УКРНОІВІ (sis.nipo.gov.ua)
-END:VALARM
-BEGIN:VALARM
-TRIGGER:PT9H
-ACTION:DISPLAY
-DESCRIPTION:Сьогодні: подача патентних заявок Marma-Crypto до УКРНОІВІ (64 грн + 192 грн)
-END:VALARM
-END:VEVENT
-
-BEGIN:VEVENT
-UID:marma-patent-deadline-ua-20270417@advocacy.uno
-DTSTAMP:20261019T111500Z
-DTSTART;VALUE=DATE:20270417
-DTEND;VALUE=DATE:20270418
-SUMMARY:🚨 [ДЕДЛАЙН УКРНОІВІ] Останній день 6-міс. пільгового вікна автора (Marma-Crypto)
-DESCRIPTION:ЖОРСТКИЙ ЗАКОНОДАВЧИЙ ДЕДЛАЙН В УКРАЇНІ (ч. 6 ст. 6 Закону України «Про охорону прав на винаходи і корисні моделі» № 3687-XII).\n\nРівно 6 місяців від першого публічного розкриття автором (17.10.2026, CERN Zenodo 10.5281/zenodo.23429018). Перевірити, що обидві заявки (винахід + корисна модель) подані в СЕРЗ УКРНОІВІ (sis.nipo.gov.ua), отримано розписки з вхідними номерами та зараховано збір (64 грн + 192 грн).
-BEGIN:VALARM
-TRIGGER:-P14D
-ACTION:DISPLAY
-DESCRIPTION:УВАГА: Залишилось 14 днів до кінця 6-місячного пільгового вікна автора в УКРНОІВІ (Marma-Crypto)!
-END:VALARM
-BEGIN:VALARM
-TRIGGER:-P3D
-ACTION:DISPLAY
-DESCRIPTION:ТЕРМІНОВО: Залишилось 3 дні до жорсткого дедлайну подачі заявки Marma-Crypto в УКРНОІВІ (17.04.2027)!
-END:VALARM
-BEGIN:VALARM
-TRIGGER:PT9H
-ACTION:DISPLAY
-DESCRIPTION:СЬОГОДНІ (17.04.2027) — останній день 6-місячного пільгового строку автора в УКРНОІВІ!
-END:VALARM
-END:VEVENT
-
-BEGIN:VEVENT
-UID:marma-patent-p3-art37-20270615@advocacy.uno
-DTSTAMP:20261019T111500Z
-DTSTART;VALUE=DATE:20270615
-DTEND;VALUE=DATE:20270616
-SUMMARY:[Marma-Crypto] Завершення 3-міс. перевірки за ст. 37 ЗУ № 3687-XII (дозвіл на закордонне патентування)
-DESCRIPTION:Минуло 3 місяці з цільової дати подання заявки в УКРНОІВІ (15.03.2027).\n\nЗа ст. 37 Закону України № 3687-XII завершено перевірку на відсутність відомостей, що становлять державну таємницю. Відкрито повне законне право на подання міжнародних заявок (PCT / USPTO) з конвенційним пріоритетом від української заявки.
-BEGIN:VALARM
-TRIGGER:PT9H
-ACTION:DISPLAY
-DESCRIPTION:Сьогодні спливає 3-місячний строк за ст. 37 ЗУ № 3687-XII — відкрито право міжнародної подачі PCT/USPTO
-END:VALARM
-END:VEVENT
-
-BEGIN:VEVENT
-UID:marma-patent-p4-paris-20280315@advocacy.uno
-DTSTAMP:20261019T111500Z
-DTSTART;VALUE=DATE:20280315
-DTEND;VALUE=DATE:20280316
-SUMMARY:🚨 [ДЕДЛАЙН ПАРИЗЬКОЇ КОНВЕНЦІЇ / USPTO] Кінець 12-міс. конвенційного пріоритету від заявки в УКРНОІВІ
-DESCRIPTION:Останній день 12-місячного конвенційного пріоритету (ст. 4 Паризької конвенції та 35 U.S.C. §§ 100(i)(1)(B), 102(b)(1)(A), 119(a)) від дати подання заявки на винахід в УКРНОІВІ (15.03.2027) для подання міжнародної заявки PCT або входу в національну фазу США (USPTO).
+UID:marma-patent-art37-20270119@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20270119
+DTEND;VALUE=DATE:20270120
+SUMMARY:[Marma-Crypto] Завершення 3-міс. перевірки за ст. 37 (дозвіл на закордонне патентування)
+DESCRIPTION:Тримісячний строк перевірки на держтаємницю за ст. 37 ЗУ № 3687-XII від дати подання 19.10.2026. Після цього відкривається законне право подачі PCT / USPTO.
 BEGIN:VALARM
 TRIGGER:-P30D
 ACTION:DISPLAY
-DESCRIPTION:За 30 днів (15.03.2028) спливає 12-місячний конвенційний пріоритет Marma-Crypto для США (USPTO) та PCT
+DESCRIPTION:За 30 днів: завершення перевірки ст. 37 — підготувати рішення про PCT/USPTO
 END:VALARM
 BEGIN:VALARM
 TRIGGER:-P7D
 ACTION:DISPLAY
-DESCRIPTION:За 7 днів (15.03.2028) спливає 12-місячний конвенційний пріоритет Marma-Crypto для США (USPTO) та PCT
+DESCRIPTION:За 7 днів: завершення перевірки ст. 37 (Marma-Crypto)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT9H
+ACTION:DISPLAY
+DESCRIPTION:Сьогодні: перевірка ст. 37 завершується — зафіксувати дозвіл на закордонне патентування
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:marma-patent-grace-20270417@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20270417
+DTEND;VALUE=DATE:20270418
+SUMMARY:🚨 [ДЕДЛАЙН УКРНОІВІ] Останній день 6-міс. пільги автора за новизною (подана заявка)
+DESCRIPTION:6-місячна пільга за ч. 6 ст. 6 ЗУ № 3687-XII, відлік від першого розкриття 17.10.2026 (CERN Zenodo 10.5281/zenodo.23429018). Стосується вже поданої заявки a 2026 06266.
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:За 30 днів (17.04.2027) спливає 6-міс. пільга автора в Україні
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:За 7 днів (17.04.2027) спливає 6-міс. пільга автора в Україні
+END:VALARM
+BEGIN:VALARM
+TRIGGER:PT9H
+ACTION:DISPLAY
+DESCRIPTION:Сьогодні спливає 6-міс. пільга автора за новизною (Marma-Crypto)
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:marma-patent-v21delta-decision-20270421@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20270421
+DTEND;VALUE=DATE:20270422
+SUMMARY:🚨 [РІШЕННЯ] Окрема заявка на дельту v2.1.0 (QIM / Universal / Optical / API)
+DESCRIPTION:Ознаки v2.1.0 вперше розкриті 21.10.2026 і НЕ описані в заявці a 2026 06266. Окрему заявку в Україні треба подати до 21.04.2027 (6-міс. пільга). Для США — до 21.10.2027 (35 U.S.C. § 102(b)(1)(A)); у EPO загальної пільги немає.
+BEGIN:VALARM
+TRIGGER:-P60D
+ACTION:DISPLAY
+DESCRIPTION:За 60 днів: рішення щодо окремої заявки на дельту v2.1.0 (QIM/Universal/Optical)
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P14D
+ACTION:DISPLAY
+DESCRIPTION:За 14 днів: фінальне рішення — окрема заявка на дельту v2.1.0 до 21.04.2027
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:marma-patent-paris-20271019@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20271019
+DTEND;VALUE=DATE:20271020
+SUMMARY:🚨 [ДЕДЛАЙН ПАРИЗЬКОЇ КОНВЕНЦІЇ / USPTO] 12 міс. від подання заявки в УКРНОІВІ
+DESCRIPTION:Останній день 12-місячного конвенційного пріоритету (ст. 4 Паризької конвенції; 35 U.S.C. §§ 100(i)(1)(B), 119(a)) від 19.10.2026 для подання PCT або входу в національну фазу США. Обсяг — лише в межах розкритого в заявці.
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:За 30 днів (19.10.2027) спливає конвенційний пріоритет Marma-Crypto для PCT/USPTO
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:За 7 днів (19.10.2027) спливає конвенційний пріоритет Marma-Crypto
+END:VALARM
+END:VEVENT
+
+BEGIN:VEVENT
+UID:marma-patent-us-grace-20271021@advocacy.uno
+DTSTAMP:20261022T120000Z
+DTSTART;VALUE=DATE:20271021
+DTEND;VALUE=DATE:20271022
+SUMMARY:⚠️ [США] Останній день 1-річної пільги для дельти v2.1.0
+DESCRIPTION:1-річна пільга автора за 35 U.S.C. § 102(b)(1)(A) від першого розкриття 21.10.2026. У EPO загальної пільги немає — для Європи ці ознаки вже непатентоздатні.
+BEGIN:VALARM
+TRIGGER:-P30D
+ACTION:DISPLAY
+DESCRIPTION:За 30 днів (21.10.2027): останній строк подачі в USPTO для дельти v2.1.0
+END:VALARM
+BEGIN:VALARM
+TRIGGER:-P7D
+ACTION:DISPLAY
+DESCRIPTION:За 7 днів (21.10.2027): останній строк подачі в USPTO для дельти v2.1.0
 END:VALARM
 END:VEVENT
 

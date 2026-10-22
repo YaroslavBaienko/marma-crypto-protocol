@@ -7,7 +7,7 @@
   "datePublished": "2026-10-17",
   "dateModified": "2026-10-21",
   "license": "https://spdx.org/licenses/Apache-2.0",
-  "identifier": "https://doi.org/10.5281/zenodo.23540160",
+  "identifier": "https://doi.org/10.5281/zenodo.23560975",
   "codeRepository": "https://github.com/YaroslavBaienko/marma-crypto-protocol",
   "url": "https://yaroslavbaienko.github.io/marma-crypto-protocol/",
   "programmingLanguage": [
@@ -35,7 +35,7 @@
   ],
   "referencePublication": {
     "@type": "ScholarlyArticle",
-    "@id": "https://doi.org/10.5281/zenodo.23540160",
+    "@id": "https://doi.org/10.5281/zenodo.23560975",
     "name": "Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"
   },
   "keywords": [
