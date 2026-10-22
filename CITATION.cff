@@ -22,7 +22,7 @@ identifiers:
     description: "CERN Zenodo Version 4 DOI (v2.1.0)"
   - type: doi
     value: "10.5281/zenodo.23510005"
-    description: "CERN Zenodo Version 3 DOI (v2.0, 16-page manuscript)"
+    description: "CERN Zenodo Version 3 DOI (v2.0, 20-page manuscript)"
   - type: doi
     value: "10.5281/zenodo.23429017"
     description: "CERN Zenodo Concept DOI (All Versions)"
