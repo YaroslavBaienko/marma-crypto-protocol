@@ -41,7 +41,7 @@
 | **CERN Zenodo — Version 3 (`v3` / `Release v2.0` + `Marma-256`)** | `10.5281/zenodo.23510005` | https://doi.org/10.5281/zenodo.23510005 | Non-peer-reviewed open preprint deposit (2026-10-20, superseded by `v4`→`v5`): **20-page** expanded LNCS/JISA manuscript + 3-tier Threat Model + NIST PQC Agility + signed EN/UA Whitepapers. Metadata note: the record's `version` field was empty and its inherited abstract still referenced `v1.3.0` until corrected on 2026-10-22 |
 | **CERN Zenodo — Version 1 (`v1.2.0`)** | `10.5281/zenodo.23429018` | https://doi.org/10.5281/zenodo.23429018 | Non-peer-reviewed defensive prior-art timestamp deposit (2026-10-17) |
 | **CERN Zenodo — Version 2 (`v1.2.1` + `v1.3.0` SWHID link)** | `10.5281/zenodo.23436152` | https://doi.org/10.5281/zenodo.23436152 | Non-peer-reviewed open preprint deposit (EN + UA PDFs + CAdES `.p7s` + OpenTimestamps `.ots` + Software Heritage SWHID) |
-| **Elsevier SSRN (*Cybersecurity & Data Privacy Law & Policy* eJournal)** | `DOI: 10.2139/ssrn.7631458` · `Abstract ID: 7631458` · `Vol. 11, No. 189` (2026-10-21) | https://ssrn.com/abstract=7631458 · https://doi.org/10.2139/ssrn.7631458 | **Published in SSRN eJournal Digest (`Vol. 11, No. 189`, Oct 21, 2026) & Revised to `Release v2.0` (`20 pp.`):** Full `Marma-256` manuscript live on SSRN ([Author Page `13668748`](https://ssrn.com/author=13668748), `CC BY 4.0`) |
+| **Elsevier SSRN (preprint mirror)** | `DOI: 10.2139/ssrn.7631458` · `Abstract ID: 7631458` | https://ssrn.com/abstract=7631458 · https://doi.org/10.2139/ssrn.7631458 | Preprint posted 2026-10-19 (`posted-content` in Crossref; `CC BY 4.0`). **Revision status and the “eJournal Vol. 11, No. 189” claim were not independently verifiable via public APIs on 2026-10-22** — treated as unverified; the SSRN record stays at the `v2.0` manuscript until the journal decision (see §5). [Author Page `13668748`](https://ssrn.com/author=13668748) |
 | **Figshare (Digital Science)** | `10.6084/m9.figshare.34697025` | https://doi.org/10.6084/m9.figshare.34697025 | Non-peer-reviewed DataCite archival mirror (2026-10-19, `CC BY 4.0`) |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Snapshot)** | `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` | https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol | ISO/IEC 18670 Merkle DAG snapshot — **historical: covers tags through `v1.3.0`; `v2.x` not yet archived in Software Heritage** |
 | **UNESCO / Inria Software Heritage (`marma-crypto-protocol` Revision)** | `swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c` | https://archive.softwareheritage.org/swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c | ISO/IEC 18670 immutable commit revision |
@@ -79,3 +79,31 @@
 | **DOU.ua (Українська ІТ-спільнота)** | 2026-10-19 | Published on DOU Forum («Оцініть проєкт» / DOU Tech): https://dou.ua/forums/topic/62699/ |
 | **Dev.to (Global Developer Community)** | 2026-10-19 | Published technical deep-dive: https://dev.to/yaroslavbaienko/how-we-bound-512-bit-cryptographic-signatures-to-non-linear-sri-yantra-vector-geometry-inside-raw-2k72 |
 | **Medium** | 2026-10-19 | Published technical deep-dive (imported from Dev.to with canonical link, topics: `Cryptography`, `Cybersecurity`, `Mathematics`, `Open Source`, `Legaltech`) |
+
+
+---
+
+## 5. Publication & Revision Policy (fixed 2026-10-22)
+
+> **Decision record.** These rules were agreed on 2026-10-22 and supersede ad-hoc actions.
+
+**5.1. Version of record and mirrors.**
+- **Canonical archival edition:** Zenodo `v5` (`10.5281/zenodo.23560975`, `2.1.0-rev1`); concept DOI `10.5281/zenodo.23429017` resolves to the latest version and is the one to cite in manuscripts and letters.
+- **Mirrors:** SSRN (`10.2139/ssrn.7631458`), Figshare (`10.6084/m9.figshare.34697025`), OSF (pending moderation), Academia.edu / ResearchGate (unverified) are non-peer-reviewed mirrors and are **not** updated while the journal submission is under review.
+
+**5.2. Journal submission (Elsevier *Signal Processing*, `SIGPRO-D-26-04464`).**
+- The submitted version is **frozen**: `Release v2.0`, 21 pp., archived in [`submission_snapshots/elsevier-v2.0/`](submission_snapshots/elsevier-v2.0/).
+- **No file replacement during review.** Manuscript changes are made only in response to an editor's decision (major/minor revision) and uploaded through Editorial Manager.
+- Revision checklist (when the editor opens the revision window):
+  1. replace the archival DOI `10.5281/zenodo.23510005` (v3) with the **concept DOI** `10.5281/zenodo.23429017`;
+  2. unify the test-suite counts (manuscript said `31-test`, cover letter `33-test`) to the current **40-test** suite and reference `tests/`;
+  3. rename the supplementary file `04_Declaration_of_Interest_JISA.txt` → `04_Declaration_of_Interest_SIGPRO.txt`;
+  4. do **not** add the `v2.1.0` Universal/Optical/API material unless the editor explicitly requests it (avoid self-overlap with the public preprint); if requested, disclose the updated preprint in the revision cover letter.
+
+**5.3. SSRN.**
+- **No revision now.** The SSRN record stays at the `v2.0` manuscript while `SIGPRO-D-26-04464` is under review.
+- After the journal decision, SSRN may be revised (author-side login) with the **accepted author manuscript** (never the publisher's PDF) and a link to the article DOI; otherwise it remains as the historical `v2.0` preprint.
+
+**5.4. After acceptance.**
+- Cite the article DOI in future versions; update Zenodo with a new version if the accepted text differs; do not remove historical versions.
+- Open follow-ups (not blocking): link Zenodo `v3`–`v5` to ORCID, and request a new Software Heritage save covering `v2.x`.
