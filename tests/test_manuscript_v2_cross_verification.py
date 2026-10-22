@@ -31,14 +31,18 @@ import marma_watermark as mw  # noqa: E402
 class TestManuscriptV2CrossVerification(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
-        cls.jisa_typ_path = REPO_ROOT / "submission_elsevier_jisa" / "Marma_Crypto_Elsevier_JISA_Edition.typ"
+        # Frozen submission snapshot (committed, immutable): the manuscript exactly as
+        # submitted to JISA/SIGPRO. The live per-journal folder stays gitignored, so the
+        # suite must never depend on it.
+        cls.snapshot_dir = REPO_ROOT / "submission_snapshots" / "elsevier-v2.0"
+        cls.snapshot_sums_path = cls.snapshot_dir / "SHA256SUMS"
+        cls.jisa_typ_path = cls.snapshot_dir / "Marma_Crypto_Elsevier_JISA_Edition.typ"
         cls.iacr_typ_path = REPO_ROOT / "whitepaper" / "Marma_Crypto_IACR_LNCS_Edition.typ"
-        cls.jisa_pdf_path = REPO_ROOT / "submission_elsevier_jisa" / "01_Manuscript_Marma_Crypto_JISA.pdf"
-        cls.sigpro_pdf_path = REPO_ROOT / "submission_elsevier_jisa" / "01_Manuscript_Marma_Signal_Processing.pdf"
+        cls.jisa_pdf_path = cls.snapshot_dir / "01_Manuscript_Marma_Crypto_JISA.pdf"
+        cls.sigpro_pdf_path = cls.snapshot_dir / "01_Manuscript_Marma_Signal_Processing.pdf"
         cls.iacr_pdf_path = REPO_ROOT / "whitepaper" / "Marma_Crypto_IACR_LNCS_Edition.pdf"
         cls.report_path = REPO_ROOT / "reports" / "v2_hypothesis_verification_report.json"
-        cls.cover_letter_path = REPO_ROOT / "submission_elsevier_jisa" / "02_Cover_Letter_JISA.txt"
-        cls.highlights_path = REPO_ROOT / "submission_elsevier_jisa" / "03_Highlights_JISA.txt"
+        cls.highlights_path = cls.snapshot_dir / "03_Highlights_JISA.txt"
 
         cls.typ_text = cls.jisa_typ_path.read_text(encoding="utf-8")
         cls.report = json.loads(cls.report_path.read_text(encoding="utf-8"))
@@ -53,31 +57,54 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
     # STAGE I: CROSS-CHECKING (Internal Structural, Unit & Citation Integrity)
     # =========================================================================
 
-    def test_stage1_01_typ_and_pdf_parity(self) -> None:
-        """Cross-check that JISA, SIGPRO, and IACR .typ/PDF sources are byte-identical and compile cleanly."""
-        self.assertTrue(self.jisa_typ_path.exists())
-        self.assertTrue(self.iacr_typ_path.exists())
-        self.assertEqual(
-            self.jisa_typ_path.read_bytes(),
-            self.iacr_typ_path.read_bytes(),
-            "JISA/SIGPRO and IACR .typ manuscript files must be byte-for-byte identical",
-        )
-        self.assertTrue(self.jisa_pdf_path.exists())
-        self.assertTrue(self.sigpro_pdf_path.exists())
-        self.assertTrue(self.iacr_pdf_path.exists())
+    def test_stage1_01_frozen_submission_integrity_and_supersession(self) -> None:
+        """Cross-check the frozen SIGPRO/JISA submission snapshot and that the current manuscript supersedes it."""
+        # 1) The frozen snapshot is byte-intact against its SHA256 manifest.
+        manifest = {}
+        for line in self.snapshot_sums_path.read_text(encoding="utf-8").splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            digest, rel = line.split(maxsplit=1)
+            manifest[rel.lstrip("*")] = digest
+        self.assertGreaterEqual(len(manifest), 8, "Frozen submission manifest is incomplete")
+        for rel, digest in manifest.items():
+            asset = self.snapshot_dir / rel
+            self.assertTrue(asset.exists(), f"Missing frozen submission asset: {rel}")
+            self.assertEqual(
+                hashlib.sha256(asset.read_bytes()).hexdigest(),
+                digest,
+                f"Frozen submission asset was modified after freezing: {rel}",
+            )
+
+        # 2) JISA and SIGPRO received byte-identical manuscript PDFs.
         self.assertEqual(
             self.jisa_pdf_path.read_bytes(),
             self.sigpro_pdf_path.read_bytes(),
             "01_Manuscript_Marma_Crypto_JISA.pdf and 01_Manuscript_Marma_Signal_Processing.pdf must match",
         )
-        self.assertGreaterEqual(self.pdf_page_count, 18)
-        self.assertLessEqual(self.pdf_page_count, 22)
-        with pymupdf.open(self.iacr_pdf_path) as doc2:
-            self.assertEqual(self.pdf_page_count, len(doc2))
-        # Verify Signal Processing formatting: line numbering enabled and CRYPTOGRAPHIC ENGINEERING removed from header
+
+        # 3) The frozen snapshot is the v2.0 manuscript with Elsevier Signal Processing formatting.
+        self.assertIn("(RELEASE V2.0)", self.typ_text)
         self.assertIn("#set par.line(\n  numbering: n =>", self.typ_text)
         self.assertNotIn("CRYPTOGRAPHIC ENGINEERING", self.typ_text)
         self.assertIn("SIGNAL PROCESSING & INFORMATION HIDING MANUSCRIPT", self.typ_text)
+        self.assertGreaterEqual(self.pdf_page_count, 18)
+        self.assertLessEqual(self.pdf_page_count, 22)
+
+        # 4) The current archival manuscript is a later release (v2.1.0) that supersedes,
+        #    not equals, the frozen submission. Post-submission updates must not rewrite
+        #    what the journals received.
+        iacr_typ_text = self.iacr_typ_path.read_text(encoding="utf-8")
+        self.assertIn("V2.1.0", iacr_typ_text)
+        self.assertNotEqual(
+            iacr_typ_text,
+            self.typ_text,
+            "Current archival manuscript must not be byte-identical to the frozen v2.0 submission",
+        )
+        with pymupdf.open(self.iacr_pdf_path) as doc2:
+            self.assertGreaterEqual(len(doc2), self.pdf_page_count)
+            self.assertGreaterEqual(len(doc2), 22)
 
     def test_stage1_02_theorems_figures_tables_and_sections(self) -> None:
         """Cross-check presence of all Theorems 1-5, Proposition 1, Definitions 1-2, Figures 1-5, Tables 1-6."""
@@ -120,7 +147,7 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
         ]
         for name in svg_names:
             p1 = REPO_ROOT / "whitepaper" / "figures" / name
-            p2 = REPO_ROOT / "submission_elsevier_jisa" / "figures" / name
+            p2 = self.snapshot_dir / "figures" / name
             self.assertTrue(p1.exists(), f"Missing {p1}")
             self.assertTrue(p2.exists(), f"Missing {p2}")
             self.assertEqual(p1.read_bytes(), p2.read_bytes(), f"SVG mismatch for {name}")
@@ -152,7 +179,6 @@ class TestManuscriptV2CrossVerification(unittest.TestCase):
         for label, text in [
             ("Manuscript .typ", self.typ_text),
             ("Rendered PDF", self.pdf_text),
-            ("Cover Letter", self.cover_letter_path.read_text(encoding="utf-8")),
             ("Highlights", self.highlights_path.read_text(encoding="utf-8")),
         ]:
             self.assertNotIn("10^-11 rad", text, f"Found legacy 'rad' unit bug in {label}")

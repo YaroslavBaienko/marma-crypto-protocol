@@ -1,0 +1,7 @@
+Highlights
+
+* Proves algebraic irrationality of C_{9,54} concurrency locus (d>=16, Thm 1).
+* Embeds 256 bits bijectively in 18 npt (6.35 pm) IEEE-754 QIM lattice (BER=0).
+* Achieves 9.85 b/v capacity and 155.0 dB PSNR (54x-216x lower RMSE vs SOTA).
+* Keyed Dithered QIM & O(1) canary yield I(V;w_c)=0 and 96.3% tamper defense.
+* Binds 3-way hash combiner & GF(2^257) payload to survive PDF flattening.

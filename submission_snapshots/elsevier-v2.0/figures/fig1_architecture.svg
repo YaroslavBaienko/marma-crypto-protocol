@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 410" width="100%" height="100%">
+  <defs>
+    <style>
+      .title { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 13px; font-weight: bold; fill: #0f172a; }
+      .sub { font-family: 'Liberation Sans', Helvetica, Arial, sans-serif; font-size: 10.5px; fill: #334155; }
+      .mono { font-family: 'Liberation Mono', Courier, monospace; font-size: 9.5px; fill: #1e293b; }
+      .badge-bad { font-family: 'Liberation Sans', sans-serif; font-size: 9.5px; font-weight: bold; fill: #991b1b; }
+      .badge-ok { font-family: 'Liberation Sans', sans-serif; font-size: 9.5px; font-weight: bold; fill: #065f46; }
+      .box { fill: #f8fafc; stroke: #475569; stroke-width: 1.3; rx: 6; }
+      .box-threat { fill: #fef2f2; stroke: #dc2626; stroke-width: 1.4; stroke-dasharray: 4,2; rx: 6; }
+      .box-marma { fill: #ecfdf5; stroke: #059669; stroke-width: 1.5; rx: 6; }
+      .box-core { fill: #eff6ff; stroke: #2563eb; stroke-width: 1.5; rx: 6; }
+    </style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#334155"/>
+    </marker>
+    <marker id="arrow-red" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#dc2626"/>
+    </marker>
+    <marker id="arrow-green" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 9 5 L 0 9 z" fill="#059669"/>
+    </marker>
+  </defs>
+
+  <rect x="2" y="2" width="876" height="406" fill="#ffffff" stroke="#cbd5e1" stroke-width="1" rx="8"/>
+
+  <!-- Top Half: Conventional PAdES Container-Stream Decoupling Vulnerability -->
+  <rect x="16" y="14" width="848" height="145" fill="#fffafb" stroke="#fecaca" stroke-width="1" rx="6"/>
+  <text x="28" y="33" class="title" fill="#991b1b">(a) Conventional PAdES-B-LTA / Detached CAdES (.p7s) Container-Stream Decoupling Vulnerability</text>
+
+  <rect x="28" y="48" width="165" height="92" class="box"/>
+  <text x="40" y="66" class="title">Signed PDF / Document</text>
+  <text x="40" y="83" class="mono">1. /Contents (PKCS#7)</text>
+  <text x="40" y="98" class="mono">2. /ByteRange [0..N]</text>
+  <text x="40" y="113" class="mono">3. /AP Visual Stamp</text>
+  <text x="40" y="128" class="sub" fill="#64748b">(Static Euclidean Badge)</text>
+
+  <line x1="193" y1="94" x2="238" y2="94" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+
+  <rect x="242" y="48" width="215" height="92" class="box-threat"/>
+  <text x="254" y="66" class="badge-bad">DMS Flattening / Attack I-III</text>
+  <text x="254" y="83" class="sub">• Strip /Contents or lose .p7s</text>
+  <text x="254" y="98" class="sub">• Copy /AP stamp to forged PDF</text>
+  <text x="254" y="113" class="sub">• Incremental Shadow Update</text>
+  <text x="254" y="128" class="mono" fill="#b91c1c">Visual badge stays identical!</text>
+
+  <line x1="457" y1="94" x2="502" y2="94" stroke="#dc2626" stroke-width="1.6" marker-end="url(#arrow-red)"/>
+
+  <rect x="506" y="48" width="342" height="92" class="box-threat"/>
+  <text x="518" y="66" class="badge-bad">Result: Cryptographic Amnesia &amp; Spoofing</text>
+  <text x="518" y="84" class="sub">• Standard /AP coordinates carry 0 bits of signature</text>
+  <text x="518" y="100" class="sub">• Print-to-PDF / archival preview destroys PKCS#7</text>
+  <text x="518" y="116" class="sub">• Visual inspection cannot detect 1-byte text tampering</text>
+  <text x="518" y="132" class="mono" fill="#991b1b">Entropy(Visual_Stamp | Sig) = 0 bits</text>
+
+  <!-- Bottom Half: Marma-256 Bijective Geometric Vector Commitment -->
+  <rect x="16" y="172" width="848" height="224" fill="#f8fafc" stroke="#94a3b8" stroke-width="1" rx="6"/>
+  <text x="28" y="192" class="title" fill="#0f172a">(b) Proposed Marma-256 Protocol: Bijective Vector Commitment over Overdetermined Lattice C_{9,54} + DSTU 4145-2002</text>
+
+  <!-- Stage 1 -->
+  <rect x="28" y="208" width="185" height="106" class="box-core"/>
+  <text x="38" y="226" class="title" fill="#1e40af">1. Parallel Combiner</text>
+  <text x="38" y="243" class="mono">M_norm = Normalize(Doc)</text>
+  <text x="38" y="258" class="mono">h1 = GOST 34.311-95(M)</text>
+  <text x="38" y="273" class="mono">h2 = Kupyna-256(M)</text>
+  <text x="38" y="288" class="mono">h3 = SHA-256(M)</text>
+  <text x="38" y="304" class="mono" font-weight="bold">H_comb = SHA256(h1||h2||h3)</text>
+
+  <line x1="213" y1="261" x2="245" y2="261" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2 -->
+  <rect x="249" y="208" width="190" height="106" class="box-core"/>
+  <text x="259" y="226" class="title" fill="#1e40af">2. DSTU 4145-2002 QES</text>
+  <text x="259" y="243" class="mono">Curve: GF(2^257) PB</text>
+  <text x="259" y="258" class="mono">p(t)=t^257+t^12+1</text>
+  <text x="259" y="273" class="mono">RFC 6979 Nonce k</text>
+  <text x="259" y="288" class="mono">(r, s) = Sign_d(H_comb)</text>
+  <text x="259" y="304" class="mono" font-weight="bold">D_sig = SHA256(r || s)</text>
+
+  <line x1="439" y1="261" x2="471" y2="261" stroke="#334155" stroke-width="1.6" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3 -->
+  <rect x="475" y="208" width="192" height="106" class="box-marma"/>
+  <text x="485" y="226" class="title" fill="#065f46">3. Bijective Lattice E_10</text>
+  <text x="485" y="243" class="mono">26 words w_k in [0..1023]</text>
+  <text x="485" y="258" class="mono">+ Canary w_c in D5.ay</text>
+  <text x="485" y="273" class="mono">delta_k=(18*w_k-9207) npt</text>
+  <text x="485" y="288" class="mono">x_k = B*_k*s + delta_k</text>
+  <text x="485" y="304" class="mono" font-weight="bold">lx_i + rx_i = 2*c_x (exact)</text>
+
+  <line x1="667" y1="261" x2="699" y2="261" stroke="#059669" stroke-width="1.6" marker-end="url(#arrow-green)"/>
+
+  <!-- Stage 4 -->
+  <rect x="703" y="208" width="145" height="106" class="box-marma"/>
+  <text x="713" y="226" class="title" fill="#065f46">4. Inversion D_10</text>
+  <text x="713" y="243" class="mono">Parse PDF/SVG/DOCX</text>
+  <text x="713" y="258" class="mono">w~_k = D_10(x~_k)</text>
+  <text x="713" y="273" class="mono">|w~_k-w_k|&lt;=4.73e-6</text>
+  <text x="713" y="288" class="mono">BER = 0 (2.56e7 bits)</text>
+  <text x="713" y="304" class="badge-ok">100% Tamper Detect</text>
+
+  <!-- Bottom summary bar -->
+  <rect x="28" y="326" width="820" height="56" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.2" rx="5"/>
+  <text x="40" y="345" class="mono" font-weight="bold" fill="#0f172a">Three-Mode Verification Guarantee (Table 2):</text>
+  <text x="40" y="361" class="sub">• <tspan font-weight="bold" fill="#1e40af">Mode 1 (Asymmetric QES):</tspan> Verifies EC point over GF(2^257) + exact 256-bit geometry (unforgeable without private key d).</text>
+  <text x="40" y="376" class="sub">• <tspan font-weight="bold" fill="#065f46">Mode 2 (Symmetric HMAC + Canary):</tspan> O(1) leak attribution via D5.ay (I(V;w_c)=0) · <tspan font-weight="bold" fill="#475569">Mode 3 (Public Seal):</tspan> Offline integrity checksum.</text>
+</svg>
