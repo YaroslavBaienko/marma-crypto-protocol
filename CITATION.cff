@@ -28,7 +28,10 @@ identifiers:
     description: "CERN Zenodo Concept DOI (All Versions)"
   - type: doi
     value: "10.2139/ssrn.7631458"
-    description: "Elsevier SSRN eJournal DOI"
+    description: "Elsevier SSRN preprint DOI"
+  - type: doi
+    value: "10.6084/m9.figshare.34697025"
+    description: "Figshare preprint mirror DOI"
   - type: url
     value: "https://yaroslavbaienko.github.io/marma-crypto-protocol/"
     description: "Live Client-Side Browser Document Sealer, Canary Studio & Verifier"
