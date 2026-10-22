@@ -1,5 +1,5 @@
 // =============================================================================
-// Marma-256 (Marma-Crypto) — Academic Preprint / Journal Submission (Release v2.0)
+// Marma-256 (Marma-Crypto) — Academic Preprint / Journal Submission (Release v2.1.0)
 // Formatted for Elsevier Signal Processing (EURASIP) / Information Hiding Q1
 // =============================================================================
 
@@ -29,7 +29,7 @@
       #grid(
         columns: (1fr, auto),
         [Y. Baienko — Marma-256: Sub-Micron Dithered QIM on Overdetermined Planar Incidence Manifolds],
-        [Preprint v2.1.0 · DOI: 10.5281/zenodo.23510005],
+        [Preprint v2.1.0 · DOI: 10.5281/zenodo.23540160],
       )
       #v(-4pt)
       #line(length: 100%, stroke: 0.4pt + luma(180))
@@ -109,7 +109,7 @@
 // =============================================================================
 #align(center)[
   #text(size: 8.5pt, weight: "bold", fill: rgb("#1e3a8a"))[
-    SIGNAL PROCESSING & INFORMATION HIDING MANUSCRIPT (RELEASE V2.1.0) · ARCHIVAL RECORD: CERN ZENODO DOI 10.5281/zenodo.23510005
+    SIGNAL PROCESSING & INFORMATION HIDING MANUSCRIPT (RELEASE V2.1.0) · ARCHIVAL RECORD: CERN ZENODO DOI 10.5281/zenodo.23540160
   ]
   #v(6pt)
   #text(size: 14pt, weight: "bold")[
@@ -684,7 +684,7 @@ We have presented *`Marma-256` (`Marma-Crypto v2.1.0`)*, a geometric signal proc
   fill: luma(250),
 )[
   #set text(size: 8.5pt)
-  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v2.1.0`, Apache 2.0 License), modular Python SDK (`src/marma_crypto/`: `universal_qim.py`, `optical_ecc.py`, `api_server.py`), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 40-test cross-verification harness (`tests/`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23510005")[DOI: 10.5281/zenodo.23510005] / Concept DOI: `10.5281/zenodo.23429017`), Elsevier SSRN (`10.2139/ssrn.7631458`), Software Heritage (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`), and GitHub (#link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
+  *Reproducibility & Open-Source Artifact Availability:* The complete source code (`v2.1.0`, Apache 2.0 License), modular Python SDK (`src/marma_crypto/`: `universal_qim.py`, `optical_ecc.py`, `api_server.py`), empirical hypothesis verification suite (`scripts/verify_and_plot_v2_hypotheses.py`), 40-test cross-verification harness (`tests/`), and interactive browser verifier are permanently archived at CERN Zenodo (#link("https://doi.org/10.5281/zenodo.23540160")[DOI: 10.5281/zenodo.23540160] / Concept DOI: `10.5281/zenodo.23429017`), Elsevier SSRN (`10.2139/ssrn.7631458`), Software Heritage (`swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1`), and GitHub (#link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]). Patent Pending: UKRNOIVI Invention Application No. `a 2026 06266` (`Вх-72320/2026`, `Вх-72403/2026`).
 ]
 
 // =============================================================================

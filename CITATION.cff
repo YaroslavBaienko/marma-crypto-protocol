@@ -4,7 +4,7 @@ title: "Marma-Crypto (Marma-256) v2.1.0: Sub-Micron Dithered Quantization Index 
 type: software
 version: "2.1.0"
 date-released: "2026-10-21"
-doi: "10.5281/zenodo.23510005"
+doi: "10.5281/zenodo.23540160"
 license: "Apache-2.0"
 repository-code: "https://github.com/YaroslavBaienko/marma-crypto-protocol"
 url: "https://yaroslavbaienko.github.io/marma-crypto-protocol/"
@@ -15,8 +15,11 @@ authors:
     affiliation: "Ukrainian National Bar Association / GOLAW"
 identifiers:
   - type: doi
+    value: "10.5281/zenodo.23540160"
+    description: "CERN Zenodo Version 4 DOI (v2.1.0, 22-page manuscript + 2.1.0 Debian package)"
+  - type: doi
     value: "10.5281/zenodo.23510005"
-    description: "CERN Zenodo Version 3 DOI"
+    description: "CERN Zenodo Version 3 DOI (v2.0, 16-page manuscript)"
   - type: doi
     value: "10.5281/zenodo.23429017"
     description: "CERN Zenodo Concept DOI (All Versions)"
@@ -49,7 +52,7 @@ preferred-citation:
       affiliation: "Ukrainian National Bar Association / GOLAW"
   year: 2026
   month: 10
-  doi: "10.5281/zenodo.23510005"
-  url: "https://doi.org/10.5281/zenodo.23510005"
+  doi: "10.5281/zenodo.23540160"
+  url: "https://doi.org/10.5281/zenodo.23540160"
   institution:
     name: "CERN Zenodo / Elsevier Signal Processing (SIGPRO-D-26-04464)"

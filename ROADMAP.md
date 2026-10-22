@@ -3,7 +3,7 @@
 > **Current Production Release:** `v2.1.0` (`marma-crypto-watermark_2.1.0-1_all.deb` · Python SDK `marma_crypto v2.1.0`)
 > **Patent Status:** **`Patent Pending — UKRNOIVI Invention Application No. a 2026 06266`** (`Вх-72320/2026` · Fee Receipt `Вх-72403/2026`)
 > **Peer-Review Status:** **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** · **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)**
-> **CERN Zenodo DOI:** [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) (`v3` · Concept DOI: `10.5281/zenodo.23429017`)
+> **CERN Zenodo DOI:** [`10.5281/zenodo.23540160`](https://doi.org/10.5281/zenodo.23540160) (`v4` · Concept DOI: `10.5281/zenodo.23429017`)
 > **Software Heritage (ISO/IEC 18670 SWHID):** `swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1` (`swh:1:rev:9101009d6e995adf56cd1a85c71291484d89d18c`)
 > **Live Client-Side Deal-Room Studio & Verifier:** [`https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
 
@@ -23,7 +23,7 @@
    - Production Debian/Ubuntu `.deb` package (`marma-crypto-watermark_2.1.0-1_all.deb`) with 12 GNOME Nautilus actions (`0_help.sh` – `11_trace_leak_optical.sh`) and **40 automated tests (`OK`)** across 4 test suites.
 3. **Institutional Archival, Patent Filing & Peer Review:**
    - **UKRNOIVI 20-Year Invention Patent Application `No. a 2026 06266`** (`Вх-72320/2026`, filed 2026-10-19; fee receipt `Вх-72403/2026` registered 2026-10-20).
-   - **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** formal peer-review submission (`21 pp.`, Theorems 1–5) + **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)** + **CERN Zenodo `v3` (`10.5281/zenodo.23510005`)**.
+   - **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** formal peer-review submission (`21 pp.`, Theorems 1–5) + **SSRN eJournal `Vol. 11, No. 189` (`10.2139/ssrn.7631458`)** + **CERN Zenodo `v4` (`10.5281/zenodo.23540160`)**.
 
 ---
 
@@ -65,6 +65,14 @@
 
 > **Canonical Strategy Document:** [`docs/PATENT_STRATEGY_UA_US.md`](docs/PATENT_STRATEGY_UA_US.md) · **Calendar (`.ics`):** [`docs/marma_ukrnoivi_patent_schedule.ics`](docs/marma_ukrnoivi_patent_schedule.ics)
 > **First Public Disclosure Date (Prior Art Anchor):** `2026-10-17` (CERN Zenodo `10.5281/zenodo.23429018`)
+> **STATUS UPDATE (2026-10-22) — the application is already filed; milestones P1/P2 below are historical:**
+> Invention application `a 2026 06266` (`Вх-72320/2026`) was filed **2026-10-19** (fee receipt `Вх-72403/2026`, 2026-10-20).
+> Recomputed deadlines: Art. 37 state-secrecy clearance ≈ **2027-01-19**; Paris/PCT priority **2027-10-19** (12 months from the filing);
+> 6-month inventor's grace for the *filed* subject matter — **2027-04-17**.
+> **Unprotected `v2.1.0` delta** (Keyed Dithered QIM / Theorem 5, `Marma-Universal` emblems, `Marma-Optical` ECC, Deal-Room REST API) was first publicly disclosed **2026-10-21** and is **not described** in the filed application, so the patent does not cover it.
+> Decision on a separate application is required by **2027-04-21** (UA 6-month grace) / **2027-10-21** (US, `35 U.S.C. § 102(b)(1)(A)`); the EPO has no general grace period, so those features are already unpatentable there unless they are supported by the pending application (they are not).
+> Until that decision, do not publish further technical details of the `v2.1.0` delta.
+>
 > **Why UKRNOIVI First (Mandatory & Optimal):**
 > 1. **Ukrainian Mandatory First-Filing Rule (`Art. 37 of Law No. 3687-XII`):** Inventions created in Ukraine by Ukrainian citizens must first be filed in UKRNOIVI (followed by a 3-month state-secrecy clearance window) before any foreign patent filing.
 > 2. **USPTO Foreign Domicile Rule (`37 CFR § 1.31(a)(2)`, effective July 20, 2026):** Foreign-domiciled applicants can no longer sign Micro Entity certifications (`Form PTO/SB/15A`) or ADS forms *pro se* in the USPTO without hiring a US patent attorney ($350–$600).
