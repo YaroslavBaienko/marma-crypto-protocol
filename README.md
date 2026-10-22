@@ -58,7 +58,7 @@
    - **Embedded HTTP REST Microservice (`marma-watermark serve-api --port 8765`):** Zero-dependency HTTP server exposing `GET /v1/health`, `POST /v1/seal-batch`, `POST /v1/verify`, and `POST /v1/trace-leak` for turnkey integration with Nextcloud, SharePoint, Intralinks, Datasite, and M.E.Doc/Вчасно gateways.
 4. **Theorem 5 — Chen–Wornell Keyed Dithered QIM ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) & Active-TraitorPermutation ($\pi_K \in S_{27}$):**
    - Formalized in our **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** submission (`Release v2.0-SIGPRO`, `21 pp.`): applies a keyed uniform dither vector $\mathbf{d}_K$ (rendering physical coordinate offsets statistically uniform over $\mathbb{Z}_{1024}^{27}$ with Kullback–Leibler divergence $D_{\text{KL}} = 0\text{ bits}$ against cover distributions) and a Fisher–Yates channel permutation $\pi_K \in S_{27}$ so an unkeyed traitor attempting to erase the Canary channel hits the 26 signature commitments with probability $26/27 \approx 96.30\%$ (`99.72%` for 2 guesses).
-5. **Expanded GNOME Files (`Nautilus`) Right-Click Suite (`11 Scripts` + `40/40` Automated Tests):**
+5. **Expanded GNOME Files (`Nautilus`) Right-Click Suite (`13 Scripts` + `40/40` Automated Tests):**
    - Adds 4 new localized (UA/EN) right-click actions in `🔱 Шрі Янтра · Marma-Crypto`: **Ukrainian Trident / Corporate Shield Stamping**, **CAD-SVG 27-DOF Protection**, **Deal-Room Batch Stamping ($N$ Recipients)**, and **Unified Vector + Screen-Photo Optical Leak Tracing**, backed by a **40-test cross-verification suite** (`tests/test_marma_v21_universal_optical_api.py`).
 
 ---
@@ -227,7 +227,7 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
   author      = {Baienko, Yaroslav V.},
   title       = {Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication},
   year        = {2026},
-  version     = {v2.1.0 (Release v2.0-SIGPRO)},
+  version     = {v2.1.0-rev1 (Zenodo v5)},
   institution = {Elsevier Signal Processing (SIGPRO-D-26-04464) / CERN Zenodo / Elsevier SSRN},
   number      = {SIGPRO-D-26-04464; UKRNOIVI Patent Appl. a 2026 06266},
   doi         = {10.5281/zenodo.23560975},
