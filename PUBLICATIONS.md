@@ -107,3 +107,20 @@
 **5.4. After acceptance.**
 - Cite the article DOI in future versions; update Zenodo with a new version if the accepted text differs; do not remove historical versions.
 - Open follow-ups (not blocking): link Zenodo `v3`–`v5` to ORCID, and request a new Software Heritage save covering `v2.x`.
+
+
+---
+
+## 6. Audience Metrics Snapshot (2026-10-23)
+
+Point-in-time attention metrics, not impact. Zenodo/GitHub numbers are unique where the platform reports them; SSRN blocks automated access (Cloudflare) and is pending a logged-in read.
+
+| Channel | Views | Downloads | Notes |
+|---|---|---|---|
+| Zenodo (concept `23429017`, all 5 versions) | 867 raw / **478 unique** | 111 raw / **106 unique** | API `?stats=true`; concept-wide, not v5-specific; ~22% view→download conversion |
+| Figshare (`10.6084/m9.figshare.34697025`, v1.2.1-era mirror) | **13** | **4** | 0 citations; archival mirror, not a discovery channel; record intentionally not revised (see §5) |
+| GitHub `marma-crypto-protocol` (last 14 days) | 35 / **14 unique** | — | clones 661 / 244 unique (bot-inflated); 1 star, 0 forks, 0 watchers |
+| SSRN (`10.2139/ssrn.7631458`) | pending | pending | page/API behind Cloudflare; read from the author dashboard |
+| Elsevier *Signal Processing* (`SIGPRO-D-26-04464`) | — | — | with EiC Dr. Cédric Richard since 2026-10-23; no audience metric applies |
+
+Reading rule: views/downloads measure **attention** (and include bots, crawlers and self-checks); citations and peer-review decisions are the only impact measures. Re-snapshot monthly rather than optimising for any single number.
