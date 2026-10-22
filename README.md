@@ -9,7 +9,7 @@
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
 [![Peer Review SIGPRO](https://img.shields.io/badge/📄_Elsevier_Signal_Processing-SIGPRO--D--26--04464-ff6c00.svg)](PUBLICATIONS.md)
-[![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23510005.svg)](https://doi.org/10.5281/zenodo.23510005)
+[![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23540160.svg)](https://doi.org/10.5281/zenodo.23540160)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
 [![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Specification-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
@@ -215,10 +215,10 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
 
 * **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*) — Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine) · **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133)
 * **Formal Peer-Review & Patent Examination Status:**
-  * **Elsevier *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0) Submission:** Active peer-review manuscript **`SIGPRO-D-26-04464`** (*"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"*, `Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5, 5 vector figures, 6 SOTA tables, 100,000 Monte Carlo trials; archived on CERN Zenodo [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) and published in Elsevier SSRN *Cybersecurity & Data Privacy Law & Policy* `Vol. 11, No. 189` [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458)).
+  * **Elsevier *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0) Submission:** Active peer-review manuscript **`SIGPRO-D-26-04464`** (*"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"*, `Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5, 5 vector figures, 6 SOTA tables, 100,000 Monte Carlo trials; archived on CERN Zenodo [`10.5281/zenodo.23540160`](https://doi.org/10.5281/zenodo.23540160) and published in Elsevier SSRN *Cybersecurity & Data Privacy Law & Policy* `Vol. 11, No. 189` [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458)).
   * **Patent Examination (Patent Pending):** Ukrainian 20-year Invention Patent Application No. **`a 2026 06266`** filed with the National IP Office of Ukraine (UKRNOIVI, `Вх-72320/2026` on `2026-10-19`; filing fee receipt registered under `Вх-72403/2026` on `2026-10-20`).
 * **Open Preprint Mirrors & Timestamp Archives (Non-Peer-Reviewed Prior Art):**
-  * **CERN Zenodo (`v3` / `Release v2.0`, 2026-10-20):** [`10.5281/zenodo.23510005`](https://doi.org/10.5281/zenodo.23510005) (Concept DOI: [`10.5281/zenodo.23429017`](https://doi.org/10.5281/zenodo.23429017) · Prior `v2`: [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152)) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
+  * **CERN Zenodo (`v4` / `Release v2.1.0`, 2026-10-21):** [`10.5281/zenodo.23540160`](https://doi.org/10.5281/zenodo.23540160) (Concept DOI: [`10.5281/zenodo.23429017`](https://doi.org/10.5281/zenodo.23429017) · Prior `v2`: [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152)) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
 * **GPG Fingerprint (RSA-4096):** `3D5A ACFD E32C 98FE 8819 9D47 D2A2 C1C4 9164 673B`
 * **Qualified Certificate Serial (КНЕДП):** `10FF6F932221FA00CB4407000000000130616768`
 
@@ -230,8 +230,8 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
   version     = {v2.1.0 (Release v2.0-SIGPRO)},
   institution = {Elsevier Signal Processing (SIGPRO-D-26-04464) / CERN Zenodo / Elsevier SSRN},
   number      = {SIGPRO-D-26-04464; UKRNOIVI Patent Appl. a 2026 06266},
-  doi         = {10.5281/zenodo.23510005},
-  url         = {https://doi.org/10.5281/zenodo.23510005}
+  doi         = {10.5281/zenodo.23540160},
+  url         = {https://doi.org/10.5281/zenodo.23540160}
 }
 ```
 
