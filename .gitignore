@@ -41,3 +41,7 @@ submission_elsevier_jisa/
 
 # knowledge_os tenant corpus extraction shelves (working state, not source)
 whitepaper/0*_*/
+
+# v3 evaluation artifacts (generated locally, not source)
+paper_v3/eval/corpus/
+paper_v3/eval/*.json
