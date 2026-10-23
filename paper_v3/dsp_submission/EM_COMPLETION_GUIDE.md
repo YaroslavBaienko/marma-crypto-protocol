@@ -48,3 +48,30 @@ Yaroslav V. Baienko — ORCID 0009-0006-7498-2133
 ## If something is unclear in EM
 
 Send a screenshot of the "Edit submission" page; the fields map one-to-one to the values above.
+
+## File-list cleanup (seen on 2026-10-23 EM screenshot)
+
+The transfer brought old Signal Processing files. Target file list: **one manuscript + declaration
++ cover letter + highlights**, nothing else.
+
+| Row in EM | File | Action |
+|---|---|---|
+| 1 | `Manuscript_DSP_v3.pdf` (Manuscript) | **keep** |
+| 2 | `04_Declaration_of_Interest_JISA.txt` | remove (old JISA declaration) |
+| 3 | `01_Manuscript_Marma_Signal_Processing.pdf` | remove (old v2.0 manuscript) |
+| 4 | `02_Cover_Letter_Elsevier_Signal_Processing.txt` | remove (old cover letter) |
+| 5 | `03_Highlights_Signal_Processing.docx` | remove (old highlights) |
+| 6 | `Declaration of competing interests.docx` | remove, replace with the fresh DSP declaration |
+| 7 | red "duplicate filename detected" row | **Dismiss** (it is a failed re-upload of the same name) |
+
+Then upload with explicit item types:
+- `Cover_Letter_DSP.pdf` → **Cover Letter**
+- `Highlights_DSP.pdf` → **Highlights**
+- `Declaration_of_Interest_DSP.pdf` → **Declaration of Interest Statement**
+  (the official Elsevier form, opened from the EM page, is the preferred alternative if the
+  editors require their template — fill it online and upload the downloaded PDF)
+- keep exactly one **Manuscript**: `Manuscript_DSP_v3.pdf`
+
+Then **Proceed** → metadata step: replace the inherited title/abstract/keywords, check
+author/ORCID, approve. The red "Declaration of Interest Statement" requirement clears only when
+a file is attached with that item type.
