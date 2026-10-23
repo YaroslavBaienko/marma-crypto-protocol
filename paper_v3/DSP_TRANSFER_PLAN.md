@@ -1,3 +1,5 @@
+**STATUS: CLOSED — the DSP submission was removed on 2026-10-23 (mandatory Gold-OA APC $2,900 declined); this file is kept as the record of the transfer flow. See PUBLICATIONS.md §5.2b and TIFS_SUBMISSION_PLAN.md.**
+
 # DSP transfer — completion plan (transfer confirmed 2026-10-23)
 
 **Status:** transfer confirmed by Elsevier; submission at *Digital Signal Processing* (IF 3.4,
