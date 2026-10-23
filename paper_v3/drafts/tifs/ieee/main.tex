@@ -1,4 +1,5 @@
 \documentclass[journal]{IEEEtran}
+\usepackage[T1]{fontenc}
 \usepackage{amsmath,amssymb,amsfonts}
 \usepackage{graphicx}
 \usepackage{booktabs}
@@ -51,11 +52,21 @@ Fourier-descriptor watermarking of 2D vector graphics \cite{doncel2007}, blind v
 \subsection{PDF signature security and standards}
 Shadow attacks \cite{mainka2021}, signature spoofing \cite{mladenov2019}, certification attacks \cite{rohlmann2021} and practical decryption exfiltration \cite{muller2019} establish the threat model. Standards \cite{iso32000,etsipades,eidas} define what a compliant signature does and does not cover. Our method does not change the signature; it makes the visible layer that the signature leaves uncovered tamper-evident.
 
+\subsection{Geometric background and visible seals}
+The nine-triangle incidence configuration has been studied as a mathematical object
+\cite{kulaichev1984,huet2002}, and projective incidence algebra is standard
+\cite{richtergebert2011}; the paper uses the configuration only as a stabilised carrier and does not
+claim a new geometric theorem. Floating-point exactness follows the standard treatment
+\cite{muller2018}. A related industrial idea is the visible digital seal: a QR or bar-code symbol
+printed next to a document and bound to its content. Such a seal is an \emph{external} symbol that
+can be detached or replaced; the present work removes the symbol and lets the drawing itself carry
+the payload, which is what makes the transplant attack meaningful.
+
 \subsection{Commitments, fingerprinting, terminology}
 Vector commitments \cite{catalano2013,libert2016} and traitor tracing \cite{boneh1999,tardos2008} are related but not claimed here: the construction is a watermark, not a commitment scheme, and the recipient channel is attribution, not collusion-resistant tracing. The paper deliberately avoids ``vector commitment'' and ``traitor tracing'' as descriptions of its own mechanism.
 
 \subsection{What is new, and what is not}
-The paper does not claim a new modulation family: QIM, dither modulation and the capacity--distortion view are classical \cite{chen2001,eggers2003,perez2004}, and RDH \cite{tian2003,ni2006,thodi2007} and vector-graphics watermarking \cite{doncel2007,li2003,hou2014} are established. The claim is narrower: a \emph{visible seal} can carry a 256-bit digest bit-exactly, which turns a fragile watermark into a signature-to-rendering binding; the same carrier provides a geometric invariant and a disjoint recipient channel; and the implementation precondition (nine-decimal writers, text-level parsing) is made explicit. The paper does not claim cryptographic security from a watermarking argument and does not claim robustness.
+Table~\ref{tab:families} positions the families; the paper does not claim a new modulation family: QIM, dither modulation and the capacity--distortion view are classical \cite{chen2001,eggers2003,perez2004}, and RDH \cite{tian2003,ni2006,thodi2007} and vector-graphics watermarking \cite{doncel2007,li2003,hou2014} are established. The claim is narrower: a \emph{visible seal} can carry a 256-bit digest bit-exactly, which turns a fragile watermark into a signature-to-rendering binding; the same carrier provides a geometric invariant and a disjoint recipient channel; and the implementation precondition (nine-decimal writers, text-level parsing) is made explicit. The paper does not claim cryptographic security from a watermarking argument and does not claim robustness.
 
 \begin{table}[t]
 \centering
@@ -149,7 +160,7 @@ For each document and seed, the payload is $H(\text{doc\_sha}\Vert\text{seed})$;
 \emph{Geometric RMSE} is the root-mean-square coordinate change over the 27 slots; \emph{PSNR$_{\text{geom}}$} is $20\log_{10}(300/\text{RMSE})$ with the 300~pt geometry normalisation. \emph{Exact} is one only if all 27 recovered words equal the embedded words. \emph{Detection} is one if the recovered words differ from the expected words (payload edit) or if a geometric invariant fails (centre-line edit). Truncation rewrites every coordinate number in the carrier path to 8 or 7 decimal places. The payload-coordinate edit changes one coordinate by $10^{-4}$~pt; the centre-line edit changes a non-payload coordinate by $0.5$~pt. Flattening replaces the page by a 300~dpi raster image.
 
 \subsection{Results}
-Fig.~\ref{fig:capdist} and Tables~\ref{tab:main}--\ref{tab:baselines-pdf} summarise the results. On the main experiment, the 266-bit payload is recovered exactly in 100\% of 1{,}800 samples (mean geometric RMSE $5.31\times10^{-6}$~pt, PSNR$_{\text{geom}}=155.1$~dB), survives 8-decimal truncation in 100\% of samples, is detected at 7-decimal truncation in 100\%, detects every payload-coordinate edit, and fails closed on every flattened page. The ten public real-world anchors reproduce the same behaviour (100 samples).
+Fig.~\ref{fig:capdist} and Tables~\ref{tab:main}--\ref{tab:baselines} summarise the results. On the main experiment, the 266-bit payload is recovered exactly in 100\% of 1{,}800 samples (mean geometric RMSE $5.31\times10^{-6}$~pt, PSNR$_{\text{geom}}=155.1$~dB), survives 8-decimal truncation in 100\% of samples, is detected at 7-decimal truncation in 100\%, detects every payload-coordinate edit, and fails closed on every flattened page. The per-generator breakdown is in Table~\ref{tab:pergen} and Fig.~\ref{fig:pergen}; the ten public real-world anchors reproduce the same behaviour (100 samples).
 
 \begin{figure}[t]
 \centering
@@ -211,6 +222,13 @@ Grid & no & 100\% & 100\% & 0\% \\
 \end{tabular}
 \end{table}
 
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{figures/fig_pergen.pdf}
+\caption{Embedding distortion per document generator (geometric RMSE in nanometres; medians 1.87--1.88~nm).}
+\label{fig:pergen}
+\end{figure}
+
 \subsection{Precision precondition in practice}
 The exactness argument predicts a cliff between eight and seven decimal places. The measurement matches the prediction: exact recovery is 100\% at 9 and 8 decimals and drops to 0\% at 7 and 6 decimals (Fig.~\ref{fig:precision}). This is a property of the pipeline after sealing, not of the document generator: the corpus generators themselves emit between three and six decimal places (Table~\ref{tab:writers}), and the carrier is injected after generation. A production document-management system that re-writes coordinates with fewer than eight decimals destroys the mark; the verifier reports \emph{absent} rather than \emph{valid} (fail-closed).
 
@@ -239,6 +257,15 @@ Typst & 5.76 & 100\% \\
 
 \subsection{Public real-world anchors}
 Ten unique public project documents were stamped and attacked under the same protocol (10 seeds each, 100 samples). Results match the synthetic corpus: exact recovery in 100\% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.32\times10^{-6}$~pt (PSNR$_{\text{geom}}=155.0$~dB).
+
+\subsection{Capacity, performance and storage}
+Capacity is per visible seal: 266 bits over a seal of about $126\times185$~pt ($23{,}227$~pt$^2$),
+i.e. $0.0115$~bit/pt$^2$; no document-wide capacity claim is made. Stamping is linear in the number
+of pages and constant in payload length. On the development machine, stamping costs about
+1.05~ms per page and verification about 0.33~ms per page, dominated by PDF parsing and stream
+rewriting rather than by the embedding arithmetic. The carrier path is small and, after stream
+compression, adds only a few bytes to the file in our samples; memory use is proportional to one
+page at a time.
 
 \subsection{Same-carrier baselines}
 STDM-DCT, Fourier-descriptor and LSB-RDH embedding were re-implemented on the same carrier at slot level and re-run at the PDF level (20 documents $\times$ 10 seeds, 600 samples). The comparison is a capacity--distortion--fragility frontier, not a ranking (Table~\ref{tab:baselines}). Only the proposed scheme reaches a 266-bit digest on 27 slots; STDM reaches 140 bits at higher distortion; Fourier descriptors reach 13 bits; LSB reaches 27 bits at negligible distortion but is destroyed by 8-decimal re-serialisation.
@@ -288,7 +315,40 @@ Seal transplant & digest mismatch & by construction \\
 \end{tabular}
 \end{table}
 
-The construction authenticates the rendering layer, not the cryptographic signature (Table~\ref{tab:attack}). It does not prevent an attacker from producing a new document with a new valid seal; it makes a transplanted or edited seal detectable relative to a known document digest. The recipient channel provides attribution for a leaked copy; it is not a collusion-resistant fingerprinting code, and traitor-tracing security is not claimed.
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Attack taxonomy and residual risk.}
+\label{tab:taxonomy}
+\begin{tabular}{@{}p{1.55cm}p{1.7cm}p{1.7cm}@{}}
+\toprule
+Class & Capability & Detection / residual risk \\
+\midrule
+Stream edit & rewrite path or text & digest mismatch; geometry invariant \\
+Precision loss & re-serialise with $d\le7$ decimals & digest mismatch; fail-closed if path lost \\
+Geometric edit & move a non-payload coordinate & incidence invariant (Sri Yantra only) \\
+Rasterisation & flatten or print-scan & carrier absent, fail-closed; optical channel out of scope \\
+Seal transplant & paste a seal from another document & digest mismatch \\
+Redistribution & forward a sealed copy & recipient word attribution \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The construction authenticates the rendering layer, not the cryptographic signature (Tables~\ref{tab:attack} and~\ref{tab:taxonomy}). It does not prevent an attacker from producing a new document with a new valid seal; it makes a transplanted or edited seal detectable relative to a known document digest. The recipient channel provides attribution for a leaked copy; it is not a collusion-resistant fingerprinting code, and traitor-tracing security is not claimed.
+
+\subsection{Assumptions and claims}
+\emph{A1}: the verifier knows the canonical seal geometry for the document class. \emph{A2}: the
+document digest is known or can be recomputed from the signed bytes. \emph{A3}: the key is secret.
+\emph{A4}: the post-sealing pipeline preserves at least nine decimal places.
+
+\emph{P1 (payload-edit detection)}: changing any payload slot changes the recovered word, because
+the lattice step exceeds the rounding error by a factor of two and the digest is compared bit for
+bit. \emph{P2 (fail-closed)}: if the carrier path is absent, the verifier returns \emph{absent}.
+\emph{P3 (attribution)}: with the key, the recovered recipient word equals the embedded word;
+without the key, the recovered words are unpredictable to the adversary. These are watermarking
+claims, not cryptographic reductions: the paper does not claim that an adversary cannot produce a
+new document with a new valid seal, and it does not claim collusion resistance of the recipient
+channel.
 
 \section{Threats to Validity}\label{sec:validity}
 \emph{Internal validity.} Exactness is deterministic by construction, so the zero-width confidence intervals do not measure real-world variability; the meaningful variation must come from document generators, production PDF writers and physical capture, which this draft only partially exercises.

@@ -68,6 +68,9 @@ Shadow attacks (@mainka2021), signature spoofing (@mladenov2019), certification 
 == Commitments, fingerprinting, terminology
 Vector commitments (@catalano2013, @libert2016) and traitor tracing (@boneh1999, @tardos2008) are related but not claimed here: the construction is a watermark, not a commitment scheme, and the recipient channel is attribution, not collusion-resistant tracing. The paper deliberately avoids “vector commitment” and “traitor tracing” as descriptions of its own mechanism.
 
+== Geometric background and visible seals
+The nine-triangle incidence configuration has been studied as a mathematical object (@kulaichev1984; @huet2002), and projective incidence algebra is standard (@richtergebert2011); the paper uses the configuration only as a stabilised carrier and does not claim a new geometric theorem. Floating-point exactness follows the standard treatment (@muller2018). A related industrial idea is the visible digital seal: a QR or bar-code symbol printed next to a document and bound to its content. Such a seal is an *external* symbol that can be detached or replaced; the present work removes the symbol and lets the drawing itself carry the payload, which is what makes the transplant attack meaningful.
+
 == What is new, and what is not
 The paper does not claim a new modulation family: QIM, dither modulation and the
 capacity–distortion view are classical (@chen2001; @eggers2003; @perez2004), and RDH
@@ -214,6 +217,8 @@ For each document and seed, the payload is H(doc_sha ‖ seed); the 266-bit payl
 
 == Metrics and attack parameters
 *Geometric RMSE* is the root-mean-square coordinate change over the 27 slots; *PSNR_geom* is $20 log_10(300 "/" "RMSE")$ with the 300 pt geometry normalisation. *Exact* is one only if all 27 recovered words equal the embedded words; otherwise the sample contributes a bit-error rate over 27 words. *Detection* is one if the recovered words differ from the expected words (payload edit) or if a geometric invariant fails (centre-line edit). Truncation rewrites every coordinate number in the carrier path to 8 or 7 decimal places. The payload-coordinate edit changes one coordinate by $10^(-4)$ pt; the centre-line edit changes a non-payload coordinate by $0.5$ pt. Flattening replaces the page by a 300 dpi raster image. All attacks are applied to the stamped copy; the flattened/print-scan corpus variants are inputs to the protocol, not attacks on a stamped document.
+
+#figure(placement: none, image("../../figures/fig_pergen.svg", width: 70%), caption: [Embedding distortion per document generator (geometric RMSE in nanometres; medians 1.87–1.88 nm).])
 
 == Precision precondition in practice
 The exactness argument predicts a cliff between eight and seven decimal places. The measurement
@@ -368,6 +373,11 @@ carrier at higher distortion; LSB reaches 27 bits at negligible distortion but i
 8-decimal re-serialisation (Table 6). The comparison is therefore a capacity–distortion–fragility
 frontier, not a ranking: each family occupies a different point, and only the proposed scheme
 reaches a 266-bit digest on 27 slots.
+
+== Assumptions and claims
+*A1*: the verifier knows the canonical seal geometry for the document class. *A2*: the document digest is known or can be recomputed from the signed bytes. *A3*: the key is secret. *A4*: the post-sealing pipeline preserves at least nine decimal places.
+
+*P1 (payload-edit detection)*: changing any payload slot changes the recovered word, because the lattice step exceeds the rounding error by a factor of two and the digest is compared bit for bit. *P2 (fail-closed)*: if the carrier path is absent, the verifier returns *absent*. *P3 (attribution)*: with the key, the recovered recipient word equals the embedded word; without the key, the recovered words are unpredictable to the adversary. These are watermarking claims, not cryptographic reductions: the paper does not claim that an adversary cannot produce a new document with a new valid seal, and does not claim collusion resistance of the recipient channel.
 
 = Threats to Validity
 *Internal validity.* Exactness is deterministic by construction, so the zero-width confidence intervals in Table 2 do not measure real-world variability; the meaningful variation must come from document generators, production PDF writers and physical capture, which this draft only partially exercises.
