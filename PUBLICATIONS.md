@@ -32,7 +32,7 @@
 | Institution / Registry | Identifier / Record | Direct URL | Status / Role |
 |---|---|---|---|
 | **UKRNOIVI (National IP Office of Ukraine — Invention Patent)** | `Application No. a 2026 06266` (`Вх-72320/2026` · Fee Receipt `Вх-72403/2026`) | [`patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md`](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md) | **Official 20-Year Invention Patent Application (`Patent Pending`)** filed 2026-10-19 via SEV ZES; filing fee receipt (`код 40100`) officially registered 2026-10-20 under `Вх-72403/2026` (IPC `G06F 21/64`, `H04L 9/32`, `G06T 1/00`; Paris Convention Art. 4 priority date) |
-| **Elsevier — *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0)** | `Manuscript No. SIGPRO-D-26-04464` (`Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5) | https://www.editorialmanager.com/SIGPRO/ | **Active Formal Peer-Review Submission (`SIGPRO-D-26-04464`, assigned 2026-10-21 13:51 EEST, Subscription \$0 APC; **handling editor: Editor-in-Chief Dr. Cédric Richard, PhD — assignment notice 2026-10-23 00:13 EET**):** *"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"* |
+| **Elsevier — *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0)** | `Manuscript No. SIGPRO-D-26-04464` (`Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5) | https://www.editorialmanager.com/SIGPRO/ | **Desk-rejected 2026-10-23** by EiC Dr. Cédric Richard, PhD — rejected **before any reviewer was assigned**, for being **out of scope** (*"This is also clear from the references"*). No peer review occurred and no revision window was opened; the submitted `v2.0` (21 pp.) remains the frozen artifact. The 2026 track record (JISA novelty, COSE crypto-exclusion, IACR scope, SIGPRO scope) is a **positioning problem, not a quality finding**; see §5.2/§5.2a for the re-framing plan |
 | **Elsevier — *Computers & Security* (`COSE`, Scopus Q1, IF 5.6)** | `Manuscript No. COSE-D-26-06638` (`Release v2.0`, `20 pp.`) | https://www.editorialmanager.com/cose/ | Returned without review on 2026-10-21 solely on scope policy (*COSE* policy since 2006 excludes articles with cryptology, steganography, or watermarking as a principal topic) |
 | **Elsevier — *Journal of Information Security and Applications* (`JISA`, Scopus Q1)** | `Manuscript No. JISAS-D-26-07950` (`v1.0` initial submission) | https://www.editorialmanager.com/JISAS/ | **Rejected 2026-10-20** by EiC Anthony T.S. Ho (`14 pp.` v1.0 submitted 2026-10-19): scope fit confirmed, but declined for *"lack of sufficient novelty"* and *"lacked in-depth technical details and comparative analysis"*. The rejection preceded the SIGPRO submission (2026-10-21), so there was no concurrent dual submission. Prompted the expanded `Release v2.0` overhaul (5 figures, 6 SOTA tables, 100k Monte Carlo trials) |
 | **CERN Zenodo (Concept DOI — All Versions)** | `10.5281/zenodo.23429017` | https://doi.org/10.5281/zenodo.23429017 | Non-peer-reviewed open preprint archive — Concept DOI resolving to latest version (`v5`) |
@@ -91,18 +91,19 @@
 - **Canonical archival edition:** Zenodo `v5` (`10.5281/zenodo.23560975`, `2.1.0-rev1`); concept DOI `10.5281/zenodo.23429017` resolves to the latest version and is the one to cite in manuscripts and letters.
 - **Mirrors:** SSRN (`10.2139/ssrn.7631458`), Figshare (`10.6084/m9.figshare.34697025`), OSF (pending moderation), Academia.edu / ResearchGate (unverified) are non-peer-reviewed mirrors and are **not** updated while the journal submission is under review.
 
-**5.2. Journal submission (Elsevier *Signal Processing*, `SIGPRO-D-26-04464`).**
-- The submitted version is **frozen**: `Release v2.0`, 21 pp., archived in [`submission_snapshots/elsevier-v2.0/`](submission_snapshots/elsevier-v2.0/).
-- **No file replacement during review.** Manuscript changes are made only in response to an editor's decision (major/minor revision) and uploaded through Editorial Manager.
-- Revision checklist (when the editor opens the revision window):
-  1. replace the archival DOI `10.5281/zenodo.23510005` (v3) with the **concept DOI** `10.5281/zenodo.23429017`;
-  2. unify the test-suite counts (manuscript said `31-test`, cover letter `33-test`) to the current **40-test** suite and reference `tests/`;
-  3. rename the supplementary file `04_Declaration_of_Interest_JISA.txt` → `04_Declaration_of_Interest_SIGPRO.txt`;
-  4. do **not** add the `v2.1.0` Universal/Optical/API material unless the editor explicitly requests it (avoid self-overlap with the public preprint); if requested, disclose the updated preprint in the revision cover letter.
+**5.2. Journal track 2026 (Elsevier *Signal Processing*, `SIGPRO-D-26-04464`) — closed without review.**
+- **Decision 2026-10-23:** desk rejection by EiC Dr. Cédric Richard, PhD (*"out of scope … clear from the references"*), issued before reviewer assignment. No revision window was opened; the frozen `v2.0` (21 pp.) in [`submission_snapshots/elsevier-v2.0/`](submission_snapshots/elsevier-v2.0/) stays as the historical submitted artifact.
+- **Diagnosis (recorded, not spin):** four 2026 attempts failed on **positioning**, not on a quality verdict — JISA confirmed scope fit but found novelty/depth insufficient (which produced the v2.0 overhaul); COSE and IACR excluded the topic by policy; SIGPRO excluded it by scope. The recurring signal is that the abstract and reference list address a cryptography/legal audience, not the target journal's community.
+- **5.2a. Resubmission policy (fixed 2026-10-23).**
+  1. **Do not resubmit the same text.** Re-frame per venue: for watermarking/forensics venues foreground Chen–Wornell/QIM/RDH/vector-graphics baselines and move DSTU/PAdES/legal framing to a subsection.
+  2. **Split if needed:** (a) signal-processing/watermarking paper (QIM exactness, geometry carrier, benchmarks) → *IEEE TIFS* / *ACM TOMM* / *EURASIP JIS*; (b) applied-crypto paper (PAdES binding, canary attribution) → *EURASIP JIS* / *IEEE Access*.
+  3. **Venue pre-check:** pull 5 recent papers from each candidate and verify the reference list overlaps ≥30% before writing.
+  4. **No concurrent submissions**; one venue at a time; log decision date, editor and reason here.
+  5. **No patent or preprint impact:** a desk rejection is not a novelty finding and creates no disclosure problem; Zenodo v5 and the patent filing stand unchanged.
 
 **5.3. SSRN.**
-- **No revision now.** The SSRN record stays at the `v2.0` manuscript while `SIGPRO-D-26-04464` is under review.
-- After the journal decision, SSRN may be revised (author-side login) with the **accepted author manuscript** (never the publisher's PDF) and a link to the article DOI; otherwise it remains as the historical `v2.0` preprint.
+- The SSRN record stays at the `v2.0` manuscript; there is no active journal review to synchronise with after the 2026-10-23 SIGPRO desk rejection.
+- On a future acceptance it may be revised (author-side login) with the **accepted author manuscript** (never the publisher's PDF) and a link to the article DOI; otherwise it remains the historical `v2.0` preprint.
 
 **5.4. After acceptance.**
 - Cite the article DOI in future versions; update Zenodo with a new version if the accepted text differs; do not remove historical versions.
@@ -121,6 +122,6 @@ Point-in-time attention metrics, not impact. Zenodo/GitHub numbers are unique wh
 | Figshare (`10.6084/m9.figshare.34697025`, v1.2.1-era mirror) | **13** | **4** | 0 citations; archival mirror, not a discovery channel; record intentionally not revised (see §5) |
 | GitHub `marma-crypto-protocol` (last 14 days) | 35 / **14 unique** | — | clones 661 / 244 unique (bot-inflated); 1 star, 0 forks, 0 watchers |
 | SSRN (`10.2139/ssrn.7631458`) | **29** | **8** | dashboard snapshot 2026-10-23; status `DISTRIBUTED`, created 2026-10-18, last updated 2026-10-21; ~28% view→download |
-| Elsevier *Signal Processing* (`SIGPRO-D-26-04464`) | — | — | with EiC Dr. Cédric Richard since 2026-10-23; no audience metric applies |
+| Elsevier *Signal Processing* (`SIGPRO-D-26-04464`) | — | — | desk-rejected 2026-10-23 (out of scope, before review); no audience metric applies |
 
 Reading rule: views/downloads measure **attention** (and include bots, crawlers and self-checks); citations and peer-review decisions are the only impact measures. Re-snapshot monthly rather than optimising for any single number.

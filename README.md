@@ -8,7 +8,7 @@
 [![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-v2.1.0--1_signed--by_GPG-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
-[![Peer Review SIGPRO](https://img.shields.io/badge/📄_Elsevier_Signal_Processing-SIGPRO--D--26--04464-ff6c00.svg)](PUBLICATIONS.md)
+[![Elsevier SIGPRO](https://img.shields.io/badge/📄_Elsevier_Signal_Processing-SIGPRO--D--26--04464_desk--rejected-9e9e9e.svg)](PUBLICATIONS.md)
 [![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23560975.svg)](https://doi.org/10.5281/zenodo.23560975)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
@@ -57,7 +57,7 @@
    - **$O(1)$-Amortized Deal-Room Batch Stamping (`marma-watermark batch-seal`):** Precomputes the document SHA-256 and `DSTU 4145-2002` signature once and generates $N$ individualized recipient-tracked PDF copies with unique vector + optical Canary beacons in $< 0.15\text{ s}$ per batch.
    - **Embedded HTTP REST Microservice (`marma-watermark serve-api --port 8765`):** Zero-dependency HTTP server exposing `GET /v1/health`, `POST /v1/seal-batch`, `POST /v1/verify`, and `POST /v1/trace-leak` for turnkey integration with Nextcloud, SharePoint, Intralinks, Datasite, and M.E.Doc/Вчасно gateways.
 4. **Theorem 5 — Chen–Wornell Keyed Dithered QIM ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) & Active-TraitorPermutation ($\pi_K \in S_{27}$):**
-   - Formalized in our **Elsevier *Signal Processing* (`SIGPRO-D-26-04464`)** submission (`Release v2.0-SIGPRO`, `21 pp.`): applies a keyed uniform dither vector $\mathbf{d}_K$ (rendering physical coordinate offsets statistically uniform over $\mathbb{Z}_{1024}^{27}$ with Kullback–Leibler divergence $D_{\text{KL}} = 0\text{ bits}$ against cover distributions) and a Fisher–Yates channel permutation $\pi_K \in S_{27}$ so an unkeyed traitor attempting to erase the Canary channel hits the 26 signature commitments with probability $26/27 \approx 96.30\%$ (`99.72%` for 2 guesses).
+   - Formalized in our `Release v2.0-SIGPRO` manuscript (`21 pp.`, submitted to Elsevier *Signal Processing* as `SIGPRO-D-26-04464` on 2026-10-21; **desk-rejected on scope 2026-10-23**): applies a keyed uniform dither vector $\mathbf{d}_K$ (rendering physical coordinate offsets statistically uniform over $\mathbb{Z}_{1024}^{27}$ with Kullback–Leibler divergence $D_{\text{KL}} = 0\text{ bits}$ against cover distributions) and a Fisher–Yates channel permutation $\pi_K \in S_{27}$ so an unkeyed traitor attempting to erase the Canary channel hits the 26 signature commitments with probability $26/27 \approx 96.30\%$ (`99.72%` for 2 guesses).
 5. **Expanded GNOME Files (`Nautilus`) Right-Click Suite (`13 Scripts` + `40/40` Automated Tests):**
    - Adds 4 new localized (UA/EN) right-click actions in `🔱 Шрі Янтра · Marma-Crypto`: **Ukrainian Trident / Corporate Shield Stamping**, **CAD-SVG 27-DOF Protection**, **Deal-Room Batch Stamping ($N$ Recipients)**, and **Unified Vector + Screen-Photo Optical Leak Tracing**, backed by a **40-test cross-verification suite** (`tests/test_marma_v21_universal_optical_api.py`).
 
@@ -211,11 +211,11 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
 
 ---
 
-## 📜 Author, Peer-Review Status & Citation
+## 📜 Author, Submission Status & Citation
 
 * **Author:** **Yaroslav V. Baienko** (*Баєнко Ярослав Володимирович*) — Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher (Ukraine) · **ORCID:** [`0009-0006-7498-2133`](https://orcid.org/0009-0006-7498-2133)
-* **Formal Peer-Review & Patent Examination Status:**
-  * **Elsevier *Signal Processing* (`SIGPRO`, EURASIP Q1, IF 4.0) Submission:** Active peer-review manuscript **`SIGPRO-D-26-04464`** (*"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"*, `Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5, 5 vector figures, 6 SOTA tables, 100,000 Monte Carlo trials; archived on CERN Zenodo [`10.5281/zenodo.23560975`](https://doi.org/10.5281/zenodo.23560975) and published in Elsevier SSRN *Cybersecurity & Data Privacy Law & Policy* `Vol. 11, No. 189` [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458)).
+* **Submission & Patent Examination Status:**
+  * **Elsevier *Signal Processing* (`SIGPRO`, EURASIP Q1) — desk-rejected 2026-10-23 (out of scope, before review):** manuscript **`SIGPRO-D-26-04464`** (*"Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication"*, `Release v2.0-SIGPRO`, `21 pp.`, Theorems 1–5, 5 vector figures, 6 SOTA tables, 100,000 Monte Carlo trials) was rejected by EiC Dr. Cédric Richard, PhD, before any reviewer assignment (*"out of scope … clear from the references"*). No peer review occurred. The paper is being re-framed for a watermarking/forensics venue (see `PUBLICATIONS.md` §5.2a). Preprint: CERN Zenodo [`10.5281/zenodo.23560975`](https://doi.org/10.5281/zenodo.23560975); SSRN [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) (status `DISTRIBUTED`; the specific eJournal issue label remains unverified).
   * **Patent Examination (Patent Pending):** Ukrainian 20-year Invention Patent Application No. **`a 2026 06266`** filed with the National IP Office of Ukraine (UKRNOIVI, `Вх-72320/2026` on `2026-10-19`; filing fee receipt registered under `Вх-72403/2026` on `2026-10-20`).
 * **Open Preprint Mirrors & Timestamp Archives (Non-Peer-Reviewed Prior Art):**
   * **CERN Zenodo (`v5` / `Release v2.1.0-rev1`, 2026-10-22):** [`10.5281/zenodo.23560975`](https://doi.org/10.5281/zenodo.23560975) (Concept DOI: [`10.5281/zenodo.23429017`](https://doi.org/10.5281/zenodo.23429017) · Prior `v2`: [`10.5281/zenodo.23436152`](https://doi.org/10.5281/zenodo.23436152)) · **Elsevier SSRN:** [`10.2139/ssrn.7631458`](https://ssrn.com/abstract=7631458) · **Software Heritage SWHID:** [`swh:1:snp:dcae02ea...`](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol) *(Note: Preprint DOIs and SWHIDs serve solely as immutable timestamped prior-art mirrors, not peer review; independent cryptographic code audits and GitHub issues are warmly welcomed).*
@@ -228,10 +228,11 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
   title       = {Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication},
   year        = {2026},
   version     = {v2.1.0-rev1 (Zenodo v5)},
-  institution = {Elsevier Signal Processing (SIGPRO-D-26-04464) / CERN Zenodo / Elsevier SSRN},
-  number      = {SIGPRO-D-26-04464; UKRNOIVI Patent Appl. a 2026 06266},
+  institution = {CERN Zenodo / Elsevier SSRN},
+  number      = {UKRNOIVI Patent Appl. a 2026 06266},
   doi         = {10.5281/zenodo.23560975},
-  url         = {https://doi.org/10.5281/zenodo.23560975}
+  url         = {https://doi.org/10.5281/zenodo.23560975},
+  note        = {Elsevier Signal Processing manuscript SIGPRO-D-26-04464 was desk-rejected on scope on 2026-10-23 before peer review}
 }
 ```
 
