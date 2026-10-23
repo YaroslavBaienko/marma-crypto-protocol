@@ -1,0 +1,962 @@
+[
+ {
+  "seed": 0,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.5425267596147645e-05,
+  "psnr_db": 134.66826912262314,
+  "exact": true
+ },
+ {
+  "seed": 0,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.211025932150325e-05,
+  "psnr_db": 131.25447661988423,
+  "exact": true
+ },
+ {
+  "seed": 0,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 9.630323845393329e-10,
+  "psnr_db": 229.86960726072394,
+  "exact": null
+ },
+ {
+  "seed": 0,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.44816993278241e-10,
+  "psnr_db": 238.79065188259767,
+  "exact": null
+ },
+ {
+  "seed": 1,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.9672729927090817e-05,
+  "psnr_db": 134.02690696357072,
+  "exact": true
+ },
+ {
+  "seed": 1,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.297497654039924e-05,
+  "psnr_db": 131.16348232855063,
+  "exact": true
+ },
+ {
+  "seed": 1,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.105514255316878e-10,
+  "psnr_db": 233.82798010276218,
+  "exact": null
+ },
+ {
+  "seed": 1,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.8993910051299137e-10,
+  "psnr_db": 240.2962893494208,
+  "exact": null
+ },
+ {
+  "seed": 2,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.749976517693728e-05,
+  "psnr_db": 134.3491036727984,
+  "exact": true
+ },
+ {
+  "seed": 2,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.663974144768576e-05,
+  "psnr_db": 133.06775902631693,
+  "exact": true
+ },
+ {
+  "seed": 2,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.324572326222444e-10,
+  "psnr_db": 231.13518647576942,
+  "exact": null
+ },
+ {
+  "seed": 2,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.923047288442503e-10,
+  "psnr_db": 240.22570826761734,
+  "exact": null
+ },
+ {
+  "seed": 3,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.578778956690147e-05,
+  "psnr_db": 133.1795192026023,
+  "exact": true
+ },
+ {
+  "seed": 3,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 9.825112737829443e-05,
+  "psnr_db": 129.6956742470087,
+  "exact": true
+ },
+ {
+  "seed": 3,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.988072277266833e-10,
+  "psnr_db": 232.6552773300076,
+  "exact": null
+ },
+ {
+  "seed": 3,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.9492020007879403e-10,
+  "psnr_db": 240.1483346971173,
+  "exact": null
+ },
+ {
+  "seed": 4,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.921512272728249e-05,
+  "psnr_db": 134.09377241997322,
+  "exact": true
+ },
+ {
+  "seed": 4,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 9.179602741529261e-05,
+  "psnr_db": 130.2859473546709,
+  "exact": true
+ },
+ {
+  "seed": 4,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.192195425203229e-10,
+  "psnr_db": 232.4051955050558,
+  "exact": null
+ },
+ {
+  "seed": 4,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.67721454863308e-10,
+  "psnr_db": 240.98876156640515,
+  "exact": null
+ },
+ {
+  "seed": 5,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 3.634897614130418e-05,
+  "psnr_db": 138.33258144658248,
+  "exact": true
+ },
+ {
+  "seed": 5,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.536380626358911e-05,
+  "psnr_db": 131.99916860508506,
+  "exact": true
+ },
+ {
+  "seed": 5,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.274346654891482e-10,
+  "psnr_db": 231.18775085903903,
+  "exact": null
+ },
+ {
+  "seed": 5,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.8630926960333e-10,
+  "psnr_db": 240.405716913395,
+  "exact": null
+ },
+ {
+  "seed": 6,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.22240502283702e-05,
+  "psnr_db": 137.03122730441305,
+  "exact": true
+ },
+ {
+  "seed": 6,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.539429838240969e-05,
+  "psnr_db": 133.23162740283183,
+  "exact": true
+ },
+ {
+  "seed": 6,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.834019188117172e-10,
+  "psnr_db": 231.66273247549918,
+  "exact": null
+ },
+ {
+  "seed": 6,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.692033356511173e-10,
+  "psnr_db": 240.940816357359,
+  "exact": null
+ },
+ {
+  "seed": 7,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.007429193179413e-05,
+  "psnr_db": 133.96865188088012,
+  "exact": true
+ },
+ {
+  "seed": 7,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.590944542975189e-05,
+  "psnr_db": 131.9365087219916,
+  "exact": true
+ },
+ {
+  "seed": 7,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.889049009346925e-10,
+  "psnr_db": 232.7792396068892,
+  "exact": null
+ },
+ {
+  "seed": 7,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.9280567862864723e-10,
+  "psnr_db": 240.21083519221457,
+  "exact": null
+ },
+ {
+  "seed": 8,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.721172547353253e-05,
+  "psnr_db": 136.06142763186432,
+  "exact": true
+ },
+ {
+  "seed": 8,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 5.9013967040756804e-05,
+  "psnr_db": 134.12332889854542,
+  "exact": true
+ },
+ {
+  "seed": 8,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.385491577064438e-10,
+  "psnr_db": 233.43853836706003,
+  "exact": null
+ },
+ {
+  "seed": 8,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.056268095592851e-10,
+  "psnr_db": 239.83859613735603,
+  "exact": null
+ },
+ {
+  "seed": 9,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.9294816644078085e-05,
+  "psnr_db": 135.6863999831782,
+  "exact": true
+ },
+ {
+  "seed": 9,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.090816200338375e-05,
+  "psnr_db": 131.38257838668926,
+  "exact": true
+ },
+ {
+  "seed": 9,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.59560241963987e-10,
+  "psnr_db": 230.85689870521247,
+  "exact": null
+ },
+ {
+  "seed": 9,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.8008323913108966e-10,
+  "psnr_db": 240.59668268733827,
+  "exact": null
+ },
+ {
+  "seed": 10,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 7.09352210237766e-05,
+  "psnr_db": 132.52518656896686,
+  "exact": true
+ },
+ {
+  "seed": 10,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.634097938004815e-05,
+  "psnr_db": 130.81808568194282,
+  "exact": true
+ },
+ {
+  "seed": 10,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.867523155172697e-10,
+  "psnr_db": 232.8064224463475,
+  "exact": null
+ },
+ {
+  "seed": 10,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.2127013585011823e-10,
+  "psnr_db": 239.4050179558059,
+  "exact": null
+ },
+ {
+  "seed": 11,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 7.499583603312593e-05,
+  "psnr_db": 132.04168207670284,
+  "exact": true
+ },
+ {
+  "seed": 11,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.816267922168608e-05,
+  "psnr_db": 130.6367295001933,
+  "exact": true
+ },
+ {
+  "seed": 11,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.473731935289838e-10,
+  "psnr_db": 232.07167476041263,
+  "exact": null
+ },
+ {
+  "seed": 11,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.760521837063169e-10,
+  "psnr_db": 240.7226013550094,
+  "exact": null
+ },
+ {
+  "seed": 12,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.005705438795895e-05,
+  "psnr_db": 133.9711445426041,
+  "exact": true
+ },
+ {
+  "seed": 12,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.451679508558086e-05,
+  "psnr_db": 133.3489693866443,
+  "exact": true
+ },
+ {
+  "seed": 12,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.948092586951544e-10,
+  "psnr_db": 230.50781571152922,
+  "exact": null
+ },
+ {
+  "seed": 12,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.0958152102374517e-10,
+  "psnr_db": 239.72692450100627,
+  "exact": null
+ },
+ {
+  "seed": 13,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 7.053608431380351e-05,
+  "psnr_db": 132.5741981562098,
+  "exact": true
+ },
+ {
+  "seed": 13,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.087495102265979e-05,
+  "psnr_db": 131.38614448097434,
+  "exact": true
+ },
+ {
+  "seed": 13,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.757564290416213e-10,
+  "psnr_db": 231.74791742510595,
+  "exact": null
+ },
+ {
+  "seed": 13,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.0612674597370215e-10,
+  "psnr_db": 239.82439959219795,
+  "exact": null
+ },
+ {
+  "seed": 14,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.7357506664599246e-05,
+  "psnr_db": 134.37061980930903,
+  "exact": true
+ },
+ {
+  "seed": 14,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.347369708184242e-05,
+  "psnr_db": 132.21978722608978,
+  "exact": true
+ },
+ {
+  "seed": 14,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.219042269296786e-10,
+  "psnr_db": 232.3728333999228,
+  "exact": null
+ },
+ {
+  "seed": 14,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.9078101233543016e-10,
+  "psnr_db": 240.2711042107066,
+  "exact": null
+ },
+ {
+  "seed": 15,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.1865574016433e-05,
+  "psnr_db": 133.71344415721506,
+  "exact": true
+ },
+ {
+  "seed": 15,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.0237082207443855e-05,
+  "psnr_db": 133.94514655162143,
+  "exact": true
+ },
+ {
+  "seed": 15,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.491013987144725e-10,
+  "psnr_db": 232.05161293475356,
+  "exact": null
+ },
+ {
+  "seed": 15,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.29191577693711e-10,
+  "psnr_db": 242.33845201071597,
+  "exact": null
+ },
+ {
+  "seed": 16,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.869655281891092e-05,
+  "psnr_db": 132.80372619870045,
+  "exact": true
+ },
+ {
+  "seed": 16,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.181321486843108e-05,
+  "psnr_db": 132.41833770916963,
+  "exact": true
+ },
+ {
+  "seed": 16,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.376716147830025e-10,
+  "psnr_db": 231.0809491093359,
+  "exact": null
+ },
+ {
+  "seed": 16,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.600336848296799e-10,
+  "psnr_db": 241.2418328897398,
+  "exact": null
+ },
+ {
+  "seed": 17,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 7.977594593305324e-05,
+  "psnr_db": 131.50498584464864,
+  "exact": true
+ },
+ {
+  "seed": 17,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 8.030555965988813e-05,
+  "psnr_db": 131.44751283239916,
+  "exact": true
+ },
+ {
+  "seed": 17,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 9.018004504009254e-10,
+  "psnr_db": 230.44021613684544,
+  "exact": null
+ },
+ {
+  "seed": 17,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.014547633252609e-10,
+  "psnr_db": 239.95798208242866,
+  "exact": null
+ },
+ {
+  "seed": 18,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.190611436352531e-05,
+  "psnr_db": 133.70775418080876,
+  "exact": true
+ },
+ {
+  "seed": 18,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.495959146476664e-05,
+  "psnr_db": 133.28955939570238,
+  "exact": true
+ },
+ {
+  "seed": 18,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.736543750061741e-10,
+  "psnr_db": 232.97368240187555,
+  "exact": null
+ },
+ {
+  "seed": 18,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.604189456561829e-10,
+  "psnr_db": 241.228973569079,
+  "exact": null
+ },
+ {
+  "seed": 19,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.22772565684277e-05,
+  "psnr_db": 133.65583563799885,
+  "exact": true
+ },
+ {
+  "seed": 19,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.625708700728701e-05,
+  "psnr_db": 131.89682086709678,
+  "exact": true
+ },
+ {
+  "seed": 19,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.258728832531707e-10,
+  "psnr_db": 232.32521364279748,
+  "exact": null
+ },
+ {
+  "seed": 19,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.606714056998771e-10,
+  "psnr_db": 241.22055721577897,
+  "exact": null
+ },
+ {
+  "seed": 20,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.926683154811396e-05,
+  "psnr_db": 132.73191864861235,
+  "exact": true
+ },
+ {
+  "seed": 20,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.023130314609995e-05,
+  "psnr_db": 132.61181055736193,
+  "exact": true
+ },
+ {
+  "seed": 20,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 6.769764897815333e-10,
+  "psnr_db": 232.93095336132376,
+  "exact": null
+ },
+ {
+  "seed": 20,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.070715868887182e-10,
+  "psnr_db": 239.79763242742152,
+  "exact": null
+ },
+ {
+  "seed": 21,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.8269048273621755e-05,
+  "psnr_db": 135.86905037701638,
+  "exact": true
+ },
+ {
+  "seed": 21,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.76990857780158e-05,
+  "psnr_db": 131.73410691757672,
+  "exact": true
+ },
+ {
+  "seed": 21,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.28571267009997e-10,
+  "psnr_db": 232.29298429882445,
+  "exact": null
+ },
+ {
+  "seed": 21,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.4641026121175075e-10,
+  "psnr_db": 238.75061013408995,
+  "exact": null
+ },
+ {
+  "seed": 22,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 5.150923522770315e-05,
+  "psnr_db": 135.30472305770348,
+  "exact": true
+ },
+ {
+  "seed": 22,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.431878325695253e-05,
+  "psnr_db": 133.37566869233086,
+  "exact": true
+ },
+ {
+  "seed": 22,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.49014223275548e-10,
+  "psnr_db": 230.96412577624346,
+  "exact": null
+ },
+ {
+  "seed": 22,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.9330198092529725e-10,
+  "psnr_db": 240.19612517115996,
+  "exact": null
+ },
+ {
+  "seed": 23,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.191433557330862e-05,
+  "psnr_db": 133.70660076033565,
+  "exact": true
+ },
+ {
+  "seed": 23,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.996847483814057e-05,
+  "psnr_db": 132.6443769477493,
+  "exact": true
+ },
+ {
+  "seed": 23,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.934885337813534e-10,
+  "psnr_db": 231.55161198616042,
+  "exact": null
+ },
+ {
+  "seed": 23,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.6532541546989747e-10,
+  "psnr_db": 241.06684803521705,
+  "exact": null
+ },
+ {
+  "seed": 24,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.768180001456807e-05,
+  "psnr_db": 132.93298708727303,
+  "exact": true
+ },
+ {
+  "seed": 24,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.57081664130005e-05,
+  "psnr_db": 133.19003812703295,
+  "exact": true
+ },
+ {
+  "seed": 24,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.410673896671313e-10,
+  "psnr_db": 231.04580920250044,
+  "exact": null
+ },
+ {
+  "seed": 24,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.9746500356291584e-10,
+  "psnr_db": 240.07370751854967,
+  "exact": null
+ },
+ {
+  "seed": 25,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.919851985667059e-05,
+  "psnr_db": 135.7033843511395,
+  "exact": true
+ },
+ {
+  "seed": 25,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 5.729823204800309e-05,
+  "psnr_db": 134.37960065631663,
+  "exact": true
+ },
+ {
+  "seed": 25,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 8.224089663936755e-10,
+  "psnr_db": 231.24066836209715,
+  "exact": null
+ },
+ {
+  "seed": 25,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.0105435235970873e-10,
+  "psnr_db": 239.96952689022706,
+  "exact": null
+ },
+ {
+  "seed": 26,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 4.6941338634828386e-05,
+  "psnr_db": 136.11131568848998,
+  "exact": true
+ },
+ {
+  "seed": 26,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.44104740358522e-05,
+  "psnr_db": 132.10974366954756,
+  "exact": true
+ },
+ {
+  "seed": 26,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 9.282769198005474e-10,
+  "psnr_db": 230.18887404413067,
+  "exact": null
+ },
+ {
+  "seed": 26,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.98156285360021e-10,
+  "psnr_db": 240.05354571370447,
+  "exact": null
+ },
+ {
+  "seed": 27,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.971237313720295e-05,
+  "psnr_db": 132.67622775099593,
+  "exact": true
+ },
+ {
+  "seed": 27,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.192730612152734e-05,
+  "psnr_db": 133.70478132788557,
+  "exact": true
+ },
+ {
+  "seed": 27,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.679043944129074e-10,
+  "psnr_db": 231.8362820365632,
+  "exact": null
+ },
+ {
+  "seed": 27,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.8525496851617047e-10,
+  "psnr_db": 240.4377607421157,
+  "exact": null
+ },
+ {
+  "seed": 28,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 7.058716592399756e-05,
+  "psnr_db": 132.56791018810662,
+  "exact": true
+ },
+ {
+  "seed": 28,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 6.720399185842613e-05,
+  "psnr_db": 132.99452368373412,
+  "exact": true
+ },
+ {
+  "seed": 28,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 7.30364662608085e-10,
+  "psnr_db": 232.27163004498482,
+  "exact": null
+ },
+ {
+  "seed": 28,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 3.012367188315794e-10,
+  "psnr_db": 239.96426692482984,
+  "exact": null
+ },
+ {
+  "seed": 29,
+  "method": "stdm-dct",
+  "capacity": 140,
+  "rmse_pt": 6.287438086003617e-05,
+  "psnr_db": 133.57295066484915,
+  "exact": true
+ },
+ {
+  "seed": 29,
+  "method": "fourier",
+  "capacity": 13,
+  "rmse_pt": 7.384198516284627e-05,
+  "psnr_db": 132.17635782003808,
+  "exact": true
+ },
+ {
+  "seed": 29,
+  "method": "lsb",
+  "capacity": 27,
+  "rmse_pt": 9.561145228956475e-10,
+  "psnr_db": 229.93222679525627,
+  "exact": null
+ },
+ {
+  "seed": 29,
+  "method": "de",
+  "capacity": 0,
+  "rmse_pt": 2.817964434552293e-10,
+  "psnr_db": 240.54371494259686,
+  "exact": null
+ }
+]

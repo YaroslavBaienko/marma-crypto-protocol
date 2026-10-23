@@ -77,10 +77,10 @@ present vs absent; digest length 128/256/512 bits.
 
 - [x] Reference audit; verified-only `references.bib` (44 entries).
 - [x] Title/abstract/contribution re-framing.
-- [ ] `build_corpus.py` + `corpus_manifest.json` (60 PDFs, variants).
-- [ ] Carrier module + metric module (`eval/carriers.py`, `eval/metrics.py`).
-- [ ] Baseline implementations (same carrier, equal distortion).
-- [ ] Attack harness + results tables/figures.
-- [ ] Ablation (geometry / dither / recipient channel).
-- [ ] v3 manuscript in Typst, 14–16 pp, figures from the harness only.
+- [x] `build_corpus.py` + `corpus_manifest.json` (60 PDFs, variants): 180 PDFs / 51.1 MB generated.
+- [x] Carrier/metric harness (`eval/harness.py`, `eval/pdf_layer.py`): slot and PDF level.
+- [~] Baseline implementations: slot-level STDM/Fourier/LSB/DE done; PDF-level lift pending.
+- [x] Attack harness + `RESULTS_PDF.md`, `RESULTS_BASELINES.md`, Figure 1.
+- [~] Ablation (carriers × keying) done at PDF level; dither/canary ablation pending.
+- [~] v3 manuscript draft-1 in Typst (5 pp technical core) — expansion to 14–16 pp pending.
 - [ ] Venue pre-check (5 papers/venue, ≥30% reference overlap) before submission.

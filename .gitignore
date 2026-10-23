@@ -44,4 +44,6 @@ whitepaper/0*_*/
 
 # v3 evaluation artifacts (generated locally, not source)
 paper_v3/eval/corpus/
-paper_v3/eval/*.json
+
+# social-media drafts (not part of the paper)
+social/
