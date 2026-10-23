@@ -35,3 +35,18 @@ TIFS reviewers are demanding on evaluation breadth and on security claims. The p
 "fragile, not robust" framing, avoid cryptographic-security claims, and report the capacity-limited
 baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals and MTAP; conference
 (IH&MMSec/WIFS) remains a parallel option.
+
+## Status 2026-10-23
+
+- [x] Content draft expanded to 12 pages (single-column editing version).
+- [x] Real-world anchors: 10 public PDFs, 100 samples, results match the synthetic corpus.
+- [x] PDF-level baselines: STDM-DCT, Fourier, LSB (600 samples).
+- [x] Precision study: 9/8 decimals exact, 7/6 fail; writer-precision table.
+- [x] IEEEtran/Overleaf package: `drafts/tifs/ieee/IEEEtran_TIFS_submission.zip`
+      (main.tex, references.bib, figures, README; all 30 cited keys resolve against 44 verified entries).
+- [x] Print-scan kit: `eval/printscan_kit.py` → five print-ready stamped PDFs + `printscan/README.md`;
+      `eval/process_printscan.py` converts captures and records the expected fail-closed result.
+- [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
+- [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
+      `python3 eval/process_printscan.py`.
+- [ ] Final IEEE formatting polish and submission via IEEE Author Portal.
