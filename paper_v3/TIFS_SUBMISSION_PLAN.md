@@ -1,12 +1,12 @@
 # IEEE TIFS submission plan (primary target after the DSP withdrawal)
 
-**Date:** 2026-10-23 · **Status (2026-10-24):** pre-submission — locally buildable IEEEtran PDF (10 double-column pages, 243-word abstract), evaluation complete, package/bundle rebuilt; no portal submission yet.
+**Date:** 2026-10-23 · **Status (2026-10-25):** **SUBMITTED** — IEEEtran PDF (10 pages, 243-word abstract), evaluation complete; portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending. Record: `paper_v3/drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md`.
 **Why TIFS:** the best topical fit for fragile watermarking/forensics; IEEE hybrid model lets the
 author publish under the subscription route **without an APC** (open access remains optional).
 **Portal:** IEEE Author Portal — https://ieee.atyponrex.com/journal/tifs-ieee (old ScholarOne link is obsolete)
 **Format:** IEEE Transactions two-column; manuscript type "Regular Paper"; TIFS initial limit **13 double-column pages** including appendices and references (revised limit 16; over-length charges apply). Current PDF: 10 pages.
 
-## Gate before submission
+## Gate before submission (completed 2026-10-25)
 
 - [x] IEEE two-column manuscript built locally with official IEEEtran (10 pages incl. appendices + references; clean BibTeX).
 - [x] Title/abstract finalised (watermarking-first; abstract trimmed to 243 words, TIFS limit 150–250).
@@ -15,6 +15,7 @@ author publish under the subscription route **without an APC** (open access rema
 - [x] Physical print-scan set: 5 A4 pages (Canon MF3010, 300 dpi scan), 5/5 digital controls valid, 5/5 captures fail-closed.
 - [x] TIFS cover letter prepared (`cover_letter_TIFS.pdf`); owner confirms final details at upload.
 - [x] Author declarations prepared in `IEEE_PORTAL_METADATA.md`: no competing interests; pending UA patent a 2026 06266; preprint DOIs; no concurrent submission; data/code availability. Owner clicks the portal confirmations.
+- [x] **Submission completed 2026-10-25** — portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; manuscript ID pending editorial acknowledgement.
 
 ## Changes vs the DSP-v3 draft
 

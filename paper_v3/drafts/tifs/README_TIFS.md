@@ -20,4 +20,4 @@
 | `TIFS_AUTHOR_REQUIREMENTS.md` / `TIFS_REQUIREMENTS_RES-MARMA-CRYPTO.json` | SPS Information for Authors requirements fixed for this article (tenant RES-MARMA-CRYPTO) |
 | `SUBMISSION_MANIFEST_2026-10-24.md` | exact upload files, hashes and do-not-upload internal documents |
 
-Status (2026-10-24): content, evaluation and IEEEtran PDF are built and verified locally (10 pages, 243-word abstract, 0 undefined citations); physical print-scan done (5/5 fail-closed); owner still needs the portal declarations/EDICS and upload, and legal review of the technical-seal wording. See `TIFS_SUBMISSION_PLAN.md` for the authoritative checklist.
+Status (2026-10-25): **SUBMITTED to TIFS** — IEEEtran PDF (10 pages, 243-word abstract, 0 undefined citations), physical print-scan 5/5 fail-closed; portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending. See `SUBMISSION_CONFIRMATION_2026-10-25.md` for the frozen submission record and `TIFS_SUBMISSION_PLAN.md` for the checklist.

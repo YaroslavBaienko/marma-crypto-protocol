@@ -4,6 +4,8 @@
 **Verdict: CONDITIONAL GO — technically submission-ready, not unconditionally ready: owner-side
 portal/EDICS/legal/margin items and the external-validity gap remain.**
 
+> **Update 2026-10-25:** the manuscript was **submitted to TIFS** (portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending). See `paper_v3/drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md`.
+
 Author: Yaroslav V. Baienko · ORCID 0000-0001-6690-2603 (checksum verified)
 Paper line: TIFS regular paper; protocol v2.1.0; software release tag `v2.2.0`
 Repository state at audit: `7a8e282` + this audit's documentation fixes (paper package itself is untracked by the TIFS portal until owner upload).

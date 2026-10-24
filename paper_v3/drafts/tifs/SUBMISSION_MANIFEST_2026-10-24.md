@@ -6,17 +6,17 @@
 **Manuscript:** *Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index
 Modulation on Vector Geometry*
 **Author:** Yaroslav V. Baienko · ORCID 0000-0001-6690-2603
-**Status:** prepared, not submitted. Owner actions are listed at the end.
+**Status:** **SUBMITTED 2026-10-25** — portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending. Frozen record: `SUBMISSION_CONFIRMATION_2026-10-25.md` / `SUBMISSION_RECORD_2026-10-25.json`.
 
 **One-link submission package:** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/tifs-v3/TIFS_submission_package_2026-10-25.zip
-(SHA-256 `600af55f377fdb4bd50ad108582a318f9001185479057e3dc26d33e84ceac29e`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
+(SHA-256 `253a8a861e146a01c8d675f4854ba2ba39cc33cdf78bc57c27cc9fc26e4b090c`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
 
 ## 1. Files to upload to the portal
 
 | File | Size | SHA-256 |
 |---|---:|---|
 | `ieee/main.pdf` — review PDF | 342,649 B | `41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480` |
-| `cover_letter_TIFS.pdf` — cover letter | 31,078 B | `c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c` |
+| `cover_letter_TIFS.pdf` — cover letter | 37,639 B | `f97624c33028d7c5c907f91c6637f3323301cd560daeb800759457e09619252b` |
 | `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 11 pp, 343,623 B | only if portal flags margins |
 | `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,570 B | `66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e` |
 
@@ -26,7 +26,7 @@ Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
 41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480  ieee/main.pdf
-c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c  cover_letter_TIFS.pdf
+f97624c33028d7c5c907f91c6637f3323301cd560daeb800759457e09619252b  cover_letter_TIFS.pdf
 66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
