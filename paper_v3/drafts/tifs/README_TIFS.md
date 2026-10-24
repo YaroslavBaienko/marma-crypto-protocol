@@ -10,6 +10,6 @@
 | `../../eval/RESULTS_PDF_REAL_V1.md` | public real-world anchors |
 | `../../eval/RESULTS_PDF_BASELINES_V1.md` | PDF-level baselines |
 | `../../eval/RESULTS_BASELINES.md` | slot-level baselines |
-| `../../eval/printscan/` | print-scan kit (5 print-ready PDFs + README) |
+| `../../eval/printscan/` | print-scan kit + **results: 5/5 digital valid, 5/5 physical captures absent (fail-closed)** |
 
 Status: content, evaluation and IEEE package are ready; Overleaf build and physical print-scan are owner-side; then IEEE Author Portal submission.

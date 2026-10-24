@@ -23,7 +23,7 @@
 \maketitle
 
 \begin{abstract}
-A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer---seals, stamps and logos---is typically not cryptographically bound to the signed content, so a document can present a valid signature next to altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal itself, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 scalar degrees of freedom); the payload uses keyed dithered quantization index modulation (QIM) over an integer coordinate lattice with an exact IEEE-754 rounding argument, and a disjoint carrier degree of freedom carries a per-recipient identifier for leak attribution. No external QR or barcode symbol is added. We evaluate on a corpus of 60 documents produced by LibreOffice, Typst and Chromium print pipelines, each in native, flattened and print-scan-simulated variants (180 PDFs), plus ten public real-world documents. On 1{,}800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and any edited payload coordinate is detected; flattening destroys the vector carrier and therefore fails closed. Baselines re-implemented on the same carrier expose a capacity--distortion trade-off rather than a single winner. Two implementation facts are stated explicitly: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text---drawing APIs that store 32-bit floats destroy a $1.8\times10^{-8}$~pt lattice. The method complements, and does not replace, PAdES/eIDAS signatures.
+A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer---seals, stamps and logos---is typically not cryptographically bound to the signed content, so a document can present a valid signature next to altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal itself, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 scalar degrees of freedom); the payload uses keyed dithered quantization index modulation (QIM) over an integer coordinate lattice with an exact IEEE-754 rounding argument, and a disjoint carrier degree of freedom carries a per-recipient identifier for leak attribution. No external QR or barcode symbol is added. We evaluate on a corpus of 60 documents produced by LibreOffice, Typst and Chromium print pipelines, each in native, flattened and print-scan-simulated variants (180 PDFs), plus ten public real-world documents. On 1{,}800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and any edited payload coordinate is detected; flattening destroys the vector carrier and therefore fails closed. Baselines re-implemented on the same carrier expose a capacity--distortion trade-off rather than a single winner. Two implementation facts are stated explicitly: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text---drawing APIs that store 32-bit floats destroy a $1.8\times10^{-8}$~pt lattice. A physical print-scan check on five documents fails closed in all five cases, while their digital controls verify exactly. The method complements, and does not replace, PAdES/eIDAS signatures.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -266,6 +266,30 @@ of pages and constant in payload length. On the development machine, stamping co
 rewriting rather than by the embedding arithmetic. The carrier path is small and, after stream
 compression, adds only a few bytes to the file in our samples; memory use is proportional to one
 page at a time.
+
+\subsection{Physical print-scan capture}
+The simulated print-scan variant is complemented by a physical check. Five A4 documents were stamped,
+printed on a monochrome laser multifunction device (Canon i-SENSYS MF3010, 600~dpi) and scanned at
+300~dpi in grayscale on the same device. All five digital controls verify as \emph{valid}; all five
+physical captures verify as \emph{absent}---the vector layer does not survive printing and scanning,
+and the verifier fails closed rather than accepting a raster page (Table~\ref{tab:physical}).
+Recovery of a payload from a raster capture belongs to the optical companion channel and is out of
+scope here.
+
+\begin{table}[t]
+\centering
+\footnotesize
+\caption{Physical capture results.}
+\label{tab:physical}
+\begin{tabular}{@{}lc@{}}
+\toprule
+Sample & Result \\
+\midrule
+Digital control (stamped PDF) & 5/5 valid, exact \\
+Physical capture (print + 300 dpi scan) & 5/5 absent (fail-closed) \\
+\bottomrule
+\end{tabular}
+\end{table}
 
 \subsection{Same-carrier baselines}
 STDM-DCT, Fourier-descriptor and LSB-RDH embedding were re-implemented on the same carrier at slot level and re-run at the PDF level (20 documents $\times$ 10 seeds, 600 samples). The comparison is a capacity--distortion--fragility frontier, not a ranking (Table~\ref{tab:baselines}). Only the proposed scheme reaches a 266-bit digest on 27 slots; STDM reaches 140 bits at higher distortion; Fourier descriptors reach 13 bits; LSB reaches 27 bits at negligible distortion but is destroyed by 8-decimal re-serialisation.

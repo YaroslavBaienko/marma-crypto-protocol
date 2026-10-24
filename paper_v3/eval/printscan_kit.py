@@ -18,7 +18,15 @@ def main(argv):
     n=int(argv[0]) if argv else 5
     corpus=Path(__file__).with_name("corpus")
     man=json.loads((corpus/"corpus_manifest.json").read_text())
-    native=[m for m in man if m["variant"]=="native"][:n]
+    # prefer A4 documents so the physical print is 100% scale on A4 paper
+    import pymupdf as _fitz
+    native=[]
+    for m in man:
+        if m["variant"]!="native": continue
+        d=_fitz.open(str(corpus/m["path"])); r=d[0].rect; d.close()
+        if abs(r.width-595.276)<2 and abs(r.height-841.89)<2: native.append(m)
+        if len(native)>=n: break
+    assert len(native)==n, f"need {n} A4 documents, found {len(native)}"
     out=Path(__file__).with_name("printscan"); (out/"to_print").mkdir(parents=True, exist_ok=True); (out/"raw").mkdir(exist_ok=True)
     manifest=[]
     for m in native:

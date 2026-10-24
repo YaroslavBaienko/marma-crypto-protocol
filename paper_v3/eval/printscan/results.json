@@ -1,0 +1,32 @@
+[
+ {
+  "doc_id": "typst00",
+  "capture": "typst00_stamped.jpg",
+  "state": "absent",
+  "digital_control": "valid"
+ },
+ {
+  "doc_id": "typst01",
+  "capture": "typst01_stamped.jpg",
+  "state": "absent",
+  "digital_control": "valid"
+ },
+ {
+  "doc_id": "typst02",
+  "capture": "typst02_stamped.jpg",
+  "state": "absent",
+  "digital_control": "valid"
+ },
+ {
+  "doc_id": "typst03",
+  "capture": "typst03_stamped.jpg",
+  "state": "absent",
+  "digital_control": "valid"
+ },
+ {
+  "doc_id": "typst04",
+  "capture": "typst04_stamped.jpg",
+  "state": "absent",
+  "digital_control": "valid"
+ }
+]
