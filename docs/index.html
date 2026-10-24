@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marma-Crypto Protocol (v2.1.0) — Sri Yantra, Tryzub & DSTU 4145-2002 Online Verifier</title>
-  <meta name="description" content="Official client-side online verifier for the Marma-Crypto (Marma-256) v2.1.0 cryptographic-geometric watermark (Sri Yantra / Tryzub / CAD × DSTU 4145-2002 over GF(2^257) · 266-Bit Keyed Dithered QIM · Optical ECC · PAdES-LTA). Author: Yaroslav V. Baienko. CERN Zenodo DOI: 10.5281/zenodo.23560975." />
+  <title>Marma-Crypto Protocol v2.2.0 — Seal, Verify & Trace PDF/DOCX/SVG Watermarks</title>
+  <meta name="description" content="Marma-Crypto Protocol: open-source geometric document sealing. Production Linux CLI embeds a 266-bit payload in PDF, DOCX and SVG; a zero-upload browser demo seals PDF/SVG and verifies both. Trace leaked recipient copies. Complements PAdES/eIDAS QES." />
   <link rel="canonical" href="https://yaroslavbaienko.github.io/marma-crypto-protocol/" />
 
   <!-- OpenGraph & X (Twitter) Card Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Marma-Crypto Protocol" />
-  <meta property="og:title" content="Marma-Crypto Protocol (v2.1.0) — Sri Yantra & Tryzub × DSTU 4145-2002 Cryptographic Watermark" />
-  <meta property="og:description" content="Bind any PDF, DOCX, or SVG to 266-bit Keyed Dithered QIM vector geometry (Sri Yantra, Ukrainian State Trident / Tryzub, CAD Polygons, [32,16,8] Optical ECC) and DSTU 4145-2002 over GF(2^257)." />
+  <meta property="og:title" content="Marma-Crypto Protocol — Seal, Verify & Trace PDF, DOCX and SVG" />
+  <meta property="og:description" content="Open-source document sealing: production CLI embeds a 266-bit geometric payload in PDF/DOCX/SVG; the browser demo seals PDF/SVG and verifies both. Trace leaked recipient copies. PAdES/eIDAS evidence stays complementary." />
   <meta property="og:url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/" />
-  <meta property="og:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.1.0" />
+  <meta property="og:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0" />
   <meta property="og:image:width" content="1270" />
   <meta property="og:image:height" content="760" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@baienko" />
   <meta name="twitter:creator" content="@baienko" />
-  <meta name="twitter:title" content="Marma-Crypto Protocol (v2.1.0) — Sri Yantra & Tryzub × DSTU 4145-2002 Cryptographic Watermark" />
-  <meta name="twitter:description" content="266-bit Keyed Dithered QIM vector steganography + Universal Emblems (Tryzub/CAD) + Optical Screen-Photo ECC + DSTU 4145-2002 over GF(2^257)." />
-  <meta name="twitter:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.1.0" />
+  <meta name="twitter:title" content="Marma-Crypto Protocol — Seal, Verify & Trace Documents" />
+  <meta name="twitter:description" content="Open-source document sealing: 266-bit CLI payload for PDF/DOCX/SVG; zero-upload browser demo for PDF/SVG; client-side verification and recipient leak tracing." />
+  <meta name="twitter:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0" />
 
   <!-- Google Scholar Highwire Press Citation Meta Tags -->
   <meta name="citation_title" content="Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication" />
@@ -523,7 +523,38 @@
       font-size: 0.85rem;
       color: var(--text-muted);
     }
-  </style>
+
+    /* Product-landing improvements */
+    .nav-primary { font-weight: 700; }
+    .hero-cta { display:flex; justify-content:center; flex-wrap:wrap; gap:12px; margin:18px 0 14px; }
+    .btn-outline {
+      display:inline-flex; align-items:center; gap:8px; background:transparent; color:var(--gold-bright);
+      border:1px solid var(--gold-dim); border-radius:8px; padding:9px 16px; font-size:0.9rem; font-weight:600;
+    }
+    .btn-outline:hover { border-color:var(--gold); background:rgba(212,168,67,0.10); text-decoration:none; }
+    .btn-small { padding:7px 12px; font-size:0.82rem; }
+    .value-card { padding:24px; margin-bottom:24px; }
+    .value-head { max-width:900px; margin:0 auto 18px; text-align:center; }
+    .value-head h2 { font-family:var(--font-serif); font-size:clamp(1.3rem,2.5vw,1.8rem); color:#fff; margin-bottom:8px; }
+    .value-head p { color:var(--text-muted); font-size:0.94rem; }
+    .value-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:14px; }
+    .value-item { background:rgba(11,18,32,0.55); border:1px solid var(--gold-dim); border-radius:10px; padding:16px; }
+    .value-item h3 { font-family:var(--font-serif); color:var(--gold-bright); font-size:1.08rem; margin:4px 0 6px; }
+    .value-item p { color:var(--text-muted); font-size:0.86rem; line-height:1.5; }
+    .value-icon { font-size:1.45rem; }
+    .hero-proof { text-align:center; margin-top:18px; padding-top:12px; border-top:1px solid var(--gold-dim); color:var(--text-muted); font-size:0.8rem; }
+    .quick-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:14px; }
+    .quick-code { white-space:pre-wrap; overflow-x:auto; background:#0b1220; border:1px solid rgba(212,168,67,0.20); border-radius:8px; padding:10px; color:var(--gold-bright); font-family:var(--font-mono); font-size:0.72rem; line-height:1.45; margin-top:8px; }
+    @media (max-width: 760px) {
+      .topbar-inner { padding:10px 14px; gap:8px; }
+      .brand { flex-direction:column; align-items:flex-start; gap:4px; font-size:1.0rem; }
+      .brand-badge { font-size:0.62rem; }
+      .nav-actions { gap:6px; }
+      .nav-actions .pill-link { font-size:0.72rem; padding:5px 8px; }
+      .hero-cta { gap:8px; }
+      .hero-cta .btn-gold, .hero-cta .btn-outline { width:100%; justify-content:center; }
+    }
+    </style>
 </head>
 <body>
 <div style="background:#0f2740;color:#f0d078;padding:8px 14px;text-align:center;font:600 13px system-ui,sans-serif;border-bottom:1px solid #e6bd53">Software v2.2.0-5 released 2026-10-24 — seal placement (last/all/first-last/first), seal-only rendering and Nautilus UX fixes. Protocol v2.1.0 unchanged.</div>
@@ -534,15 +565,14 @@
     <div class="topbar-inner">
       <div class="brand">
         <span>🔱 Marma-Crypto Protocol</span>
-        <span class="brand-badge" data-i18n="brandBadge">software v2.2.0-5 · protocol software v2.2.0-5 · protocol v2.1.0 · DSTU 4145-2002 · 266-Bit QIM · PAdES-LTA</span>
+        <span class="brand-badge" data-i18n="brandBadge">software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM</span>
       </div>
       <div class="nav-actions">
-        <a class="pill-link" href="https://doi.org/10.5281/zenodo.23560975" target="_blank" rel="noopener">
-          🏛️ CERN Zenodo DOI: 10.5281/zenodo.23560975
-        </a>
-        <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol" target="_blank" rel="noopener">
-          💻 GitHub Repo & .deb
-        </a>
+        <a class="pill-link nav-primary" href="#sealerStudioCard" data-i18n="navSeal">Seal</a>
+        <a class="pill-link nav-primary" href="#verifier" data-i18n="navVerify">Verify</a>
+        <a class="pill-link nav-primary" href="#quickstart" data-i18n="navInstall">Install</a>
+        <a class="pill-link" href="https://doi.org/10.5281/zenodo.23560975" target="_blank" rel="noopener">Zenodo DOI</a>
+        <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol" target="_blank" rel="noopener">GitHub</a>
         <button class="lang-btn" id="langToggle" onclick="toggleLanguage()">🇬🇧 EN ⇄ 🇺🇦 UA</button>
       </div>
     </div>
@@ -552,35 +582,60 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-kicker" data-i18n="kicker">
-        Cryptographic-Geometric Watermark · Nonlinear Sri Yantra Concurrency × GF(2^257)
+        Seal · Verify · Trace — cryptographic-geometric document integrity
       </div>
       <h1 data-i18n="heroTitle">
-        Public Online Verifier for Marma-Crypto & DSTU 4145-2002 QES Signatures
+        Seal, verify and trace documents with geometric watermarks
       </h1>
       <p data-i18n="heroDesc">
-        Verify authenticity, text integrity, Qualified Electronic Signature (DSTU 4145-2002 / PAdES-LTA + TSP Timestamp), and the 9-triangle Sri Yantra geometric concurrency (54 triple marmas) of any signed .pdf, .svg, or .docx document directly in your browser — 100% Client-Side.
+        Marma-Crypto embeds a 266-bit cryptographic digest into the geometry of a visible seal, verifies it client-side, and traces leaked copies to a recipient. Open source. PDF and SVG in the browser; PDF, DOCX and SVG via Linux CLI. It complements PAdES/eIDAS rather than replacing them.
       </p>
-      <div class="hero-links">
-        <a class="btn-gold" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank" data-i18n="btnHeroEn">
-          📘 Whitepaper (EN PDF · Signed PAdES-LTA)
-        </a>
-        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf" target="_blank" data-i18n="btnHeroUa">
-          📕 Whitepaper (UA PDF · Підписана КЕП)
-        </a>
-        <a class="btn-outline" href="whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf" target="_blank" data-i18n="btnHeroProto">
-          📋 Official Verification Protocol (PDF)
-        </a>
+      <div class="hero-cta">
+        <a class="btn-gold" href="#sealerStudioCard" data-i18n="btnHeroSeal">🔱 Seal a document</a>
+        <a class="btn-outline" href="#verifier" data-i18n="btnHeroVerify">✓ Verify a document</a>
+        <a class="btn-outline" href="#quickstart" data-i18n="btnHeroInstall">⚙ Install CLI / .deb</a>
       </div>
+      <div class="hero-links" aria-label="Research and verification documents">
+        <a class="btn-outline btn-small" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank" data-i18n="btnHeroEn">📘 Whitepaper EN</a>
+        <a class="btn-outline btn-small" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf" target="_blank" data-i18n="btnHeroUa">📕 Whitepaper UA</a>
+        <a class="btn-outline btn-small" href="whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf" target="_blank" data-i18n="btnHeroProto">📋 Verification protocol</a>
+      </div>
+    </section>
+
+    <!-- Product value and use cases -->
+    <section class="card value-card" aria-labelledby="valueTitle">
+      <div class="value-head">
+        <h2 id="valueTitle" data-i18n="valueTitle">One protocol. Three jobs: seal, verify, trace.</h2>
+        <p data-i18n="valueDesc">Built for documents where a valid signature is not enough: contracts in data rooms, engineering drawings, board resolutions and evidence files. The visible mark and the cryptographic digest are tied to the same geometry.</p>
+      </div>
+      <div class="value-grid">
+        <article class="value-item">
+          <div class="value-icon">🔱</div>
+          <h3 data-i18n="valueSealTitle">Seal</h3>
+          <p data-i18n="valueSealDesc">The production CLI adds a visible geometric seal with a 266-bit payload to PDF, DOCX and SVG, with seal-page policies last / first / first-last / all. The zero-upload browser demo seals PDF/SVG with the v1.3 256-bit carrier.</p>
+        </article>
+        <article class="value-item">
+          <div class="value-icon">✅</div>
+          <h3 data-i18n="valueVerifyTitle">Verify</h3>
+          <p data-i18n="valueVerifyDesc">Check the visible seal, the vector geometry and the embedded digest locally. If the geometry is missing or altered, verification fails closed instead of pretending the document is valid.</p>
+        </article>
+        <article class="value-item">
+          <div class="value-icon">🕵️</div>
+          <h3 data-i18n="valueTraceTitle">Trace</h3>
+          <p data-i18n="valueTraceDesc">Embed a recipient-side canary in a separate degree of freedom. When a copy leaks, compare suspect IDs and identify the likely source without hiding the mark from the recipient.</p>
+        </article>
+      </div>
+      <p class="hero-proof" data-i18n="proofLine">Open source (Apache-2.0) · 266-bit QIM · 1,800+ reproducible sample runs · software v2.2.0-5 · IEEE TIFS 2026 manuscript submitted; preprint on Zenodo</p>
     </section>
 
     <!-- NEW v1.3.0 KILLER FEATURE: Client-Side Browser Sealer & Deal-Room Canary Studio -->
     <section class="card" id="sealerStudioCard" style="margin-bottom:24px;border-color:rgba(212,168,67,0.55);background:linear-gradient(180deg, rgba(22,34,59,0.95) 0%, rgba(13,21,38,0.98) 100%);">
       <div class="card-title" style="flex-wrap:wrap;gap:10px;">
-        <span data-i18n="sealerTitle">✍️ Client-Side Document Sealer &amp; Deal-Room Canary Studio (256-Bit · Zero-Upload)</span>
+        <span data-i18n="sealerTitle">✍️ Client-Side Document Sealer &amp; Deal-Room Canary Studio (Browser demo v1.3 · 256-bit · Zero-Upload)</span>
         <span class="brand-badge" data-i18n="sealerBadge">100% Client-Side · CLI Compatible (marma-watermark verify / trace)</span>
       </div>
       <p style="font-size:0.88rem;color:var(--text-muted);margin-bottom:14px;" data-i18n="sealerDesc">
-        Seal any local .PDF or .SVG (or use the built-in Confidential M&amp;A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice (18 nm step, 2¹²⁸ collision resistance) and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). <strong>Threat Model Note:</strong> Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.
+        Seal any local .PDF or .SVG (or use the built-in Confidential M&amp;A Term Sheet) directly in your browser with the v1.3 256-bit carrier and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Browser mode is a zero-upload demo; production v2.1.0 sealing with the 266-bit payload (256-bit digest + 10-bit recipient word), DOCX support and seal-page policies is available through the Linux CLI. <strong>Threat Model Note:</strong> Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.
       </p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-bottom:14px;">
@@ -615,10 +670,10 @@
 
       <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;">
         <button class="btn-gold" onclick="runBrowserSealStudio(false)" data-i18n="sealerBtnSealPdf">
-          🔱 Seal .PDF Copies in Browser (256-Bit + Canary)
+          🔱 Seal .PDF Copies in Browser (256-bit + Canary)
         </button>
         <button class="btn-outline" onclick="runBrowserSealStudio(true)" data-i18n="sealerBtnSealSvg">
-          📐 Seal .SVG Yantra Copies (256-Bit + Canary)
+          📐 Seal .SVG Yantra Copies (256-bit + Canary)
         </button>
         <button class="btn-outline" style="border-color:var(--gold);color:var(--gold-bright);" onclick="runOneClickDealRoomDemo()" data-i18n="sealerBtnDemo">
           ⚡ 1-Click Deal-Room Leak Simulation (Seal 3 Copies &amp; Catch Leaker)
@@ -632,7 +687,7 @@
     </section>
 
     <!-- Main Workspace -->
-    <div class="workspace-grid">
+    <div class="workspace-grid" id="verifier">
       <!-- Left Column: File Dropzone + Interactive Sri Yantra Inspector -->
       <div class="card">
         <div class="card-title">
@@ -781,6 +836,37 @@
       </div>
     </div>
 
+    <!-- Quickstart / what to install -->
+    <section class="card" id="quickstart" aria-labelledby="quickTitle" style="margin-top:24px;">
+      <div class="card-header">
+        <div class="card-title" id="quickTitle" data-i18n="quickTitle">⚙ Quickstart: use the browser or install the CLI</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/v2.2.0" target="_blank" rel="noopener">⬇️ v2.2.0 release / .deb</a>
+          <a class="pill-link" href="#paper">📄 Research & citation</a>
+        </div>
+      </div>
+      <div class="quick-grid">
+        <div class="meta-box">
+          <div class="meta-key" data-i18n="quickBrowserTitle">Browser — zero upload</div>
+          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickBrowserDesc">Choose a PDF or SVG above, seal it, then drop the sealed file into the verifier. Files never leave your device.</p>
+          <a class="btn-gold btn-small" href="#sealerStudioCard" data-i18n="btnHeroSeal">🔱 Seal a document</a>
+        </div>
+        <div class="meta-box">
+          <div class="meta-key" data-i18n="quickCliTitle">Linux CLI — PDF, DOCX and SVG</div>
+          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickCliDesc">Install from the signed APT repository or the GitHub release, then use the CLI for batch sealing and recipient tracing.</p>
+<pre class="quick-code">curl -fsSL https://yaroslavbaienko.github.io/legaltech/public.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/legaltech.gpg
+echo "deb [signed-by=/etc/apt/keyrings/legaltech.gpg] https://yaroslavbaienko.github.io/legaltech stable main" | sudo tee /etc/apt/sources.list.d/legaltech.list
+sudo apt update &amp;&amp; sudo apt install marma-crypto-watermark qes-tools</pre>
+        </div>
+        <div class="meta-box">
+          <div class="meta-key" data-i18n="quickNautilusTitle">Nautilus integration</div>
+          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickNautilusDesc">Seal selected PDF/DOCX/SVG files from the file manager, with a visible seal-placement setting (last / first-last / all / ask) and no text caption under the seal.</p>
+          <pre class="quick-code">marma-watermark verify document.pdf
+marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
+        </div>
+      </div>
+    </section>
+
     <!-- Enterprise Integration & Forensic Legal Advisory Block -->
     <section class="card" style="margin-top:24px;border-color:rgba(212,168,67,0.45);background:linear-gradient(180deg, rgba(22,34,59,0.92) 0%, rgba(17,26,46,0.96) 100%);">
       <div class="card-header">
@@ -851,9 +937,9 @@
     </section>
 
     <!-- Academic Citation Block (Google Scholar / CERN Zenodo / BibTeX) -->
-    <section class="card" style="margin-top:24px;">
+    <section class="card" id="paper" aria-labelledby="paperTitle" style="margin-top:24px;">
       <div class="card-header">
-        <div class="card-title">🎓 Academic Citation &amp; Google Scholar Indexing (DOI: 10.5281/zenodo.23560975)</div>
+        <div class="card-title" id="paperTitle">🎓 Research, citation &amp; Google Scholar (DOI: 10.5281/zenodo.23560975)</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;">
           <a class="pill-link" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf" target="_blank" rel="noopener">📄 Direct PDF (EN)</a>
           <a class="pill-link" href="ua.html">🇺🇦 Ukrainian Specification &amp; FAQ (UA)</a>
@@ -888,7 +974,7 @@
 
     <footer class="footer">
       <div>
-        <strong>Marma-Crypto Protocol (v2.1.0)</strong> · <span data-i18n="footerAuthor">Author & Inventor:</span> <strong>Yaroslav V. Baienko (Ярослав Володимирович Баєнко)</strong>
+        <strong>Marma-Crypto Protocol · software v2.2.0-5 · protocol v2.1.0</strong> · <span data-i18n="footerAuthor">Author & Inventor:</span> <strong>Yaroslav V. Baienko (Ярослав Володимирович Баєнко)</strong>
       </div>
       <div style="margin-top:4px;">
         CERN Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.23560975">10.5281/zenodo.23560975</a> ·
@@ -2078,7 +2164,7 @@
       box.style.display = "block";
       const isEn = currentLang === "en";
       summary.textContent = isEn
-        ? `✅ Sealed ${generatedSealedCopies.length} cryptographically bound 256-bit document copy(ies) in browser memory (Δ_coord = 0.000000000000 · CLI verify & trace ready):`
+        ? `✅ Sealed ${generatedSealedCopies.length} cryptographically bound 256-bit browser-demo copy(ies) in browser memory (Δ_coord = 0.000000000000 · CLI verify & trace ready):`
         : `✅ Запечатано ${generatedSealedCopies.length} криптографічно захищених 256-бітних примірників у пам'яті браузера (Δ_coord = 0.000000000000 · сумісно з CLI verify & trace):`;
 
       list.innerHTML = "";
@@ -2208,23 +2294,45 @@
     // Full Bilingual Dictionary (English primary, Ukrainian secondary)
     const I18N = {
       en: {
-        brandBadge: "software v2.2.0-5 · protocol software v2.2.0-5 · protocol v2.1.0 · DSTU 4145-2002 · 266-Bit QIM · PAdES-LTA",
-        kicker: "Cryptographic-Geometric Watermark · Nonlinear Sri Yantra Concurrency × GF(2^257)",
-        heroTitle: "Public Online Verifier for Marma-Crypto & DSTU 4145-2002 QES Signatures",
-        heroDesc: "Verify authenticity, text integrity, Qualified Electronic Signature (DSTU 4145-2002 / PAdES-LTA + TSP Timestamp), 256-bit bijective Sri Yantra geometry (54 triple marmas), and Canary leak-tracing of any signed .pdf, .svg, or .docx document directly in your browser — 100% Client-Side.",
-        btnHeroEn: "📘 Whitepaper (EN PDF · Signed PAdES-LTA)",
-        btnHeroUa: "📕 Whitepaper (UA PDF · Підписана КЕП)",
-        btnHeroProto: "📋 Official Verification Protocol (PDF)",
-        sealerTitle: "✍️ Client-Side Document Sealer & Deal-Room Canary Studio (256-Bit · Zero-Upload)",
+        brandBadge: "software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM",
+        navSeal: "Seal",
+        navVerify: "Verify",
+        navInstall: "Install",
+        kicker: "Seal · Verify · Trace — cryptographic-geometric document integrity",
+        heroTitle: "Seal, verify and trace documents with geometric watermarks",
+        heroDesc: "Marma-Crypto is an open-source document-sealing protocol. The production Linux CLI embeds a 266-bit cryptographic digest into the geometry of a visible seal; the zero-upload browser demo seals PDF/SVG with a 256-bit carrier. Verify client-side and trace leaked copies to a recipient. Complements PAdES/eIDAS.",
+        btnHeroSeal: "🔱 Seal a document",
+        btnHeroVerify: "✓ Verify a document",
+        btnHeroInstall: "⚙ Install CLI / .deb",
+        valueTitle: "One protocol. Three jobs: seal, verify, trace.",
+        valueDesc: "Built for documents where a valid signature is not enough: contracts in data rooms, engineering drawings, board resolutions and evidence files. The visible mark and the cryptographic digest are tied to the same geometry.",
+        valueSealTitle: "Seal",
+        valueSealDesc: "The production CLI adds a visible geometric seal with a 266-bit payload to PDF, DOCX and SVG, with seal-page policies last / first / first-last / all. The zero-upload browser demo seals PDF/SVG with the v1.3 256-bit carrier.",
+        valueVerifyTitle: "Verify",
+        valueVerifyDesc: "Check the visible seal, the vector geometry and the embedded digest locally. If the geometry is missing or altered, verification fails closed instead of pretending the document is valid.",
+        valueTraceTitle: "Trace",
+        valueTraceDesc: "Embed a recipient-side canary in a separate degree of freedom. When a copy leaks, compare suspect IDs and identify the likely source without hiding the mark from the recipient.",
+        proofLine: "Open source (Apache-2.0) · 266-bit QIM · 1,800+ reproducible sample runs · software v2.2.0-5 · IEEE TIFS 2026 manuscript submitted; preprint on Zenodo",
+        quickTitle: "⚙ Quickstart: use the browser or install the CLI",
+        quickBrowserTitle: "Browser — zero upload",
+        quickBrowserDesc: "Choose a PDF or SVG above, seal it with the v1.3 256-bit browser demo, then drop the sealed file into the verifier. Files never leave your device.",
+        quickCliTitle: "Linux CLI — PDF, DOCX and SVG",
+        quickCliDesc: "Install the production v2.1.0 CLI from the signed APT repository or the GitHub release, then use it for 266-bit sealing of PDF/DOCX/SVG, seal-page policies and recipient tracing.",
+        quickNautilusTitle: "Nautilus integration",
+        quickNautilusDesc: "Seal selected PDF/DOCX/SVG files from the file manager, with a visible seal-placement setting (last / first-last / all / ask) and no text caption under the seal.",
+        btnHeroEn: "📘 Whitepaper EN",
+        btnHeroUa: "📕 Whitepaper UA",
+        btnHeroProto: "📋 Verification protocol",
+        sealerTitle: "✍️ Client-Side Document Sealer & Deal-Room Canary Studio (Browser demo v1.3 · 256-bit · Zero-Upload)",
         sealerBadge: "100% Client-Side · CLI Compatible (marma-watermark verify / trace)",
-        sealerDesc: "Seal any local .PDF or .SVG (or use the built-in Confidential M&A Term Sheet) directly in your browser with a 256-bit bijective Sri Yantra lattice (18 nm step, 2^128 collision resistance) and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Threat Model Note: Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.",
+        sealerDesc: "Seal any local .PDF or .SVG (or use the built-in Confidential M&A Term Sheet) directly in your browser with the v1.3 256-bit carrier and covert Recipient Canary tags on the innermost Bindu apex (D5.ay). Browser mode is a zero-upload demo; production v2.1.0 sealing with the 266-bit payload (256-bit digest + 10-bit recipient word), DOCX support and seal-page policies is available through the Linux CLI. Threat Model Note: Browser sealing operates in Symmetric Deal-Room Mode (HMAC-SHA256 using the Master Secret below; without a private secret, an unkeyed seal acts strictly as a visual-vector integrity checksum). Full asymmetric QES non-repudiation (PAdES-B-LTA over DSTU 4145-2002) requires hardware/PKCS#12 private-key signing via the CLI and validating the signature against the signer's certificate.",
         sealerLblFile: "Source Document (.PDF or .SVG)",
         sealerBtnChoose: "📂 Choose .PDF / .SVG",
         sealerLblSigner: "Signer / Organization Name",
         sealerLblSecret: "Master Secret / Deal-Room Key",
         sealerLblRecipients: "Recipient ID(s) (Canary Leak-Tracing · comma-separated)",
-        sealerBtnSealPdf: "🔱 Seal .PDF Copies in Browser (256-Bit + Canary)",
-        sealerBtnSealSvg: "📐 Seal .SVG Yantra Copies (256-Bit + Canary)",
+        sealerBtnSealPdf: "🔱 Seal .PDF Copies in Browser (256-bit + Canary)",
+        sealerBtnSealSvg: "📐 Seal .SVG Yantra Copies (256-bit + Canary)",
         sealerBtnDemo: "⚡ 1-Click Deal-Room Leak Simulation (Seal 3 Copies & Catch Leaker)",
         leftTitle: "1. Document Selection & Geometry",
         dropTitle: "Drag & Drop a Signed .PDF, .SVG, or .DOCX Here",
@@ -2271,14 +2379,36 @@
         footerLicense: "License: Apache 2.0 / CC BY 4.0"
       },
       uk: {
-        brandBadge: "v2.1.0 · ДСТУ 4145-2002 · 266-Bit QIM · PAdES-LTA",
-        kicker: "Криптографічно-геометричний водяний знак · Нелінійна планіметрія Шрі Янтри × GF(2^257)",
-        heroTitle: "Публічний Онлайн-Верифікатор Підпису Marma-Crypto та ДСТУ 4145-2002",
-        heroDesc: "Перевірте автентичність, цілісність тексту, кваліфікований електронний підпис КЕП (ДСТУ 4145-2002 / PAdES-LTA + мітка часу TSP), 256-бітну бієктивну геометрію Шрі Янтри (54 потрійні марми) та Canary leak-tracing будь-якого документа .pdf, .svg або .docx прямо у браузері — 100% Client-Side.",
-        btnHeroEn: "📘 Whitepaper (EN PDF · Підписана КЕП)",
-        btnHeroUa: "📕 Біла книга (UA PDF · Підписана КЕП)",
-        btnHeroProto: "📋 Офіційний PDF-протокол перевірки",
-        sealerTitle: "✍️ Браузерна Студія Запечатування та Deal-Room Canary Маркування (256-Bit · Без Завантаження на Сервер)",
+        brandBadge: "software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM",
+        navSeal: "Запечатати",
+        navVerify: "Перевірити",
+        navInstall: "Встановити",
+        kicker: "Запечатати · Перевірити · Знайти витік — криптографічно-геометрична цілісність документів",
+        heroTitle: "Запечатуйте, перевіряйте та відстежуйте документи геометричними водяними знаками",
+        heroDesc: "Marma-Crypto — відкритий протокол запечатування документів. Production Linux CLI вбудовує 266-бітний криптографічний дайджест у геометрію видимої печатки; zero-upload браузерний демо-режим запечатує PDF/SVG 256-бітним носієм. Перевірка — на клієнті, пошук витоку — до отримувача. Доповнює PAdES/eIDAS.",
+        btnHeroSeal: "🔱 Запечатати документ",
+        btnHeroVerify: "✓ Перевірити документ",
+        btnHeroInstall: "⚙ Встановити CLI / .deb",
+        valueTitle: "Один протокол. Три дії: запечатати, перевірити, знайти витік.",
+        valueDesc: "Для документів, де валідного підпису недостатньо: договори в data room, інженерні креслення, рішення рад директорів і докази. Видима печатка та криптографічний дайджест прив'язані до однієї геометрії.",
+        valueSealTitle: "Запечатати",
+        valueSealDesc: "Додайте видиму геометричну печатку з 266-бітним корисним навантаженням. Браузер — PDF/SVG; Linux CLI — PDF, DOCX і SVG, з політиками last / first / first-last / all.",
+        valueVerifyTitle: "Перевірити",
+        valueVerifyDesc: "Перевірте видиму печатку, векторну геометрію та вбудований дайджест локально. Якщо геометрія відсутня або змінена, перевірка завершується fail-closed.",
+        valueTraceTitle: "Знайти витік",
+        valueTraceDesc: "Вбудуйте canary-мітку отримувача в окремий ступінь свободи. Якщо копія витекла, порівняйте ID підозрюваних і визначте ймовірне джерело, не приховуючи мітку від отримувача.",
+        proofLine: "Відкритий код (Apache-2.0) · 266-bit QIM · 1 800+ відтворюваних прогонів · software v2.2.0-5 · рукопис IEEE TIFS 2026 подано; препринт на Zenodo",
+        quickTitle: "⚙ Швидкий старт: браузер або CLI",
+        quickBrowserTitle: "Браузер — без завантаження на сервер",
+        quickBrowserDesc: "Виберіть PDF або SVG вище, запечатайте через браузерний демо-режим v1.3 256-bit і перетягніть запечатаний файл у верифікатор. Файли не покидають ваш пристрій.",
+        quickCliTitle: "Linux CLI — PDF, DOCX і SVG",
+        quickCliDesc: "Встановіть production CLI v2.1.0 із підписаного APT-репозиторію або GitHub release; він дає 266-бітне запечатування PDF/DOCX/SVG, політики сторінок і пошук витоку.",
+        quickNautilusTitle: "Інтеграція з Nautilus",
+        quickNautilusDesc: "Запечатуйте вибрані PDF/DOCX/SVG файли з файлового менеджера; налаштування розміщення печатки (last / first-last / all / ask) і без підпису під печаткою.",
+        btnHeroEn: "📘 Whitepaper EN",
+        btnHeroUa: "📕 Біла книга UA",
+        btnHeroProto: "📋 Протокол перевірки",
+        sealerTitle: "✍️ Браузерна Студія Запечатування та Deal-Room Canary Маркування (266-Bit · Без Завантаження на Сервер)",
         sealerBadge: "100% Client-Side · Повна сумісність із CLI (marma-watermark verify / trace)",
         sealerDesc: "Запечатайте будь-який локальний .PDF або .SVG (чи вбудований конфіденційний M&A Term Sheet) прямо у браузері 256-бітною бієктивною решіткою Шрі Янтри (крок 18 нм, стійкість до колізій 2^128) та прихованою Canary-міткою отримувача у вершині Бінду (D5.ay). Модель загроз: браузерне запечатування працює у симетричному Deal-Room режимі (HMAC-SHA256 за Майстер-ключем нижче; без секретного ключа печатка виконує роль лише візуально-векторної контрольної суми цілісності). Повна асиметрична неспростовність КЕП (PAdES-B-LTA за ДСТУ 4145-2002) потребує підписання особистим ключем КЕП через CLI та обов'язкової перевірки самого підпису (r, s).",
         sealerLblFile: "Вихідний документ (.PDF або .SVG)",
@@ -2286,8 +2416,8 @@
         sealerLblSigner: "Підписувач / Організація",
         sealerLblSecret: "Майстер-ключ / Ключ угоди (Deal-Room Key)",
         sealerLblRecipients: "ID Отримувачів (Canary Leak-Tracing · через кому)",
-        sealerBtnSealPdf: "🔱 Запечатати .PDF у браузері (256-Bit + Canary)",
-        sealerBtnSealSvg: "📐 Запечатати .SVG Янтру (256-Bit + Canary)",
+        sealerBtnSealPdf: "🔱 Запечатати .PDF у браузері (266-Bit + Canary)",
+        sealerBtnSealSvg: "📐 Запечатати .SVG Янтру (266-Bit + Canary)",
         sealerBtnDemo: "⚡ 1-Клік Симуляція Витоку в Deal-Room (3 Копії та Пошук Інсайдера)",
         leftTitle: "1. Вибір документа та Геометрія",
         dropTitle: "Перетягніть сюди підписаний .PDF, .SVG або .DOCX",
