@@ -298,7 +298,7 @@ polyline or a grid? Each question maps to a table below; no claim in the abstrac
 
 
 == Public and independent-document anchors
-Ten unique public project documents (whitepapers, manuscript PDFs and patent description PDFs; no client data) plus five independent public NIST standards (FIPS 186-5, FIPS 180-4, FIPS 202, SP 800-57 Part 1 Rev. 5 and FIPS 140-3) were stamped and attacked under the same protocol, 10 seeds each (150 samples). The results match the synthetic corpus: exact recovery in 100% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.30 times 10^(-6)$ pt (PSNR_geom = 155.1 dB).
+Ten unique public project documents (whitepapers, manuscript PDFs and patent description PDFs; no client data) plus five independent public NIST standards (FIPS 186-5, FIPS 180-4, FIPS 202, SP 800-57 Part 1 Rev. 5 and FIPS 140-3) were stamped and attacked under the same protocol, 10 seeds each (150 samples). The results match the synthetic corpus: exact recovery in 100% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.30 times 10^(-6)$ pt (PSNR_geom = 155.1 dB); per-document breakdown for the five NIST anchors is in Table 7 (IEEE build).
 
 #table(
   columns: 3, align: center,

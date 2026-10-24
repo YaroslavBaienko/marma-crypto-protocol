@@ -1,10 +1,10 @@
 {
-  "main_pdf_sha256": "fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88",
+  "main_pdf_sha256": "e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a",
   "cover_sha256": "24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760",
-  "source_zip_sha256": "c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574",
-  "bundle_sha256": "782b80817b9d2d6ec5774fb5cdfed7541acf9c11b56125330e71e62c68e93fe7",
-  "main_pdf_bytes": 321683,
-  "source_zip_bytes": 429513,
+  "source_zip_sha256": "14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460",
+  "bundle_sha256": "86f87e57340755efca9be4816f0fef480df5691dde7fda13c41dd1bc379712fe",
+  "main_pdf_bytes": 322200,
+  "source_zip_bytes": 430185,
   "pages": 8,
   "abstract_words_metadata": 243,
   "question_marks": 0,
@@ -23,5 +23,5 @@
   "requirements_record": true,
   "prior_statement": true,
   "sps_margin_alternative": true,
-  "timestamp": "2026-10-24T23:45:00+03:00"
+  "timestamp": "2026-10-24T23:55:00+03:00"
 }

@@ -12,19 +12,19 @@ Modulation on Vector Geometry*
 
 | File | Size | SHA-256 |
 |---|---:|---|
-| `ieee/main.pdf` — review PDF | 321,683 B | `fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88` |
+| `ieee/main.pdf` — review PDF | 322,200 B | `e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a` |
 | `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760` |
 | `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 9 pp | only if portal flags margins |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 429,513 B | `c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574` |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 430,185 B | `14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
 Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
-fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88  ieee/main.pdf
+e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a  ieee/main.pdf
 24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760  cover_letter_TIFS.pdf
-c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574  ieee/IEEEtran_TIFS_submission.zip
+14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 
