@@ -8,6 +8,9 @@ Modulation on Vector Geometry*
 **Author:** Yaroslav V. Baienko · ORCID 0009-0006-7498-2133
 **Status:** prepared, not submitted. Owner actions are listed at the end.
 
+**One-link submission package:** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/tifs-v3/TIFS_submission_package_2026-10-25.zip
+(SHA-256 `cf960984274e46f692b9d621838e54fb136d7610d303fd9ae6c92ea1dbf40a7d`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
+
 ## 1. Files to upload to the portal
 
 | File | Size | SHA-256 |
