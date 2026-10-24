@@ -58,7 +58,7 @@
     {
       "id": "T05",
       "text": "Sufficient experimental data",
-      "status": "READY_EXTERNAL_VALIDITY_RISK"
+      "status": "READY_REDUCED_RISK"
     },
     {
       "id": "T06",
@@ -83,7 +83,7 @@
     {
       "id": "T10",
       "text": "Margins >=1 inch",
-      "status": "GAP_OR_PORTAL_CHECK"
+      "status": "GAP_OR_PORTAL_CHECK_ALTERNATE_READY"
     },
     {
       "id": "T11",
@@ -173,5 +173,11 @@
     "Paste preprint disclosure; prior-venue statement if asked",
     "Page-charge budget; accepted/typeset >10 pages incurs $220/page",
     "Scientific decision: add independent public PDFs / expand length for acceptance strength"
-  ]
+  ],
+  "real_anchor_documents": 15,
+  "real_anchor_samples": 150,
+  "independent_anchor_documents": 5,
+  "abstract_words_current": 243,
+  "sps_margin_alternative": "ieee/main_sps_margins.pdf (9 pp)",
+  "preprint_status": "related prior preprint cited as baienko2026preprint; no identical preprint"
 }

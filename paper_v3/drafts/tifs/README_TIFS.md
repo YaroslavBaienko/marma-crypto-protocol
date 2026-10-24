@@ -4,11 +4,13 @@
 |---|---|
 | `ieee/IEEEtran_TIFS_submission.zip` | self-contained IEEEtran LaTeX package (main.tex, references.bib, figures, IEEEtran.cls/bst, main.pdf) |
 | `Manuscript_TIFS_content_v1.pdf` | 13-page single-column content draft (editing version) |
-| `ieee/main.pdf` | locally built IEEE two-column review PDF: **8 pages**, abstract 243 words, clean BibTeX |
+| `ieee/main.pdf` | IEEE two-column review PDF: **8 pages**, abstract 243 words, clean BibTeX |
+| `ieee/main_sps_margins.pdf` | alternate 9-page build with ≥1-inch side margins (used only if the portal flags margins) |
+| `PRIOR_SUBMISSION_STATEMENT.md` | new-submission/prior-decision statement for the portal, if asked |
 | `marma_tifs.typ` | Typst source of the content draft |
 | `cover_letter_TIFS.pdf` | cover letter |
 | `../../eval/RESULTS_PDF.md` | synthetic-corpus results |
-| `../../eval/RESULTS_PDF_REAL_V1.md` | public project-document anchors |
+| `../../eval/RESULTS_PDF_REAL_V1.md` | public project-document plus independent NIST anchors |
 | `../../eval/RESULTS_PDF_BASELINES_V1.md` | PDF-level baselines |
 | `../../eval/RESULTS_BASELINES.md` | slot-level baselines |
 | `../../eval/printscan/` | print-scan kit + **results: 5/5 digital valid, 5/5 physical captures absent (fail-closed)** |

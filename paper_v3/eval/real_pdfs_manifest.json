@@ -70,5 +70,35 @@
   "source": "patent_ukrnoivi/04_Referat.pdf",
   "bytes": 24544,
   "sha256": "517fb1b368441fbfafec59a495a1a7dcb505d9ad8f33b93b585aa9ae24cf6105"
+ },
+ {
+  "name": "NIST.FIPS.186-5.pdf",
+  "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf",
+  "bytes": 1844414,
+  "sha256": "fbb9c7c2ba442f03c57b63b43c888311903c9d0f29f89b06efdebd9b619140c5"
+ },
+ {
+  "name": "NIST.FIPS.180-4.pdf",
+  "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+  "bytes": 833315,
+  "sha256": "0455b406d89648d20cbde375561e19c245b9815e894164c2670772e3d54deb82"
+ },
+ {
+  "name": "NIST.FIPS.202.pdf",
+  "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+  "bytes": 1459683,
+  "sha256": "1592607831ff0908cc590632ce371c6c95e94025bb1a0c8ae90a4d0ec1ed025e"
+ },
+ {
+  "name": "NIST.SP.800-57pt1r5.pdf",
+  "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf",
+  "bytes": 1688080,
+  "sha256": "cc32391022c1382ac7c91490f6bcc8838e0f889925270da23ef4e800e2ecb7ad"
+ },
+ {
+  "name": "NIST.FIPS.140-3.pdf",
+  "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf",
+  "bytes": 310627,
+  "sha256": "942a4f929dfbd2b4af2e4e03df7f6e6377054346afd9bee346ed0ebac5db384b"
  }
 ]

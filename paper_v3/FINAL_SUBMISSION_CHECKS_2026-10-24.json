@@ -1,10 +1,10 @@
 {
-  "main_pdf_sha256": "dc2f5acc46ae2492bac5b7dff3b76a4a89b89bf4a2542a2ddeaa1a48970683b9",
-  "cover_sha256": "020e71c566be6e966341daab87b8a46eb041f2418b8dce62c43f0857bd3cdd9f",
-  "source_zip_sha256": "f74eac344b7870887703a8a4177156a8ef09d3b059934ed7f167b03957662db1",
-  "bundle_sha256": "d95d29be29a3f79b3db0eba70ddd8a9cdc9f26116a63089ec141ecca8cb91380",
-  "main_pdf_bytes": 321346,
-  "source_zip_bytes": 429040,
+  "main_pdf_sha256": "fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88",
+  "cover_sha256": "24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760",
+  "source_zip_sha256": "c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574",
+  "bundle_sha256": "782b80817b9d2d6ec5774fb5cdfed7541acf9c11b56125330e71e62c68e93fe7",
+  "main_pdf_bytes": 321683,
+  "source_zip_bytes": 429513,
   "pages": 8,
   "abstract_words_metadata": 243,
   "question_marks": 0,
@@ -15,8 +15,13 @@
   "self_preprint_cited": true,
   "zip_test": true,
   "zip_main_matches_pdf": true,
+  "real_anchor_docs": 15,
+  "real_anchor_samples": 150,
+  "independent_anchor_docs": 5,
   "preprint_disclosure": true,
   "submission_manifest": true,
-  "timestamp": "2026-10-24T23:20:00+03:00",
-  "requirements_record": true
+  "requirements_record": true,
+  "prior_statement": true,
+  "sps_margin_alternative": true,
+  "timestamp": "2026-10-24T23:45:00+03:00"
 }

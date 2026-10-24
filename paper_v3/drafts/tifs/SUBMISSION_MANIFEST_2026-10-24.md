@@ -12,18 +12,19 @@ Modulation on Vector Geometry*
 
 | File | Size | SHA-256 |
 |---|---:|---|
-| `ieee/main.pdf` — review PDF | 321,346 B | `dc2f5acc46ae2492bac5b7dff3b76a4a89b89bf4a2542a2ddeaa1a48970683b9` |
-| `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `020e71c566be6e966341daab87b8a46eb041f2418b8dce62c43f0857bd3cdd9f` |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 429,040 B | `f74eac344b7870887703a8a4177156a8ef09d3b059934ed7f167b03957662db1` |
+| `ieee/main.pdf` — review PDF | 321,683 B | `fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88` |
+| `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760` |
+| `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 9 pp | only if portal flags margins |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 429,513 B | `c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
 Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
-dc2f5acc46ae2492bac5b7dff3b76a4a89b89bf4a2542a2ddeaa1a48970683b9  ieee/main.pdf
-020e71c566be6e966341daab87b8a46eb041f2418b8dce62c43f0857bd3cdd9f  cover_letter_TIFS.pdf
-f74eac344b7870887703a8a4177156a8ef09d3b059934ed7f167b03957662db1  ieee/IEEEtran_TIFS_submission.zip
+fc6384cf984bb831f612c94feffb130f9fd8228a30e5ed9d9ceb72c155659e88  ieee/main.pdf
+24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760  cover_letter_TIFS.pdf
+c7c598a8b0c75ee4c1fd38a1a6ebfd0e0b58e67e5e642317084824fc20b5c574  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 
@@ -34,7 +35,8 @@ SUMS
 - `PREPRINT_DISCLOSURE.md` — paste the compact text into the portal preprint field; do not upload as a manuscript file;
 - `LEGAL_REVIEW_CHECKLIST.md` — internal legal checklist; **not for upload**;
 - `TIFS_AUTHOR_REQUIREMENTS.md` + `TIFS_REQUIREMENTS_RES-MARMA-CRYPTO.json` — requirements matrix (internal);
-- `REVIEWER_PROOFING.md`, `IEEE_READINESS_AUDIT_2026-10-24.md`, `SUBMISSION_MANIFEST_2026-10-24.md`, requirements matrix — internal;
+- `PRIOR_SUBMISSION_STATEMENT.md` — new-submission/prior-decision statement; use only if the portal asks;
+- `REVIEWER_PROOFING.md`, `IEEE_READINESS_AUDIT_2026-10-24.md`, `SUBMISSION_MANIFEST_2026-10-24.md`, requirements matrix, `PRIOR_SUBMISSION_STATEMENT.md`, `main_sps_margins.pdf` — internal;
 - content draft (`Manuscript_TIFS_content_v1.pdf`, `marma_tifs_content.pdf`, `.typ`) — editing source; not the submission PDF.
 
 ## 3. Portal fields (exact values)

@@ -5,9 +5,10 @@ manuscript so the objection is answered before it is raised.
 
 ## 1. "The corpus is synthetic; where is the real-world evidence?"
 **Answer:** ten public project PDFs (whitepapers, manuscript PDFs, patent descriptions; no client
-data) were stamped and attacked under the same protocol — 100 samples, same exact/fail-closed
-behaviour (Table "Public project-document anchors"). A physical print-scan kit is prepared; the expected
-result is fail-closed because printing rasters the vector layer.
+data) plus five independent NIST public standards (FIPS 186-5, FIPS 180-4, FIPS 202,
+SP 800-57 Part 1 Rev. 5, FIPS 140-3) were stamped and attacked under the same protocol — 150
+samples, same exact/fail-closed behaviour (Table "Public and independent-document anchors"). A
+physical print-scan check is reported (5/5 fail-closed); printing rasters the vector layer.
 **Sentence to add:** "The public anchors test documents produced by production PDF writers rather
 than a population of enterprise DMS pipelines; the latter is stated as future work."
 

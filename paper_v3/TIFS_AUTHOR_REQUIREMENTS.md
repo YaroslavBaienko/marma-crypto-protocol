@@ -127,12 +127,12 @@ For this article:
 | T02 | Single-anonymized review, ≥2 reviewers | Policy noted; no action | N/A |
 | T03 | No concurrent/previously published | No active other submission; prior venues disclosed | READY |
 | T04 | Clear problem/contribution/significance/novelty | Introduction + abstract; narrow claim | READY, reviewer risk |
-| T05 | Sufficient experimental data | 180 corpus PDFs (hashes PASS), 1,800 main + 360 variant + 720 ablation, 100 anchors, 600 baselines, 5/5 physical | READY, external-validity risk |
+| T05 | Sufficient experimental data | 180 corpus PDFs (hashes PASS), 1,800 main + 360 variant + 720 ablation, 150 anchors (10 project + 5 independent NIST), 600 baselines, 5/5 physical | READY, reduced external-validity risk (5 independent NIST anchors) |
 | T06 | Proper English / no typo flood | IEEEtran build clean; owner final proofread | PARTIAL (owner) |
 | T07 | Sufficient citations/related work | 45 verified entries, 35 cited keys; no missing citations | READY |
 | T08 | ORCID + accurate author info | ORCID valid; email/profile owner | PARTIAL (owner) |
 | T09 | Double-column 10 pt PDF | IEEEtran; 8 pages | READY |
-| T10 | Margins ≥1 inch | IEEEtran default ~0.68 in; SPS page explicitly asks ≥1 in | **GAP/CHECK** |
+| T10 | Margins ≥1 inch | IEEEtran default ~0.68 in; `main_sps_margins.pdf` (9 pp with 1-inch side margins) is provided as the alternate if the portal requires it | **GAP/CHECK** |
 | T11 | Initial ≤13 pages | 8 pages | READY |
 | T12 | Abstract 150–250 words, self-contained | 243 words; no refs/equations; standard acronyms PDF/PAdES/eIDAS used | READY (minor acronym note) |
 | T13 | Keywords/index terms | 5 terms | READY |
@@ -184,3 +184,20 @@ Legend: READY = satisfied in package; PARTIAL = owner/format check; GAP = action
 - SPS Unified EDICS (April 2026): https://signalprocessingsociety.org/publications-resources/unified-edics
 - This repo: `IEEE_READINESS_AUDIT_2026-10-24.md`, `drafts/tifs/PREPRINT_DISCLOSURE.md`,
   `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md`, `drafts/tifs/IEEE_PORTAL_METADATA.md`.
+
+## Appendix A — page-charge budget for this article
+
+TIFS page charges are based on the **published/typeset** Regular Paper, not on the submitted PDF.
+Voluntary charges apply to the first ten pages; mandatory charges apply above ten.
+
+| Published pages | Voluntary $110/page (first 10) | Mandatory $220/page (>10) | Total if voluntary charges are accepted |
+|---:|---:|---:|---:|
+| 8 | $880 | $0 | $880 |
+| 10 | $1,100 | $0 | $1,100 |
+| 12 | $1,100 | $440 | $1,540 |
+| 14 | $1,100 | $880 | $1,980 |
+| 16 | $1,100 | $1,320 | $2,420 |
+
+Current submission PDF: 8 pages. A revision/typeset expansion above 10 pages creates mandatory
+charges; plan a conservative budget of ~$1,540 for a 12-page accepted paper. OA (optional) is
+additional; subscription/hybrid route has no APC.

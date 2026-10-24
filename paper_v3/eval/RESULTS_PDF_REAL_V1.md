@@ -1,6 +1,6 @@
 # Real-world PDF anchors (v1)
 
-Unique documents: 10 · samples: 100
+Unique documents: 15 · samples: 150
 
 | metric | mean | 95% CI |
 |---|---|---|
@@ -9,5 +9,5 @@ Unique documents: 10 · samples: 100
 | exact_trunc7 | 0.000 | ±0.000 |
 | exact_edit | 0.000 | ±0.000 |
 | flatten_carrier_present | 0.000 | ±0.000 |
-| RMSE (pt) | 5.32e-06 | ±9.03e-08 |
-| PSNR_geom (dB) | 155.0 | ±0.1 |
+| RMSE (pt) | 5.30e-06 | ±7.39e-08 |
+| PSNR_geom (dB) | 155.1 | ±0.1 |

@@ -17,8 +17,8 @@ Repository state at audit: `7a8e282` + this audit's documentation fixes (paper p
 | Documents | 60 (LibreOffice 60, Typst 60, Chromium 60) |
 | Variants | native 60, flattened 60, print-scan-simulated 60 |
 | Total pages / bytes | 220 pages / 51,124,991 bytes |
-| Real-world source PDFs | 12 files → 10 unique documents (two duplicate layout pairs excluded) |
-| Real source paths | all 12 paths resolve from the repository root |
+| Public anchors | 12 project files → 10 unique documents (two duplicate layouts excluded) + 5 independent NIST public standards (FIPS 186-5, 180-4, 202, SP 800-57, 140-3) |
+| Anchor provenance | project paths resolve from repo root; NIST source URLs + SHA-256 recorded in `eval/real_pdfs_manifest.json` |
 | Physical print-scan | 5 print-ready + 5 captures + results present; 5/5 digital valid, 5/5 physical absent (fail-closed) |
 
 ## 2. Evaluation results — PASS (internal consistency)
@@ -28,14 +28,14 @@ Repository state at audit: `7a8e282` + this audit's documentation fixes (paper p
 | Main, 60 native × 30 seeds | 1,800 | exact 1800/1800; trunc-8 1800/1800; 7-decimal 1800/1800 detected; payload edit 1800/1800 detected; flatten 1800/1800 fail-closed |
 | Flattened / print-scan-simulated variants | 360 | exact 360/360, carrier absent after flattening |
 | Carrier × keying ablation | 720 | exact 720/720; only Sri Yantra carrier detects centre-line edits (100%) |
-| Public real-world anchors | 100 (10 docs × 10 seeds) | exact 100/100; trunc-8 100/100; 7-decimal and edit detected; flatten fail-closed |
+| Public/independent anchors | 150 (15 docs × 10 seeds) | exact 150/150; trunc-8 150/150; 7-decimal and edit detected; flatten fail-closed |
 | PDF-level baselines | 600 | STDM-DCT 140 bit, Fourier 13 bit, LSB 27 bit; capacity–distortion frontier |
 | Physical print-scan | 5 | 5/5 digital valid, 5/5 captures absent |
 | Controlled run (paper P1 + product P2) | 43 tests | PASS; seal-path branch coverage 85.0%; 12-sample matrix stable; P2 gate PASS |
 
 Manuscript numbers checked against `eval/results_pdf_v0.json`, `eval/results_pdf_real.json`,
 `eval/results_pdf_baselines.json`, `eval/printscan/results.json`, `tests/controlled_run/`:
-main RMSE 5.31e-6 pt (PSNR 155.1 dB), real RMSE 5.32e-6 pt, per-generator means 5.29–5.33e-6 pt,
+main RMSE 5.31e-6 pt (PSNR 155.1 dB), real RMSE 5.30e-6 pt, per-generator means 5.29–5.33e-6 pt,
 baseline capacities 140/13/27 bit — all consistent with the tables.
 
 ## 2b. Preprints and archival identifiers — PASS with one browser check
@@ -69,7 +69,7 @@ metadata include it.
 | Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
 | Index terms | present (5) |
-| Artifacts | `ieee/main.pdf` (8 pp, 321,346 B, SHA-256 `7669fd8d…`), `IEEEtran_TIFS_submission.zip` (427,778 B, SHA-256 `9413d65b…`), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
+| Artifacts | `ieee/main.pdf` (8 pp, 321,683 B, SHA-256 `fc6384cf…`), `IEEEtran_TIFS_submission.zip` (429,513 B, SHA-256 `c7c598a8…`), `ieee/main_sps_margins.pdf` (9 pp alternate), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
 | Source draft | `Manuscript_TIFS_content_v1.pdf` (13-page single-column editing version) |
 
 **Formatting caveat:** SPS author instructions ask for margins ≥1 inch, while IEEEtran's journal
@@ -94,9 +94,10 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
 
 ## 5. Scientific risk — the real reason this is conditional, not automatic
 
-1. **Real-world anchors are the author's own public project PDFs** (whitepapers, manuscript
-   versions, patent PDFs), not an independent third-party corpus. TIFS reviewers may treat this as
-   weak external validity even though all are production-written PDFs.
+1. **External anchors:** the ten project PDFs are the author's own public documents, but five
+   independent NIST public standards (FIPS 186-5, 180-4, 202, SP 800-57, 140-3) have now been added,
+   giving 150 samples with the same exact/fail-closed behaviour. This reduces — but does not fully
+   remove — the external-validity concern; enterprise DMS pipelines remain future work.
 2. **Short paper:** 8 double-column pages is compliant but thin for a TIFS regular paper; reviewers
    may ask for more depth (more generators, DMS pipelines, independent documents, additional
    attacks). Expansion to ~10–12 pages is recommended, not padding.
