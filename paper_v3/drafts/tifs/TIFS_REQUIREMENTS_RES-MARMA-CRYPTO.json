@@ -1,0 +1,177 @@
+{
+  "tenant": "RES-MARMA-CRYPTO",
+  "article": "Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index Modulation on Vector Geometry",
+  "journal": "IEEE Transactions on Information Forensics and Security",
+  "source": "https://signalprocessingsociety.org/publications-resources/information-authors",
+  "fetched": "2026-10-24",
+  "article_type": "Regular Paper",
+  "page_limit_initial": 13,
+  "page_limit_revised": 16,
+  "abstract_words_range": [
+    150,
+    250
+  ],
+  "edics": [
+    {
+      "code": "820",
+      "label": "Watermarking and data hiding",
+      "role": "primary"
+    },
+    {
+      "code": "847",
+      "label": "Multimedia content authentication and plagiarism detection",
+      "role": "secondary"
+    },
+    {
+      "code": "840",
+      "label": "Multimedia forensics",
+      "role": "optional"
+    }
+  ],
+  "review": "single-anonymized; minimum 2 independent reviewers",
+  "page_charges": {
+    "voluntary_usd_per_page_first_10": 110,
+    "mandatory_usd_per_page_over_10": 220,
+    "current_pages": 8
+  },
+  "requirements": [
+    {
+      "id": "T01",
+      "text": "Regular Paper via IEEE Author Portal",
+      "status": "READY"
+    },
+    {
+      "id": "T02",
+      "text": "Single-anonymized review, >=2 reviewers",
+      "status": "N/A"
+    },
+    {
+      "id": "T03",
+      "text": "No concurrent/prior publication",
+      "status": "READY"
+    },
+    {
+      "id": "T04",
+      "text": "Problem/contribution/significance/novelty",
+      "status": "READY_REVIEWER_RISK"
+    },
+    {
+      "id": "T05",
+      "text": "Sufficient experimental data",
+      "status": "READY_EXTERNAL_VALIDITY_RISK"
+    },
+    {
+      "id": "T06",
+      "text": "Proper English/typos",
+      "status": "OWNER_PROOFREAD"
+    },
+    {
+      "id": "T07",
+      "text": "Sufficient citations/related work",
+      "status": "READY"
+    },
+    {
+      "id": "T08",
+      "text": "ORCID/accurate author info",
+      "status": "OWNER"
+    },
+    {
+      "id": "T09",
+      "text": "Double-column 10 pt PDF",
+      "status": "READY"
+    },
+    {
+      "id": "T10",
+      "text": "Margins >=1 inch",
+      "status": "GAP_OR_PORTAL_CHECK"
+    },
+    {
+      "id": "T11",
+      "text": "Initial <=13 pages",
+      "status": "READY"
+    },
+    {
+      "id": "T12",
+      "text": "Abstract 150-250 words self-contained",
+      "status": "READY"
+    },
+    {
+      "id": "T13",
+      "text": "Keywords/index terms",
+      "status": "READY"
+    },
+    {
+      "id": "T14",
+      "text": "EDICS classification",
+      "status": "READY"
+    },
+    {
+      "id": "T15",
+      "text": "Upload non-public reference PDFs",
+      "status": "READY_N_A"
+    },
+    {
+      "id": "T16",
+      "text": "Supplemental material <=6 pages",
+      "status": "N_A_READY"
+    },
+    {
+      "id": "T17",
+      "text": "Reproducibility/code/data encouraged",
+      "status": "PARTIAL"
+    },
+    {
+      "id": "T18",
+      "text": "Preprint two-track rule",
+      "status": "READY"
+    },
+    {
+      "id": "T19",
+      "text": "Resubmission/prior-rejection statement",
+      "status": "READY_IF_ASKED"
+    },
+    {
+      "id": "T20",
+      "text": "Cover letter + declarations",
+      "status": "READY"
+    },
+    {
+      "id": "T21",
+      "text": "Page charges acknowledged",
+      "status": "OWNER"
+    },
+    {
+      "id": "T22",
+      "text": "Hybrid/OA choice",
+      "status": "READY"
+    },
+    {
+      "id": "T23",
+      "text": "Copyright eCF",
+      "status": "POST_ACCEPT"
+    },
+    {
+      "id": "T24",
+      "text": "Formatted double-column main file",
+      "status": "READY"
+    },
+    {
+      "id": "T25",
+      "text": "No post-accept changes/process",
+      "status": "PROCESS"
+    },
+    {
+      "id": "T26",
+      "text": "TIFS scope fit",
+      "status": "READY"
+    }
+  ],
+  "must_fix": [
+    "Margin check: SPS requires >=1 inch; IEEEtran default ~0.68 inch",
+    "Owner final proofread + author profile/email/ORCID",
+    "Select EDICS 820/847/840",
+    "Paste preprint disclosure; prior-venue statement if asked",
+    "Page-charge budget; accepted/typeset >10 pages incurs $220/page",
+    "Scientific decision: add independent public PDFs / expand length for acceptance strength"
+  ]
+}

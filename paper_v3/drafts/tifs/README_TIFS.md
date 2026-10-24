@@ -13,6 +13,7 @@
 | `../../eval/RESULTS_BASELINES.md` | slot-level baselines |
 | `../../eval/printscan/` | print-scan kit + **results: 5/5 digital valid, 5/5 physical captures absent (fail-closed)** |
 | `PREPRINT_DISCLOSURE.md` | complete TIFS preprint/prior-venue disclosure (Zenodo/SSRN/Figshare, OSF/IACR status) |
+| `TIFS_AUTHOR_REQUIREMENTS.md` / `TIFS_REQUIREMENTS_RES-MARMA-CRYPTO.json` | SPS Information for Authors requirements fixed for this article (tenant RES-MARMA-CRYPTO) |
 | `SUBMISSION_MANIFEST_2026-10-24.md` | exact upload files, hashes and do-not-upload internal documents |
 
 Status (2026-10-24): content, evaluation and IEEEtran PDF are built and verified locally (8 pages, 243-word abstract, 0 undefined citations); physical print-scan done (5/5 fail-closed); owner still needs the portal declarations/EDICS and upload, and legal review of the technical-seal wording. See `TIFS_SUBMISSION_PLAN.md` for the authoritative checklist.

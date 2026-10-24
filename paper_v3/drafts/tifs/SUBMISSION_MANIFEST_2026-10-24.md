@@ -33,7 +33,8 @@ SUMS
 - `IEEE_PORTAL_METADATA.md` — copy-paste fields (internal);
 - `PREPRINT_DISCLOSURE.md` — paste the compact text into the portal preprint field; do not upload as a manuscript file;
 - `LEGAL_REVIEW_CHECKLIST.md` — internal legal checklist; **not for upload**;
-- `REVIEWER_PROOFING.md`, `IEEE_READINESS_AUDIT_2026-10-24.md`, `SUBMISSION_MANIFEST_2026-10-24.md` — internal;
+- `TIFS_AUTHOR_REQUIREMENTS.md` + `TIFS_REQUIREMENTS_RES-MARMA-CRYPTO.json` — requirements matrix (internal);
+- `REVIEWER_PROOFING.md`, `IEEE_READINESS_AUDIT_2026-10-24.md`, `SUBMISSION_MANIFEST_2026-10-24.md`, requirements matrix — internal;
 - content draft (`Manuscript_TIFS_content_v1.pdf`, `marma_tifs_content.pdf`, `.typ`) — editing source; not the submission PDF.
 
 ## 3. Portal fields (exact values)

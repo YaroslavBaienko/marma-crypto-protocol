@@ -61,7 +61,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [ ] Owner: upload to IEEE Author Portal, select EDICS, confirm declarations/ORCID, submit. Final formatting polish + counsel review of the technical-seal wording remain.
 
 
-## Readiness audit 2026-10-24 (authoritative; full report: `IEEE_READINESS_AUDIT_2026-10-24.md`; preprints: `drafts/tifs/PREPRINT_DISCLOSURE.md`)
+## Readiness audit 2026-10-24 (authoritative; full report: `IEEE_READINESS_AUDIT_2026-10-24.md`; preprints: `drafts/tifs/PREPRINT_DISCLOSURE.md`; author requirements: `TIFS_AUTHOR_REQUIREMENTS.md`)
 
 **Verdict: scientifically close, formally not yet submitted-ready.**
 
