@@ -16,7 +16,9 @@ if [[ -n "${NAUTILUS_SCRIPT_CURRENT_URI:-}" && "${NAUTILUS_SCRIPT_CURRENT_URI}" 
 fi
 
 OUT_SVG="${TARGET_DIR}/marma_seal_42mm_v2.svg"
-if marma-watermark --sign-svg "$OUT_SVG" --profile v2-round42 --gui >/dev/null 2>&1; then
+CMD_ARGS=(--sign-svg "$OUT_SVG" --profile v2-round42)
+[[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
+if marma_run_or_warn "Помилка створення печатки" "Seal generation failed" marma-watermark "${CMD_ARGS[@]}"; then
     marma_notify "image-x-generic" \
         "🪙 Створено круглу технічну печатку 42 мм" \
         "🪙 Created 42 mm round technical seal" \

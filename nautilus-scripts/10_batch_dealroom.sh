@@ -9,12 +9,8 @@ for p in "${SCRIPT_DIR}/.i18n.sh" "${SCRIPT_DIR}/_i18n.sh" "${SCRIPT_DIR}/../.i1
     [[ -f "$p" ]] && { source "$p"; break; }
 done
 
-FILES=()
-if [[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
-    while IFS= read -r line; do
-        [[ -n "$line" ]] && FILES+=("$line")
-    done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-else
+mapfile -t FILES < <(marma_selected_files)
+if [[ ${#FILES[@]} -eq 0 ]]; then
     FILES=("$@")
 fi
 
@@ -30,7 +26,7 @@ if [[ ${#FILES[@]} -eq 0 ]]; then
 fi
 
 RECIPIENTS="${MARMA_RECIPIENTS:-}"
-if [[ -z "$RECIPIENTS" ]] && command -v zenity >/dev/null 2>&1 && [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
+if [[ -z "$RECIPIENTS" && -z "${MARMA_HEADLESS:-}" ]] && command -v zenity >/dev/null 2>&1 && [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
     RECIPIENTS=$(zenity --entry \
         --title="$(marma_text "Список отримувачів Deal-Room (Canary Leak-Tracing)" "Deal-Room Recipients List (Canary Leak-Tracing)")" \
         --text="$(marma_text "Введіть ідентифікатори отримувачів через кому:" "Enter comma-separated recipient IDs:")" \

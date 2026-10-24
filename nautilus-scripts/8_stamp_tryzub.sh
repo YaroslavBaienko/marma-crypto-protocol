@@ -9,12 +9,8 @@ for p in "${SCRIPT_DIR}/.i18n.sh" "${SCRIPT_DIR}/_i18n.sh" "${SCRIPT_DIR}/../.i1
     [[ -f "$p" ]] && { source "$p"; break; }
 done
 
-FILES=()
-if [[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
-    while IFS= read -r line; do
-        [[ -n "$line" ]] && FILES+=("$line")
-    done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-else
+mapfile -t FILES < <(marma_selected_files)
+if [[ ${#FILES[@]} -eq 0 ]]; then
     FILES=("$@")
 fi
 
@@ -32,7 +28,7 @@ if [[ ${#FILES[@]} -eq 0 ]]; then
     fi
 fi
 
-if [[ -z "${MARMA_EMBLEM:-}" ]] && command -v zenity >/dev/null 2>&1 && [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
+if [[ -z "${MARMA_EMBLEM:-}" && -z "${MARMA_HEADLESS:-}" ]] && command -v zenity >/dev/null 2>&1 && [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]]; then
     CHOICE=$(zenity --list --radiolist \
         --title="$(marma_text "Вибір емблеми Marma-Universal v2.1" "Select Marma-Universal v2.1 Emblem")" \
         --column="" --column="ID" --column="$(marma_text "Векторна печатка (27 ступенів свободи)" "Vector Emblem (27 DOFs)")" \

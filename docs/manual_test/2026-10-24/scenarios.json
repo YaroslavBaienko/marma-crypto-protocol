@@ -1,0 +1,238 @@
+[
+ {
+  "name": "1_stamp_both_uris",
+  "script": "1_stamp_both.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/1_stamp_both_uris/00_sample_marma_signed.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1_stamp_both_uris/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "1b_watermark_paths",
+  "script": "1b_stamp_watermark.sh",
+  "selection": "paths",
+  "exit": 0,
+  "outputs": [
+   "runs/1b_watermark_paths/00_sample_marma_signed.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1b_watermark_paths/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "1c_seal_uris",
+  "script": "1c_stamp_seal.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/1c_seal_uris/00_sample_marma_signed.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1c_seal_uris/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "1_stamp_both_docx",
+  "script": "1_stamp_both.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/1_stamp_both_docx/00_sample_marma_signed.docx"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1_stamp_both_docx/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "1d_seal_v2",
+  "script": "1d_sign_seal_v2.sh",
+  "selection": "none",
+  "exit": 0,
+  "outputs": [
+   "runs/1d_seal_v2/marma_seal_42mm_v2.svg"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1d_seal_v2/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "2_sign_svg",
+  "script": "2_sign_svg.sh",
+  "selection": "none",
+  "exit": 0,
+  "outputs": [
+   "runs/2_sign_svg/sri_yantra_marma_signed.svg"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/2_sign_svg/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "8_tryzub",
+  "script": "8_stamp_tryzub.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/8_tryzub/00_sample_marma_tryzub.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/8_tryzub/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {
+   "MARMA_EMBLEM": "tryzub"
+  }
+ },
+ {
+  "name": "9_cad_svg",
+  "script": "9_stamp_cad_universal.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/9_cad_svg/drawing_marma_cad-polygon.svg"
+  ],
+  "verified": true,
+  "verify_reason": "",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/9_cad_svg/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "10_batch_dealroom",
+  "script": "10_batch_dealroom.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/10_batch_dealroom/copies/00_sample__copy_01_Alpha.pdf",
+   "runs/10_batch_dealroom/copies/00_sample__copy_02_Beta.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/10_batch_dealroom/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {
+   "MARMA_RECIPIENTS": "Alpha,Beta",
+   "MARMA_OUTPUT_DIR": "/home/attor/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/docs/manual_test/2026-10-24/runs/10_batch_dealroom/copies"
+  }
+ },
+ {
+  "name": "3_verify",
+  "script": "3_verify.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [],
+  "verified": true,
+  "verify_reason": "",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "4_protocol",
+  "script": "4_pdf_protocol.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/4_protocol/00_sample_marma_signed_marma_protocol.pdf"
+  ],
+  "verified": null,
+  "verify_reason": "",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "5_strict_key",
+  "script": "5_verify_strict_key.sh",
+  "selection": "n/a",
+  "exit": null,
+  "outputs": [],
+  "verified": null,
+  "verify_reason": "SKIPPED: requires user key/password dialog (interactive)",
+  "visible_caption": null,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "6_keygen",
+  "script": "6_keygen.sh",
+  "selection": "n/a",
+  "exit": null,
+  "outputs": [],
+  "verified": null,
+  "verify_reason": "SKIPPED: key-generation dialog is interactive",
+  "visible_caption": null,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "7_lock_session",
+  "script": "7_lock_session.sh",
+  "selection": "n/a",
+  "exit": null,
+  "outputs": [],
+  "verified": null,
+  "verify_reason": "SKIPPED: session operation, no document output",
+  "visible_caption": null,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ },
+ {
+  "name": "0_help",
+  "script": "0_help.sh",
+  "selection": "n/a",
+  "exit": null,
+  "outputs": [],
+  "verified": null,
+  "verify_reason": "SKIPPED: help dialog is interactive",
+  "visible_caption": null,
+  "zenity_calls": [],
+  "screenshot": null,
+  "stderr_tail": "",
+  "extra_env": {}
+ }
+]

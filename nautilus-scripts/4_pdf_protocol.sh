@@ -9,12 +9,8 @@ for p in "${SCRIPT_DIR}/.i18n.sh" "${SCRIPT_DIR}/_i18n.sh" "${SCRIPT_DIR}/../.i1
     [[ -f "$p" ]] && { source "$p"; break; }
 done
 
-FILES=()
-if [[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
-    while IFS= read -r line; do
-        [[ -n "$line" ]] && FILES+=("$line")
-    done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-else
+mapfile -t FILES < <(marma_selected_files)
+if [[ ${#FILES[@]} -eq 0 ]]; then
     FILES=("$@")
 fi
 
@@ -43,7 +39,7 @@ if [[ ${#VALID_FILES[@]} -eq 0 ]]; then
 fi
 
 PROTO_LANG="${MARMA_LANG:-uk}"
-if [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]] && command -v zenity >/dev/null 2>&1; then
+if [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" && -z "${MARMA_HEADLESS:-}" ]] && command -v zenity >/dev/null 2>&1; then
     CHOSEN_LANG=$(zenity --list --radiolist \
         --title="Мова PDF-протоколу — Marma-Crypto" \
         --text="<b>📄 Формування офіційного PDF-протоколу перевірки Marma-Crypto</b>\n\nОберіть мову документа (з таблицею координат 9 трикутників та SHA-256 / HMAC-SHA256):" \
@@ -55,7 +51,10 @@ if [[ -n "${DISPLAY:-}${WAYLAND_DISPLAY:-}" ]] && command -v zenity >/dev/null 2
     PROTO_LANG="$CHOSEN_LANG"
 fi
 
-if marma-watermark protocol --lang "$PROTO_LANG" --open "${VALID_FILES[@]}" >/dev/null 2>&1; then
+CMD_ARGS=(protocol --lang "$PROTO_LANG")
+[[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--open)
+CMD_ARGS+=("${VALID_FILES[@]}")
+if marma_run_or_warn "Помилка формування протоколу" "Protocol generation failed" marma-watermark "${CMD_ARGS[@]}"; then
     marma_notify "document-send" \
         "📄 PDF-протокол перевірки створено" \
         "📄 Verification PDF Protocol Generated" \

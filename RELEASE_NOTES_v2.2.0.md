@@ -1,6 +1,6 @@
 # marma-crypto-watermark v2.2.0 — release candidate notes
 
-**RC revision: `2.2.0-2`** (seal-only visual contract).
+**RC revision: `2.2.0-3`** (Nautilus selection fix + seal-only visual contract).
 
 **Status: RELEASE CANDIDATE — built and package-tested, NOT installed system-wide and NOT tagged.**
 The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
@@ -23,6 +23,20 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
   cryptographic packet remains embedded (PDF keywords, hidden DOCX paragraph, SVG metadata), so
   verification is unchanged; legacy stamped files with the old caption still verify (the verifier
   normalises that line out). New tests: `tests/test_seal_visual_contract.py`.
+- **Nautilus selection fix (2026-10-24):** all document actions now resolve the selection from
+  `NAUTILUS_SCRIPT_SELECTED_FILE_PATHS`, `NAUTILUS_SCRIPT_SELECTED_URIS` (file:// URIs are decoded,
+  including spaces/percent-encoding), paths that themselves contain URIs, and the split-view
+  fallback. Previously, a view/version that exposed only URIs made the list empty and the action
+  opened a fallback zenity file chooser even though a file was selected.
+- **Visible error dialogs:** signing/verify/protocol actions now show a warning dialog with the CLI
+  error instead of failing silently (`marma_run_or_warn`).
+- **Headless mode:** `MARMA_HEADLESS=1` skips GUI dialogs/`--gui` so the same scripts can be
+  exercised end-to-end in CI and manual scripted runs.
+- **Manual/scripted scenario matrix:** `tests/manual_scenarios.py` runs 15 menu scenarios with a
+  simulated Nautilus selection; 10 signing/verify/batch/protocol scenarios executed with the real
+  CLI (10 outputs verified, 0 zenity chooser calls), 4 interactive-only actions listed with the
+  reason they cannot be automated. Evidence: `docs/manual_test/2026-10-24/` (report, JSON, contact
+  sheet, per-scenario page screenshots).
 - P1 `v1-geometric` behavior is unchanged.
 
 ## Verification evidence
@@ -32,14 +46,14 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 | Package build + isolated test (`bash build.sh --test`) | **PASS** (includes Nautilus menu deploy + selftest) |
 | Packaged CLI P2 sign→verify (extracted .deb) | **PASS** (`verified=true`, `profile=v2-round42`, 42.0 mm) |
 | Packaged PDF/DOCX seal-only check (extracted .deb) | **PASS** (verified, no visible caption, hidden packet retained) |
-| Full production pytest suite (`tests/`) | **45 passed** with `pymupdf>=1.28.2` (40 + 5 seal-only visual-contract tests). The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
+| Full production pytest suite (`tests/`) | **51 passed** with `pymupdf>=1.28.2` (40 core + 5 seal-only visual + 6 Nautilus selection tests). The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
 | Nautilus P2 script wiring (headless, fake CLI) | **PASS** (args: `--sign-svg`, `--profile v2-round42`, `--gui`) |
 | Manual GUI click-through in Nautilus | **NOT DONE** (owner action) |
 | System deployment / installation | **NOT DONE** (requires sudo: `sudo dpkg -i dist/marma-crypto-watermark_2.2.0-1_all.deb`) |
 | Git tag / GitHub release | **NOT DONE** (latest tag is `v2.1.0`) |
 
-Artifact: `dist/marma-crypto-watermark_2.2.0-2_all.deb`
-SHA256: `9e103b79b142c32c9889ad8ff4c5c940790d9f400f7e9259642f711437328b14`
+Artifact: `dist/marma-crypto-watermark_2.2.0-3_all.deb`
+SHA256: `76b9f9a4db7f8cb7155fc3fa56cecdb16896872148b7fd924080f1bc40cb4f3a`
 Visual evidence: `docs/visual_contract/` (P2 42 mm seal and a stamped page; no caption).
 
 ## Install / rollout (owner)

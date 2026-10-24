@@ -9,12 +9,8 @@ for p in "${SCRIPT_DIR}/.i18n.sh" "${SCRIPT_DIR}/_i18n.sh" "${SCRIPT_DIR}/../.i1
     [[ -f "$p" ]] && { source "$p"; break; }
 done
 
-FILES=()
-if [[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
-    while IFS= read -r line; do
-        [[ -n "$line" ]] && FILES+=("$line")
-    done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-else
+mapfile -t FILES < <(marma_selected_files)
+if [[ ${#FILES[@]} -eq 0 ]]; then
     FILES=("$@")
 fi
 
@@ -45,7 +41,10 @@ if [[ ${#VALID_FILES[@]} -eq 0 ]]; then
     fi
 fi
 
-if marma-watermark sign --gui --mode both "${VALID_FILES[@]}" >/dev/null 2>&1; then
+CMD_ARGS=(sign --mode both)
+[[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
+CMD_ARGS+=("${VALID_FILES[@]}")
+if marma_run_or_warn "Помилка підписання" "Signing failed" marma-watermark "${CMD_ARGS[@]}"; then
     marma_notify "document-edit" \
         "✅ Накладено Marma-Crypto Водяний Знак та Печатку" \
         "✅ Applied Marma-Crypto Watermark & Seal" \

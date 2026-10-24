@@ -15,7 +15,9 @@ if [[ -n "${NAUTILUS_SCRIPT_CURRENT_URI:-}" && "${NAUTILUS_SCRIPT_CURRENT_URI}" 
 fi
 
 OUT_SVG="${TARGET_DIR}/sri_yantra_marma_signed.svg"
-if marma-watermark --sign-svg "$OUT_SVG" --gui >/dev/null 2>&1; then
+CMD_ARGS=(--sign-svg "$OUT_SVG")
+[[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
+if marma_run_or_warn "Помилка створення SVG" "SVG generation failed" marma-watermark "${CMD_ARGS[@]}"; then
     marma_notify "image-x-generic" \
         "📐 Згенеровано підписану Шрі Янтру (.svg)" \
         "📐 Generated Signed Sri Yantra (.svg)" \

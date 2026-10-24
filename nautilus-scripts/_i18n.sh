@@ -26,6 +26,63 @@ get_marma_lang() {
 MARMA_LANG="${MARMA_LANG:-$(get_marma_lang)}"
 export MARMA_LANG
 
+# Resolve the files selected in Nautilus. Newer Nautilus versions/views may expose the
+# selection as URIs (or only as URIs) instead of plain file paths; reading only
+# NAUTILUS_SCRIPT_SELECTED_FILE_PATHS made the scripts open a fallback file chooser even
+# though a file was selected. This helper accepts paths first, then decodes file:// URIs.
+marma_selected_files() {
+    local -a files=()
+    local raw line uri decoded
+    _marma_decode_item() {
+        local item="$1"
+        case "$item" in
+            file://*)
+                python3 -c 'import sys, urllib.parse; p=urllib.parse.urlparse(sys.argv[1]); print(urllib.parse.unquote(p.path))' "$item" 2>/dev/null || true
+                ;;
+            *) printf '%s\n' "$item" ;;
+        esac
+    }
+    raw="${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}"
+    if [[ -n "$raw" ]]; then
+        while IFS= read -r line; do
+            [[ -n "$line" ]] && files+=("$(_marma_decode_item "$line")")
+        done <<< "$raw"
+    fi
+    if [[ ${#files[@]} -eq 0 ]]; then
+        raw="${NAUTILUS_SCRIPT_SELECTED_URIS:-}"
+        if [[ -n "$raw" ]]; then
+            while IFS= read -r uri; do
+                [[ -z "$uri" ]] && continue
+                case "$uri" in
+                    file://*)
+                        decoded="$(python3 -c 'import sys, urllib.parse; p=urllib.parse.urlparse(sys.argv[1]); print(urllib.parse.unquote(p.path))' "$uri" 2>/dev/null || true)"
+                        [[ -n "$decoded" ]] && files+=("$decoded")
+                        ;;
+                    *) files+=("$uri") ;;
+                esac
+            done <<< "$raw"
+        fi
+    fi
+    if [[ ${#files[@]} -eq 0 ]]; then
+        raw="${NAUTILUS_SCRIPT_NEXT_PANE_SELECTED_FILE_PATHS:-}"
+        if [[ -n "$raw" ]]; then
+            while IFS= read -r line; do
+                [[ -n "$line" ]] && files+=("$line")
+            done <<< "$raw"
+        fi
+    fi
+    local _log_dir="${XDG_CACHE_HOME:-$HOME/.cache}/marma-crypto"
+    mkdir -p "$_log_dir" 2>/dev/null || true
+    printf '%s paths=%s uris=%s next=%s current=%s selected=%s\n' \
+        "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+        "$([[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]] && echo 1 || echo 0)" \
+        "$([[ -n "${NAUTILUS_SCRIPT_SELECTED_URIS:-}" ]] && echo 1 || echo 0)" \
+        "$([[ -n "${NAUTILUS_SCRIPT_NEXT_PANE_SELECTED_FILE_PATHS:-}" ]] && echo 1 || echo 0)" \
+        "${NAUTILUS_SCRIPT_CURRENT_URI:-}" "${#files[@]}" \
+        >> "$_log_dir/selection.log" 2>/dev/null || true
+    printf '%s\n' "${files[@]}"
+}
+
 if [[ -f "$HOME/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/src/marma_watermark.py" ]]; then
     export PATH="$HOME/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/bin:$HOME/.local/bin:$PATH"
     marma-watermark() {
@@ -60,6 +117,18 @@ marma_get_window_icon() {
         fi
     done
     echo "security-high"
+}
+
+marma_run_or_warn() {
+    local title_uk="$1"
+    local title_en="$2"
+    shift 2
+    local out
+    if out=$("$@" 2>&1); then
+        return 0
+    fi
+    marma_warn_dialog "$title_uk" "$title_en" "${out:-Невідома помилка / unknown error}" "${out:-Unknown error}"
+    return 1
 }
 
 marma_notify() {

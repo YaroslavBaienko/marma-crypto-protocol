@@ -9,12 +9,8 @@ for p in "${SCRIPT_DIR}/.i18n.sh" "${SCRIPT_DIR}/_i18n.sh" "${SCRIPT_DIR}/../.i1
     [[ -f "$p" ]] && { source "$p"; break; }
 done
 
-FILES=()
-if [[ -n "${NAUTILUS_SCRIPT_SELECTED_FILE_PATHS:-}" ]]; then
-    while IFS= read -r line; do
-        [[ -n "$line" ]] && FILES+=("$line")
-    done <<< "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS"
-else
+mapfile -t FILES < <(marma_selected_files)
+if [[ ${#FILES[@]} -eq 0 ]]; then
     FILES=("$@")
 fi
 
@@ -27,4 +23,7 @@ if [[ ${#FILES[@]} -eq 0 ]]; then
     fi
 fi
 
-marma-watermark verify --gui --lang "${MARMA_LANG:-uk}" "${FILES[@]}" || true
+CMD_ARGS=(verify --lang "${MARMA_LANG:-uk}")
+[[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
+CMD_ARGS+=("${FILES[@]}")
+marma-watermark "${CMD_ARGS[@]}" || true

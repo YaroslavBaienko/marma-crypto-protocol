@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+printf "%s\n" "$*" >> "/home/attor/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/docs/manual_test/2026-10-24/runs/2_sign_svg/zenity_calls.log"
+exit 1
