@@ -6,7 +6,6 @@
 \usepackage{url}
 \usepackage{cite}
 \usepackage{array}
-\usepackage{multirow}
 \interdisplaylinepenalty=2500
 \hyphenation{op-tical net-works semi-conduc-tor}
 
@@ -23,7 +22,7 @@
 \maketitle
 
 \begin{abstract}
-A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer---seals, stamps and logos---is typically not cryptographically bound to the signed content, so a document can present a valid signature next to altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal itself, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 scalar degrees of freedom); the payload uses keyed dithered quantization index modulation (QIM) over an integer coordinate lattice with an exact IEEE-754 rounding argument, and a disjoint carrier degree of freedom carries a per-recipient identifier for leak attribution. No external QR or barcode symbol is added. We evaluate on a corpus of 60 documents produced by LibreOffice, Typst and Chromium print pipelines, each in native, flattened and print-scan-simulated variants (180 PDFs), plus ten public real-world documents. On 1{,}800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and any edited payload coordinate is detected; flattening destroys the vector carrier and therefore fails closed. Baselines re-implemented on the same carrier expose a capacity--distortion trade-off rather than a single winner. Two implementation facts are stated explicitly: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text---drawing APIs that store 32-bit floats destroy a $1.8\times10^{-8}$~pt lattice. A physical print-scan check on five documents fails closed in all five cases, while their digital controls verify exactly. The method complements, and does not replace, PAdES/eIDAS signatures.
+A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer---seals and stamps---is not cryptographically bound to the signed content, so a valid signature can accompany altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 degrees of freedom); the payload uses keyed dithered quantization index modulation over an integer coordinate lattice with an IEEE-754 rounding argument, and a disjoint degree of freedom carries a per-recipient identifier. No external QR/barcode is added. We evaluate 180 PDFs from 60 documents (LibreOffice, Typst and Chromium), in native, flattened and print-scan-simulated variants, plus ten public project documents. On 1,800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and detects every edited payload coordinate; flattening destroys the vector carrier and fails closed. Same-carrier baselines expose a capacity--distortion trade-off. Two implementation facts: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text---32-bit-float drawing APIs destroy the $1.8\times10^{-8}$ pt lattice. A physical print-scan check on five documents fails closed in every case, while their digital controls verify exactly. The method complements, not replaces, PAdES/eIDAS signatures.
 \end{abstract}
 
 \begin{IEEEkeywords}
@@ -256,7 +255,7 @@ Typst & 5.76 & 100\% \\
 \end{table}
 
 \subsection{Public real-world anchors}
-Ten unique public project documents were stamped and attacked under the same protocol (10 seeds each, 100 samples). Results match the synthetic corpus: exact recovery in 100\% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.32\times10^{-6}$~pt (PSNR$_{\text{geom}}=155.0$~dB).
+Ten unique public project documents (from twelve source PDFs; two duplicate layouts were excluded) were stamped and attacked under the same protocol (10 seeds each, 100 samples). These are the author's public project documents (whitepapers, manuscript versions and patent PDFs), not an independent third-party sample; they test production PDF writers rather than a population of enterprise DMS pipelines. Results match the synthetic corpus: exact recovery in 100\% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.32\times10^{-6}$~pt (PSNR$_{\text{geom}}=155.0$~dB).
 
 \subsection{Capacity, performance and storage}
 Capacity is per visible seal: 266 bits over a seal of about $126\times185$~pt ($23{,}227$~pt$^2$),
@@ -390,7 +389,7 @@ The method is intended for document integrity and leak attribution in lawful wor
 The corpus builder, carrier layer, attack harness and baseline implementations are versioned with the manuscript; the corpus manifest records a SHA-256 per file and the corpus is regenerated deterministically from a seed. The measured tables are produced by the harness. Code and the corpus manifest are available from the author; the corpus is regenerated by the provided script. A preprint is available at the concept DOI 10.5281/zenodo.23429017. Competing interests: none. Funding: none. The method is covered by a pending Ukrainian patent application (a 2026 06266).
 
 \subsection{Controlled verification}
-A controlled run accompanies the implementation. It executes 30 tests covering the word map (with
+A controlled run accompanies the implementation. It executes 43 tests covering the word map (with
 known-answer vectors), the P1 and P2 stamp profiles, truncation and single-coordinate edits,
 rasterisation, wrong-profile rejection, reserved-zone templates (no text overlap), corpus manifest
 hashes and the physical print-scan results; the seal-path modules reach 85.0\% branch coverage
