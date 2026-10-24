@@ -5,7 +5,7 @@ state so the same process is repeatable and auditable. The reusable agent skill 
 `skills/ieee-publication-prep/SKILL.md` (installed at `~/.agents/skills/ieee-publication-prep`).
 
 **Current state:** **SUBMITTED** to IEEE TIFS 2026-10-25. Portal UUID
-`0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending via ScholarOne Manuscripts.
+`0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; **Manuscript ID `T-IFS-29736-2026`** assigned via IEEE SPS follow-up email (2026-10-25 02:16 EET).
 Frozen record: [`paper_v3/drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md`](drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md).
 
 ---
@@ -76,7 +76,7 @@ The cover letter is not shown to reviewers.
    - scope/significance/three related papers/distinctiveness filled.
 8. Reviewer PDF built by Atypon and downloaded for audit.
 9. Complete my submission → **submitted 2026-10-25 02:03 EET**.
-10. Acknowledgement email from TIFS Editorial Staff; Manuscript ID pending via ScholarOne.
+10. Acknowledgement email from TIFS Editorial Staff; Manuscript ID `T-IFS-29736-2026` assigned via IEEE SPS follow-up email.
 
 ## 4. Cross-verification evidence
 
@@ -123,7 +123,7 @@ extraction fix; abstract 242 words from LaTeX source).
 
 ## 6. Post-submission control checklist
 
-- [ ] Record Manuscript ID when the ScholarOne follow-up email arrives.
+- [x] Recorded Manuscript ID `T-IFS-29736-2026` (email 2026-10-25 02:16 EET; Date header 24-Oct-2026).
 - [ ] In My Submissions, verify the submitted cover letter size/version. The final pre-submit screen
       showed **30.3 KB**; the corrected cover is **37.6 KB**. If the old one was submitted, contact the
       TIFS editorial office with the submission UUID.

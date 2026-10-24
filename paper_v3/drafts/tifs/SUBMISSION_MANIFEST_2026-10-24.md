@@ -6,7 +6,7 @@
 **Manuscript:** *Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index
 Modulation on Vector Geometry*
 **Author:** Yaroslav V. Baienko · ORCID 0000-0001-6690-2603
-**Status:** **SUBMITTED 2026-10-25** — portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending. Frozen record: `SUBMISSION_CONFIRMATION_2026-10-25.md` / `SUBMISSION_RECORD_2026-10-25.json`.
+**Status:** **UNDER REVIEW — `T-IFS-29736-2026`** — submitted 2026-10-25; portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID email 2026-10-25 02:16 EET. Frozen record: `SUBMISSION_CONFIRMATION_2026-10-25.md` / `SUBMISSION_RECORD_2026-10-25.json`.
 
 **One-link submission package:** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/tifs-v3/TIFS_submission_package_2026-10-25.zip
 (SHA-256 `253a8a861e146a01c8d675f4854ba2ba39cc33cdf78bc57c27cc9fc26e4b090c`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)

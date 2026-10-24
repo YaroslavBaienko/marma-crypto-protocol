@@ -4,8 +4,8 @@
   "article_type": "Regular Paper",
   "submitted_at": "2026-10-25T02:04:00+03:00",
   "portal_submission_uuid": "0e4ee084-bfb8-4eaf-afbf-b1707e9d1194",
-  "manuscript_id": null,
-  "manuscript_id_status": "pending; expected via ScholarOne Manuscripts",
+  "manuscript_id": "T-IFS-29736-2026",
+  "manuscript_id_status": "assigned",
   "files": {
     "main_pdf": {
       "path": "paper_v3/drafts/tifs/ieee/main.pdf",
@@ -70,7 +70,7 @@
     "coi": false
   },
   "post_submission_actions": [
-    "record Manuscript ID when issued",
+    "recorded Manuscript ID T-IFS-29736-2026",
     "verify submitted cover letter version in My Submissions; contact editorial office if 30.3 KB old cover was submitted",
     "do not submit elsewhere while under review",
     "log first decision"
@@ -82,5 +82,13 @@
     "dkim": "valid",
     "transcription": "paper_v3/drafts/tifs/SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md",
     "screenshot_sha256": "c6de4f5b2e198f60924a3ad98453ad4d22e428cc830672898f1796220b3fd170"
+  },
+  "manuscript_id_email": {
+    "received_at": "2026-10-25T02:16:00+03:00",
+    "date_header": "24-Oct-2026",
+    "from": "onbehalfof@manuscriptcentral.com",
+    "reply_to": "r.sohail@ieee.org",
+    "transcription": "paper_v3/drafts/tifs/MANUSCRIPT_ID_EMAIL_2026-10-25.md",
+    "screenshot_sha256": "d7f842784608aadd583cf830c9d93aad286e8aa15757790b6bc7bb04451d5eae"
   }
 }

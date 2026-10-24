@@ -4,7 +4,7 @@
 **Portal:** https://ieee.atyponrex.com/journal/tifs-ieee
 **Date recorded:** 2026-10-25 02:04 EET
 **Portal submission UUID:** `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`
-**Manuscript ID:** **pending** — confirmation email says it will arrive via ScholarOne Manuscripts in the next several days; record it immediately when issued.
+**Manuscript ID:** `T-IFS-29736-2026` — assigned by IEEE SPS (email from Rida Sohail, received 2026-10-25 02:16 EET).
 
 > Portal message at submission: “Congratulations. Your manuscript has been processed and submitted to the journal.”
 > The submission is now locked for author changes unless returned by the journal.
@@ -13,7 +13,8 @@
 
 - Full transcription: `SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md`
 - From `no-reply@researchexchange.com`, 2026-10-25 02:03 EET, DKIM valid.
-- Confirms successful online submission and delivery to the TIFS Editorial Office; Manuscript ID pending via ScholarOne.
+- Confirms successful online submission and delivery to the TIFS Editorial Office.
+- Follow-up Manuscript ID email: `T-IFS-29736-2026`, received 2026-10-25 02:16 EET; full transcription in `MANUSCRIPT_ID_EMAIL_2026-10-25.md`.
 
 ## Files recorded at submission
 
@@ -53,7 +54,7 @@ prior-submission statement (pp. 39–40). Cover letter is not shown to reviewers
 
 ## Post-submission control
 
-- [ ] Record the **Manuscript ID** from the acknowledgement email / My Submissions.
+- [x] Record the **Manuscript ID** `T-IFS-29736-2026` from the SPS follow-up email / My Submissions.
 - [ ] Check **My Submissions → submitted files**. In the Final Review screenshot before submission the portal listed
       `cover_letter_TIFS.pdf` as **30.3 KB**, i.e. the pre-fix cover letter. The final corrected cover on disk is
       **37.6 KB** (`f97624c3…`). If the submitted cover was the old 30.3 KB version, notify the TIFS editorial office

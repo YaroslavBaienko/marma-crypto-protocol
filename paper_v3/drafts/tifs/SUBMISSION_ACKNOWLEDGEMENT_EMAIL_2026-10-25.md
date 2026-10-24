@@ -20,7 +20,7 @@
 ## Control notes
 
 - Submission UUID from the Author Portal: `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`.
-- **Manuscript ID:** not yet issued; expect a follow-up email from ScholarOne Manuscripts.
+- **Manuscript ID:** `T-IFS-29736-2026` — assigned in the follow-up SPS email; see `MANUSCRIPT_ID_EMAIL_2026-10-25.md`.
 - The email confirms delivery to the TIFS Editorial Office; status remains **submitted / under editorial processing**.
 - Action when Manuscript ID arrives: record it in `SUBMISSION_CONFIRMATION_2026-10-25.md`,
   `SUBMISSION_RECORD_2026-10-25.json` and `PUBLICATIONS.md`.

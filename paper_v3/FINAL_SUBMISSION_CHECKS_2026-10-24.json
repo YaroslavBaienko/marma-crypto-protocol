@@ -32,9 +32,10 @@
   "submission_status": "submitted",
   "submitted_at": "2026-10-25T02:04:00+03:00",
   "portal_submission_uuid": "0e4ee084-bfb8-4eaf-afbf-b1707e9d1194",
-  "manuscript_id": null,
+  "manuscript_id": "T-IFS-29736-2026",
   "submission_record": "paper_v3/drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md",
   "acknowledgement_email_received_at": "2026-10-25T02:03:00+03:00",
-  "manuscript_id_status": "pending via ScholarOne Manuscripts",
-  "acknowledgement_email_record": "paper_v3/drafts/tifs/SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md"
+  "manuscript_id_status": "assigned",
+  "acknowledgement_email_record": "paper_v3/drafts/tifs/SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md",
+  "manuscript_id_email_record": "paper_v3/drafts/tifs/MANUSCRIPT_ID_EMAIL_2026-10-25.md"
 }
