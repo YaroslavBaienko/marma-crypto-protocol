@@ -1,9 +1,9 @@
-# marma-crypto-watermark v2.2.0 — release candidate notes
+# marma-crypto-watermark v2.2.0 — release notes
 
-**RC revision: `2.2.0-5`** (Nautilus seal-placement dialog, seal placement policy, selection fix, seal-only visual contract).
+**Release revision: `2.2.0-5`** (Nautilus seal-placement dialog, seal placement policy, selection fix, seal-only visual contract).
 
-**Status: RELEASE CANDIDATE — built and package-tested, NOT installed system-wide and NOT tagged.**
-The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
+**Status: RELEASED as Git tag `v2.2.0` and GitHub release (2026-10-24). System-wide installation on this host is pending owner sudo; the package itself is built and package-tested.**
+The installed system package on this host is still `2.1.0-1`; the released `.deb` is attached to the GitHub release and in `dist/`.
 
 ## What changed
 - **Seal profile P2 `v2-round42`** (`src/marma_seal_profiles.py`): 42 mm round branded technical

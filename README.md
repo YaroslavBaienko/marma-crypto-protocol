@@ -43,7 +43,7 @@
 
 ---
 
-## 🆕 What's New in Software `v2.2.0` (local release candidate `v2.2.0-5`; protocol unchanged `v2.1.0`)
+## 🆕 What's New in Software `v2.2.0` (release `v2.2.0-5`; protocol unchanged `v2.1.0`)
 
 1. **Seal placement policy** — `--seal-pages last|first|first-last|all` (env `MARMA_SEAL_PAGES`);
    **default is now `last`** (signature page). Applies to PDF, universal/API PDF and DOCX
@@ -61,10 +61,9 @@
 6. **Packaging** — Debian revision `2.2.0-5`, menu refresh, updated bash completion; 73/73
    production tests, 16-scenario Nautilus matrix, packaged self-test PASS.
 
-> **Versioning:** `v2.2.0-5` is a **local release candidate** (tag/release and system install are
-> pending owner verification). The archived paper/package DOI is `v2.1.0`; the web verifier at
-> `docs/index.html` documents the protocol `v2.1.0` and is intentionally left on that archive
-> version until the software release is published.
+> **Versioning:** software `v2.2.0-5` is released via Git tag `v2.2.0` + GitHub release
+> (2026-10-24); system-wide installation on this host is pending owner `sudo`. The archived
+> paper/package DOI remains `v2.1.0`, and the web verifier documents protocol `v2.1.0`.
 
 ## 🚀 What's New in `v2.1.0` (`Marma-Universal` · `Deal-Room Batch API` · `Marma-Optical` · `Theorem 5`)
 
