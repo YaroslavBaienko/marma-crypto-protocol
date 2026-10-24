@@ -24,7 +24,7 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 | Controlled seal run (`paper_v3/tests/run_controlled.py`) | **PASS**, 43 tests, seal-path coverage 85.0% |
 | Package build + isolated test (`bash build.sh --test`) | **PASS** (includes Nautilus menu deploy + selftest) |
 | Packaged CLI P2 sign→verify (extracted .deb) | **PASS** (`verified=true`, `profile=v2-round42`, 42.0 mm) |
-| Full production pytest suite (`tests/`) | **39 passed, 1 failed** — pre-existing `test_07_production_whitepapers_pades_lta_and_manifests_audit` (whitepaper PAdES audit; not touched by this change) |
+| Full production pytest suite (`tests/`) | **40 passed** with `pymupdf>=1.28.2`. The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
 | Nautilus P2 script wiring (headless, fake CLI) | **PASS** (args: `--sign-svg`, `--profile v2-round42`, `--gui`) |
 | Manual GUI click-through in Nautilus | **NOT DONE** (owner action) |
 | System deployment / installation | **NOT DONE** (requires sudo: `sudo dpkg -i dist/marma-crypto-watermark_2.2.0-1_all.deb`) |
@@ -44,8 +44,9 @@ Then do a manual Nautilus click-through: right-click a folder → Scripts → �
 `🔍 Перевірити підпис та геометрію Шрі Янтри` action.
 
 ## Known issues before tagging a release
-- The full production suite has one pre-existing failure (whitepaper PAdES-LTA audit); resolve or
-  document it before the release tag.
+- PyMuPDF >= 1.28.2 is required by the verifier for the sealed whitepapers; Debian's
+  `python3-pymupdf` may be older. Document/pin this dependency or re-seal the whitepapers with a
+  version-stable canonicalisation before distributing the package widely.
 - Manual GUI verification in Nautilus is still required.
 - Legal review of the technical seal vs company/notary seal is pending (see
   `paper_v3/drafts/tifs/LEGAL_REVIEW_CHECKLIST.md`).

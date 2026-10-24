@@ -52,6 +52,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [x] CLI: production `--profile v2-round42` flag implemented and tested (sign/verify SVG; wrong profile exits 2; legacy v1 default unchanged); controlled suite now 39 tests.
 - [ ] Legal review (owner + Ukrainian counsel): checklist at `drafts/tifs/LEGAL_REVIEW_CHECKLIST.md`; not legal advice.
 - [x] Product integration: Nautilus action for the 42 mm seal + CLI `--profile` auto-detect on verify; release candidate `v2.2.0-1` built and package-tested (`bash build.sh --test` PASS). System install/tag/manual GUI are owner actions (see `RELEASE_NOTES_v2.2.0.md`).
+- [x] PAdES whitepaper gate: root cause was test-environment PyMuPDF shadowing (1.25.4 vs 1.28.2), not data/code corruption; full production suite is **40/40 PASS** in the correct environment (`tests/README.md`, `requirements-dev.txt`). Residual product risk: pin PyMuPDF >= 1.28.2 or re-seal whitepapers with a version-stable canonicalisation.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

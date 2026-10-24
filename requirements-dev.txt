@@ -1,0 +1,11 @@
+# Development / verification environment for the Marma-Crypto signer.
+# PyMuPDF >= 1.28.2 is REQUIRED for the PAdES whitepaper content-hash check:
+# text extraction changed between 1.25.x and 1.28.x and the whitepapers were
+# sealed with the 1.28.x canonicalisation. Do not shadow it with an older
+# dist-packages copy (e.g. PYTHONPATH=/usr/lib/python3/dist-packages).
+pymupdf>=1.28.2
+pytest>=8
+numpy>=1.26
+pycairo>=1.26
+python-docx>=1.1
+pypdf>=5
