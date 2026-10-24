@@ -40,7 +40,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [x] PDF-level baselines: STDM-DCT, Fourier, LSB (600 samples).
 - [x] Precision study: 9/8 decimals exact, 7/6 fail; writer-precision table.
 - [x] IEEEtran/Overleaf package: `drafts/tifs/ieee/IEEEtran_TIFS_submission.zip`
-      (main.tex, references.bib, figures, README; all 30 cited keys resolve against 44 verified entries).
+      (main.tex, references.bib, figures, README; all 41 cited keys resolve against 49 verified entries).
 - [x] Print-scan kit: `eval/printscan_kit.py` → five print-ready stamped PDFs + `printscan/README.md`;
       `eval/process_printscan.py` converts captures and records the expected fail-closed result.
 - [x] Physical print-scan: five A4 pages printed on Canon MF3010 (600 dpi mono), scanned at 300 dpi grayscale; **5/5 digital controls valid, 5/5 physical captures absent (fail-closed)** — see `eval/printscan/RESULTS.md`.
@@ -66,7 +66,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 **Verdict: scientifically close, formally not yet submitted-ready.**
 
 ### Verified
-- IEEEtran PDF: **10 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 36 cited keys from 49 verified entries; `main.pdf` built with official IEEEtran class.
+- IEEEtran PDF: **10 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 41 cited keys from 49 verified entries; `main.pdf` built with official IEEEtran class.
 - TIFS formal checks: initial Regular Paper **≤13 pages** (10 ok); abstract **243 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
 - Evaluation reproducible locally: 60 documents × 3 generators × 3 variants = 180 PDFs (manifest hashes PASS); 1,800 main + 360 variant + 720 ablation samples; 200 public/independent samples (10 project + 10 independent public); 600 PDF-level baseline samples; 5/5 physical fail-closed.
 - Controlled run: PASS (43 tests, seal-path branch coverage 85.0%, 12-sample matrix stable, P2 gate PASS).

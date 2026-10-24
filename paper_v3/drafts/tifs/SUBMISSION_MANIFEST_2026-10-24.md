@@ -63,7 +63,7 @@ SUMS
 | TIFS initial page limit | 8 ≤ 13 double-column pages — PASS |
 | Abstract limit | 243 words (150–250) — PASS |
 | PDF build | official IEEEtran, pdfLaTeX+BibTeX; 0 undefined citations; 0 `??` |
-| Citations/bibliography | 34 cited keys resolve; 44 verified entries; no self-preprint in reference list |
+| Citations/bibliography | 41 cited keys resolve; 49 verified entries; no self-preprint in reference list |
 | ORCID | 0009-0006-7498-2133, checksum valid |
 | Figures/tables | 4 figures, 7 tables; all refs resolve |
 | Physical print-scan | 5/5 digital valid, 5/5 physical captures fail-closed |

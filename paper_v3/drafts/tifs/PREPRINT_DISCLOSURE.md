@@ -63,7 +63,7 @@ should be cited when relevant.
   not a duplicate. This satisfies the TIFS rule for non-identical related preprints.
 - The Zenodo concept DOI also remains in the author footnote/reproducibility disclosure; the
   cover letter and portal declaration list all preprints separately.
-- BibTeX count: 49 entries, 36 cited keys; no unresolved citations.
+- BibTeX count: 49 entries, 41 cited keys; no unresolved citations.
 
 ## 5. Prior-venue status (no concurrent submission)
 

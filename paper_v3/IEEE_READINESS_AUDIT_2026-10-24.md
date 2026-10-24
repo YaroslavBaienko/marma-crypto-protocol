@@ -64,7 +64,7 @@ metadata include it.
 | Build | official IEEEtran class + BibTeX; pdfLaTeX clean |
 | Pages | **8** double-column pages (TIFS initial Regular Paper limit: **13**) |
 | Abstract | **243 words** extracted from the built PDF (TIFS limit 150–250) |
-| Citations | 34 cited keys, all resolve; 44 verified entries in `references.bib` (2015 IEEEtran.bst) |
+| Citations | 41 cited keys, all resolve; 49 verified entries in `references.bib` (2015 IEEEtran.bst) |
 | Figures/tables | 4 figures, 7 tables; all `\ref`/`\label` resolve; no `??` in text |
 | Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
