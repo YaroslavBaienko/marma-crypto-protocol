@@ -63,7 +63,7 @@ check("ieee", "abstract 150-250", 150 <= aw <= 250, aw)
 check("ieee", "no unresolved ??", "??" not in text, text.count("??"))
 check("ieee", "EDICS 820 present", "820" in meta and "Watermarking" in meta, "")
 check("ieee", "EDICS 847 present", "847" in meta and "authentication" in meta, "")
-check("ieee", "ORCID present", "0009-0006-7498-2133" in main_tex, "")
+check("ieee", "ORCID present", "0000-0001-6690-2603" in main_tex, "")
 check("ieee", "SPS margin alternate exists", (BASE / "ieee" / "main_sps_margins.pdf").exists(), "")
 
 # 4. cross-validation of key manuscript numbers against result files

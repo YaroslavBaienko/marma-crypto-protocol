@@ -2,22 +2,22 @@
 
 **Date:** 2026-10-25 · **HEAD:** `944840c` · **PDF:** 10 pages, 243-word abstract
 
-**PDF SHA-256:** `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
-**Cover SHA-256:** `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
-**Source SHA-256:** `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454`
-**Bundle SHA-256:** `d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3`
+**PDF SHA-256:** `41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480`
+**Cover SHA-256:** `c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c`
+**Source SHA-256:** `66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e`
+**Bundle SHA-256:** `f44b4a7ca1f38c8206a33501c1e63e45905af80d3d8733513558b94005b72372`
 
 | Area | Check | Result | Detail |
 |---|---|---|---|
-| weights | main.pdf hash in manifest | PASS | d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9 |
+| weights | main.pdf hash in manifest | PASS | 41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480 |
 | weights | main.pdf present | PASS | 342649 |
-| weights | cover_letter_TIFS.pdf hash in manifest | PASS | af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87 |
+| weights | cover_letter_TIFS.pdf hash in manifest | PASS | c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c |
 | weights | cover_letter_TIFS.pdf present | PASS | 31031 |
-| weights | IEEEtran_TIFS_submission.zip hash in manifest | PASS | 1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454 |
-| weights | IEEEtran_TIFS_submission.zip present | PASS | 452575 |
-| bundle | main.pdf matches bundle | PASS | d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9 |
-| bundle | source zip matches bundle | PASS | 1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454 |
-| bundle | cover letter matches bundle | PASS | af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87 |
+| weights | IEEEtran_TIFS_submission.zip hash in manifest | PASS | 66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e |
+| weights | IEEEtran_TIFS_submission.zip present | PASS | 452570 |
+| bundle | main.pdf matches bundle | PASS | 41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480 |
+| bundle | source zip matches bundle | PASS | 66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e |
+| bundle | cover letter matches bundle | PASS | c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c |
 | bundle | contains PREPRINT_DISCLOSURE.md | PASS |  |
 | bundle | contains IEEE_PORTAL_METADATA.md | PASS |  |
 | bundle | contains PRIOR_SUBMISSION_STATEMENT.md | PASS |  |

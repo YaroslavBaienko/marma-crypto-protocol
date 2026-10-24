@@ -2,7 +2,7 @@
 
 **Manuscript:** *Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index
 Modulation on Vector Geometry*
-**Author:** Yaroslav V. Baienko (ORCID 0009-0006-7498-2133)
+**Author:** Yaroslav V. Baienko (ORCID 0000-0001-6690-2603)
 **Date:** 2026-10-24
 
 ## Status of the submitted manuscript

@@ -15,7 +15,7 @@ A PDF signature verifies the bytes it covers, not the page a human sees. The vis
 - Abstract: **150–250 words**; current: **243 words** — compliant.
 - Layout: IEEEtran journal, two-column, 10 pt; local pdfLaTeX build clean (0 undefined citations).
 - EDICS: choose the closest portal nodes at submission (intended mapping below).
-- ORCID required for every author: 0009-0006-7498-2133 (present).
+- ORCID required for every author: 0000-0001-6690-2603 (present).
 - Preprints must be listed at submission: Zenodo concept DOI + SSRN listed below.
 - Reproducibility: TIFS encourages code/data; harness, manifest and seed are available from the author (see manuscript §Reproducibility); corpus/real PDFs are not committed to git.
 - Residual formatting check: IEEEtran's default journal margins are ~0.68 in; SPS text asks for ≥1 in on all sides. Confirm with the portal/test PDF; if the portal flags it, rebuild with the SPS template margins before uploading.
@@ -39,7 +39,7 @@ fragile watermarking; quantization index modulation; vector graphics; PDF signat
 | Email | (the address registered in the IEEE account) |
 | Affiliation | Independent researcher — Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher |
 | Country | Ukraine |
-| ORCID | 0009-0006-7498-2133 |
+| ORCID | 0000-0001-6690-2603 |
 | Corresponding author | yes |
 
 ## Declarations (short answers)

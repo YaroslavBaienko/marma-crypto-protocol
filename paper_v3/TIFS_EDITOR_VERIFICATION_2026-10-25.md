@@ -1,7 +1,7 @@
 # Editor-facing verification — TIFS v3 package (2026-10-25)
 
 **Manuscript:** *Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index
-Modulation on Vector Geometry* · **Author:** Yaroslav V. Baienko (ORCID 0009-0006-7498-2133)
+Modulation on Vector Geometry* · **Author:** Yaroslav V. Baienko (ORCID 0000-0001-6690-2603)
 **Target:** IEEE Transactions on Information Forensics and Security, Regular Paper
 **Status:** pre-submission author copy; **not accepted**, not the IEEE version of record.
 
@@ -9,13 +9,13 @@ Modulation on Vector Geometry* · **Author:** Yaroslav V. Baienko (ORCID 0009-00
 
 - **Paper release (stable):** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3
 - **PDF:** `main.pdf` — 10 double-column pages, 342,649 B,
-  SHA-256 `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
-- **Cover letter:** `cover_letter_TIFS.pdf` — 31,031 B,
-  SHA-256 `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
-- **LaTeX source:** `IEEEtran_TIFS_submission.zip` — 452,575 B,
-  SHA-256 `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454`
+  SHA-256 `41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480`
+- **Cover letter:** `cover_letter_TIFS.pdf` — 31,078 B,
+  SHA-256 `c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c`
+- **LaTeX source:** `IEEEtran_TIFS_submission.zip` — 452,570 B,
+  SHA-256 `66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e`
 - **Internal bundle:** `TIFS_bundle_2026-10-24.zip` — SHA-256
-  `d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3`
+  `f44b4a7ca1f38c8206a33501c1e63e45905af80d3d8733513558b94005b72372`
 
 ## 2. IEEE/TIFS formal gates
 
@@ -27,7 +27,7 @@ Modulation on Vector Geometry* · **Author:** Yaroslav V. Baienko (ORCID 0009-00
 | Double-column 10 pt, IEEEtran | PASS |
 | Margins ≥1 inch | standard IEEEtran provided; `main_sps_margins.pdf` (11 pp) provided as alternate |
 | EDICS | **820 Watermarking and data hiding; 847 Multimedia content authentication; optional 840 Multimedia forensics** |
-| ORCID | `0009-0006-7498-2133` (checksum valid) |
+| ORCID | `0000-0001-6690-2603` (checksum valid) |
 | Preprints | related Zenodo editions cited/disclosed; GitHub `tifs-v3` is the identical public author copy, listed and excluded from the reference list |
 | Page charges | voluntary $110/page first 10; mandatory $220/page >10; current 10 pages |
 | Copyright | IEEE eCF after acceptance |

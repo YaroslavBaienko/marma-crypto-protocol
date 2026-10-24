@@ -121,7 +121,7 @@
   #text(size: 9pt, fill: luma(70))[
     #super[1] Senior Associate & Head of Digital Economy Practice, GOLAW;\
     Independent Signal Processing & Cryptographic Systems Researcher, Kyiv, Ukraine\
-    ORCID: #link("https://orcid.org/0009-0006-7498-2133")[0009-0006-7498-2133] ·
+    ORCID: #link("https://orcid.org/0000-0001-6690-2603")[0000-0001-6690-2603] ·
     Email: #raw("zerhug@gmail.com") ·
     Repository: #link("https://github.com/YaroslavBaienko/marma-crypto-protocol")[github.com/YaroslavBaienko/marma-crypto-protocol]
   ]

@@ -5,29 +5,29 @@
 **Portal:** https://ieee.atyponrex.com/journal/tifs-ieee
 **Manuscript:** *Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index
 Modulation on Vector Geometry*
-**Author:** Yaroslav V. Baienko · ORCID 0009-0006-7498-2133
+**Author:** Yaroslav V. Baienko · ORCID 0000-0001-6690-2603
 **Status:** prepared, not submitted. Owner actions are listed at the end.
 
 **One-link submission package:** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/tifs-v3/TIFS_submission_package_2026-10-25.zip
-(SHA-256 `4167f4b6b1b8149905cee7349ff2f5cd00b83f0ae7aeace8259ff9beeeec069e`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
+(SHA-256 `600af55f377fdb4bd50ad108582a318f9001185479057e3dc26d33e84ceac29e`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
 
 ## 1. Files to upload to the portal
 
 | File | Size | SHA-256 |
 |---|---:|---|
-| `ieee/main.pdf` — review PDF | 342,649 B | `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9` |
-| `cover_letter_TIFS.pdf` — cover letter | 31,031 B | `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87` |
+| `ieee/main.pdf` — review PDF | 342,649 B | `41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480` |
+| `cover_letter_TIFS.pdf` — cover letter | 31,078 B | `c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c` |
 | `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 11 pp, 343,623 B | only if portal flags margins |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,575 B | `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454` |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,570 B | `66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
 Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
-d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9  ieee/main.pdf
-af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87  cover_letter_TIFS.pdf
-1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454  ieee/IEEEtran_TIFS_submission.zip
+41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480  ieee/main.pdf
+c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c  cover_letter_TIFS.pdf
+66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 
@@ -50,7 +50,7 @@ SUMS
 | Article Type | Regular Paper |
 | Abstract | 243 words — copy from `IEEE_PORTAL_METADATA.md` §Abstract |
 | Index terms | fragile watermarking; quantization index modulation; vector graphics; PDF signatures; document authentication |
-| Author | Yaroslav V. Baienko; independent researcher; Kyiv, Ukraine; ORCID 0009-0006-7498-2133; corresponding |
+| Author | Yaroslav V. Baienko; independent researcher; Kyiv, Ukraine; ORCID 0000-0001-6690-2603; corresponding |
 | Email | the email registered in the IEEE account (do not use the screenshot placeholder) |
 | EDICS | **820 Watermarking and data hiding (IF-WAT)** primary; **847 Multimedia content authentication and plagiarism detection (IF-FOR-AUTH)** secondary; optional **840 Multimedia forensics (IF-FOR)** (exact SPS Unified EDICS, April 2026) |
 | Preprints | compact text in `PREPRINT_DISCLOSURE.md` §6 |
@@ -67,7 +67,7 @@ SUMS
 | Abstract limit | 243 words (150–250) — PASS |
 | PDF build | official IEEEtran, pdfLaTeX+BibTeX; 0 undefined citations; 0 `??` |
 | Citations/bibliography | 41 cited keys resolve; 49 verified entries; no self-preprint in reference list |
-| ORCID | 0009-0006-7498-2133, checksum valid |
+| ORCID | 0000-0001-6690-2603, checksum valid |
 | Figures/tables | 4 figures, 7 tables; all refs resolve |
 | Physical print-scan | 5/5 digital valid, 5/5 physical captures fail-closed |
 | Controlled suite | 43 tests PASS, seal-path coverage 85.0% |

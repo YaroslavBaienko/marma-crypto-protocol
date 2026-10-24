@@ -4,7 +4,7 @@
       "area": "weights",
       "check": "main.pdf hash in manifest",
       "pass": true,
-      "detail": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9"
+      "detail": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480"
     },
     {
       "area": "weights",
@@ -16,7 +16,7 @@
       "area": "weights",
       "check": "cover_letter_TIFS.pdf hash in manifest",
       "pass": true,
-      "detail": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87"
+      "detail": "c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c"
     },
     {
       "area": "weights",
@@ -28,31 +28,31 @@
       "area": "weights",
       "check": "IEEEtran_TIFS_submission.zip hash in manifest",
       "pass": true,
-      "detail": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454"
+      "detail": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e"
     },
     {
       "area": "weights",
       "check": "IEEEtran_TIFS_submission.zip present",
       "pass": true,
-      "detail": "452575"
+      "detail": "452570"
     },
     {
       "area": "bundle",
       "check": "main.pdf matches bundle",
       "pass": true,
-      "detail": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9"
+      "detail": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480"
     },
     {
       "area": "bundle",
       "check": "source zip matches bundle",
       "pass": true,
-      "detail": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454"
+      "detail": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e"
     },
     {
       "area": "bundle",
       "check": "cover letter matches bundle",
       "pass": true,
-      "detail": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87"
+      "detail": "c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c"
     },
     {
       "area": "bundle",
@@ -375,8 +375,8 @@
   },
   "pdf_pages": 10,
   "abstract_words": 243,
-  "pdf_hash": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
-  "cover_hash": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
-  "source_hash": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454",
-  "bundle_hash": "d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3"
+  "pdf_hash": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480",
+  "cover_hash": "c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c",
+  "source_hash": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e",
+  "bundle_hash": "f44b4a7ca1f38c8206a33501c1e63e45905af80d3d8733513558b94005b72372"
 }

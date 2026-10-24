@@ -28,7 +28,7 @@ Overleaf; this is a local font issue, not a manuscript issue.
 - `README.md` — this file.
 
 ## Before submitting to IEEE Author Portal
-- [ ] Confirm the author/affiliation/ORCID block (`0009-0006-7498-2133`) and the contact email.
+- [ ] Confirm the author/affiliation/ORCID block (`0000-0001-6690-2603`) and the contact email.
 - [ ] Select EDICS in the portal: **820 Watermarking and data hiding** (primary),
       **847 Multimedia content authentication** (secondary), optional **840 Multimedia forensics**.
 - [ ] Confirm preprints/prior work in the portal: related Zenodo editions plus the public GitHub

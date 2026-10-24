@@ -1,10 +1,10 @@
 {
-  "main_pdf_sha256": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
-  "cover_sha256": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
-  "source_zip_sha256": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454",
-  "bundle_sha256": "d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3",
+  "main_pdf_sha256": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480",
+  "cover_sha256": "c3487ff23a8360dbabf34df37dfb8cfa127b0032cb6fb4d348d0f4fddcfaeb6c",
+  "source_zip_sha256": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e",
+  "bundle_sha256": "f44b4a7ca1f38c8206a33501c1e63e45905af80d3d8733513558b94005b72372",
   "main_pdf_bytes": 342649,
-  "source_zip_bytes": 452575,
+  "source_zip_bytes": 452570,
   "pages": 10,
   "abstract_words_metadata": 243,
   "question_marks": 0,
@@ -26,5 +26,7 @@
   "sps_margin_pages": 11,
   "timestamp": "2026-10-25T01:25:00+03:00",
   "zenodo_relation": "related prior preprint cited/disclosed; no identical preprint",
-  "paper_release": "https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3"
+  "paper_release": "https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3",
+  "cover_bytes": 31078,
+  "orcid": "0000-0001-6690-2603"
 }

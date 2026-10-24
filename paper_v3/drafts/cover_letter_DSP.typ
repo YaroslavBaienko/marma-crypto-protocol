@@ -4,7 +4,7 @@
 
 #align(right)[Yaroslav V. Baienko \
 Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher \
-ORCID: 0009-0006-7498-2133]
+ORCID: 0000-0001-6690-2603]
 #v(1.0em)
 
 Dear Editors,

@@ -74,7 +74,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 
 ### Formal blockers/owner steps before upload
 1. **EDICS selection** in the portal tree (exact SPS Unified EDICS codes: 820 Watermarking and data hiding (IF-WAT); 847 Multimedia content authentication and plagiarism detection (IF-FOR-AUTH); optional 840 Multimedia forensics (IF-FOR)).
-2. **Portal account/author details**: ORCID 0009-0006-7498-2133 and email are present in the manuscript/metadata; owner must confirm the account email and all author details.
+2. **Portal account/author details**: ORCID 0000-0001-6690-2603 and email are present in the manuscript/metadata; owner must confirm the account email and all author details.
 3. **Margins check**: SPS text says ≥1 in margins; IEEEtran's default journal margins are ~0.68 in. Confirm the portal accepts the template PDF; otherwise rebuild with SPS template margins before upload.
 4. **Legal review** of “technical seal vs company/notary seal” wording by Ukrainian counsel (`LEGAL_REVIEW_CHECKLIST.md`) — publication safety, not IEEE formatting.
 5. **Owner final read** of title/abstract/cover letter; no suggested reviewers invented.

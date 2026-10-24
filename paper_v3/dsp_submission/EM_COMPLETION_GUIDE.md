@@ -24,7 +24,7 @@ fragile watermarking; quantization index modulation; vector graphics; PDF signat
 SIGPRO-D-26-04464 (Signal Processing)
 
 **Author**
-Yaroslav V. Baienko — ORCID 0009-0006-7498-2133
+Yaroslav V. Baienko — ORCID 0000-0001-6690-2603
 
 ## Declarations (short answers if EM asks)
 
