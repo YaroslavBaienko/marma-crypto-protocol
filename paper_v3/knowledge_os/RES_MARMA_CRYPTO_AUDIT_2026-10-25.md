@@ -6,6 +6,10 @@
 **Command:** `python -m knowledge_os audit --spec ... --hot ssh:root@100.123.248.18`
 **Mode:** read-only audit + ingest dry-run; no HOT writes.
 
+## Writer decision (owner, 2026-10-25)
+
+**Keep `antigravity`** as the tenant writer; `marma_spec.py` is unchanged. dsh therefore does not write HOT rows or Qdrant points under that stamp. Evidence and handoff: `RES_MARMA_CRYPTO_HANDOFF_ANTIGRAVITY_2026-10-25.md`.
+
 ## Verdict
 
 **INCONSISTENT** — the tenant is declared and readable, but the HOT audit reports five
