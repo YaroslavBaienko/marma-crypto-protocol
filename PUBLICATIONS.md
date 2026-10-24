@@ -25,7 +25,7 @@
 
 ## 2. Formal Peer-Review Submissions, Patent Filings & Preprint Timestamp Archives
 
-> **Repository vs. archive note (2026-10-22):** the repository artifacts are identical to Zenodo `v5` (`10.5281/zenodo.23560975`, version `2.1.0-rev1`, 22 pp, published 2026-10-22). The manuscript PDF cites the previous version DOI `10.5281/zenodo.23540160` internally; from the next edition it will cite the version-stable Concept DOI `10.5281/zenodo.23429017`, which always resolves to the latest version.
+> **Repository vs. archive note (2026-10-22; historical snapshot):** the repository at that date was identical to Zenodo `v5` (`10.5281/zenodo.23560975`, version `2.1.0-rev1`, 22 pp, published 2026-10-22). The repository has since advanced to software `v2.2.0` and the TIFS v3 manuscript; the TIFS preprint relation is disclosed in `paper_v3/drafts/tifs/PREPRINT_DISCLOSURE.md` and cited in the manuscript. The manuscript PDF cites the previous version DOI `10.5281/zenodo.23540160` internally; from the next edition it will cite the version-stable Concept DOI `10.5281/zenodo.23429017`, which always resolves to the latest version.
 >
 > **Transparency Note on Archival DOIs vs. Peer Review:** Open repositories (`Zenodo`, `SSRN`, `Figshare`, `OSF`, and `Software Heritage`) are **non-peer-reviewed archival mirrors** used strictly for immutable timestamping, defensive prior art, and source-code preservation (ISO/IEC 18670). Formal peer review and substantive patent examination are tracked separately in the first two rows below.
 

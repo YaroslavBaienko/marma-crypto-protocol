@@ -13,8 +13,8 @@ Modulation on Vector Geometry*
 | File | Size | SHA-256 |
 |---|---:|---|
 | `ieee/main.pdf` — review PDF | 342,649 B | `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9` |
-| `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87` |
-| `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 9 pp | only if portal flags margins |
+| `cover_letter_TIFS.pdf` — cover letter | 31,031 B | `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87` |
+| `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 11 pp, 343,623 B | only if portal flags margins |
 | `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,365 B | `2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).

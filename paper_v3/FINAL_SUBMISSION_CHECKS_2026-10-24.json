@@ -2,7 +2,7 @@
   "main_pdf_sha256": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
   "cover_sha256": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
   "source_zip_sha256": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df",
-  "bundle_sha256": "c27fb3ac37d8d95907cdb90e8a7fcbdc793be67698d2d4e371a5f3e27f00d17f",
+  "bundle_sha256": "41f90634694d63a4385019542885a9b4a284abd92773018b5fd114856938efc3",
   "main_pdf_bytes": 342649,
   "source_zip_bytes": 452365,
   "pages": 10,
@@ -24,5 +24,6 @@
   "prior_statement": true,
   "sps_margin_alternative": true,
   "sps_margin_pages": 11,
-  "timestamp": "2026-10-25T00:55:00+03:00"
+  "timestamp": "2026-10-25T01:10:00+03:00",
+  "zenodo_relation": "related prior preprint cited/disclosed; no identical preprint"
 }

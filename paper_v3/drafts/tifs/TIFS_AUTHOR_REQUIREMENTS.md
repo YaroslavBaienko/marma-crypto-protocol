@@ -132,7 +132,7 @@ For this article:
 | T07 | Sufficient citations/related work | 49 verified entries, 41 cited keys; no missing citations | READY |
 | T08 | ORCID + accurate author info | ORCID valid; email/profile owner | PARTIAL (owner) |
 | T09 | Double-column 10 pt PDF | IEEEtran; 10 pages | READY |
-| T10 | Margins ≥1 inch | IEEEtran default ~0.68 in; `main_sps_margins.pdf` (9 pp with 1-inch side margins) is provided as the alternate if the portal requires it | **GAP/CHECK** |
+| T10 | Margins ≥1 inch | IEEEtran default ~0.68 in; `main_sps_margins.pdf` (11 pp with 1-inch side margins) is provided as the alternate if the portal requires it | **GAP/CHECK** |
 | T11 | Initial ≤13 pages | 10 pages | READY |
 | T12 | Abstract 150–250 words, self-contained | 243 words; no refs/equations; standard acronyms PDF/PAdES/eIDAS used | READY (minor acronym note) |
 | T13 | Keywords/index terms | 5 terms | READY |
