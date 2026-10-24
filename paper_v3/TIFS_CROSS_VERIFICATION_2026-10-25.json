@@ -28,13 +28,13 @@
       "area": "weights",
       "check": "IEEEtran_TIFS_submission.zip hash in manifest",
       "pass": true,
-      "detail": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df"
+      "detail": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454"
     },
     {
       "area": "weights",
       "check": "IEEEtran_TIFS_submission.zip present",
       "pass": true,
-      "detail": "452365"
+      "detail": "452575"
     },
     {
       "area": "bundle",
@@ -46,7 +46,7 @@
       "area": "bundle",
       "check": "source zip matches bundle",
       "pass": true,
-      "detail": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df"
+      "detail": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454"
     },
     {
       "area": "bundle",
@@ -340,7 +340,7 @@
       "area": "repo",
       "check": "HEAD recorded",
       "pass": true,
-      "detail": "014d87b"
+      "detail": "944840c"
     },
     {
       "area": "repo",
@@ -368,7 +368,7 @@
     "title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subspace Multiplexing, Universal Vector Emblems (Sri Yantra / Tryzub / CAD), and Optical Screen-Photo ECC for Bijective 2D Vector Graphics Watermarking and PAdES-B-LTA Authentication over GF(2^257) (DSTU 4145-2002)",
     "note": "latest related preprint"
   },
-  "head": "014d87b",
+  "head": "944840c",
   "tests": {
     "pytest": true,
     "controlled": true
@@ -377,6 +377,6 @@
   "abstract_words": 243,
   "pdf_hash": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
   "cover_hash": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
-  "source_hash": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df",
-  "bundle_hash": "45409228b14758d78944aad3467456e7992edf30d62c804d39f1f463a4efc1c0"
+  "source_hash": "1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454",
+  "bundle_hash": "d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3"
 }

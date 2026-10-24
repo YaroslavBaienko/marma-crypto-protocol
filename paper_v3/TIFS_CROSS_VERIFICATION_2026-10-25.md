@@ -1,11 +1,11 @@
 # TIFS cross-verification — RES-MARMA-CRYPTO / TIFS v3
 
-**Date:** 2026-10-25 · **HEAD:** `014d87b` · **PDF:** 10 pages, 243-word abstract
+**Date:** 2026-10-25 · **HEAD:** `944840c` · **PDF:** 10 pages, 243-word abstract
 
 **PDF SHA-256:** `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
 **Cover SHA-256:** `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
-**Source SHA-256:** `2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df`
-**Bundle SHA-256:** `45409228b14758d78944aad3467456e7992edf30d62c804d39f1f463a4efc1c0`
+**Source SHA-256:** `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454`
+**Bundle SHA-256:** `d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3`
 
 | Area | Check | Result | Detail |
 |---|---|---|---|
@@ -13,10 +13,10 @@
 | weights | main.pdf present | PASS | 342649 |
 | weights | cover_letter_TIFS.pdf hash in manifest | PASS | af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87 |
 | weights | cover_letter_TIFS.pdf present | PASS | 31031 |
-| weights | IEEEtran_TIFS_submission.zip hash in manifest | PASS | 2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df |
-| weights | IEEEtran_TIFS_submission.zip present | PASS | 452365 |
+| weights | IEEEtran_TIFS_submission.zip hash in manifest | PASS | 1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454 |
+| weights | IEEEtran_TIFS_submission.zip present | PASS | 452575 |
 | bundle | main.pdf matches bundle | PASS | d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9 |
-| bundle | source zip matches bundle | PASS | 2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df |
+| bundle | source zip matches bundle | PASS | 1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454 |
 | bundle | cover letter matches bundle | PASS | af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87 |
 | bundle | contains PREPRINT_DISCLOSURE.md | PASS |  |
 | bundle | contains IEEE_PORTAL_METADATA.md | PASS |  |
@@ -65,7 +65,7 @@
 | owner | page-charge budget recorded | PASS |  |
 | zenodo | DOI matches disclosure | PASS | 10.5281/zenodo.23560975 |
 | zenodo | version exposed | PASS | 2.1.0-rev1 |
-| repo | HEAD recorded | PASS | 014d87b |
+| repo | HEAD recorded | PASS | 944840c |
 | repo | no modified tracked package files | PASS | ?? paper_v3/drafts/declaration_of_interest_DSP.typ
 ?? paper_v3/eval/ablation_v0.json |
 | tests | production pytest | PASS | True |
