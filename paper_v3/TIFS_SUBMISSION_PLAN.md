@@ -48,6 +48,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
       `eval/process_printscan.py` converts captures and records the expected fail-closed result.
 - [x] Physical print-scan: five A4 pages printed on Canon MF3010 (600 dpi mono), scanned at 300 dpi grayscale; **5/5 digital controls valid, 5/5 physical captures absent (fail-closed)** — see `eval/printscan/RESULTS.md`.
 - [x] Controlled verification run: 30 tests OK, seal-path branch coverage 85.0% (pdf_layer 72.3%, profiles 93.7%, harness 80.5%), cross-runtime JS ↔ Python 1024/1024, production signer ↔ eval 1024/1024, 12-sample matrix stable across two runs; report in `paper_v3/tests/controlled_run/`.
+- [x] Production profile P2: additive wrapper `src/marma_seal_profiles.py` (42 mm round branded stamp, canonical carrier geometry unchanged, `data-profile` persisted in SVG metadata, verifier fails closed on unknown/mismatched profile and tampered geometry; legacy v1 untouched). Controlled run now has 35 tests and a production-P2 gate: PASS.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

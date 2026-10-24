@@ -383,5 +383,67 @@ class TestPdfLayerAPI(unittest.TestCase):
             pl.stamp(src, self.tmp / "x.pdf", "unknown", [0.0] * 27)
 
 
+class TestProductionProfile(unittest.TestCase):
+    """P2 profile wired into the production signer wrapper (src/marma_seal_profiles.py)."""
+
+    SECRET = "Sovereign-Vedic-Geometry-Key-108"
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="controlled_prodprofile_"))
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        import marma_seal_profiles as sp
+        self.sp = sp
+
+    def _sign(self, profile, payload="profiled production seal"):
+        out = self.tmp / f"{profile}.svg"
+        res = self.sp.sign_seal_svg(payload, self.SECRET, out, profile_id=profile)
+        return out, res
+
+    def test_v1_legacy_unchanged(self):
+        out, res = self._sign("v1-geometric")
+        v = self.sp.verify_seal_svg(out.read_text(), payload="profiled production seal",
+                                    secret_key=self.SECRET)
+        self.assertTrue(v["verified"], v.get("reason"))
+        self.assertEqual(res["profile"], "v1-geometric")
+
+    def test_v2_round42_verified_and_profile_persisted(self):
+        out, res = self._sign("v2-round42")
+        svg = out.read_text()
+        self.assertIn('data-profile="v2-round42"', svg)
+        self.assertIn('width="42mm"', svg)
+        self.assertGreaterEqual(svg.count("<circle"), 5)
+        self.assertEqual(res["profile_mm"], 42.0)
+        v = self.sp.verify_seal_svg(svg, expected_profile="v2-round42",
+                                    payload="profiled production seal", secret_key=self.SECRET)
+        self.assertTrue(v["verified"], v.get("reason"))
+        self.assertEqual(v["profile"], "v2-round42")
+        self.assertEqual(v["profile_mm"], 42.0)
+
+    def test_wrong_profile_fails_closed(self):
+        out, _ = self._sign("v2-round42")
+        v = self.sp.verify_seal_svg(out.read_text(), expected_profile="v1-geometric",
+                                    payload="profiled production seal", secret_key=self.SECRET)
+        self.assertFalse(v["verified"])
+        v2 = self.sp.verify_seal_svg(out.read_text(), profile_id="v1-geometric",
+                                     payload="profiled production seal", secret_key=self.SECRET)
+        self.assertFalse(v2["verified"])
+
+    def test_unknown_profile_fails_closed(self):
+        out, _ = self._sign("v2-round42")
+        svg = out.read_text().replace('data-profile="v2-round42"', 'data-profile="evil-profile"', 1)
+        v = self.sp.verify_seal_svg(svg, payload="profiled production seal", secret_key=self.SECRET)
+        self.assertFalse(v["verified"])
+        self.assertIn("unknown seal profile", v["reason"])
+
+    def test_tampered_geometry_fails(self):
+        out, _ = self._sign("v2-round42")
+        svg = out.read_text()
+        m = __import__("re").search(r'data-lx="([0-9.]+)"', svg)
+        self.assertIsNotNone(m)
+        changed = svg.replace(m.group(0), f'data-lx="{float(m.group(1)) + 1e-3:.9f}"', 1)
+        v = self.sp.verify_seal_svg(changed, payload="profiled production seal", secret_key=self.SECRET)
+        self.assertFalse(v["verified"])
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

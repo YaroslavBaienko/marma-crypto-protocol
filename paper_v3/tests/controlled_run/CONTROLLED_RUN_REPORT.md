@@ -1,6 +1,6 @@
 # Controlled cross-verified run — Marma PDF seal
 
-**Verdict: PASS** · 2026-10-24T18:39:37.845991+03:00 · git `26466b43e175`
+**Verdict: PASS** · 2026-10-24T18:52:35.870038+03:00 · git `f17d18dad219`
 
 ## Scope
 This run covers the *paper profile* P1 (current geometric stamp, no cryptography changes) and the *product prototype* P2 (42 mm round branded technical stamp with decorative rings, profile-fixed in the verifier). The payload lattice, word map and key schedule are unchanged.
@@ -10,18 +10,22 @@ This run covers the *paper profile* P1 (current geometric stamp, no cryptography
 |---|---|---|
 | corpus manifest | PASS | 180 files, 0 hash mismatches |
 | environment snapshot | PASS |  |
-| unittest suite | PASS | 30 tests |
+| unittest suite | PASS | 35 tests |
 | branch coverage | PASS | seal-path 85.0% ({'pdf_layer.py': 72.3, 'profiles.py': 93.7, 'harness.py': 80.5}); overall incl. drivers 44.5% |
 | cross-validation matrix | PASS | 12 samples; {'exact': True, 'trunc8': True, 'trunc7_detected': True, 'single_coord_edit': True, 'geometry_ok': True, 'flatten_absent': True} |
 | determinism (matrix run twice) | PASS | hash 0d9df3cc62adfcb8… |
+| production P2 profile | PASS | v2 verified=True, profile persisted=True, wrong-profile fail=True, tamper fail=True, v1 legacy=True |
 | artifact hashes | PASS |  |
 
 ## Tests
-Unittest suite: **30 tests, OK**. Classes: word-map/KAT, cross-runtime (independent JavaScript), cross-production (`src/marma_watermark.py`), profile round-trip P1/P2, geometry invariant, truncation, single-coordinate edit, flatten/fail-closed, wrong-profile rejection, reserved-zone no-overlap, corpus sha256, physical print-scan results, cross-validation matrix.
+Unittest suite: **35 tests, OK**. Classes: word-map/KAT, cross-runtime (independent JavaScript), cross-production (`src/marma_watermark.py`), profile round-trip P1/P2, geometry invariant, truncation, single-coordinate edit, flatten/fail-closed, wrong-profile rejection, reserved-zone no-overlap, corpus sha256, physical print-scan results, cross-validation matrix.
 
 ## Coverage (branch)
 Overall: **44.5%** · core: `{'pdf_layer.py': 72.3, 'profiles.py': 93.7, 'harness.py': 80.5}`
 Uncovered areas are the experiment drivers, baseline implementations and corpus-generator branches that are not part of the seal path; they are listed in coverage.json.
+
+## Production profile
+P2 is wired into the production signer through the additive wrapper `src/marma_seal_profiles.py`: the canonical carrier geometry is unchanged, the profile changes physical size (42 mm), round branding and persists `data-profile` in the SVG metadata. The verifier fails closed on an unknown or mismatched profile and on tampered geometry; the legacy v1 path is unchanged.
 
 ## Cross-validation matrix
 12 samples (2 profiles x 3 documents x 2 seeds), run twice: hash `0d9df3cc62adfcb8…`. Checks: `{'exact': True, 'trunc8': True, 'trunc7_detected': True, 'single_coord_edit': True, 'geometry_ok': True, 'flatten_absent': True}`.

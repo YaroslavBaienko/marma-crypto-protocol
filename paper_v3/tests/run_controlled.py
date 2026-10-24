@@ -148,10 +148,43 @@ def matrix():
     gate("determinism (matrix run twice)", h1 == h2, f"hash {h1[:16]}…")
     return {"rows": rows, "hash": h1, "checks": checks}
 
+def production_profile():
+    """P2 profile wired into the production signer wrapper: sign -> verify -> tamper-fail."""
+    sys.path.insert(0, str(ROOT / "src"))
+    try:
+        import marma_seal_profiles as sp
+    except Exception as e:  # pragma: no cover
+        gate("production P2 profile", False, f"import failed: {e}"); return
+    secret = "Sovereign-Vedic-Geometry-Key-108"
+    payload = "controlled production profile run"
+    tmp = Path(tempfile.mkdtemp(prefix="controlled_prod_"))
+    try:
+        v2 = tmp / "v2.svg"
+        r = sp.sign_seal_svg(payload, secret, v2, profile_id="v2-round42")
+        svg = v2.read_text()
+        ok_v2 = sp.verify_seal_svg(svg, expected_profile="v2-round42", payload=payload,
+                                   secret_key=secret).get("verified") is True
+        persisted = 'data-profile="v2-round42"' in svg and 'width="42mm"' in svg
+        wrong = sp.verify_seal_svg(svg, expected_profile="v1-geometric", payload=payload,
+                                   secret_key=secret).get("verified") is False
+        tampered = svg.replace('data-lx="', 'data-lx="1', 1)
+        tamper_fail = sp.verify_seal_svg(tampered, payload=payload,
+                                         secret_key=secret).get("verified") is False
+        v1 = tmp / "v1.svg"
+        sp.sign_seal_svg(payload, secret, v1, profile_id="v1-geometric")
+        ok_v1 = sp.verify_seal_svg(v1.read_text(), payload=payload, secret_key=secret).get("verified") is True
+        ok = all([ok_v2, persisted, wrong, tamper_fail, ok_v1]) and r.get("profile_mm") == 42.0
+        gate("production P2 profile", ok,
+             f"v2 verified={ok_v2}, profile persisted={persisted}, wrong-profile fail={wrong}, "
+             f"tamper fail={tamper_fail}, v1 legacy={ok_v1}")
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
 def artifacts():
     files = [EVAL / "pdf_layer.py", EVAL / "profiles.py", EVAL / "harness.py",
              EVAL / "build_corpus.py", EVAL / "profiles.json", TESTS / "test_controlled.py",
-             TESTS / "crosscheck_wordmap.js", MANIFEST]
+             TESTS / "crosscheck_wordmap.js", MANIFEST,
+             ROOT / "src" / "marma_seal_profiles.py", ROOT / "src" / "marma_watermark.py"]
     lines = [f"{sha256(f)}  {f.relative_to(ROOT)}" for f in files if f.exists()]
     (OUT / "SHA256SUMS").write_text("\n".join(lines) + "\n")
     gate("artifact hashes", len(lines) == len(files))
@@ -190,6 +223,13 @@ def report(env, cov, mat):
         f"Overall: **{cov['overall'] if cov else 'n/a'}%** · core: `{cov['core'] if cov else 'n/a'}`",
         "Uncovered areas are the experiment drivers, baseline implementations and corpus-generator"
         " branches that are not part of the seal path; they are listed in coverage.json.",
+        "",
+        "## Production profile",
+        "P2 is wired into the production signer through the additive wrapper"
+        " `src/marma_seal_profiles.py`: the canonical carrier geometry is unchanged, the profile"
+        " changes physical size (42 mm), round branding and persists `data-profile` in the SVG"
+        " metadata. The verifier fails closed on an unknown or mismatched profile and on tampered"
+        " geometry; the legacy v1 path is unchanged.",
         "",
         "## Cross-validation matrix",
         f"12 samples (2 profiles x 3 documents x 2 seeds), run twice: hash `{mat['hash'][:16]}…`."
@@ -241,6 +281,7 @@ def main():
     tests()
     cov = coverage()
     mat = matrix()
+    production_profile()
     artifacts()
     ok = report(env, cov, mat)
     print("\nCONTROLLED RUN:", "PASS" if ok else "FAIL", "->", OUT / "CONTROLLED_RUN_REPORT.md")

@@ -1,9 +1,9 @@
 {
  "verdict": "PASS",
  "environment": {
-  "date": "2026-10-24T18:39:37.845991+03:00",
-  "git_head": "26466b43e17592fed4b7c56d438b3fc67d7253cb",
-  "git_dirty_entries": 11,
+  "date": "2026-10-24T18:52:35.870038+03:00",
+  "git_head": "f17d18dad21936b0c5c2560b1c31ae18dea41b6d",
+  "git_dirty_entries": 5,
   "python": "3.13.5",
   "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
   "pymupdf": "1.28.2",
@@ -45,7 +45,7 @@
   {
    "gate": "unittest suite",
    "pass": true,
-   "detail": "30 tests"
+   "detail": "35 tests"
   },
   {
    "gate": "branch coverage",
@@ -61,6 +61,11 @@
    "gate": "determinism (matrix run twice)",
    "pass": true,
    "detail": "hash 0d9df3cc62adfcb8\u2026"
+  },
+  {
+   "gate": "production P2 profile",
+   "pass": true,
+   "detail": "v2 verified=True, profile persisted=True, wrong-profile fail=True, tamper fail=True, v1 legacy=True"
   },
   {
    "gate": "artifact hashes",
@@ -222,5 +227,5 @@
    "flatten_absent": true
   }
  },
- "tests": "30"
+ "tests": "35"
 }
