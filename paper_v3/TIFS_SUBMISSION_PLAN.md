@@ -53,6 +53,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [ ] Legal review (owner + Ukrainian counsel): checklist at `drafts/tifs/LEGAL_REVIEW_CHECKLIST.md`; not legal advice.
 - [x] Product integration: Nautilus action for the 42 mm seal + CLI `--profile` auto-detect on verify; release candidate `v2.2.0-1` built and package-tested (`bash build.sh --test` PASS). System install/tag/manual GUI are owner actions (see `RELEASE_NOTES_v2.2.0.md`).
 - [x] PAdES whitepaper gate: root cause was test-environment PyMuPDF shadowing (1.25.4 vs 1.28.2), not data/code corruption; full production suite is **40/40 PASS** in the correct environment (`tests/README.md`, `requirements-dev.txt`). Residual product risk: pin PyMuPDF >= 1.28.2 or re-seal whitepapers with a version-stable canonicalisation.
+- [x] Seal-only visual contract: removed human-visible captions under the seal in PDF/DOCX/universal-API signing; cryptographic metadata retained; 45/45 production tests incl. `tests/test_seal_visual_contract.py`; package RC `2.2.0-2` rebuilt and package-tested. Manual Nautilus re-check remains owner-side.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

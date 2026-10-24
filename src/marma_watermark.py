@@ -1071,12 +1071,6 @@ def stamp_pdf_document(
             shape_tri.commit(overlay=True)
             shape_b.commit(overlay=True)
 
-            page.insert_text(
-                pymupdf.Point(cx_s - 38.0, cy_s + 38.0),
-                f"MARMA-CRYPTO-SEAL · DSTU4145 · {hex_sig[:10].upper()}",
-                fontsize=5.0,
-                color=(0.55, 0.42, 0.12),
-            )
 
     seal_packet = {
         "protocol": "MARMA-DSTU4145-V1.3",
@@ -1398,12 +1392,6 @@ def stamp_docx_document(
         p_img.alignment = WD_ALIGN_PARAGRAPH.RIGHT
         run_img = p_img.add_run()
         run_img.add_picture(str(seal_png), width=Inches(1.15))
-
-        p_sig = doc_obj.add_paragraph()
-        p_sig.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        run_sig = p_sig.add_run(f"MARMA-CRYPTO-SEAL · ДСТУ 4145-2002 · {hex_sig[:16].upper()}")
-        run_sig.font.size = Pt(7.5)
-        run_sig.font.color.rgb = RGBColor(165, 130, 45)
 
         seal_packet = {
             "protocol": "MARMA-DSTU4145-V1.3",

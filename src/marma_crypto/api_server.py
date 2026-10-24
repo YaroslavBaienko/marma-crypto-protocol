@@ -162,13 +162,6 @@ def stamp_pdf_universal_v21(
             shape_b.finish(color=(1.0, 0.9, 0.6), fill=(0.95, 0.18, 0.22), width=0.3)
             shape_b.commit(overlay=True)
 
-            emblem_label = emblem_type.upper()
-            page.insert_text(
-                pymupdf.Point(cx_s - 42.0, cy_s + 44.0),
-                f"MARMA-CRYPTO-SEAL · {emblem_label} · {hex_sig[:8].upper()}",
-                fontsize=4.8,
-                color=(0.55, 0.42, 0.12),
-            )
 
     seal_packet = {
         "protocol": "MARMA-DSTU4145-V1.3",
