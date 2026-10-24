@@ -7,7 +7,7 @@ Modulation on Vector Geometry*
 
 ## Status of the submitted manuscript
 
-The TIFS manuscript (v3, 8 double-column pages) is a **new submission**. It has **not** been
+The TIFS manuscript (v3, 10 double-column pages) is a **new submission**. It has **not** been
 submitted to TIFS or to any other journal/conference in its current form. No peer-review reports
 exist for it.
 

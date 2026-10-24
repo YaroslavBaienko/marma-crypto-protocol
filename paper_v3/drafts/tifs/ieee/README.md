@@ -13,7 +13,7 @@ If the local TeX tree lacks Times fonts (`ptmr7t.tfm`), install `texlive-fonts-r
 Overleaf; this is a local font issue, not a manuscript issue.
 
 ## Current build result (2026-10-24)
-- `main.pdf`: **8 double-column pages**, abstract **243 words**, clean BibTeX,
+- `main.pdf`: **10 double-column pages**, abstract **243 words**, clean BibTeX,
   0 undefined citations (34 cited keys out of 44 verified entries).
 - TIFS initial Regular Paper limit: 13 pages — compliant.
 - Abstract limit: 150–250 words — compliant.

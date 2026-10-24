@@ -1,16 +1,16 @@
 {
-  "main_pdf_sha256": "e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a",
+  "main_pdf_sha256": "419ddcdfc8f4ef8218a56b95084002f03827b39bfb6adf0a7a8887bf64e53bde",
   "cover_sha256": "24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760",
-  "source_zip_sha256": "14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460",
-  "bundle_sha256": "86f87e57340755efca9be4816f0fef480df5691dde7fda13c41dd1bc379712fe",
-  "main_pdf_bytes": 322200,
-  "source_zip_bytes": 430185,
-  "pages": 8,
+  "source_zip_sha256": "2e2cb2c52ec63ee23def9633dfb913de2141ec802fdf96001d41dfb91d688753",
+  "bundle_sha256": "764c94289e2939928604961f1378f449c880ae96aa25ff1095341a7967d98ec2",
+  "main_pdf_bytes": 342055,
+  "source_zip_bytes": 451713,
+  "pages": 10,
   "abstract_words_metadata": 243,
   "question_marks": 0,
   "fonts_all_embedded": true,
-  "cited_keys": 35,
-  "bib_entries": 45,
+  "cited_keys": 36,
+  "bib_entries": 49,
   "missing_citations": [],
   "self_preprint_cited": true,
   "zip_test": true,
@@ -23,5 +23,6 @@
   "requirements_record": true,
   "prior_statement": true,
   "sps_margin_alternative": true,
-  "timestamp": "2026-10-24T23:55:00+03:00"
+  "sps_margin_pages": 11,
+  "timestamp": "2026-10-25T00:25:00+03:00"
 }

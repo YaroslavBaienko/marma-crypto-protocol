@@ -11,7 +11,7 @@ reference list.
 
 ## 1. Status of this TIFS manuscript
 
-The TIFS manuscript is a **new, substantially re-framed and expanded v3** (8 double-column pages,
+The TIFS manuscript is a **new, substantially re-framed and expanded v3** (10 double-column pages,
 watermarking/forensics framing). It is **not identical** to any archived preprint, but it derives
 from the same research line and shares results/figures with earlier editions. All public preprint
 versions of that line are listed below for full transparency.
@@ -63,7 +63,7 @@ should be cited when relevant.
   not a duplicate. This satisfies the TIFS rule for non-identical related preprints.
 - The Zenodo concept DOI also remains in the author footnote/reproducibility disclosure; the
   cover letter and portal declaration list all preprints separately.
-- BibTeX count: 45 entries, 35 cited keys; no unresolved citations.
+- BibTeX count: 49 entries, 36 cited keys; no unresolved citations.
 
 ## 5. Prior-venue status (no concurrent submission)
 

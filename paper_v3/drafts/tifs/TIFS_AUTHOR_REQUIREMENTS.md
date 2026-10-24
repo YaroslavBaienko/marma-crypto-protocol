@@ -129,11 +129,11 @@ For this article:
 | T04 | Clear problem/contribution/significance/novelty | Introduction + abstract; narrow claim | READY, reviewer risk |
 | T05 | Sufficient experimental data | 180 corpus PDFs (hashes PASS), 1,800 main + 360 variant + 720 ablation, 150 anchors (10 project + 5 independent NIST), 600 baselines, 5/5 physical | READY, reduced external-validity risk (5 independent NIST anchors) |
 | T06 | Proper English / no typo flood | IEEEtran build clean; owner final proofread | PARTIAL (owner) |
-| T07 | Sufficient citations/related work | 45 verified entries, 35 cited keys; no missing citations | READY |
+| T07 | Sufficient citations/related work | 49 verified entries, 36 cited keys; no missing citations | READY |
 | T08 | ORCID + accurate author info | ORCID valid; email/profile owner | PARTIAL (owner) |
-| T09 | Double-column 10 pt PDF | IEEEtran; 8 pages | READY |
+| T09 | Double-column 10 pt PDF | IEEEtran; 10 pages | READY |
 | T10 | Margins ≥1 inch | IEEEtran default ~0.68 in; `main_sps_margins.pdf` (9 pp with 1-inch side margins) is provided as the alternate if the portal requires it | **GAP/CHECK** |
-| T11 | Initial ≤13 pages | 8 pages | READY |
+| T11 | Initial ≤13 pages | 10 pages | READY |
 | T12 | Abstract 150–250 words, self-contained | 243 words; no refs/equations; standard acronyms PDF/PAdES/eIDAS used | READY (minor acronym note) |
 | T13 | Keywords/index terms | 5 terms | READY |
 | T14 | EDICS classification | 820 IF-WAT primary; 847 IF-FOR-AUTH secondary; 840 IF-FOR optional | READY |
@@ -143,7 +143,7 @@ For this article:
 | T18 | Preprint two-track rule | Related Zenodo cited/explained; full list in disclosure; no identical preprint | READY |
 | T19 | Resubmission/prior-rejection statement | New submission; prior decisions documented, no review reports | READY/PREPARE IF ASKED |
 | T20 | Cover letter and declarations | `cover_letter_TIFS.pdf`, `PREPRINT_DISCLOSURE.md`, metadata | READY |
-| T21 | Page charges acknowledged | $110/page voluntary first 10; $220/page mandatory >10; current 8 pages | ACKNOWLEDGE |
+| T21 | Page charges acknowledged | $110/page voluntary first 10; $220/page mandatory >10; current 10 pages | ACKNOWLEDGE |
 | T22 | OA/hybrid choice | Subscription route, no APC; OA optional | READY |
 | T23 | Copyright eCF | After acceptance | POST-ACCEPT |
 | T24 | Final “Formatted (Double Column) Main File” | Current `main.pdf`; final after revision | READY |
@@ -161,7 +161,7 @@ Legend: READY = satisfied in package; PARTIAL = owner/format check; GAP = action
 4. **EDICS**: 820 primary, 847 secondary, optional 840.
 5. **Preprints**: paste the disclosure text; cite relation already fixed.
 6. **Prior venues**: if portal asks, use the prepared new-submission/prior-decision statement.
-7. **Page-charge budget**: current 8 pages; if accepted/typeset >10 pages, mandatory $220/page for
+7. **Page-charge budget**: current 10 pages; if accepted/typeset >10 pages, mandatory $220/page for
    pages 11+; voluntary $110/page for first 10.
 8. **Scientific decision**: current external anchors are the author’s own public project documents;
    for a stronger TIFS attempt add 5–10 independent public PDFs and expand to ~10–12 pages. This is
@@ -198,6 +198,6 @@ Voluntary charges apply to the first ten pages; mandatory charges apply above te
 | 14 | $1,100 | $880 | $1,980 |
 | 16 | $1,100 | $1,320 | $2,420 |
 
-Current submission PDF: 8 pages. A revision/typeset expansion above 10 pages creates mandatory
+Current submission PDF: 10 pages. A revision/typeset expansion above 10 pages creates mandatory
 charges; plan a conservative budget of ~$1,540 for a 12-page accepted paper. OA (optional) is
 additional; subscription/hybrid route has no APC.

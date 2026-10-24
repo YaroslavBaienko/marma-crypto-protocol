@@ -433,4 +433,7 @@ The evaluation is a first harness result. STDM, Fourier-descriptor and LSB basel
 = Appendix B: Generator settings
 The corpus is generated with LibreOffice headless (DOCX to PDF, default settings), Typst (A4, 2.2 cm margins), and Chromium print-to-PDF (headless, no header/footer). Flattening uses a 300 dpi raster; the print-scan simulation uses 200 dpi, a Gaussian blur, additive Gaussian sensor noise and JPEG quality 70. All settings are recorded in the corpus builder so that the corpus can be regenerated from the published script and seed.
 
+= Reproduction Protocol
+All measured tables are produced by the harness. Environment: Python 3.13.5, PyMuPDF 1.28.2, Node 22.23.4, Typst 0.15.1. The corpus manifest records a SHA-256 per PDF, the real-anchor manifest records source URLs and hashes, and seeds are 0--29 for the main experiment and 0--9 for anchors. NIST PDFs are re-downloadable from the recorded URLs; no client data are used.
+
 #bibliography("../../references.bib", style: "ieee")

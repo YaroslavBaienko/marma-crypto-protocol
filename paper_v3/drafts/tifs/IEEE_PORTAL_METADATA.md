@@ -3,7 +3,7 @@
 **Journal:** IEEE Transactions on Information Forensics and Security (TIFS)
 **Article type:** Regular Paper
 **Portal:** https://ieee.atyponrex.com/journal/tifs-ieee (IEEE Author Portal; the old ScholarOne link is obsolete)
-**Status:** not yet submitted — IEEEtran PDF built locally (8 double-column pages, clean BibTeX), abstract trimmed to TIFS limit; owner performs the portal upload/declarations.
+**Status:** not yet submitted — IEEEtran PDF built locally (10 double-column pages, clean BibTeX), abstract trimmed to TIFS limit; owner performs the portal upload/declarations.
 
 ## Title
 Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index Modulation on Vector Geometry
@@ -11,7 +11,7 @@ Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index Modula
 ## Abstract (plain text)
 A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer—seals and stamps—is not cryptographically bound to the signed content, so a valid signature can accompany altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 degrees of freedom); the payload uses keyed dithered quantization index modulation over an integer coordinate lattice with an IEEE-754 rounding argument, and a disjoint degree of freedom carries a per-recipient identifier. No external QR/barcode is added. We evaluate 180 PDFs from 60 documents (LibreOffice, Typst and Chromium), in native, flattened and print-scan-simulated variants, plus ten project and five independent public documents. On 1,800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and detects every edited payload coordinate; flattening destroys the vector carrier and fails closed. Same-carrier baselines expose a capacity--distortion trade-off. Two implementation facts: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text—32-bit-float drawing APIs destroy the 1.8e-8 pt lattice. A print-scan check fails closed in all five cases; digital controls verify exactly. It complements, not replaces, PAdES/eIDAS signatures.
 ## Formal checks against TIFS author guidelines (SPS, checked 2026-10-24)
-- Initial Regular Paper limit: **≤13 double-column pages** incl. appendices/references; current PDF: **8 pages** — compliant.
+- Initial Regular Paper limit: **≤13 double-column pages** incl. appendices/references; current PDF: **10 pages** — compliant.
 - Abstract: **150–250 words**; current: **243 words** — compliant.
 - Layout: IEEEtran journal, two-column, 10 pt; local pdfLaTeX build clean (0 undefined citations).
 - EDICS: choose the closest portal nodes at submission (intended mapping below).
@@ -54,7 +54,7 @@ fragile watermarking; quantization index modulation; vector graphics; PDF signat
 - Page charges: IEEE hybrid; subscription publication route without APC. Check TIFS over-length page charges on the current author guidelines before submission.
 
 ## Files to upload
-1. `ieee/main.pdf` — built review PDF (8 pages, 243-word abstract, clean BibTeX).
+1. `ieee/main.pdf` — built review PDF (10 pages, 243-word abstract, clean BibTeX).
 2. `cover_letter_TIFS.pdf`.
 3. (optional) `ieee/IEEEtran_TIFS_submission.zip` — self-contained LaTeX source.
 4. (optional) figures if the portal asks for separate files: `ieee/figures/*.pdf`.

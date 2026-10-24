@@ -179,5 +179,6 @@
   "independent_anchor_documents": 5,
   "abstract_words_current": 243,
   "sps_margin_alternative": "ieee/main_sps_margins.pdf (9 pp)",
-  "preprint_status": "related prior preprint cited as baienko2026preprint; no identical preprint"
+  "preprint_status": "related prior preprint cited as baienko2026preprint; no identical preprint",
+  "current_pages": 10
 }

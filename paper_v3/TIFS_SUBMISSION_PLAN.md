@@ -1,14 +1,14 @@
 # IEEE TIFS submission plan (primary target after the DSP withdrawal)
 
-**Date:** 2026-10-23 · **Status (2026-10-24):** pre-submission — locally buildable IEEEtran PDF (8 double-column pages, 243-word abstract), evaluation complete, package/bundle rebuilt; no portal submission yet.
+**Date:** 2026-10-23 · **Status (2026-10-24):** pre-submission — locally buildable IEEEtran PDF (10 double-column pages, 243-word abstract), evaluation complete, package/bundle rebuilt; no portal submission yet.
 **Why TIFS:** the best topical fit for fragile watermarking/forensics; IEEE hybrid model lets the
 author publish under the subscription route **without an APC** (open access remains optional).
 **Portal:** IEEE Author Portal — https://ieee.atyponrex.com/journal/tifs-ieee (old ScholarOne link is obsolete)
-**Format:** IEEE Transactions two-column; manuscript type "Regular Paper"; TIFS initial limit **13 double-column pages** including appendices and references (revised limit 16; over-length charges apply). Current PDF: 8 pages.
+**Format:** IEEE Transactions two-column; manuscript type "Regular Paper"; TIFS initial limit **13 double-column pages** including appendices and references (revised limit 16; over-length charges apply). Current PDF: 10 pages.
 
 ## Gate before submission
 
-- [x] IEEE two-column manuscript built locally with official IEEEtran (8 pages incl. appendices + references; clean BibTeX).
+- [x] IEEE two-column manuscript built locally with official IEEEtran (10 pages incl. appendices + references; clean BibTeX).
 - [x] Title/abstract finalised (watermarking-first; abstract trimmed to 243 words, TIFS limit 150–250).
 - [x] Verified bibliography only (`references.bib`, 45 entries); audit passes and local build has no undefined citations/BibTeX warnings.
 - [x] Evaluation lifted: 10 project PDFs + 5 independent NIST PDFs (150 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
@@ -66,7 +66,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 **Verdict: scientifically close, formally not yet submitted-ready.**
 
 ### Verified
-- IEEEtran PDF: **8 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 35 cited keys from 45 verified entries; `main.pdf` built with official IEEEtran class.
+- IEEEtran PDF: **10 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 36 cited keys from 49 verified entries; `main.pdf` built with official IEEEtran class.
 - TIFS formal checks: initial Regular Paper **≤13 pages** (8 ok); abstract **243 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
 - Evaluation reproducible locally: 60 documents × 3 generators × 3 variants = 180 PDFs (manifest hashes PASS); 1,800 main + 360 variant + 720 ablation samples; 150 real-world samples (10 project + 5 independent); 600 PDF-level baseline samples; 5/5 physical fail-closed.
 - Controlled run: PASS (43 tests, seal-path branch coverage 85.0%, 12-sample matrix stable, P2 gate PASS).
@@ -80,7 +80,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 5. **Owner final read** of title/abstract/cover letter; no suggested reviewers invented.
 
 ### Scientific risk (not a formal blocker, but reviewer-facing)
-- 8 pages is inside the 13-page limit but thin for a TIFS regular paper; reviewers may ask for more depth/broader independent anchors. Expansion to ~10–12 double-column pages is recommended but not required for compliance.
+- 10 pages is inside the 13-page limit; the independent NIST anchors and expanded appendices address the earlier depth concern.
 - Deterministic exactness on a synthetic corpus + 10 public documents; no hypothesis tests (explicitly stated). The paper already limits claims to fragile authentication and reports a capacity–distortion frontier, but TIFS reviewers may demand stronger deployment breadth.
 - Baselines are same-carrier re-implementations, not state-of-the-art full systems; acknowledged in threats-to-validity.
 - Single printer/scanner pair; acknowledged as a limitation.

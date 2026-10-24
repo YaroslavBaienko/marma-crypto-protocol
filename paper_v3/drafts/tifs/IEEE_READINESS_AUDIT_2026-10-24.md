@@ -69,7 +69,7 @@ metadata include it.
 | Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
 | Index terms | present (5) |
-| Artifacts | `ieee/main.pdf` (8 pp, 322,200 B, SHA-256 `e0045e85…`), `IEEEtran_TIFS_submission.zip` (430,185 B, SHA-256 `14b4b16a…`), `ieee/main_sps_margins.pdf` (9 pp alternate), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
+| Artifacts | `ieee/main.pdf` (10 pp, 342,055 B, SHA-256 `419ddcdf…`), `IEEEtran_TIFS_submission.zip` (451,713 B, SHA-256 `2e2cb2c5…`), `ieee/main_sps_margins.pdf` (alternate with 1-inch margins), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
 | Source draft | `Manuscript_TIFS_content_v1.pdf` (13-page single-column editing version) |
 
 **Formatting caveat:** SPS author instructions ask for margins ≥1 inch, while IEEEtran's journal
@@ -98,7 +98,7 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
    independent NIST public standards (FIPS 186-5, 180-4, 202, SP 800-57, 140-3) have now been added,
    giving 150 samples with the same exact/fail-closed behaviour. This reduces — but does not fully
    remove — the external-validity concern; enterprise DMS pipelines remain future work.
-2. **Short paper:** 8 double-column pages is compliant but thin for a TIFS regular paper; reviewers
+2. **Short paper:** 10 double-column pages is compliant but thin for a TIFS regular paper; reviewers
    may ask for more depth (more generators, DMS pipelines, independent documents, additional
    attacks). Expansion to ~10–12 pages is recommended, not padding.
 3. **Deterministic exactness + synthetic corpus:** the paper is explicit that CIs are not
@@ -133,7 +133,7 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
 
 ## 8. Bottom line
 
-- The **formal TIFS package is ready**: 8 pages ≤13, abstract 243 ≤250, clean IEEEtran/BibTeX build,
+- The **formal TIFS package is ready**: 10 pages ≤13, abstract 243 ≤250, clean IEEEtran/BibTeX build,
   valid ORCID, verified references, complete evaluation artifacts.
 - The **submission is not yet owner-ready** because EDICS/portal/email/legal/margin actions are
   pending.

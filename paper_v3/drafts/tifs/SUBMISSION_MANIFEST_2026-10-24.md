@@ -12,19 +12,19 @@ Modulation on Vector Geometry*
 
 | File | Size | SHA-256 |
 |---|---:|---|
-| `ieee/main.pdf` — review PDF | 322,200 B | `e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a` |
+| `ieee/main.pdf` — review PDF | 342,055 B | `419ddcdfc8f4ef8218a56b95084002f03827b39bfb6adf0a7a8887bf64e53bde` |
 | `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760` |
 | `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 9 pp | only if portal flags margins |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 430,185 B | `14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460` |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 451,713 B | `2e2cb2c52ec63ee23def9633dfb913de2141ec802fdf96001d41dfb91d688753` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
 Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
-e0045e856dd44694863bd1bdc48269e2489ec8f0cca59d7708186f97d1e9610a  ieee/main.pdf
+419ddcdfc8f4ef8218a56b95084002f03827b39bfb6adf0a7a8887bf64e53bde  ieee/main.pdf
 24be8175c1dcc14d66952374cca52cf9fad1d9c59f6e6dd96c232a5ecd4d6760  cover_letter_TIFS.pdf
-14b4b16a72f94739fe2a030dba7caba343e0e14f8435cc2af43ed4a493512460  ieee/IEEEtran_TIFS_submission.zip
+2e2cb2c52ec63ee23def9633dfb913de2141ec802fdf96001d41dfb91d688753  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 
@@ -85,7 +85,7 @@ SUMS
 ## 6. Scientific-risk note
 
 The package is formally ready but acceptance is not guaranteed: the “real-world” anchors are the
-author’s public project documents, the paper is short (8 pp), baselines are same-carrier
+author’s public project documents, the paper is short (10 pp), baselines are same-carrier
 re-implementations, and the corpus is synthetic. See
 `IEEE_READINESS_AUDIT_2026-10-24.md` §5. For a stronger attempt, add 5–10 independent public PDFs
 and expand to 10–12 pages before submission.
