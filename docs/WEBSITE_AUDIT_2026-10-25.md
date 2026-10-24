@@ -37,13 +37,13 @@ remaining items are listed below.
 
 ## Remaining recommendations (not blocking)
 
-- Regenerate `og_card.png` with the new v2.2.0/value copy (the image file is still the old card).
+- `og_card.png` was regenerated on 2026-10-25 (Seal / Verify / Trace, software v2.2.0-5, protocol v2.1.0); deploy and verify social previews.
 - Update `docs/ua.html` hero/community copy to mirror the new value cards; the release banner is current.
 - Add a short “Limitations” block visible above the FAQ: browser demo vs CLI, 8-decimal writer, flattening,
   no QES replacement. The sealer paragraph covers this but is long.
 - The FAQ block is very dense; consider collapsing to `<details>` or splitting into “For lawyers” and
   “For engineers”.
-- Add `aria-live` to the verification result panel and test keyboard focus on the new CTAs.
+- UI and language toggle were exercised via Chrome DevTools: EN/UK headings and value cards switch correctly; nav anchors `#sealerStudioCard`, `#verifier`, `#quickstart` resolve. Add `aria-live` to the verification result panel and test keyboard focus on the new CTAs.
 - Consider a real 60-second demo video/GIF for Product Hunt instead of only screenshots.
 
 ## Functional checks
