@@ -16,7 +16,7 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 - **Nautilus menu**: new action `🪙 Згенерувати круглу технічну печатку 42 мм (v2-round42)`
   (`nautilus-scripts/1d_sign_seal_v2.sh`), installed through `marma-config`; verification action
   works for P1 and P2 because the CLI now auto-detects the stored profile.
-- **Packaging**: version `2.2.0-1`; `marma_seal_profiles.py` is included in the package; bash
+- **Packaging**: version `2.2.0-5`; `marma_seal_profiles.py` is included in the package; bash
   completion knows `--profile`; package test refreshes the isolated Nautilus menu.
 - **Seal-only visual contract:** removed the human-visible caption under the seal in every signing path
   (PDF stamping, universal/API PDF stamping, DOCX stamping). SVG seals already had no text. The
@@ -64,7 +64,7 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 | Full production pytest suite (`tests/`) | **73 passed** with `pymupdf>=1.28.2` (40 core + 5 seal-only visual + 6 Nautilus selection + 14 seal-placement + 8 Nautilus placement-dialog/config). The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
 | Nautilus P2 script wiring (headless, fake CLI) | **PASS** (args: `--sign-svg`, `--profile v2-round42`, `--gui`) |
 | Manual GUI click-through in Nautilus | **NOT DONE** (owner action) |
-| System deployment / installation | **NOT DONE** (requires sudo: `sudo dpkg -i dist/marma-crypto-watermark_2.2.0-1_all.deb`) |
+| System deployment / installation | **NOT DONE** (requires sudo: `sudo dpkg -i dist/marma-crypto-watermark_2.2.0-5_all.deb`) |
 | Git tag / GitHub release | **NOT DONE** (latest tag is `v2.1.0`) |
 
 Artifact: `dist/marma-crypto-watermark_2.2.0-5_all.deb`
@@ -73,7 +73,7 @@ Visual evidence: `docs/visual_contract/` (P2 42 mm seal and a stamped page; no c
 
 ## Install / rollout (owner)
 ```
-sudo dpkg -i dist/marma-crypto-watermark_2.2.0-1_all.deb
+sudo dpkg -i dist/marma-crypto-watermark_2.2.0-5_all.deb
 marma-config            # refresh the Nautilus menu for the current user
 marma-watermark --version
 ```
