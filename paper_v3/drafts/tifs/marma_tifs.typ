@@ -295,7 +295,7 @@ polyline or a grid? Each question maps to a table below; no claim in the abstrac
 
 
 
-== Public real-world anchors
+== Public project-document anchors
 Ten unique public project documents (whitepapers, manuscript PDFs and patent description PDFs; no client data) were stamped and attacked under the same protocol, 10 seeds each (100 samples). The results match the synthetic corpus: exact recovery in 100% of samples, 8-decimal re-serialisation survives, 7-decimal re-serialisation and payload edits are detected, and flattening removes the carrier. Mean geometric RMSE is $5.32 times 10^(-6)$ pt (PSNR_geom = 155.0 dB).
 
 #table(
@@ -303,7 +303,7 @@ Ten unique public project documents (whitepapers, manuscript PDFs and patent des
   [Population], [Samples], [Exact],
   [Synthetic native documents], [1800], [100%],
   [Synthetic flattened / print-scan], [360], [100%],
-  [Public real-world anchors], [100], [100%],
+  [Public project-document anchors], [100], [100%],
 )
 #block[#text(size: 8pt, style: "italic")[Real-world anchors were only used to check that production-generated PDFs accept the carrier path; they do not exercise a population of enterprise DMS pipelines.]]
 

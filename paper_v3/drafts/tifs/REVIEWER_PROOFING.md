@@ -4,9 +4,9 @@ Use this as (a) a pre-submission checklist and (b) a source of exact sentences t
 manuscript so the objection is answered before it is raised.
 
 ## 1. "The corpus is synthetic; where is the real-world evidence?"
-**Answer:** ten public real-world PDFs (whitepapers, manuscript PDFs, patent descriptions; no client
+**Answer:** ten public project PDFs (whitepapers, manuscript PDFs, patent descriptions; no client
 data) were stamped and attacked under the same protocol — 100 samples, same exact/fail-closed
-behaviour (Table "Public real-world anchors"). A physical print-scan kit is prepared; the expected
+behaviour (Table "Public project-document anchors"). A physical print-scan kit is prepared; the expected
 result is fail-closed because printing rasters the vector layer.
 **Sentence to add:** "The public anchors test documents produced by production PDF writers rather
 than a population of enterprise DMS pipelines; the latter is stated as future work."

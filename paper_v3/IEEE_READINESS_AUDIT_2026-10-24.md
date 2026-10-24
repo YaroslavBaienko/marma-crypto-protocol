@@ -1,8 +1,8 @@
 # IEEE TIFS readiness audit — 2026-10-24
 
 **Question:** is the whole corpus/paper/package ready to publish in IEEE TIFS?
-**Verdict: CONDITIONAL GO — not yet an unconditional submission; the technical package is now
-formally buildable, but owner-side portal/legal items and one scientific-breadth gap remain.**
+**Verdict: CONDITIONAL GO — technically submission-ready, not unconditionally ready: owner-side
+portal/EDICS/legal/margin items and the external-validity gap remain.**
 
 Author: Yaroslav V. Baienko · ORCID 0009-0006-7498-2133 (checksum verified)
 Paper line: TIFS regular paper; protocol v2.1.0; software release tag `v2.2.0`
@@ -38,6 +38,25 @@ Manuscript numbers checked against `eval/results_pdf_v0.json`, `eval/results_pdf
 main RMSE 5.31e-6 pt (PSNR 155.1 dB), real RMSE 5.32e-6 pt, per-generator means 5.29–5.33e-6 pt,
 baseline capacities 140/13/27 bit — all consistent with the tables.
 
+## 2b. Preprints and archival identifiers — PASS with one browser check
+
+| Record | Identifier | Verified |
+|---|---|---|
+| Zenodo concept DOI (all versions) | `10.5281/zenodo.23429017` | HTTP 200 → record 23560975 (latest) |
+| Zenodo v5 | `10.5281/zenodo.23560975` (`2.1.0-rev1`, 22 pp, 2026-10-22) | HTTP 200; metadata matches |
+| Zenodo v4/v3/v2/v1 | `23540160`, `23510005`, `23436152`, `23429018` | HTTP 200 each; metadata matches |
+| SSRN | `10.2139/ssrn.7631458` | public record per PUBLICATIONS; automated fetch 403 (SSRN bot block) — owner should open in a browser and confirm the title/status |
+| Figshare | `10.6084/m9.figshare.34697025` | DOI resolves to article 34697025 (v1, 2026-10-19) |
+| OSF / Law Archive | `osf.io/preprints/lawarchive/a8q5x_v1` | **pending moderation**, not a posted preprint; excluded from disclosure |
+| IACR ePrint | submission 112662 | **declined**, not posted; excluded |
+| Software Heritage | `swh:1:snp:dcae02ea…` (web URL) and `swh:1:rev:9101009d…` | both browse URLs return 200; historical snapshot covers the v1.3.0-era tree, not v2.2.0 |
+| GitHub software release | `v2.2.0` + `.deb` | present; software, not a preprint |
+
+The TIFS manuscript has **no self-preprint/Zenodo/SSRN entry in its reference list** (verified);
+the concept DOI is mentioned only in the author footnote/reproducibility paragraph as disclosure.
+The complete paste-ready list is `drafts/tifs/PREPRINT_DISCLOSURE.md`; the cover letter and portal
+metadata include it.
+
 ## 3. Manuscript and package — PASS (with one formatting caveat)
 
 | Check | Result |
@@ -47,10 +66,10 @@ baseline capacities 140/13/27 bit — all consistent with the tables.
 | Abstract | **249 words** extracted from the built PDF (TIFS limit 150–250) |
 | Citations | 34 cited keys, all resolve; 44 verified entries in `references.bib` (2015 IEEEtran.bst) |
 | Figures/tables | 4 figures, 7 tables; all `\ref`/`\label` resolve; no `??` in text |
-| Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 6 overfull hboxes (cosmetic) |
+| Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
 | Index terms | present (5) |
-| Artifacts | `ieee/main.pdf` (313 KB), `IEEEtran_TIFS_submission.zip` (self-contained incl. class/bst/figures), `TIFS_bundle_2026-10-24.zip` |
+| Artifacts | `ieee/main.pdf` (8 pp, 320,639 B, SHA-256 `7669fd8d…`), `IEEEtran_TIFS_submission.zip` (427,778 B, SHA-256 `9413d65b…`), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
 | Source draft | `Manuscript_TIFS_content_v1.pdf` (13-page single-column editing version) |
 
 **Formatting caveat:** SPS author instructions ask for margins ≥1 inch, while IEEEtran's journal
@@ -65,7 +84,7 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
 | Abstract 150–250 words | PASS (249) |
 | Two-column, 10 pt, IEEE template | PASS (IEEEtran) |
 | ORCID for author | PASS (valid) |
-| EDICS classification | **OWNER ACTION** (intended: Watermarking & Data Hiding; Multimedia Forensics; Document/Image Authentication) |
+| EDICS classification | **OWNER ACTION** — exact SPS Unified EDICS: **820 Watermarking and data hiding (IF-WAT)** primary; **847 Multimedia content authentication and plagiarism detection (IF-FOR-AUTH)** secondary; optional **840 Multimedia forensics (IF-FOR)** |
 | Preprint disclosure | PASS in manuscript/metadata (Zenodo concept DOI 10.5281/zenodo.23429017; SSRN 10.2139/ssrn.7631458) |
 | Not under consideration elsewhere | stated; prior SIGPRO desk rejection / DSP withdrawal disclosed |
 | Patent/competing interests/funding | stated (UA a 2026 06266; none/none) |

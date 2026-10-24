@@ -22,7 +22,7 @@ Please consider the manuscript *Fragile Authentication of PDF Signatures via Bit
 *Evaluation.* A 180-file corpus from three generators (LibreOffice, Typst, Chromium print) in native, flattened and print-scan-simulated variants, plus ten public real-world documents; 1,800 + 100 stamped PDFs with stream-level attacks; carrier ablation (incidence geometry vs generic polyline vs grid); and same-carrier baselines re-implemented at both slot and PDF level. Capacity-limited baselines are reported as such; the paper does not claim cryptographic security from a watermarking argument and explicitly complements, rather than replaces, PAdES/eIDAS signatures.
 
 #v(0.4em)
-*Relation to the preprint.* A preprint is archived on Zenodo (concept DOI 10.5281/zenodo.23429017) and SSRN (10.2139/ssrn.7631458); a Ukrainian patent application (a 2026 06266) covers the sealing method. The manuscript is not under consideration elsewhere. The evaluation harness, corpus manifest and seeds are available for reproducibility.
+*Preprints and prior venues.* All posted preprints of this research line are disclosed in the submission: Zenodo concept DOI 10.5281/zenodo.23429017 (latest version 10.5281/zenodo.23560975, v2.1.0-rev1), SSRN DOI 10.2139/ssrn.7631458, and Figshare DOI 10.6084/m9.figshare.34697025. The submitted manuscript is a substantially re-framed and expanded v3; none of these preprints is included in the reference list. A Ukrainian patent application (a 2026 06266) covers the sealing method. The manuscript is not under consideration elsewhere. The evaluation harness, corpus manifest and seeds are available for reproducibility.
 
 #v(0.8em)
 Thank you for your consideration.

@@ -11,7 +11,7 @@ author publish under the subscription route **without an APC** (open access rema
 - [x] IEEE two-column manuscript built locally with official IEEEtran (8 pages incl. appendices + references; clean BibTeX).
 - [x] Title/abstract finalised (watermarking-first; abstract trimmed to 249 words, TIFS limit 150–250).
 - [x] Verified bibliography only (`references.bib`, 44 entries); audit passes and local build has no undefined citations/BibTeX warnings.
-- [x] Evaluation lifted: 10 public real-world PDFs (100 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
+- [x] Evaluation lifted: 10 public project-document PDFs (100 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
 - [x] Physical print-scan set: 5 A4 pages (Canon MF3010, 300 dpi scan), 5/5 digital controls valid, 5/5 captures fail-closed.
 - [x] TIFS cover letter prepared (`cover_letter_TIFS.pdf`); owner confirms final details at upload.
 - [x] Author declarations prepared in `IEEE_PORTAL_METADATA.md`: no competing interests; pending UA patent a 2026 06266; preprint DOIs; no concurrent submission; data/code availability. Owner clicks the portal confirmations.
@@ -61,7 +61,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [ ] Owner: upload to IEEE Author Portal, select EDICS, confirm declarations/ORCID, submit. Final formatting polish + counsel review of the technical-seal wording remain.
 
 
-## Readiness audit 2026-10-24 (authoritative; full report: `IEEE_READINESS_AUDIT_2026-10-24.md`)
+## Readiness audit 2026-10-24 (authoritative; full report: `IEEE_READINESS_AUDIT_2026-10-24.md`; preprints: `drafts/tifs/PREPRINT_DISCLOSURE.md`)
 
 **Verdict: scientifically close, formally not yet submitted-ready.**
 
@@ -73,14 +73,14 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - Corpus/manifest and real-world source paths present; print-scan raw/captures present (not committed to git by policy).
 
 ### Formal blockers/owner steps before upload
-1. **EDICS selection** in the portal tree (intended: Watermarking & Data Hiding; Multimedia Forensics; Document/Image Authentication — pick the closest existing nodes).
+1. **EDICS selection** in the portal tree (exact SPS Unified EDICS codes: 820 Watermarking and data hiding (IF-WAT); 847 Multimedia content authentication and plagiarism detection (IF-FOR-AUTH); optional 840 Multimedia forensics (IF-FOR)).
 2. **Portal account/author details**: ORCID 0009-0006-7498-2133 and email are present in the manuscript/metadata; owner must confirm the account email and all author details.
 3. **Margins check**: SPS text says ≥1 in margins; IEEEtran's default journal margins are ~0.68 in. Confirm the portal accepts the template PDF; otherwise rebuild with SPS template margins before upload.
 4. **Legal review** of “technical seal vs company/notary seal” wording by Ukrainian counsel (`LEGAL_REVIEW_CHECKLIST.md`) — publication safety, not IEEE formatting.
 5. **Owner final read** of title/abstract/cover letter; no suggested reviewers invented.
 
 ### Scientific risk (not a formal blocker, but reviewer-facing)
-- 8 pages is inside the 13-page limit but thin for a TIFS regular paper; reviewers may ask for more depth/broader real-world anchors. Expansion to ~10–12 double-column pages is recommended but not required for compliance.
+- 8 pages is inside the 13-page limit but thin for a TIFS regular paper; reviewers may ask for more depth/broader independent anchors. Expansion to ~10–12 double-column pages is recommended but not required for compliance.
 - Deterministic exactness on a synthetic corpus + 10 public documents; no hypothesis tests (explicitly stated). The paper already limits claims to fragile authentication and reports a capacity–distortion frontier, but TIFS reviewers may demand stronger deployment breadth.
 - Baselines are same-carrier re-implementations, not state-of-the-art full systems; acknowledged in threats-to-validity.
 - Single printer/scanner pair; acknowledged as a limitation.
