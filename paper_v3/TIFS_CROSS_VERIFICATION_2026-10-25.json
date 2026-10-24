@@ -340,13 +340,13 @@
       "area": "repo",
       "check": "HEAD recorded",
       "pass": true,
-      "detail": "10b532a"
+      "detail": "594a6ec"
     },
     {
       "area": "repo",
       "check": "no modified tracked package files",
-      "pass": false,
-      "detail": "M paper_v3/tests/controlled_run/CONTROLLED_RUN_REPORT.md\n M paper_v3/tests/controlled_run/coverage.json\n M paper_v3/tests/controlled_run/environment.json\n M paper_v3/tests/controlled_run/results.json\n M paper_v3/tests/controlled_run/test_output.txt\n?? paper_v3/TIFS_CROSS_VERIFICATION_2026-10-25.json"
+      "pass": true,
+      "detail": "?? paper_v3/drafts/declaration_of_interest_DSP.typ\n?? paper_v3/eval/ablation_v0.json"
     },
     {
       "area": "tests",
@@ -368,7 +368,7 @@
     "title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subspace Multiplexing, Universal Vector Emblems (Sri Yantra / Tryzub / CAD), and Optical Screen-Photo ECC for Bijective 2D Vector Graphics Watermarking and PAdES-B-LTA Authentication over GF(2^257) (DSTU 4145-2002)",
     "note": "latest related preprint"
   },
-  "head": "10b532a",
+  "head": "594a6ec",
   "tests": {
     "pytest": true,
     "controlled": true

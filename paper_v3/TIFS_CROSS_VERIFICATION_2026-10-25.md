@@ -1,6 +1,6 @@
 # TIFS cross-verification — RES-MARMA-CRYPTO / TIFS v3
 
-**Date:** 2026-10-25 · **HEAD:** `10b532a` · **PDF:** 10 pages, 243-word abstract
+**Date:** 2026-10-25 · **HEAD:** `594a6ec` · **PDF:** 10 pages, 243-word abstract
 
 **PDF SHA-256:** `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
 **Cover SHA-256:** `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
@@ -65,16 +65,12 @@
 | owner | page-charge budget recorded | PASS |  |
 | zenodo | DOI matches disclosure | PASS | 10.5281/zenodo.23560975 |
 | zenodo | version exposed | PASS | 2.1.0-rev1 |
-| repo | HEAD recorded | PASS | 10b532a |
-| repo | no modified tracked package files | **FAIL** | M paper_v3/tests/controlled_run/CONTROLLED_RUN_REPORT.md
- M paper_v3/tests/controlled_run/coverage.json
- M paper_v3/tests/controlled_run/environment.json
- M paper_v3/tests/controlled_run/results.json
- M paper_v3/tests/controlled_run/test_output.txt
-?? paper_v3/TIFS_CROSS_VERIFICATION_2026-10-25.json |
+| repo | HEAD recorded | PASS | 594a6ec |
+| repo | no modified tracked package files | PASS | ?? paper_v3/drafts/declaration_of_interest_DSP.typ
+?? paper_v3/eval/ablation_v0.json |
 | tests | production pytest | PASS | True |
 | tests | controlled run | PASS | True |
 
 Zenodo check: {"checked": true, "doi": "10.5281/zenodo.23560975", "version": "2.1.0-rev1", "title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subspace Multiplexing, Universal Vector Emblems (Sri Yantra / Tryzub / CAD), and Optical Screen-Photo ECC for Bijective 2D Vector Graphics Watermarking and PAdES-B-LTA Authentication over GF(2^257) (DSTU 4145-2002)", "note": "latest related preprint"}
 
-Summary: **59/60 PASS**.
+Summary: **60/60 PASS**.
