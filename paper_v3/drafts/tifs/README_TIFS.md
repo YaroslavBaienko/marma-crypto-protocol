@@ -14,7 +14,8 @@
 | `../../eval/RESULTS_PDF_BASELINES_V1.md` | PDF-level baselines |
 | `../../eval/RESULTS_BASELINES.md` | slot-level baselines |
 | `../../eval/printscan/` | print-scan kit + **results: 5/5 digital valid, 5/5 physical captures absent (fail-closed)** |
-| `PREPRINT_DISCLOSURE.md` | complete TIFS preprint/prior-venue disclosure (Zenodo/SSRN/Figshare, OSF/IACR status) |
+| `PREPRINT_DISCLOSURE.md` | complete TIFS preprint/prior-venue disclosure (Zenodo/SSRN/Figshare, GitHub author copy, OSF/IACR status) |
+| GitHub `tifs-v3` | public author copy: https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3 |
 | `TIFS_AUTHOR_REQUIREMENTS.md` / `TIFS_REQUIREMENTS_RES-MARMA-CRYPTO.json` | SPS Information for Authors requirements fixed for this article (tenant RES-MARMA-CRYPTO) |
 | `SUBMISSION_MANIFEST_2026-10-24.md` | exact upload files, hashes and do-not-upload internal documents |
 

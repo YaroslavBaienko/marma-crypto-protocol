@@ -28,6 +28,7 @@ versions of that line are listed below for full transparency.
 | Zenodo — version 1 | `10.5281/zenodo.23429018` · https://doi.org/10.5281/zenodo.23429018 | `1.2.0`, 2026-10-17 | initial deposit |
 | SSRN | `10.2139/ssrn.7631458` · https://ssrn.com/abstract=7631458 | v2.0 content, created 2026-10-18, last updated 2026-10-21 | status `DISTRIBUTED` per PUBLICATIONS.md; the SSRN title is the older v1.3.0-era wording; automated HTTP fetch returns 403 (SSRN bot block), owner should confirm the record in a browser |
 | Figshare | `10.6084/m9.figshare.34697025` · https://doi.org/10.6084/m9.figshare.34697025 | v1, 2026-10-19, CC BY 4.0 | public archival mirror |
+| GitHub author copy (identical to this TIFS v3) | https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3 | `tifs-v3`, 2026-10-25 | public author posting of the submitted PDF + source; **not** in the reference list |
 
 All Zenodo DOIs were resolved on 2026-10-24: concept DOI → record 23560975; version 4/3/2/1 records
 return HTTP 200. Figshare DOI redirects to article 34697025. SSRN blocks automated fetching but the
@@ -55,9 +56,10 @@ TIFS distinguishes (a) preprints **identical** to the submitted manuscript — l
 cite them in the reference list — from (b) **other posted preprints**, which are prior work and
 should be cited when relevant.
 
-- **No public preprint is identical to this TIFS v3 manuscript** (different title, scope, length and
-  new experiments). The earlier Zenodo/SSRN editions are therefore related prior work, not the
-  "same manuscript" case.
+- The earlier Zenodo/SSRN editions are **related prior work**, not the "same manuscript" case
+  (different title, scope, length and new experiments). The GitHub `tifs-v3` release is the
+  **identical public author copy** of this submitted manuscript; it is therefore listed here and
+  must **not** be added to the reference list.
 - The manuscript now **cites the latest Zenodo edition** as `baienko2026preprint` and explicitly
   explains the relationship: the TIFS version is a substantially re-framed and expanded version,
   not a duplicate. This satisfies the TIFS rule for non-identical related preprints.
@@ -81,7 +83,7 @@ The manuscript is not concurrently under consideration at any other journal or c
 
 > Preprints of this research line are archived at Zenodo: concept DOI 10.5281/zenodo.23429017
 > (latest version 10.5281/zenodo.23560975, v2.1.0-rev1), SSRN DOI 10.2139/ssrn.7631458, and Figshare
-> DOI 10.6084/m9.figshare.34697025. No posted preprint is identical to the submitted v3 manuscript;
+> DOI 10.6084/m9.figshare.34697025; GitHub author copy `tifs-v3` (https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3). The GitHub copy is identical to the submitted v3 manuscript and is not in the reference list;
 > the earlier editions are related prior work and are cited in the manuscript as
 > Baienko, Zenodo 2026, DOI 10.5281/zenodo.23560975, with the relationship explained. The manuscript
 > is not under consideration elsewhere.
