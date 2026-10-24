@@ -39,7 +39,7 @@ Full table: `TIFS_SOURCE_VERIFICATION_2026-10-25.md` (JSON alongside).
 
 - **33** entries: Crossref metadata matched (title/year, DOI resolved).
 - **7** entries: DOI resolves but Crossref title is abbreviated/normalised differently, or Crossref
-  rate-limited; DOI and year verified (`fips202`, `huert2002` equivalent rendering, `libert2016`,
+  rate-limited; DOI and year verified (`fips202`, `huet2002` equivalent rendering, `libert2016`,
   `mladenov2019`, `richtergebert2011`, `baienko2026preprint` via Zenodo API, plus the NIST DOI entry).
 - **9** entries: standards/books without DOI; manually verified by standard identifier/ISBN/publisher
   (ISO/IEC 32000-2, ETSI EN 319 142-1, ETSI EN 319 122-1, DSTU 4145-2002, DSTU 7564:2014,

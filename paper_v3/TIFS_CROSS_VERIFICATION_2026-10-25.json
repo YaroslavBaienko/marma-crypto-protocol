@@ -340,7 +340,7 @@
       "area": "repo",
       "check": "HEAD recorded",
       "pass": true,
-      "detail": "594a6ec"
+      "detail": "014d87b"
     },
     {
       "area": "repo",
@@ -368,7 +368,7 @@
     "title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subspace Multiplexing, Universal Vector Emblems (Sri Yantra / Tryzub / CAD), and Optical Screen-Photo ECC for Bijective 2D Vector Graphics Watermarking and PAdES-B-LTA Authentication over GF(2^257) (DSTU 4145-2002)",
     "note": "latest related preprint"
   },
-  "head": "594a6ec",
+  "head": "014d87b",
   "tests": {
     "pytest": true,
     "controlled": true
@@ -378,5 +378,5 @@
   "pdf_hash": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
   "cover_hash": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
   "source_hash": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df",
-  "bundle_hash": "41f90634694d63a4385019542885a9b4a284abd92773018b5fd114856938efc3"
+  "bundle_hash": "45409228b14758d78944aad3467456e7992edf30d62c804d39f1f463a4efc1c0"
 }

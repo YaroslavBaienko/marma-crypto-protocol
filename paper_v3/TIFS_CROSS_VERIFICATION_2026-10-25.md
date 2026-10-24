@@ -1,11 +1,11 @@
 # TIFS cross-verification — RES-MARMA-CRYPTO / TIFS v3
 
-**Date:** 2026-10-25 · **HEAD:** `594a6ec` · **PDF:** 10 pages, 243-word abstract
+**Date:** 2026-10-25 · **HEAD:** `014d87b` · **PDF:** 10 pages, 243-word abstract
 
 **PDF SHA-256:** `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
 **Cover SHA-256:** `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
 **Source SHA-256:** `2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df`
-**Bundle SHA-256:** `41f90634694d63a4385019542885a9b4a284abd92773018b5fd114856938efc3`
+**Bundle SHA-256:** `45409228b14758d78944aad3467456e7992edf30d62c804d39f1f463a4efc1c0`
 
 | Area | Check | Result | Detail |
 |---|---|---|---|
@@ -65,7 +65,7 @@
 | owner | page-charge budget recorded | PASS |  |
 | zenodo | DOI matches disclosure | PASS | 10.5281/zenodo.23560975 |
 | zenodo | version exposed | PASS | 2.1.0-rev1 |
-| repo | HEAD recorded | PASS | 594a6ec |
+| repo | HEAD recorded | PASS | 014d87b |
 | repo | no modified tracked package files | PASS | ?? paper_v3/drafts/declaration_of_interest_DSP.typ
 ?? paper_v3/eval/ablation_v0.json |
 | tests | production pytest | PASS | True |
