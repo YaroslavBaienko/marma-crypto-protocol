@@ -12,18 +12,18 @@ Modulation on Vector Geometry*
 
 | File | Size | SHA-256 |
 |---|---:|---|
-| `ieee/main.pdf` — review PDF | 320,639 B | `7669fd8de45114d9d4f65d05fefbdd331412037e6a2f24f761785817babafc04` |
-| `cover_letter_TIFS.pdf` — cover letter | 30,794 B | `fd5f665955c5db28ed58e7ae5e422179f4c5b7e3b76cef5ac3f2e23f0222027c` |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 427,778 B | `9413d65bbff40fb53a00d7a35fb87b2ae7af114949ca67b07fd7a28f46a498cb` |
+| `ieee/main.pdf` — review PDF | 321,346 B | `dc2f5acc46ae2492bac5b7dff3b76a4a89b89bf4a2542a2ddeaa1a48970683b9` |
+| `cover_letter_TIFS.pdf` — cover letter | 30,943 B | `020e71c566be6e966341daab87b8a46eb041f2418b8dce62c43f0857bd3cdd9f` |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 429,040 B | `f74eac344b7870887703a8a4177156a8ef09d3b059934ed7f167b03957662db1` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
 Verify before upload:
 ```bash
 sha256sum -c <<'SUMS'
-aa0c50789d58db94ccdca2133d62df2c9a7f7a35d310797cd968a63c08f0f9ef  ieee/main.pdf
-fd5f665955c5db28ed58e7ae5e422179f4c5b7e3b76cef5ac3f2e23f0222027c  cover_letter_TIFS.pdf
-9f8c2b572037e7f7aa636b48f149bc9bc72b870c8eceac0b4c562d4ac33d3e32  ieee/IEEEtran_TIFS_submission.zip
+dc2f5acc46ae2492bac5b7dff3b76a4a89b89bf4a2542a2ddeaa1a48970683b9  ieee/main.pdf
+020e71c566be6e966341daab87b8a46eb041f2418b8dce62c43f0857bd3cdd9f  cover_letter_TIFS.pdf
+f74eac344b7870887703a8a4177156a8ef09d3b059934ed7f167b03957662db1  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 
@@ -42,7 +42,7 @@ SUMS
 |---|---|
 | Title | Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index Modulation on Vector Geometry |
 | Article Type | Regular Paper |
-| Abstract | 249 words — copy from `IEEE_PORTAL_METADATA.md` §Abstract |
+| Abstract | 243 words — copy from `IEEE_PORTAL_METADATA.md` §Abstract |
 | Index terms | fragile watermarking; quantization index modulation; vector graphics; PDF signatures; document authentication |
 | Author | Yaroslav V. Baienko; independent researcher; Kyiv, Ukraine; ORCID 0009-0006-7498-2133; corresponding |
 | Email | the email registered in the IEEE account (do not use the screenshot placeholder) |
@@ -58,7 +58,7 @@ SUMS
 | Check | Result |
 |---|---|
 | TIFS initial page limit | 8 ≤ 13 double-column pages — PASS |
-| Abstract limit | 249 words (150–250) — PASS |
+| Abstract limit | 243 words (150–250) — PASS |
 | PDF build | official IEEEtran, pdfLaTeX+BibTeX; 0 undefined citations; 0 `??` |
 | Citations/bibliography | 34 cited keys resolve; 44 verified entries; no self-preprint in reference list |
 | ORCID | 0009-0006-7498-2133, checksum valid |

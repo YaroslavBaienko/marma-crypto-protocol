@@ -12,7 +12,7 @@ Fragile Authentication of PDF Signatures via Bit-Exact Quantization Index Modula
 A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer---seals and stamps---is not cryptographically bound to the signed content, so a valid signature can accompany altered or transplanted visual material. We study a fragile-authentication watermarking approach that closes this gap at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 degrees of freedom); the payload uses keyed dithered quantization index modulation over an integer coordinate lattice with an IEEE-754 rounding argument, and a disjoint degree of freedom carries a per-recipient identifier. No external QR/barcode is added. We evaluate 180 PDFs from 60 documents (LibreOffice, Typst and Chromium), in native, flattened and print-scan-simulated variants, plus ten public project documents. On 1,800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and detects every edited payload coordinate; flattening destroys the vector carrier and fails closed. Same-carrier baselines expose a capacity--distortion trade-off. Two implementation facts: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text---32-bit-float drawing APIs destroy the 1.8e-8 pt lattice. A physical print-scan check on five documents fails closed in every case, while their digital controls verify exactly. The method complements, not replaces, PAdES/eIDAS signatures.
 ## Formal checks against TIFS author guidelines (SPS, checked 2026-10-24)
 - Initial Regular Paper limit: **≤13 double-column pages** incl. appendices/references; current PDF: **8 pages** — compliant.
-- Abstract: **150–250 words**; current: **249 words** — compliant.
+- Abstract: **150–250 words**; current: **243 words** — compliant.
 - Layout: IEEEtran journal, two-column, 10 pt; local pdfLaTeX build clean (0 undefined citations).
 - EDICS: choose the closest portal nodes at submission (intended mapping below).
 - ORCID required for every author: 0009-0006-7498-2133 (present).
@@ -45,7 +45,7 @@ fragile watermarking; quantization index modulation; vector graphics; PDF signat
 ## Declarations (short answers)
 - Originality: the manuscript is original, not published, not under consideration elsewhere.
 - Prior submission: desk-rejected at Elsevier *Signal Processing* on scope (SIGPRO-D-26-04464); the Elsevier DSP transfer was withdrawn before submission (mandatory APC declined). No reviewer comments exist.
-- Preprints (all posted versions): Zenodo concept DOI 10.5281/zenodo.23429017 (latest version 10.5281/zenodo.23560975, v2.1.0-rev1; earlier versions 23540160, 23510005, 23436152, 23429018), SSRN 10.2139/ssrn.7631458, Figshare 10.6084/m9.figshare.34697025. None is in the reference list; full disclosure: `PREPRINT_DISCLOSURE.md`. OSF record is pending moderation and is not a posted preprint; IACR ePrint was declined (not posted).
+- Preprints (all posted versions): Zenodo concept DOI 10.5281/zenodo.23429017 (latest version 10.5281/zenodo.23560975, v2.1.0-rev1; earlier versions 23540160, 23510005, 23436152, 23429018), SSRN 10.2139/ssrn.7631458, Figshare 10.6084/m9.figshare.34697025. No posted preprint is identical to the submitted v3; the earlier editions are cited as related prior work (Baienko, Zenodo 2026, DOI 10.5281/zenodo.23560975) with the relationship explained. Full disclosure: `PREPRINT_DISCLOSURE.md`. OSF record is pending moderation and is not a posted preprint; IACR ePrint was declined (not posted).
 - Patent: Ukrainian application a 2026 06266 (pending).
 - Funding: none.
 - Competing interests: none.
@@ -54,7 +54,7 @@ fragile watermarking; quantization index modulation; vector graphics; PDF signat
 - Page charges: IEEE hybrid; subscription publication route without APC. Check TIFS over-length page charges on the current author guidelines before submission.
 
 ## Files to upload
-1. `ieee/main.pdf` — built review PDF (8 pages, 249-word abstract, clean BibTeX).
+1. `ieee/main.pdf` — built review PDF (8 pages, 243-word abstract, clean BibTeX).
 2. `cover_letter_TIFS.pdf`.
 3. (optional) `ieee/IEEEtran_TIFS_submission.zip` — self-contained LaTeX source.
 4. (optional) figures if the portal asks for separate files: `ieee/figures/*.pdf`.

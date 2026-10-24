@@ -13,7 +13,7 @@ If the local TeX tree lacks Times fonts (`ptmr7t.tfm`), install `texlive-fonts-r
 Overleaf; this is a local font issue, not a manuscript issue.
 
 ## Current build result (2026-10-24)
-- `main.pdf`: **8 double-column pages**, abstract **249 words**, clean BibTeX,
+- `main.pdf`: **8 double-column pages**, abstract **243 words**, clean BibTeX,
   0 undefined citations (34 cited keys out of 44 verified entries).
 - TIFS initial Regular Paper limit: 13 pages — compliant.
 - Abstract limit: 150–250 words — compliant.
@@ -21,7 +21,7 @@ Overleaf; this is a local font issue, not a manuscript issue.
 ## Files
 - `main.tex` — manuscript (IEEE journal, two-column).
 - `main.pdf` — locally built review PDF.
-- `references.bib` — verified-only bibliography (44 entries; every cited key resolves).
+- `references.bib` — verified-only bibliography (45 entries; every cited key resolves).
 - `IEEEtran.cls`, `IEEEtran.bst` — official class/bst, bundled for self-contained compilation.
 - `figures/` — the four figures used in the draft.
 - `README.md` — this file.

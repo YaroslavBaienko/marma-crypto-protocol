@@ -28,6 +28,8 @@ This paper asks a watermarking question rather than a cryptographic one: can a f
 
 The contributions of this draft are: (1) a bit-exact fragile payload in vector geometry with an exact rounding bound; (2) a carrier that uses the seal itself, so removing or transplanting the seal breaks verification; (3) a disjoint recipient channel; and (4) an evaluation protocol with same-carrier baselines, three document generators, flattened and print-scan variants, and a carrier ablation. Section 2 positions the work against the watermarking literature, Section 3 states the threat model, Section 4 describes the carrier and the bit-exact embedding, Section 5 reports the PDF-level evaluation, Section 6 gives the attack matrix and the limits of the security argument, and Section 7 discusses threats to validity and reproducibility.
 
+*Prior versions.* Earlier editions of this research line were posted as preprints (@baienko2026preprint). This manuscript is a substantially re-framed and expanded version: it narrows the claim to fragile authentication and adds the PDF-level evaluation, same-carrier baselines, writer precision and physical print-scan; it is not a duplicate of those editions.
+
 = Related Work
 #table(
   columns: 4, align: left,

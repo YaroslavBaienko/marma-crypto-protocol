@@ -1,6 +1,6 @@
 # IEEE TIFS submission plan (primary target after the DSP withdrawal)
 
-**Date:** 2026-10-23 · **Status (2026-10-24):** pre-submission — locally buildable IEEEtran PDF (8 double-column pages, 249-word abstract), evaluation complete, package/bundle rebuilt; no portal submission yet.
+**Date:** 2026-10-23 · **Status (2026-10-24):** pre-submission — locally buildable IEEEtran PDF (8 double-column pages, 243-word abstract), evaluation complete, package/bundle rebuilt; no portal submission yet.
 **Why TIFS:** the best topical fit for fragile watermarking/forensics; IEEE hybrid model lets the
 author publish under the subscription route **without an APC** (open access remains optional).
 **Portal:** IEEE Author Portal — https://ieee.atyponrex.com/journal/tifs-ieee (old ScholarOne link is obsolete)
@@ -9,8 +9,8 @@ author publish under the subscription route **without an APC** (open access rema
 ## Gate before submission
 
 - [x] IEEE two-column manuscript built locally with official IEEEtran (8 pages incl. appendices + references; clean BibTeX).
-- [x] Title/abstract finalised (watermarking-first; abstract trimmed to 249 words, TIFS limit 150–250).
-- [x] Verified bibliography only (`references.bib`, 44 entries); audit passes and local build has no undefined citations/BibTeX warnings.
+- [x] Title/abstract finalised (watermarking-first; abstract trimmed to 243 words, TIFS limit 150–250).
+- [x] Verified bibliography only (`references.bib`, 45 entries); audit passes and local build has no undefined citations/BibTeX warnings.
 - [x] Evaluation lifted: 10 public project-document PDFs (100 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
 - [x] Physical print-scan set: 5 A4 pages (Canon MF3010, 300 dpi scan), 5/5 digital controls valid, 5/5 captures fail-closed.
 - [x] TIFS cover letter prepared (`cover_letter_TIFS.pdf`); owner confirms final details at upload.
@@ -66,8 +66,8 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 **Verdict: scientifically close, formally not yet submitted-ready.**
 
 ### Verified
-- IEEEtran PDF: **8 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 34 cited keys from 44 verified entries; `main.pdf` built with official IEEEtran class.
-- TIFS formal checks: initial Regular Paper **≤13 pages** (8 ok); abstract **249 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
+- IEEEtran PDF: **8 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 35 cited keys from 45 verified entries; `main.pdf` built with official IEEEtran class.
+- TIFS formal checks: initial Regular Paper **≤13 pages** (8 ok); abstract **243 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
 - Evaluation reproducible locally: 60 documents × 3 generators × 3 variants = 180 PDFs (manifest hashes PASS); 1,800 main + 360 variant + 720 ablation samples; 100 real-world samples; 600 PDF-level baseline samples; 5/5 physical fail-closed.
 - Controlled run: PASS (43 tests, seal-path branch coverage 85.0%, 12-sample matrix stable, P2 gate PASS).
 - Corpus/manifest and real-world source paths present; print-scan raw/captures present (not committed to git by policy).

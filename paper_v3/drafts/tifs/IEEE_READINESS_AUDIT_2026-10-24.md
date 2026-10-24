@@ -63,13 +63,13 @@ metadata include it.
 |---|---|
 | Build | official IEEEtran class + BibTeX; pdfLaTeX clean |
 | Pages | **8** double-column pages (TIFS initial Regular Paper limit: **13**) |
-| Abstract | **249 words** extracted from the built PDF (TIFS limit 150–250) |
+| Abstract | **243 words** extracted from the built PDF (TIFS limit 150–250) |
 | Citations | 34 cited keys, all resolve; 44 verified entries in `references.bib` (2015 IEEEtran.bst) |
 | Figures/tables | 4 figures, 7 tables; all `\ref`/`\label` resolve; no `??` in text |
 | Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
 | Index terms | present (5) |
-| Artifacts | `ieee/main.pdf` (8 pp, 320,639 B, SHA-256 `7669fd8d…`), `IEEEtran_TIFS_submission.zip` (427,778 B, SHA-256 `9413d65b…`), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
+| Artifacts | `ieee/main.pdf` (8 pp, 321,346 B, SHA-256 `7669fd8d…`), `IEEEtran_TIFS_submission.zip` (427,778 B, SHA-256 `9413d65b…`), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
 | Source draft | `Manuscript_TIFS_content_v1.pdf` (13-page single-column editing version) |
 
 **Formatting caveat:** SPS author instructions ask for margins ≥1 inch, while IEEEtran's journal
@@ -117,7 +117,7 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
 2. Select EDICS in the portal (closest existing nodes).
 3. Legal read of the technical-seal wording (`LEGAL_REVIEW_CHECKLIST.md`).
 4. Check the portal’s margin/format acceptance; if it flags margins, rebuild with SPS margins.
-5. Final owner read of title, 249-word abstract, cover letter, declarations.
+5. Final owner read of title, 243-word abstract, cover letter, declarations.
 
 ## 7. Should-do (recommended, not strictly required)
 
@@ -132,7 +132,7 @@ should confirm the portal accepts it; if not, rebuild with SPS template margins 
 
 ## 8. Bottom line
 
-- The **formal TIFS package is ready**: 8 pages ≤13, abstract 249 ≤250, clean IEEEtran/BibTeX build,
+- The **formal TIFS package is ready**: 8 pages ≤13, abstract 243 ≤250, clean IEEEtran/BibTeX build,
   valid ORCID, verified references, complete evaluation artifacts.
 - The **submission is not yet owner-ready** because EDICS/portal/email/legal/margin actions are
   pending.

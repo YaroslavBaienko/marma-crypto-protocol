@@ -49,14 +49,21 @@ record is reported as DISTRIBUTED in `PUBLICATIONS.md`; verify it in a browser b
   v1.3.0-era tree, not the v2.2.0 release.
 - **UA patent application `a 2026 06266`** — patent filing, not a preprint; disclosed separately.
 
-## 4. Reference-list policy check
+## 4. Reference-list policy check (TIFS two-track rule)
 
-- `drafts/tifs/ieee/references.bib` contains **no** author self-citation/preprint entries and no
-  Zenodo/SSRN/Figshare records (verified by search).
-- The manuscript mentions the Zenodo concept DOI only in the author footnote and in the
-  reproducibility paragraph as a disclosure; it is **not** a `\cite`/bibitem and therefore does not
-  violate the TIFS preprint rule.
-- The cover letter and portal declaration list the preprints separately.
+TIFS distinguishes (a) preprints **identical** to the submitted manuscript — list them but do not
+cite them in the reference list — from (b) **other posted preprints**, which are prior work and
+should be cited when relevant.
+
+- **No public preprint is identical to this TIFS v3 manuscript** (different title, scope, length and
+  new experiments). The earlier Zenodo/SSRN editions are therefore related prior work, not the
+  "same manuscript" case.
+- The manuscript now **cites the latest Zenodo edition** as `baienko2026preprint` and explicitly
+  explains the relationship: the TIFS version is a substantially re-framed and expanded version,
+  not a duplicate. This satisfies the TIFS rule for non-identical related preprints.
+- The Zenodo concept DOI also remains in the author footnote/reproducibility disclosure; the
+  cover letter and portal declaration list all preprints separately.
+- BibTeX count: 45 entries, 35 cited keys; no unresolved citations.
 
 ## 5. Prior-venue status (no concurrent submission)
 
@@ -74,6 +81,7 @@ The manuscript is not concurrently under consideration at any other journal or c
 
 > Preprints of this research line are archived at Zenodo: concept DOI 10.5281/zenodo.23429017
 > (latest version 10.5281/zenodo.23560975, v2.1.0-rev1), SSRN DOI 10.2139/ssrn.7631458, and Figshare
-> DOI 10.6084/m9.figshare.34697025. The submitted manuscript is a substantially re-framed and expanded
-> v3; none of these preprints is included in the manuscript's reference list. The manuscript is not
-> under consideration elsewhere.
+> DOI 10.6084/m9.figshare.34697025. No posted preprint is identical to the submitted v3 manuscript;
+> the earlier editions are related prior work and are cited in the manuscript as
+> Baienko, Zenodo 2026, DOI 10.5281/zenodo.23560975, with the relationship explained. The manuscript
+> is not under consideration elsewhere.
