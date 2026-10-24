@@ -174,9 +174,9 @@
     "Page-charge budget; accepted/typeset >10 pages incurs $220/page",
     "Scientific decision: add independent public PDFs / expand length for acceptance strength"
   ],
-  "real_anchor_documents": 15,
-  "real_anchor_samples": 150,
-  "independent_anchor_documents": 5,
+  "real_anchor_documents": 20,
+  "real_anchor_samples": 200,
+  "independent_anchor_documents": 10,
   "abstract_words_current": 243,
   "sps_margin_alternative": "ieee/main_sps_margins.pdf (9 pp)",
   "preprint_status": "related prior preprint cited as baienko2026preprint; no identical preprint",

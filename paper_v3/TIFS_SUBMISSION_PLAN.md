@@ -11,7 +11,7 @@ author publish under the subscription route **without an APC** (open access rema
 - [x] IEEE two-column manuscript built locally with official IEEEtran (10 pages incl. appendices + references; clean BibTeX).
 - [x] Title/abstract finalised (watermarking-first; abstract trimmed to 243 words, TIFS limit 150–250).
 - [x] Verified bibliography only (`references.bib`, 45 entries); audit passes and local build has no undefined citations/BibTeX warnings.
-- [x] Evaluation lifted: 10 project PDFs + 5 independent NIST PDFs (150 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
+- [x] Evaluation lifted: 10 project PDFs + 10 independent public PDFs (200 samples) + PDF-level baselines (STDM, Fourier, LSB, 600 samples).
 - [x] Physical print-scan set: 5 A4 pages (Canon MF3010, 300 dpi scan), 5/5 digital controls valid, 5/5 captures fail-closed.
 - [x] TIFS cover letter prepared (`cover_letter_TIFS.pdf`); owner confirms final details at upload.
 - [x] Author declarations prepared in `IEEE_PORTAL_METADATA.md`: no competing interests; pending UA patent a 2026 06266; preprint DOIs; no concurrent submission; data/code availability. Owner clicks the portal confirmations.
@@ -36,7 +36,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 ## Status 2026-10-23
 
 - [x] Content draft expanded to 12 pages (single-column editing version).
-- [x] Real-world anchors: 10 project PDFs + 5 independent NIST PDFs, 150 samples, results match the synthetic corpus.
+- [x] Real-world anchors: 10 project PDFs + 10 independent public PDFs, 200 samples, results match the synthetic corpus.
 - [x] PDF-level baselines: STDM-DCT, Fourier, LSB (600 samples).
 - [x] Precision study: 9/8 decimals exact, 7/6 fail; writer-precision table.
 - [x] IEEEtran/Overleaf package: `drafts/tifs/ieee/IEEEtran_TIFS_submission.zip`
@@ -67,8 +67,8 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 
 ### Verified
 - IEEEtran PDF: **10 pages**, two-column, 10 pt, clean BibTeX, 0 undefined citations, 36 cited keys from 49 verified entries; `main.pdf` built with official IEEEtran class.
-- TIFS formal checks: initial Regular Paper **≤13 pages** (8 ok); abstract **243 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
-- Evaluation reproducible locally: 60 documents × 3 generators × 3 variants = 180 PDFs (manifest hashes PASS); 1,800 main + 360 variant + 720 ablation samples; 150 real-world samples (10 project + 5 independent); 600 PDF-level baseline samples; 5/5 physical fail-closed.
+- TIFS formal checks: initial Regular Paper **≤13 pages** (10 ok); abstract **243 words** (150–250 ok); ORCID present; keywords present; preprint relation/patent/funding/competing-interest statements present.
+- Evaluation reproducible locally: 60 documents × 3 generators × 3 variants = 180 PDFs (manifest hashes PASS); 1,800 main + 360 variant + 720 ablation samples; 200 public/independent samples (10 project + 10 independent public); 600 PDF-level baseline samples; 5/5 physical fail-closed.
 - Controlled run: PASS (43 tests, seal-path branch coverage 85.0%, 12-sample matrix stable, P2 gate PASS).
 - Corpus/manifest and real-world source paths present; print-scan raw/captures present (not committed to git by policy).
 

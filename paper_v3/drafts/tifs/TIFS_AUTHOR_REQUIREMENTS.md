@@ -127,7 +127,7 @@ For this article:
 | T02 | Single-anonymized review, ≥2 reviewers | Policy noted; no action | N/A |
 | T03 | No concurrent/previously published | No active other submission; prior venues disclosed | READY |
 | T04 | Clear problem/contribution/significance/novelty | Introduction + abstract; narrow claim | READY, reviewer risk |
-| T05 | Sufficient experimental data | 180 corpus PDFs (hashes PASS), 1,800 main + 360 variant + 720 ablation, 150 anchors (10 project + 5 independent NIST), 600 baselines, 5/5 physical | READY, reduced external-validity risk (5 independent NIST anchors) |
+| T05 | Sufficient experimental data | 180 corpus PDFs (hashes PASS), 1,800 main + 360 variant + 720 ablation, 200 anchors (10 project + 10 independent public), 600 baselines, 5/5 physical | READY, reduced external-validity risk (10 independent public anchors) |
 | T06 | Proper English / no typo flood | IEEEtran build clean; owner final proofread | PARTIAL (owner) |
 | T07 | Sufficient citations/related work | 49 verified entries, 36 cited keys; no missing citations | READY |
 | T08 | ORCID + accurate author info | ORCID valid; email/profile owner | PARTIAL (owner) |

@@ -100,5 +100,35 @@
   "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf",
   "bytes": 310627,
   "sha256": "942a4f929dfbd2b4af2e4e03df7f6e6377054346afd9bee346ed0ebac5db384b"
+ },
+ {
+  "name": "irs_f1040.pdf",
+  "source": "https://www.irs.gov/pub/irs-pdf/f1040.pdf",
+  "bytes": 220237,
+  "sha256": "3d31c226df0d189ced80e039d01cf0f8820c1019681a0f0ca6264de277b7e982"
+ },
+ {
+  "name": "irs_fw2.pdf",
+  "source": "https://www.irs.gov/pub/irs-pdf/fw2.pdf",
+  "bytes": 2150352,
+  "sha256": "61eca7c81f16d3965819fe1f31be4fe68c1b2887a81f51172f1d2ed2b2b9f087"
+ },
+ {
+  "name": "irs_f941.pdf",
+  "source": "https://www.irs.gov/pub/irs-pdf/f941.pdf",
+  "bytes": 841648,
+  "sha256": "38a3d8cf7a455101d52543c8c48e66202bc25c189ead878627e35c797c88e2ad"
+ },
+ {
+  "name": "irs_f1120.pdf",
+  "source": "https://www.irs.gov/pub/irs-pdf/f1120.pdf",
+  "bytes": 340034,
+  "sha256": "016c7fb4042a565c23a98014b17019af7ddc89e3260dd3f926b84d6688b7be6e"
+ },
+ {
+  "name": "irs_f1099.pdf",
+  "source": "https://www.irs.gov/pub/irs-pdf/f1099msc.pdf",
+  "bytes": 561788,
+  "sha256": "38051fe1cdce8fac5183a7e7b182b1a0de590dcfec3e4f66a156eba3f98943fa"
  }
 ]

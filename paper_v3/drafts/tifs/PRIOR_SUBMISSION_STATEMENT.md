@@ -29,7 +29,7 @@ desk/scope decision or a withdrawal, not peer review.
 The TIFS v3 manuscript is substantially re-framed and rewritten for the watermarking/forensics
 readership. It adds:
 - a PDF-level evaluation: 1,800 main samples, 360 flattened/print-scan variants, 720 ablation samples;
-- 150 public/independent document anchors (10 project + 5 independent NIST standards);
+- 200 public/independent document anchors (10 project + 10 independent public documents: five NIST standards and five public IRS forms);
 - same-carrier STDM/Fourier/LSB baselines at slot and PDF level (600 samples);
 - writer-precision study (8/7 decimals), exactness argument and failure-mode analysis;
 - a physical print-scan check (5/5 fail-closed) and a controlled 43-test verification run;
