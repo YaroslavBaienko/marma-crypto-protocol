@@ -1,6 +1,6 @@
 # Nautilus scenarios — headless end-to-end run
 
-Generated: 2026-10-24 20:11 · contact sheet: `contact_sheet.png`
+Generated: 2026-10-24 20:41 · contact sheet: `contact_sheet.png`
 
 Environment: Nautilus selection simulated with **URIs only** (the regression case) or paths;
 `MARMA_HEADLESS=1`; real `marma-watermark` from `~/.local/bin`; fake `zenity` logs any chooser call.
@@ -10,6 +10,7 @@ Environment: Nautilus selection simulated with **URIs only** (the regression cas
 | 1_stamp_both_uris | uris | 0 | True | False | 0 | runs/1_stamp_both_uris/screenshot.png |
 | 1b_watermark_paths | paths | 0 | True | False | 0 | runs/1b_watermark_paths/screenshot.png |
 | 1c_seal_uris | uris | 0 | True | False | 0 | runs/1c_seal_uris/screenshot.png |
+| 1c_seal_all_pages | uris | 0 | True | False | 0 | runs/1c_seal_all_pages/screenshot.png |
 | 1_stamp_both_docx | uris | 0 | True | False | 0 | runs/1_stamp_both_docx/screenshot.png |
 | 1d_seal_v2 | none | 0 | True | False | 0 | runs/1d_seal_v2/screenshot.png |
 | 2_sign_svg | none | 0 | True | False | 0 | runs/2_sign_svg/screenshot.png |

@@ -44,6 +44,6 @@ test_kat_values (__main__.TestWordMap.test_kat_values) ... ok
 test_trunc8_exact_trunc7_breaks (__main__.TestWordMap.test_trunc8_exact_trunc7_breaks) ... ok
 
 ----------------------------------------------------------------------
-Ran 43 tests in 5.341s
+Ran 43 tests in 5.099s
 
 OK

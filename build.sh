@@ -24,7 +24,7 @@ BIN_DIR="${SCRIPT_DIR}/bin"
 NAUTILUS_SRC="${SCRIPT_DIR}/nautilus-scripts"
 
 PKG_NAME="marma-crypto-watermark"
-PKG_VERSION="2.2.0-3"
+PKG_VERSION="2.2.0-4"
 PKG_ARCH="all"
 PKG_MAINTAINER="Yaroslav Baienko <yaroslav@advocacy.uno>"
 
@@ -106,7 +106,7 @@ _marma_watermark_completions() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --profile --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
+    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --profile --seal-pages --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
     if [[ ${cur} == -* ]] || [[ ${COMP_CWORD} -eq 1 ]]; then
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0

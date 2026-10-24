@@ -1,6 +1,6 @@
 # Controlled cross-verified run — Marma PDF seal
 
-**Verdict: PASS** · 2026-10-24T20:11:22.152569+03:00 · git `aac493a989dc`
+**Verdict: PASS** · 2026-10-24T20:43:30.830102+03:00 · git `8a5dd9f6d753`
 
 ## Scope
 This run covers the *paper profile* P1 (current geometric stamp, no cryptography changes) and the *product prototype* P2 (42 mm round branded technical stamp with decorative rings, profile-fixed in the verifier). The payload lattice, word map and key schedule are unchanged.

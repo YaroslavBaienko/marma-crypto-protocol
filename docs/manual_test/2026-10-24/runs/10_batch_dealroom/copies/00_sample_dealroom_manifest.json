@@ -6,22 +6,22 @@
   "emblem_type": "tryzub",
   "optical_ring": true,
   "content_sha256": "ef68807a7be8a3f100a742fce6c9a1d041d41eec1f3bd9858931a8a5594e4b07",
-  "hmac_sha256": "561f65aca94e243b1a9f1b3064caa53886e78eae32e8d3003f01d464676e96f4",
-  "key_fingerprint": "560446a25b3db87d208f65d90c73636ac2aa7339a33b4b40ecddabb053900e4e",
+  "hmac_sha256": "a3789e2273972ed1dbb1bd8a66bb955603940e5c6e7101810dbe4aaed87565ae",
+  "key_fingerprint": "d4db3320644d95602239465135f4c0e03302174e6dcd093aa15d22bd2403d5a7",
   "recipient_count": 2,
-  "elapsed_ms": 185.15,
+  "elapsed_ms": 197.27,
   "copies": [
     {
       "recipient_id": "Alpha",
       "output_file": "/home/attor/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/docs/manual_test/2026-10-24/runs/10_batch_dealroom/copies/00_sample__copy_01_Alpha.pdf",
-      "canary_beacon_word": 454,
-      "public_canary_hash": "f588d00b1e6ebf95933594c9a175b72c70a28c450d55b92bbb834aaff7cf2ac5"
+      "canary_beacon_word": 204,
+      "public_canary_hash": "0cc8d112a359e5779d7d5171410450f3936cbc01b95bd338a9dee592166da2b5"
     },
     {
       "recipient_id": "Beta",
       "output_file": "/home/attor/002_AI/PROJECTS/EDU-VEDI/marma-crypto-protocol/docs/manual_test/2026-10-24/runs/10_batch_dealroom/copies/00_sample__copy_02_Beta.pdf",
-      "canary_beacon_word": 337,
-      "public_canary_hash": "c51fc5964057d926e2ab3107b4e8a1ab0777bdf83dd547c780a3fc0bc7162934"
+      "canary_beacon_word": 407,
+      "public_canary_hash": "617e0a103f0ef1f71d3ef42a93253ccdd8f12485e0973ca677ec8b857fb8704a"
     }
   ]
 }

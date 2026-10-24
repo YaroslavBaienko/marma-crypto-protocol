@@ -48,6 +48,24 @@
   "extra_env": {}
  },
  {
+  "name": "1c_seal_all_pages",
+  "script": "1c_stamp_seal.sh",
+  "selection": "uris",
+  "exit": 0,
+  "outputs": [
+   "runs/1c_seal_all_pages/00_sample_marma_signed.pdf"
+  ],
+  "verified": true,
+  "verify_reason": "OK",
+  "visible_caption": false,
+  "zenity_calls": [],
+  "screenshot": "runs/1c_seal_all_pages/screenshot.png",
+  "stderr_tail": "",
+  "extra_env": {
+   "MARMA_SEAL_PAGES": "all"
+  }
+ },
+ {
   "name": "1_stamp_both_docx",
   "script": "1_stamp_both.sh",
   "selection": "uris",

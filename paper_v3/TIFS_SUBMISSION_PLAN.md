@@ -56,6 +56,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [x] Seal-only visual contract: removed human-visible captions under the seal in PDF/DOCX/universal-API signing; cryptographic metadata retained; 45/45 production tests incl. `tests/test_seal_visual_contract.py`; package RC `2.2.0-2` rebuilt and package-tested. Manual Nautilus re-check remains owner-side.
 - [x] Nautilus selection bug fixed (URIs/paths/split-view resolver; 0 fallback chooser calls in the 15-scenario headless matrix); error dialogs and `MARMA_HEADLESS` added; production Suite 51/51; package RC `2.2.0-3` built/package-tested.
 - [ ] Owner: real mouse click-through in Nautilus after installing the RC (Wayland input automation unavailable to this agent).
+- [x] Seal placement policy: `--seal-pages last|first|first-last|all` (default last), verified visible-seal presence on declared pages (PDF/universal/DOCX; SVG metadata); 65/65 production tests; package RC `2.2.0-4` built/package-tested; policy comparison + screenshots in `docs/visual_contract/` and `docs/manual_test/`.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

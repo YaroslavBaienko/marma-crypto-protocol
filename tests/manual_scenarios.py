@@ -69,7 +69,10 @@ def verify(path: Path, cwd: Path, env) -> dict:
 def render(src: Path, dst: Path):
     suf = src.suffix.lower()
     if suf == ".pdf":
-        doc = fitz.open(str(src)); pix = doc[0].get_pixmap(dpi=100); pix.save(str(dst)); doc.close(); return True
+        doc = fitz.open(str(src))
+        # default policy is 'last': render the seal-bearing page (fall back to page 1)
+        idx = len(doc) - 1 if len(doc) else 0
+        pix = doc[idx].get_pixmap(dpi=100); pix.save(str(dst)); doc.close(); return True
     if suf == ".svg":
         r = subprocess.run(["rsvg-convert", "-w", "700", str(src), "-o", str(dst)], capture_output=True)
         return r.returncode == 0
@@ -77,7 +80,7 @@ def render(src: Path, dst: Path):
         subprocess.run(["soffice", "--headless", "--convert-to", "pdf", "--outdir", str(dst.parent), str(src)], capture_output=True, timeout=120)
         pdf = dst.parent / (src.stem + ".pdf")
         if pdf.exists():
-            doc = fitz.open(str(pdf)); pix = doc[0].get_pixmap(dpi=100); pix.save(str(dst)); doc.close(); return True
+            doc = fitz.open(str(pdf)); pix = doc[len(doc)-1].get_pixmap(dpi=100); pix.save(str(dst)); doc.close(); return True
     return False
 
 def run_scenario(name, script, selection_kind, src_name, extra_env=None):
@@ -149,6 +152,7 @@ def main():
     rows.append(run_scenario("1_stamp_both_uris", "1_stamp_both.sh", "uris", "pdf"))
     rows.append(run_scenario("1b_watermark_paths", "1b_stamp_watermark.sh", "paths", "pdf"))
     rows.append(run_scenario("1c_seal_uris", "1c_stamp_seal.sh", "uris", "pdf"))
+    rows.append(run_scenario("1c_seal_all_pages", "1c_stamp_seal.sh", "uris", "pdf", {"MARMA_SEAL_PAGES": "all"}))
     rows.append(run_scenario("1_stamp_both_docx", "1_stamp_both.sh", "uris", "docx"))
     rows.append(run_scenario("1d_seal_v2", "1d_sign_seal_v2.sh", "none", "pdf"))
     rows.append(run_scenario("2_sign_svg", "2_sign_svg.sh", "none", "pdf"))

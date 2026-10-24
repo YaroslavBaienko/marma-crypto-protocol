@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import os
 import re
 import threading
 import time
@@ -32,10 +33,14 @@ import pymupdf
 
 from marma_watermark import (
     DEFAULT_SECRET,
+    SEAL_PAGES_DEFAULT,
     compute_canary_tag,
     compute_public_seal_digest,
     derive_micro_offsets,
     normalize_text,
+    pdf_visible_seal_check,
+    resolve_seal_pages,
+    seal_pages_label,
     trace_canary_suspects,
     verify_any_file,
 )
@@ -64,6 +69,7 @@ def stamp_pdf_universal_v21(
     signer_key_name: str = "Sovereign-Vedic-Key-108",
     key_fingerprint: str = "",
     precomputed_crypto: dict[str, Any] | None = None,
+    seal_pages: str | None = None,
 ) -> dict[str, Any]:
     """
     Stamp a PDF with any supported vector emblem (`sri-yantra`, `tryzub`,
@@ -75,6 +81,12 @@ def stamp_pdf_universal_v21(
         key_fingerprint = hashlib.sha256(secret_key.encode("utf-8")).hexdigest()
 
     doc = pymupdf.open(str(in_pdf))
+    if mode == "watermark":
+        seal_spec = "none"; seal_page_list = []
+    else:
+        seal_spec = (seal_pages or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
+        seal_page_list = resolve_seal_pages(seal_spec, len(doc))
+        seal_spec = seal_pages_label(seal_page_list, len(doc)) if seal_page_list else seal_spec
     if precomputed_crypto:
         content_hash = precomputed_crypto["content_hash"]
         hex_sig = precomputed_crypto["hex_sig"]
@@ -121,7 +133,7 @@ def stamp_pdf_universal_v21(
             shape_bg.commit(overlay=True)
 
         # B. Corner Golden Authorship Seal (+ Optional 32-Sector Optical Lotus Ring)
-        if mode in ("seal", "both") and (page_idx == 0 or page_idx == len(doc) - 1):
+        if mode in ("seal", "both") and page_idx in seal_page_list:
             seal_r = 42.0 if optical_ring else 34.0
             cx_s = w - 64.0
             cy_s = h - 64.0
@@ -176,6 +188,8 @@ def stamp_pdf_universal_v21(
         "timestamp_utc": datetime.now(timezone.utc).isoformat(),
         "dstu4145": dstu_bundle,
         "canary": canary_info if canary_info.get("enabled") else {"enabled": False, "beacon_word": 0},
+        "seal_pages": seal_spec,
+        "seal_page_indices": seal_page_list,
         "triangles": [{k: t[k] for k in ("name", "lx", "by", "ay", "rx")} for t in perturbed],
     }
     meta = doc.metadata or {}
@@ -240,7 +254,13 @@ def verify_pdf_universal_v21(
     )
     content_ok = content_hash == embedded_csha
     bijective_ok = (rec_hex == embedded_hmac) and (rec_canary == embedded_canary)
-    verified = content_ok and bijective_ok and (max_drift < 1e-8) and (max_sym < 1e-8)
+    visible = {"ok": None, "seal_pages": pkt.get("seal_pages"), "missing_pages": []}
+    if pkt.get("seal_pages") and pkt.get("seal_pages") not in ("none", "watermark"):
+        try:
+            visible = pdf_visible_seal_check(pdf_path, pkt["seal_pages"])
+        except ValueError as exc:
+            visible = {"ok": False, "seal_pages": pkt.get("seal_pages"), "missing_pages": [], "error": str(exc)}
+    verified = content_ok and bijective_ok and (max_drift < 1e-8) and (max_sym < 1e-8) and visible.get("ok") is not False
 
     canary_match = None
     if recipient_id:
@@ -249,7 +269,9 @@ def verify_pdf_universal_v21(
 
     return {
         "verified": verified,
-        "reason": "OK" if verified else "Integrity or coordinate mismatch",
+        "reason": "OK" if verified else (
+            f"Visible seal missing on page(s) {visible.get('missing_pages')}" if visible.get("ok") is False
+            else "Integrity or coordinate mismatch"),
         "format": "pdf",
         "protocol": pkt.get("protocol", "MARMA-DSTU4145-V1.3"),
         "emblem_type": emblem_type,
@@ -266,6 +288,9 @@ def verify_pdf_universal_v21(
         "canary_recipient_verified": canary_match,
         "max_coordinate_signature_drift": round(max_drift, 10),
         "max_bilateral_symmetry_error": round(max_sym, 12),
+        "seal_pages": visible.get("seal_pages"),
+        "visible_seal_ok": visible.get("ok"),
+        "visible_seal_missing_pages": visible.get("missing_pages", []),
     }
 
 
@@ -281,6 +306,7 @@ def batch_seal_dealroom(
     optical_ring: bool = True,
     mode: str = "both",
     signer_key_name: str = "Sovereign-Vedic-Key-108",
+    seal_pages: str | None = None,
 ) -> dict[str, Any]:
     """
     Generate $N$ individualized recipient-watermarked copies of `in_pdf` in `out_dir`.
@@ -320,6 +346,7 @@ def batch_seal_dealroom(
             signer_key_name=signer_key_name,
             key_fingerprint=key_fingerprint,
             precomputed_crypto=precomputed,
+            seal_pages=seal_pages,
         )
         copies.append(
             {
