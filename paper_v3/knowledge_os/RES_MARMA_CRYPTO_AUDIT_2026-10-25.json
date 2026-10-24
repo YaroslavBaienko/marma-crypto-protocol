@@ -1,0 +1,33 @@
+{
+  "tenant": "RES-MARMA-CRYPTO",
+  "prefix": "MARMA",
+  "tier": "PUBLIC",
+  "audited_at": "2026-10-25T02:35:00+03:00",
+  "verdict": "INCONSISTENT",
+  "mode": "read-only audit + ingest dry-run; no HOT writes",
+  "stats": {
+    "local": 49,
+    "hot": 54,
+    "local_minus_hot": 0,
+    "hot_minus_local": 5,
+    "vectors": 692,
+    "tiers": {"PUBLIC": 692},
+    "agents": {"antigravity": 687, "claude_code": 5},
+    "models": {"deepinfra-bge-m3": 684, "BAAI/bge-m3": 3, "bge-m3": 5},
+    "dims": {}
+  },
+  "findings": [
+    "5 HOT rows with no local key: MARMA-PUBLICATIONS-REGISTRY, MARMA-SVG-CAdES-v1.2.1, MARMA-TESTS-v1.2.1, MARMA-WP-EN-v1.2.1, MARMA-WP-UA-v1.2.1",
+    "Art.23 MAC5 writer_agent set ['antigravity','claude_code'] != ['antigravity']",
+    "mixed embedding models: deepinfra-bge-m3, BAAI/bge-m3, bge-m3"
+  ],
+  "ingest_dry_run": {"candidates": 0, "accepted": 0, "quarantined": 0, "skipped": 0, "registered": 0, "empty": true},
+  "no_writes": true,
+  "blocked_by": "tenant writer stamp is antigravity; dsh must not forge it",
+  "recommended": [
+    "owner decides writer stamp and updates spec if ownership changes",
+    "reconcile five HOT-only rows",
+    "re-embed with one model and rerun audit",
+    "ingest public sanitised v3/site docs only after dry-run"
+  ]
+}
