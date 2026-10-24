@@ -71,7 +71,6 @@
   },
   "post_submission_actions": [
     "recorded Manuscript ID T-IFS-29736-2026",
-    "verify submitted cover letter version in My Submissions; contact editorial office if 30.3 KB old cover was submitted",
     "do not submit elsewhere while under review",
     "log first decision"
   ],
@@ -90,5 +89,8 @@
     "reply_to": "r.sohail@ieee.org",
     "transcription": "paper_v3/drafts/tifs/MANUSCRIPT_ID_EMAIL_2026-10-25.md",
     "screenshot_sha256": "d7f842784608aadd583cf830c9d93aad286e8aa15757790b6bc7bb04451d5eae"
-  }
+  },
+  "cover_letter_verified": true,
+  "cover_letter_verified_by": "owner",
+  "cover_letter_verified_at": "2026-10-25"
 }

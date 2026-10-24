@@ -37,5 +37,8 @@
   "acknowledgement_email_received_at": "2026-10-25T02:03:00+03:00",
   "manuscript_id_status": "assigned",
   "acknowledgement_email_record": "paper_v3/drafts/tifs/SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md",
-  "manuscript_id_email_record": "paper_v3/drafts/tifs/MANUSCRIPT_ID_EMAIL_2026-10-25.md"
+  "manuscript_id_email_record": "paper_v3/drafts/tifs/MANUSCRIPT_ID_EMAIL_2026-10-25.md",
+  "cover_letter_verified": true,
+  "cover_letter_verified_by": "owner",
+  "cover_letter_verified_at": "2026-10-25"
 }

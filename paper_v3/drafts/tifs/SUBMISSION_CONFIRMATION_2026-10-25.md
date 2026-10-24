@@ -52,13 +52,14 @@ prior-submission statement (pp. 39–40). Cover letter is not shown to reviewers
 - COI: **None**
 - Opposed reviewers: **none**
 
+## Cover letter verification
+
+- **Verified by owner on 2026-10-25:** the cover letter submitted in the portal is the correct corrected version (36.8 KB, SHA-256 `f97624c33028d7c5c907f91c6637f3323301cd560daeb800759457e09619252b`).
+
 ## Post-submission control
 
 - [x] Record the **Manuscript ID** `T-IFS-29736-2026` from the SPS follow-up email / My Submissions.
-- [ ] Check **My Submissions → submitted files**. In the Final Review screenshot before submission the portal listed
-      `cover_letter_TIFS.pdf` as **30.3 KB**, i.e. the pre-fix cover letter. The final corrected cover on disk is
-      **37.6 KB** (`f97624c3…`). If the submitted cover was the old 30.3 KB version, notify the TIFS editorial office
-      and attach the corrected cover; do not silently ignore the mismatch.
+- [x] Owner confirmed the submitted cover letter is the **corrected 36.8 KB** version (`f97624c3…`), not the old 30.3 KB build. No editorial-office correction is needed.
 - [ ] Confirm the submitted `main.pdf` is 334.6 KB and the LaTeX zip is 442 KB (they correspond to the hashes above).
 - [ ] Do not submit the manuscript elsewhere while it is under TIFS review.
 - [ ] Log the first editor decision in `PUBLICATIONS.md` and this record.

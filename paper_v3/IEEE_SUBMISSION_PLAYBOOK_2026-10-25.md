@@ -124,9 +124,7 @@ extraction fix; abstract 242 words from LaTeX source).
 ## 6. Post-submission control checklist
 
 - [x] Recorded Manuscript ID `T-IFS-29736-2026` (email 2026-10-25 02:16 EET; Date header 24-Oct-2026).
-- [ ] In My Submissions, verify the submitted cover letter size/version. The final pre-submit screen
-      showed **30.3 KB**; the corrected cover is **37.6 KB**. If the old one was submitted, contact the
-      TIFS editorial office with the submission UUID.
+- [x] Cover letter version **verified by owner as correct** (corrected 36.8 KB build; no editorial correction needed).
 - [ ] Verify submitted `main.pdf` (334.6 KB) and source zip (442 KB).
 - [ ] No concurrent submission elsewhere.
 - [ ] Log the first editor decision in `PUBLICATIONS.md` and the frozen record.
