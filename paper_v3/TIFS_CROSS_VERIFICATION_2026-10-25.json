@@ -1,0 +1,382 @@
+{
+  "checks": [
+    {
+      "area": "weights",
+      "check": "main.pdf hash in manifest",
+      "pass": true,
+      "detail": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9"
+    },
+    {
+      "area": "weights",
+      "check": "main.pdf present",
+      "pass": true,
+      "detail": "342649"
+    },
+    {
+      "area": "weights",
+      "check": "cover_letter_TIFS.pdf hash in manifest",
+      "pass": true,
+      "detail": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87"
+    },
+    {
+      "area": "weights",
+      "check": "cover_letter_TIFS.pdf present",
+      "pass": true,
+      "detail": "31031"
+    },
+    {
+      "area": "weights",
+      "check": "IEEEtran_TIFS_submission.zip hash in manifest",
+      "pass": true,
+      "detail": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df"
+    },
+    {
+      "area": "weights",
+      "check": "IEEEtran_TIFS_submission.zip present",
+      "pass": true,
+      "detail": "452365"
+    },
+    {
+      "area": "bundle",
+      "check": "main.pdf matches bundle",
+      "pass": true,
+      "detail": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9"
+    },
+    {
+      "area": "bundle",
+      "check": "source zip matches bundle",
+      "pass": true,
+      "detail": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df"
+    },
+    {
+      "area": "bundle",
+      "check": "cover letter matches bundle",
+      "pass": true,
+      "detail": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87"
+    },
+    {
+      "area": "bundle",
+      "check": "contains PREPRINT_DISCLOSURE.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "bundle",
+      "check": "contains IEEE_PORTAL_METADATA.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "bundle",
+      "check": "contains PRIOR_SUBMISSION_STATEMENT.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "bundle",
+      "check": "contains TIFS_AUTHOR_REQUIREMENTS.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "bundle",
+      "check": "contains SUBMISSION_MANIFEST_2026-10-24.md",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "bundle",
+      "check": "contains main.pdf",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "ieee",
+      "check": "page count <= 13",
+      "pass": true,
+      "detail": "10"
+    },
+    {
+      "area": "ieee",
+      "check": "page count == 10",
+      "pass": true,
+      "detail": "10"
+    },
+    {
+      "area": "ieee",
+      "check": "abstract 150-250",
+      "pass": true,
+      "detail": "243"
+    },
+    {
+      "area": "ieee",
+      "check": "no unresolved ??",
+      "pass": true,
+      "detail": "0"
+    },
+    {
+      "area": "ieee",
+      "check": "EDICS 820 present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "ieee",
+      "check": "EDICS 847 present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "ieee",
+      "check": "ORCID present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "ieee",
+      "check": "SPS margin alternate exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "results",
+      "check": "main samples 1800",
+      "pass": true,
+      "detail": "1800"
+    },
+    {
+      "area": "results",
+      "check": "variant samples 360",
+      "pass": true,
+      "detail": "360"
+    },
+    {
+      "area": "results",
+      "check": "ablation samples 720",
+      "pass": true,
+      "detail": "720"
+    },
+    {
+      "area": "results",
+      "check": "real docs 20",
+      "pass": true,
+      "detail": "20"
+    },
+    {
+      "area": "results",
+      "check": "real samples 200",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "area": "results",
+      "check": "baseline samples 600",
+      "pass": true,
+      "detail": "600"
+    },
+    {
+      "area": "paper",
+      "check": "manuscript says 1,800",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "paper",
+      "check": "manuscript says 360",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "paper",
+      "check": "manuscript describes ablation",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "paper",
+      "check": "manuscript says 200 samples",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "paper",
+      "check": "manuscript says 20 docs",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "results",
+      "check": "main mean RMSE in expected range",
+      "pass": true,
+      "detail": "5.307e-06"
+    },
+    {
+      "area": "results",
+      "check": "real mean RMSE in expected range",
+      "pass": true,
+      "detail": "5.305e-06"
+    },
+    {
+      "area": "results",
+      "check": "baseline stdm-dct capacity 140",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "area": "results",
+      "check": "baseline fourier capacity 13",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "area": "results",
+      "check": "baseline lsb capacity 27",
+      "pass": true,
+      "detail": "200"
+    },
+    {
+      "area": "anchors",
+      "check": "manifest unique == 20",
+      "pass": true,
+      "detail": "20"
+    },
+    {
+      "area": "anchors",
+      "check": "ten NIST + ten IRS/project?",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "anchors",
+      "check": "five NIST entries",
+      "pass": true,
+      "detail": "5"
+    },
+    {
+      "area": "anchors",
+      "check": "five IRS entries",
+      "pass": true,
+      "detail": "5"
+    },
+    {
+      "area": "anchors",
+      "check": "anchor result docs == manifest unique",
+      "pass": true,
+      "detail": "(20, 20)"
+    },
+    {
+      "area": "refs",
+      "check": "all cited keys exist",
+      "pass": true,
+      "detail": "[]"
+    },
+    {
+      "area": "refs",
+      "check": "preprint cited",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "refs",
+      "check": "Zenodo DOI in bib",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "preprints",
+      "check": "disclosure exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "preprints",
+      "check": "no identical preprint claim",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "source",
+      "check": "zip main.pdf matches",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "source",
+      "check": "zip main.tex present",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "owner",
+      "check": "requirements recorded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "owner",
+      "check": "prior statement exists",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "owner",
+      "check": "page-charge budget recorded",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "area": "zenodo",
+      "check": "DOI matches disclosure",
+      "pass": true,
+      "detail": "10.5281/zenodo.23560975"
+    },
+    {
+      "area": "zenodo",
+      "check": "version exposed",
+      "pass": true,
+      "detail": "2.1.0-rev1"
+    },
+    {
+      "area": "repo",
+      "check": "HEAD recorded",
+      "pass": true,
+      "detail": "10b532a"
+    },
+    {
+      "area": "repo",
+      "check": "no modified tracked package files",
+      "pass": false,
+      "detail": "M paper_v3/tests/controlled_run/CONTROLLED_RUN_REPORT.md\n M paper_v3/tests/controlled_run/coverage.json\n M paper_v3/tests/controlled_run/environment.json\n M paper_v3/tests/controlled_run/results.json\n M paper_v3/tests/controlled_run/test_output.txt\n?? paper_v3/TIFS_CROSS_VERIFICATION_2026-10-25.json"
+    },
+    {
+      "area": "tests",
+      "check": "production pytest",
+      "pass": true,
+      "detail": "True"
+    },
+    {
+      "area": "tests",
+      "check": "controlled run",
+      "pass": true,
+      "detail": "True"
+    }
+  ],
+  "zenodo": {
+    "checked": true,
+    "doi": "10.5281/zenodo.23560975",
+    "version": "2.1.0-rev1",
+    "title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subspace Multiplexing, Universal Vector Emblems (Sri Yantra / Tryzub / CAD), and Optical Screen-Photo ECC for Bijective 2D Vector Graphics Watermarking and PAdES-B-LTA Authentication over GF(2^257) (DSTU 4145-2002)",
+    "note": "latest related preprint"
+  },
+  "head": "10b532a",
+  "tests": {
+    "pytest": true,
+    "controlled": true
+  },
+  "pdf_pages": 10,
+  "abstract_words": 243,
+  "pdf_hash": "d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9",
+  "cover_hash": "af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87",
+  "source_hash": "2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df",
+  "bundle_hash": "41f90634694d63a4385019542885a9b4a284abd92773018b5fd114856938efc3"
+}
