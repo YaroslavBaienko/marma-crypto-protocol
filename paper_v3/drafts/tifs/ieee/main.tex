@@ -297,7 +297,7 @@ STDM-DCT, Fourier-descriptor and LSB-RDH embedding were re-implemented on the sa
 \begin{table}[t]
 \centering
 \footnotesize
-\caption{Same-carrier baselines (PDF level, 600 samples).}
+\caption{Same-carrier baselines: STDM/Fourier/LSB at PDF level (600 samples), DE-RDH from the slot-level run.}
 \label{tab:baselines}
 \begin{tabular}{@{}lcccc@{}}
 \toprule
@@ -393,10 +393,10 @@ The corpus builder, carrier layer, attack harness and baseline implementations a
 Three failure modes follow directly from the design. (i) \emph{Precision loss:} any pipeline stage that re-writes coordinates with fewer than eight decimals destroys the word; the verifier fails closed. (ii) \emph{Rasterisation:} flattening removes the vector layer; the verifier reports absent. (iii) \emph{Seal regeneration:} if a verifier is given a new document and a new valid seal, the method has nothing to compare against; it authenticates a seal relative to a known document digest, not the identity of a signer.
 
 \section{Future Work}
-Three directions follow. First, a physical print-scan set (phone camera, office scanner) will test the fail-closed claim under real optics rather than simulation. Second, the carrier can be tested against production document-management pipelines that re-write coordinates. Third, the recipient channel can be extended beyond 1{,}024 copies per key epoch at a known capacity cost.
+Three directions follow. First, the carrier can be tested against production document-management pipelines that re-write coordinates, which quantifies the eight-decimal precondition on real enterprise documents beyond the five printed samples. Second, the recipient channel can be extended beyond 1{,}024 copies per key epoch at a known capacity cost. Third, a broader multi-vendor corpus (different printer/scanner pairs) would map the optical failure envelope; the physical capture reported here covers one multifunction device, not a population study.
 
 \section{Limitations and Conclusion}\label{sec:conclusion}
-The evaluation is a first harness result. The baselines are re-implemented on the same carrier and must be lifted further; the print-scan variant is a simulation, not a physical scanner; the corpus is synthetic; and exactness is deterministic, so the reported confidence intervals are not informative about real-world variability. Capacity numbers are per seal, not per document area. Within these limits the result is consistent and reproducible: 1{,}800 PDF-level samples recover the 266-bit payload exactly, 8-decimal re-serialisation is safe, 7-decimal re-serialisation and any payload edit are detected, and flattening fails closed.
+The evaluation is a first harness result. STDM, Fourier-descriptor and LSB baselines are re-implemented at both slot and PDF level; DE-RDH is capacity-limited to zero pairs on this carrier and is reported from the slot-level run. The print-scan variant is simulated, and the physical check covers five documents on one multifunction device, not a population of printer/scanner pairs; the corpus is synthetic; and exactness is deterministic, so the reported confidence intervals are not informative about real-world variability. Capacity numbers are per seal, not per document area. Within these limits the result is consistent and reproducible: 1{,}800 PDF-level samples recover the 266-bit payload exactly, 8-decimal re-serialisation is safe, 7-decimal re-serialisation and any payload edit are detected, flattening fails closed, and five physical captures reproduce the fail-closed behaviour.
 
 \appendices
 \section{Proof Details}

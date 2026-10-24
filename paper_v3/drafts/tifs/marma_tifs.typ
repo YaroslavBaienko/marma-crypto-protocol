@@ -20,7 +20,7 @@
 #block(width: 78%)[
 A PDF signature verifies the bytes it covers, not the page a human sees. The visible layer — seals, stamps and logos — is typically not cryptographically bound to the signed content, so a document can present a valid signature next to altered or transplanted visual material; published attacks on PDF signatures exploit exactly this gap. We study a fragile-authentication watermarking approach that closes it at the rendering level: the digest of the signed document is embedded, bit-exactly, into the geometry of the visible seal itself, so the mark a person sees is also the mark that is verified. The carrier is a planar incidence configuration of nine triangles (27 scalar degrees of freedom); the payload uses keyed dithered quantization index modulation over an integer coordinate lattice with an exact IEEE-754 rounding argument, and a disjoint carrier degree of freedom carries a per-recipient identifier for leak attribution. No external QR or barcode symbol is added.
 
-We evaluate on a corpus of 60 documents produced by LibreOffice, Typst and Chromium print pipelines, each in native, flattened and print-scan-simulated variants (180 PDFs). On 1,800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and any edited payload coordinate is detected; flattening destroys the vector carrier and therefore fails closed. Baselines re-implemented on the same carrier expose a capacity–distortion trade-off rather than a single winner. Two implementation facts are stated explicitly: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text — drawing APIs that store 32-bit floats destroy a $1.8 times 10^(-8)$ pt lattice. The method complements, and does not replace, PAdES/eIDAS signatures; the optical/screen-photo channel and the API are reported separately.
+We evaluate on a corpus of 60 documents produced by LibreOffice, Typst and Chromium print pipelines, each in native, flattened and print-scan-simulated variants (180 PDFs). On 1,800 stamped PDFs the 266-bit payload is recovered exactly, survives 8-decimal re-serialisation, fails closed at 7 decimals, and any edited payload coordinate is detected; flattening destroys the vector carrier and therefore fails closed. Baselines re-implemented on the same carrier expose a capacity–distortion trade-off rather than a single winner. Two implementation facts are stated explicitly: the PDF writer must preserve at least nine decimal places, and the verifier must parse coordinates as text — drawing APIs that store 32-bit floats destroy a $1.8 times 10^(-8)$ pt lattice. A physical print-scan check on five documents fails closed in all five cases, while their digital controls verify exactly. The method complements, and does not replace, PAdES/eIDAS signatures; the optical/screen-photo channel and the API are reported separately.
 ]
 
 = Introduction
@@ -263,7 +263,7 @@ polyline or a grid? Each question maps to a table below; no claim in the abstrac
   [Edited payload coordinate detected], [100%], [0.00], [1800/1800],
   [Flattening removes the carrier], [100%], [0.00], [1800/1800],
 )
-#block[#text(size: 8pt, style: "italic")[PDF-level results on 60 native documents × 30 seeds. Mean geometric RMSE $5.31 times 10^(-6)$ pt (PSNR_geom = 155.1 dB). The 95% CI is zero because exactness is deterministic by construction; the meaningful variation comes from the document generator and from physical attacks, which are reported as future work.]]
+#block[#text(size: 8pt, style: "italic")[PDF-level results on 60 native documents × 30 seeds. Mean geometric RMSE $5.31 times 10^(-6)$ pt (PSNR_geom = 155.1 dB). The 95% CI is zero because exactness is deterministic by construction; the meaningful variation comes from the document generator and from physical capture (Section 6.7).]]
 
 #table(
   columns: 5, align: center,
@@ -413,15 +413,16 @@ against; it authenticates a seal relative to a known document digest, not the id
 These are stated as limits, not solved problems.
 
 = Future Work
-Three directions follow. First, a physical print-scan set (phone camera, office scanner) will test
-the fail-closed claim under real optics rather than simulation. Second, the carrier can be tested
-against production document-management pipelines that re-write coordinates, which quantifies the
-eight-decimal precondition on real enterprise documents. Third, the recipient channel can be
+Three directions follow. First, the carrier can be tested against production document-management
+pipelines that re-write coordinates, which quantifies the eight-decimal precondition on real
+enterprise documents beyond the five printed samples. Second, the recipient channel can be
 extended beyond 1,024 copies per key epoch, either by rotating keys or by enlarging the identifier
-budget at a known capacity cost.
+budget at a known capacity cost. Third, a broader multi-vendor corpus (different printer/scanner
+pairs) would map the optical failure envelope; a physical capture on one MFP is reported here,
+not a population study.
 
 = Limitations and Conclusion
-The evaluation is a first harness result. The baselines are re-implemented at slot level and must be lifted to the PDF level before submission; the print-scan variant is a simulation, not a physical scanner; the corpus is synthetic; and exactness is deterministic, so the reported confidence intervals are not informative about real-world variability. Capacity numbers are per seal, not per document area, and must be reported with the visible seal area in the final version. Within these limits the result is consistent and reproducible: 1,800 PDF-level samples recover the 266-bit payload exactly, 8-decimal re-serialisation is safe, 7-decimal re-serialisation and any payload edit are detected, and flattening fails closed. The next revision adds a physical print-scan set and a broader population of enterprise-generated PDFs, and studies the cost of the 8-decimal precondition across production document-management pipelines. The longer-term question is whether the same construction can protect documents that are already rasterised, which the companion optical-channel paper addresses rather than this one.
+The evaluation is a first harness result. STDM, Fourier-descriptor and LSB baselines are re-implemented at both slot and PDF level; DE-RDH is capacity-limited to zero pairs on this carrier and is reported from the slot-level run. The print-scan variant is simulated, and the physical check covers five documents on one multifunction device, not a population of printer/scanner pairs; the corpus is synthetic; and exactness is deterministic, so the reported confidence intervals are not informative about real-world variability. Capacity numbers are per seal, not per document area. Within these limits the result is consistent and reproducible: 1,800 PDF-level samples recover the 266-bit payload exactly, 8-decimal re-serialisation is safe, 7-decimal re-serialisation and any payload edit are detected, flattening fails closed, and five physical captures reproduce the fail-closed behaviour. The next revision adds a broader multi-vendor corpus and enterprise pipeline measurements; the question of protecting documents that are already rasterised belongs to the companion optical-channel work.
 
 
 = Appendix A: Proof details
