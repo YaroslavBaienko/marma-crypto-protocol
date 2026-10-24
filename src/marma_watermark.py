@@ -52,7 +52,7 @@ try:
 except Exception:
     pymupdf = None  # type: ignore[assignment]
 
-VERSION = "2.1.0"
+VERSION = "2.2.0"
 
 # Canonical 9-Triangle Coordinates (lx, by, ay, rx, is_upward) in 300x300 space (R=100)
 CANONICAL_TRIANGLES: list[tuple[str, float, float, float, float, bool]] = [
@@ -2034,9 +2034,10 @@ def main() -> int:
     parser.add_argument("--sign-svg", type=Path, help="Output SVG path to generate a signed Sri Yantra SVG")
     parser.add_argument("--verify-svg", type=Path, help="Signed SVG file to verify")
     parser.add_argument("--protocol", action="store_true", help="Generate official PDF Verification Protocol")
-    parser.add_argument("--profile", choices=["v1-geometric", "v2-round42"], default="v1-geometric",
+    parser.add_argument("--profile", choices=["v1-geometric", "v2-round42"], default=None,
                         help="Seal profile for SVG signing/verification: v1-geometric (legacy) or "
-                             "v2-round42 (42 mm round branded technical stamp)")
+                             "v2-round42 (42 mm round branded technical stamp). On verify, the "
+                             "stored profile is accepted unless this flag explicitly requires one.")
     parser.add_argument("--payload", type=str, help="Custom payload string for SVG signing/verification")
     parser.add_argument("--recipient-id", type=str, default="", help="Canary Leak-Tracing recipient ID to embed/verify in D5.ay")
     parser.add_argument("--recipients", type=str, default="", help="Comma-separated Deal-Room recipient IDs for `batch-seal`")
@@ -2183,12 +2184,12 @@ def main() -> int:
                     recipient_id=args.recipient_id, signer_key_name=kname,
                 )
             else:
-                if ext == ".svg" and args.profile != "v1-geometric":
+                if ext == ".svg" and (args.profile or "v1-geometric") != "v1-geometric":
                     from marma_seal_profiles import sign_seal_svg
-                    eff_out = out or f.with_name(f"{f.stem}_marma_{args.profile}.svg")
+                    eff_out = out or f.with_name(f"{f.stem}_marma_{args.profile or "v1-geometric"}.svg")
                     r = sign_seal_svg(
                         args.payload or f"EDU-VEDI::Canonical-Sri-Yantra::{f.name}", sec, eff_out,
-                        profile_id=args.profile, signer_key_name=kname, key_fingerprint=kfp,
+                        profile_id=args.profile or "v1-geometric", signer_key_name=kname, key_fingerprint=kfp,
                         key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
                     )
                 else:
@@ -2272,10 +2273,10 @@ def main() -> int:
     if args.sign_svg:
         sec, kname, kfp, kpath, rpwd = resolve_signing_credentials(args.gui, args.key_file, args.secret, doc_desc=args.sign_svg.name)
         pay = args.payload or f"EDU-VEDI::Canonical-Sri-Yantra::{args.sign_svg.name}"
-        if args.profile != "v1-geometric":
+        if (args.profile or "v1-geometric") != "v1-geometric":
             from marma_seal_profiles import sign_seal_svg
             res = sign_seal_svg(
-                pay, sec, args.sign_svg, profile_id=args.profile, signer_key_name=kname,
+                pay, sec, args.sign_svg, profile_id=args.profile or "v1-geometric", signer_key_name=kname,
                 key_fingerprint=kfp, key_file_path=kpath, raw_password=rpwd,
                 recipient_id=args.recipient_id,
             )

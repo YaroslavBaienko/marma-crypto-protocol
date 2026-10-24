@@ -1,7 +1,7 @@
 {
- "date": "2026-10-24T19:04:05.282401+03:00",
- "git_head": "82fdd460431400b67d531cba2dc95dd2c22e777a",
- "git_dirty_entries": 5,
+ "date": "2026-10-24T19:17:15.302421+03:00",
+ "git_head": "e213a0791834b57cc45097ef96ad120d52cc19d4",
+ "git_dirty_entries": 8,
  "python": "3.13.5",
  "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
  "pymupdf": "1.28.2",

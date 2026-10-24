@@ -8,11 +8,16 @@ test_metrics_and_attacks (__main__.TestHarnessAndCarriers.test_metrics_and_attac
 test_qim_embed_extract_keyed_and_unkeyed (__main__.TestHarnessAndCarriers.test_qim_embed_extract_keyed_and_unkeyed) ... ok
 test_run_methods (__main__.TestHarnessAndCarriers.test_run_methods) ... ok
 test_scalar_qim_rdh_lsb_ss (__main__.TestHarnessAndCarriers.test_scalar_qim_rdh_lsb_ss) ... ok
+test_all_nautilus_scripts_syntax (__main__.TestNautilusIntegration.test_all_nautilus_scripts_syntax) ... ok
+test_p2_script_and_menu_entry_present (__main__.TestNautilusIntegration.test_p2_script_and_menu_entry_present) ... ok
+test_p2_script_argument_wiring_headless (__main__.TestNautilusIntegration.test_p2_script_argument_wiring_headless)
+Run the Nautilus P2 script with a fake marma-watermark and a fake HOME: it must pass ... ok
 test_carrier_variants_roundtrip (__main__.TestPdfLayerAPI.test_carrier_variants_roundtrip) ... ok
 test_extract_slots_and_geometry (__main__.TestPdfLayerAPI.test_extract_slots_and_geometry) ... ok
 test_unknown_carrier_rejected (__main__.TestPdfLayerAPI.test_unknown_carrier_rejected) ... ok
 test_cli_legacy_v1_default_unchanged (__main__.TestProductionCLI.test_cli_legacy_v1_default_unchanged) ... ok
 test_cli_p2_sign_and_verify (__main__.TestProductionCLI.test_cli_p2_sign_and_verify) ... ok
+test_cli_p2_verify_without_profile_autodetects (__main__.TestProductionCLI.test_cli_p2_verify_without_profile_autodetects) ... ok
 test_cli_wrong_profile_fails_closed (__main__.TestProductionCLI.test_cli_wrong_profile_fails_closed) ... ok
 test_help_lists_profile_flag (__main__.TestProductionCLI.test_help_lists_profile_flag) ... ok
 test_tampered_geometry_fails (__main__.TestProductionProfile.test_tampered_geometry_fails) ... ok
@@ -39,6 +44,6 @@ test_kat_values (__main__.TestWordMap.test_kat_values) ... ok
 test_trunc8_exact_trunc7_breaks (__main__.TestWordMap.test_trunc8_exact_trunc7_breaks) ... ok
 
 ----------------------------------------------------------------------
-Ran 39 tests in 11.764s
+Ran 43 tests in 14.875s
 
 OK

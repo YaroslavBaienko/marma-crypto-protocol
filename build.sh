@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# build.sh — Збірка .deb пакета marma-crypto-watermark v1.3.0 (Nautilus + GTK4/Adwaita)
+# build.sh — Збірка .deb пакета marma-crypto-watermark v2.2.0 (Nautilus + GTK4/Adwaita)
 # За зразком архітектури $HOME/legaltech (qes-tools)
 #
 # Встановлює у систему:
@@ -24,7 +24,7 @@ BIN_DIR="${SCRIPT_DIR}/bin"
 NAUTILUS_SRC="${SCRIPT_DIR}/nautilus-scripts"
 
 PKG_NAME="marma-crypto-watermark"
-PKG_VERSION="2.1.0-1"
+PKG_VERSION="2.2.0-1"
 PKG_ARCH="all"
 PKG_MAINTAINER="Yaroslav Baienko <yaroslav@advocacy.uno>"
 
@@ -67,6 +67,7 @@ mkdir -p \
     "${PKGROOT}/usr/share/doc/marma-crypto-watermark"
 
 install -m 0755 "${SOURCE_DIR}/marma_watermark.py" "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_watermark.py"
+install -m 0644 "${SOURCE_DIR}/marma_seal_profiles.py" "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_seal_profiles.py"
 install -m 0755 "${SOURCE_DIR}/dstu4145_bridge.js" "${PKGROOT}/usr/lib/marma-crypto-watermark/dstu4145_bridge.js"
 install -m 0644 "${SOURCE_DIR}/marma_crypto/"*.py  "${PKGROOT}/usr/lib/marma-crypto-watermark/marma_crypto/"
 install -m 0755 "${BIN_DIR}/marma-dialog"          "${PKGROOT}/usr/lib/marma-crypto-watermark/bin/marma-dialog"
@@ -105,7 +106,7 @@ _marma_watermark_completions() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
+    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --profile --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
     if [[ ${cur} == -* ]] || [[ ${COMP_CWORD} -eq 1 ]]; then
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0
@@ -162,7 +163,7 @@ if [ "$1" = "configure" ]; then
     fi
 
     echo "================================================================================"
-    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.1.0"
+    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.2.0"
     echo " • marma-watermark sign       — накладання 256-бітного водяного знака та печатки (Шрі Янтра / Тризуб / Щит / CAD)"
     echo " • marma-watermark batch-seal — пакетне штампування Deal-Room (N отримувачів + Optical Lotus ECC)"
     echo " • marma-watermark verify     — перевірка цілісності тексту, комбінера та 27-DOF геометрії"

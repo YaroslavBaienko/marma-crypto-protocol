@@ -51,6 +51,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [x] Production profile P2: additive wrapper `src/marma_seal_profiles.py` (42 mm round branded stamp, canonical carrier geometry unchanged, `data-profile` persisted in SVG metadata, verifier fails closed on unknown/mismatched profile and tampered geometry; legacy v1 untouched). Controlled run now has 35 tests and a production-P2 gate: PASS.
 - [x] CLI: production `--profile v2-round42` flag implemented and tested (sign/verify SVG; wrong profile exits 2; legacy v1 default unchanged); controlled suite now 39 tests.
 - [ ] Legal review (owner + Ukrainian counsel): checklist at `drafts/tifs/LEGAL_REVIEW_CHECKLIST.md`; not legal advice.
+- [x] Product integration: Nautilus action for the 42 mm seal + CLI `--profile` auto-detect on verify; release candidate `v2.2.0-1` built and package-tested (`bash build.sh --test` PASS). System install/tag/manual GUI are owner actions (see `RELEASE_NOTES_v2.2.0.md`).
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

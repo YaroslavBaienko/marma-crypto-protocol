@@ -13,7 +13,7 @@ Covered functionality
 Run:  python3 paper_v3/tests/test_controlled.py -v
 """
 from __future__ import annotations
-import hashlib, json, math, random, shutil, statistics, subprocess, sys, tempfile, unittest
+import hashlib, json, math, os, random, shutil, statistics, subprocess, sys, tempfile, unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -483,6 +483,17 @@ class TestProductionCLI(unittest.TestCase):
         self.assertEqual(v.returncode, 0, v.stderr[-500:])
         self.assertTrue(self._json(v.stdout).get("verified"))
 
+    def test_cli_p2_verify_without_profile_autodetects(self):
+        svg = self.tmp / "p2auto.svg"
+        self._run("--sign-svg", str(svg), "--payload", "CLI auto payload",
+                  "--secret", self.SECRET, "--profile", "v2-round42")
+        v = self._run("--verify-svg", str(svg), "--payload", "CLI auto payload",
+                      "--secret", self.SECRET)  # no --profile: stored profile must win
+        self.assertEqual(v.returncode, 0, v.stderr[-500:])
+        body = self._json(v.stdout)
+        self.assertTrue(body.get("verified"))
+        self.assertEqual(body.get("profile"), "v2-round42")
+
     def test_cli_wrong_profile_fails_closed(self):
         svg = self.tmp / "p2b.svg"
         self._run("--sign-svg", str(svg), "--payload", "CLI P2 payload",
@@ -500,6 +511,51 @@ class TestProductionCLI(unittest.TestCase):
         self.assertEqual(v.returncode, 0, v.stderr[-500:])
         self.assertTrue(self._json(v.stdout).get("verified"))
         self.assertEqual(self._json(v.stdout).get("profile"), "v1-geometric")
+
+
+class TestNautilusIntegration(unittest.TestCase):
+    """Nautilus scripts: syntax, P2 menu entry and the P2 script's argument wiring."""
+
+    SCRIPTS = ROOT / "nautilus-scripts"
+
+    def test_all_nautilus_scripts_syntax(self):
+        scripts = sorted(self.SCRIPTS.glob("*.sh"))
+        self.assertGreaterEqual(len(scripts), 10)
+        for f in scripts:
+            r = subprocess.run(["bash", "-n", str(f)], capture_output=True, text=True)
+            self.assertEqual(r.returncode, 0, f"{f.name}: {r.stderr}")
+
+    def test_p2_script_and_menu_entry_present(self):
+        p2 = self.SCRIPTS / "1d_sign_seal_v2.sh"
+        self.assertTrue(p2.exists() and p2.stat().st_mode & 0o111)
+        body = p2.read_text(encoding="utf-8")
+        self.assertIn("--profile v2-round42", body)
+        cfg = (ROOT / "bin" / "marma-config").read_text(encoding="utf-8")
+        self.assertIn("1d_sign_seal_v2.sh", cfg)
+        self.assertIn("v2-round42", cfg)
+
+    def test_p2_script_argument_wiring_headless(self):
+        """Run the Nautilus P2 script with a fake marma-watermark and a fake HOME: it must pass
+        --sign-svg <path> --profile v2-round42 --gui to the CLI."""
+        tmp = Path(tempfile.mkdtemp(prefix="controlled_nautilus_"))
+        self.addCleanup(shutil.rmtree, tmp, True)
+        fakebin = tmp / "bin"; fakebin.mkdir()
+        log = tmp / "args.log"
+        wm = fakebin / "marma-watermark"
+        wm.write_text(f'#!/usr/bin/env bash\nprintf "%s\\n" "$@" > "{log}"\nexit 0\n', encoding="utf-8")
+        wm.chmod(0o755)
+        ns = fakebin / "notify-send"; ns.write_text("#!/bin/sh\nexit 0\n", encoding="utf-8"); ns.chmod(0o755)
+        home = tmp / "home"; home.mkdir()
+        env = dict(os.environ, PATH=f"{fakebin}:/usr/bin:/bin", HOME=str(home),
+                   NAUTILUS_SCRIPT_CURRENT_URI=f"file://{tmp}/target", MARMA_LANG="en")
+        r = subprocess.run(["bash", str(self.SCRIPTS / "1d_sign_seal_v2.sh")],
+                           capture_output=True, text=True, cwd=str(tmp), env=env)
+        self.assertEqual(r.returncode, 0, r.stderr[-500:])
+        args = log.read_text().splitlines() if log.exists() else []
+        self.assertIn("--sign-svg", args)
+        self.assertIn("--profile", args)
+        self.assertIn("v2-round42", args)
+        self.assertIn("--gui", args)
 
 
 if __name__ == "__main__":
