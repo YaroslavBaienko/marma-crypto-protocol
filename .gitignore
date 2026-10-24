@@ -47,3 +47,14 @@ paper_v3/eval/corpus/
 
 # social-media drafts (not part of the paper)
 social/
+
+# real-PDF anchors copied for evaluation (public project documents only)
+paper_v3/eval/real_pdfs/
+
+# print-scan raw captures and generated print files
+paper_v3/eval/printscan/raw/
+paper_v3/eval/printscan/captures/
+paper_v3/eval/printscan/to_print/
+
+# coverage / controlled-run scratch
+.coverage

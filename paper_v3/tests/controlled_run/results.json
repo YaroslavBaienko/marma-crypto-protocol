@@ -1,0 +1,226 @@
+{
+ "verdict": "PASS",
+ "environment": {
+  "date": "2026-10-24T18:39:37.845991+03:00",
+  "git_head": "26466b43e17592fed4b7c56d438b3fc67d7253cb",
+  "git_dirty_entries": 11,
+  "python": "3.13.5",
+  "platform": "Linux-6.12.113+deb13-amd64-x86_64-with-glibc2.41",
+  "pymupdf": "1.28.2",
+  "node": "v22.23.4",
+  "typst": "typst 0.15.1 (9dfd3a08)",
+  "profiles": {
+   "profiles": [
+    {
+     "id": "v1-geometric",
+     "version": "1",
+     "scale": 1.0,
+     "placement": "bottom-left-fixed",
+     "diameter_mm": null,
+     "decorative": false
+    },
+    {
+     "id": "v2-round42",
+     "version": "2",
+     "scale": 0.45,
+     "placement": "reserved-centre",
+     "diameter_mm": 42.0,
+     "decorative": true
+    }
+   ],
+   "deltas": "absolute page points, 18 npt step"
+  }
+ },
+ "gates": [
+  {
+   "gate": "corpus manifest",
+   "pass": true,
+   "detail": "180 files, 0 hash mismatches"
+  },
+  {
+   "gate": "environment snapshot",
+   "pass": true,
+   "detail": ""
+  },
+  {
+   "gate": "unittest suite",
+   "pass": true,
+   "detail": "30 tests"
+  },
+  {
+   "gate": "branch coverage",
+   "pass": true,
+   "detail": "seal-path 85.0% ({'pdf_layer.py': 72.3, 'profiles.py': 93.7, 'harness.py': 80.5}); overall incl. drivers 44.5%"
+  },
+  {
+   "gate": "cross-validation matrix",
+   "pass": true,
+   "detail": "12 samples; {'exact': True, 'trunc8': True, 'trunc7_detected': True, 'single_coord_edit': True, 'geometry_ok': True, 'flatten_absent': True}"
+  },
+  {
+   "gate": "determinism (matrix run twice)",
+   "pass": true,
+   "detail": "hash 0d9df3cc62adfcb8\u2026"
+  },
+  {
+   "gate": "artifact hashes",
+   "pass": true,
+   "detail": ""
+  }
+ ],
+ "coverage": {
+  "overall": 44.5,
+  "core": {
+   "pdf_layer.py": 72.3,
+   "profiles.py": 93.7,
+   "harness.py": 80.5
+  },
+  "core_overall": 85.0
+ },
+ "matrix": {
+  "rows": [
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_00_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_00_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_01_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_01_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_02_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v1-geometric",
+    "doc": "typst_02_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_00_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_00_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_01_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_01_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_02_native.pdf",
+    "seed": 0,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   },
+   {
+    "profile": "v2-round42",
+    "doc": "typst_02_native.pdf",
+    "seed": 1,
+    "exact": true,
+    "trunc8": true,
+    "trunc7_detected": true,
+    "single_coord_edit": true,
+    "geometry_ok": true,
+    "flatten_absent": true
+   }
+  ],
+  "hash": "0d9df3cc62adfcb859ef54e2392e5786b4d84b426c766a6b157745d146bc5a81",
+  "checks": {
+   "exact": true,
+   "trunc8": true,
+   "trunc7_detected": true,
+   "single_coord_edit": true,
+   "geometry_ok": true,
+   "flatten_absent": true
+  }
+ },
+ "tests": "30"
+}

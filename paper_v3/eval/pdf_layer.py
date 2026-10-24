@@ -205,8 +205,10 @@ def attack_edit_coord(src: Path, out: Path, occurrence: int, delta: float) -> bo
     state = {"i": 0}
     def fn(val):
         state["i"] += 1
-        if state["i"] == occurrence: return f"{val + delta:.6f}"
-        return f"{val:.6f}"
+        # keep 9 decimals: the edit attack must change ONE coordinate, not re-serialise the whole
+        # carrier at a precision that would destroy the lattice by itself
+        if state["i"] == occurrence: return f"{val + delta:.9f}"
+        return f"{val:.9f}"
     return _rewrite_numbers(src, out, fn)
 
 def attack_truncate(src: Path, out: Path, decimals: int) -> bool:

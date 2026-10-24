@@ -1,0 +1,16 @@
+{
+ "overall": 44.5,
+ "core": {
+  "pdf_layer.py": 72.3,
+  "profiles.py": 93.7,
+  "harness.py": 80.5
+ },
+ "core_overall": 85.0,
+ "thresholds": {
+  "pdf_layer.py": 70.0,
+  "profiles.py": 90.0,
+  "harness.py": 75.0
+ },
+ "executed_lines": 489,
+ "num_statements": 1044
+}

@@ -89,15 +89,20 @@ td,th{{border:1px solid #999;padding:6px;text-align:left}}</style></head><body>
 <p>Payment terms: bank transfer. This document is generated for corpus evaluation only.</p>
 </body></html>"""
 
-def make_typst(path: Path, doc_id: int):
-    path.write_text(TYPST.replace("__DOC_ID__", str(doc_id)).replace("__CAP__", "266").replace("__DIST__", "5.3e-6"), encoding="utf-8")
+TYPST_RESERVED = TYPST.replace(
+    "#set page(width: 21cm, height: 29.7cm, margin: 2.2cm)",
+    "#set page(width: 21cm, height: 29.7cm, margin: (x: 2.2cm, top: 2.2cm, bottom: 85mm))")
+
+def make_typst(path: Path, doc_id: int, reserved: bool = False):
+    template = TYPST_RESERVED if reserved else TYPST
+    path.write_text(template.replace("__DOC_ID__", str(doc_id)).replace("__CAP__", "266").replace("__DIST__", "5.3e-6"), encoding="utf-8")
 
 def make_html(path: Path, doc_id: int, rnd: random.Random):
     rows = "".join(f"<tr><td>Service item {i}</td><td>{rnd.randint(1,9)}</td><td>{rnd.uniform(50,900):.2f}</td><td>{rnd.uniform(50,4000):.2f}</td></tr>" for i in range(1,7))
     total = sum(rnd.uniform(100,4000) for _ in range(6))
     path.write_text(HTML.format(doc_id=doc_id, client=f"Client {doc_id}", rows=rows, total=total), encoding="utf-8")
 
-def gen_pdf(kind: str, idx: int, out: Path, rnd: random.Random):
+def gen_pdf(kind: str, idx: int, out: Path, rnd: random.Random, reserved: bool = False):
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
         if kind == "libredocx":
@@ -105,7 +110,7 @@ def gen_pdf(kind: str, idx: int, out: Path, rnd: random.Random):
             run([TOOLS["soffice"], "--headless", "--convert-to", "pdf", "--outdir", str(td), str(src)])
             shutil.copy2(td / f"doc{idx}.pdf", out)
         elif kind == "typst":
-            src = td / f"doc{idx}.typ"; make_typst(src, idx)
+            src = td / f"doc{idx}.typ"; make_typst(src, idx, reserved=reserved)
             run([TOOLS["typst"], "compile", str(src), str(out)])
         elif kind == "chromium":
             src = td / f"doc{idx}.html"; make_html(src, idx, rnd)
@@ -145,6 +150,8 @@ def main(argv):
     ap.add_argument("--out", default="corpus")
     ap.add_argument("--limit", type=int, default=None, help="documents per generator (smoke test)")
     ap.add_argument("--seed", type=int, default=20261023)
+    ap.add_argument("--layout", choices=("default", "reserved"), default="default")
+    ap.add_argument("--generators", default="libredocx,typst,chromium")
     args = ap.parse_args(argv)
     for name, path in TOOLS.items():
         if not path: sys.exit(f"missing tool: {name}")
@@ -152,15 +159,18 @@ def main(argv):
     rnd = random.Random(args.seed)
     n = args.limit or 20
     manifest = []
-    for kind in ("libredocx", "typst", "chromium"):
+    for kind in args.generators.split(","):
+        if args.layout == "reserved" and kind != "typst":
+            sys.exit("reserved layout is implemented for the Typst generator only")
         for idx in range(n):
             base = out / f"{kind}_{idx:02d}_native.pdf"
-            gen_pdf(kind, idx, base, rnd)
+            gen_pdf(kind, idx, base, rnd, reserved=(args.layout == "reserved"))
             variants = {"native": base}
             flat = out / f"{kind}_{idx:02d}_flattened.pdf"; flatten(base, flat); variants["flattened"] = flat
             scan = out / f"{kind}_{idx:02d}_printscan.pdf"; printscan(base, scan, rnd); variants["printscan"] = scan
             for variant, path in variants.items():
                 manifest.append({"doc_id": f"{kind}_{idx:02d}", "generator": kind, "variant": variant,
+                                 "layout": args.layout,
                                  "path": str(path.relative_to(out)), "bytes": path.stat().st_size,
                                  "pages": page_count(path), "sha256": sha256(path)})
             print(f"{kind} {idx:02d} ok")

@@ -1,0 +1,21 @@
+{
+ "profiles": [
+  {
+   "id": "v1-geometric",
+   "version": "1",
+   "scale": 1.0,
+   "placement": "bottom-left-fixed",
+   "diameter_mm": null,
+   "decorative": false
+  },
+  {
+   "id": "v2-round42",
+   "version": "2",
+   "scale": 0.45,
+   "placement": "reserved-centre",
+   "diameter_mm": 42.0,
+   "decorative": true
+  }
+ ],
+ "deltas": "absolute page points, 18 npt step"
+}

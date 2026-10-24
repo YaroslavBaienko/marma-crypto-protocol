@@ -1,0 +1,37 @@
+[
+ {
+  "doc_id": "typst00",
+  "file": "to_print/typst00_stamped.pdf",
+  "payload_sha256": "48fb09df625d9c79f79be14c0d501a9da22592a3d1d8dbdb38336f3ea6930e9e",
+  "expected_state": "absent after physical capture",
+  "digital_control": "valid on the stamped PDF"
+ },
+ {
+  "doc_id": "typst01",
+  "file": "to_print/typst01_stamped.pdf",
+  "payload_sha256": "80a3463004312ce411b6518364d43dc5dcae5f168d3f7244bdc2fb47d47d1283",
+  "expected_state": "absent after physical capture",
+  "digital_control": "valid on the stamped PDF"
+ },
+ {
+  "doc_id": "typst02",
+  "file": "to_print/typst02_stamped.pdf",
+  "payload_sha256": "94ece57024b19a43f257ca72ed365f4f01fa71f8599373ef6d7eca63e9183444",
+  "expected_state": "absent after physical capture",
+  "digital_control": "valid on the stamped PDF"
+ },
+ {
+  "doc_id": "typst03",
+  "file": "to_print/typst03_stamped.pdf",
+  "payload_sha256": "6c06a8d58c9c113aa80ebcd245b8df949173f90acd175f39297fd58dcb57c4ca",
+  "expected_state": "absent after physical capture",
+  "digital_control": "valid on the stamped PDF"
+ },
+ {
+  "doc_id": "typst04",
+  "file": "to_print/typst04_stamped.pdf",
+  "payload_sha256": "01dc6ec3cc2ba9cd512219613588b90e74b519899fffd786af176bdcdc4ee23c",
+  "expected_state": "absent after physical capture",
+  "digital_control": "valid on the stamped PDF"
+ }
+]

@@ -47,6 +47,7 @@ baselines honestly. If TIFS rejects, fallbacks are the Elsevier hybrid journals 
 - [x] Print-scan kit: `eval/printscan_kit.py` → five print-ready stamped PDFs + `printscan/README.md`;
       `eval/process_printscan.py` converts captures and records the expected fail-closed result.
 - [x] Physical print-scan: five A4 pages printed on Canon MF3010 (600 dpi mono), scanned at 300 dpi grayscale; **5/5 digital controls valid, 5/5 physical captures absent (fail-closed)** — see `eval/printscan/RESULTS.md`.
+- [x] Controlled verification run: 30 tests OK, seal-path branch coverage 85.0% (pdf_layer 72.3%, profiles 93.7%, harness 80.5%), cross-runtime JS ↔ Python 1024/1024, production signer ↔ eval 1024/1024, 12-sample matrix stable across two runs; report in `paper_v3/tests/controlled_run/`.
 - [ ] Owner: build the zip in Overleaf (pdfLaTeX + BibTeX) and confirm it compiles with no `??`.
 - [ ] Owner: print/scan/photograph the five kit PDFs into `eval/printscan/raw/`; then run
       `python3 eval/process_printscan.py`.

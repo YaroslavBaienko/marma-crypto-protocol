@@ -1,0 +1,35 @@
+test_corpus_manifest_hashes (__main__.TestCorpusAndArtifacts.test_corpus_manifest_hashes) ... ok
+test_physical_printscan_results (__main__.TestCorpusAndArtifacts.test_physical_printscan_results) ... ok
+test_profiles_manifest (__main__.TestCorpusAndArtifacts.test_profiles_manifest) ... ok
+test_matrix_exact_and_attacks (__main__.TestCrossValidationMatrix.test_matrix_exact_and_attacks) ... ok
+test_unmodified_document_has_no_carrier (__main__.TestCrossValidationMatrix.test_unmodified_document_has_no_carrier) ... ok
+test_carriers_make_and_render (__main__.TestHarnessAndCarriers.test_carriers_make_and_render) ... ok
+test_metrics_and_attacks (__main__.TestHarnessAndCarriers.test_metrics_and_attacks) ... ok
+test_qim_embed_extract_keyed_and_unkeyed (__main__.TestHarnessAndCarriers.test_qim_embed_extract_keyed_and_unkeyed) ... ok
+test_run_methods (__main__.TestHarnessAndCarriers.test_run_methods) ... ok
+test_scalar_qim_rdh_lsb_ss (__main__.TestHarnessAndCarriers.test_scalar_qim_rdh_lsb_ss) ... ok
+test_carrier_variants_roundtrip (__main__.TestPdfLayerAPI.test_carrier_variants_roundtrip) ... ok
+test_extract_slots_and_geometry (__main__.TestPdfLayerAPI.test_extract_slots_and_geometry) ... ok
+test_unknown_carrier_rejected (__main__.TestPdfLayerAPI.test_unknown_carrier_rejected) ... ok
+test_determinism (__main__.TestProfiles.test_determinism) ... ok
+test_geometry_invariant_breaks_on_centre_edit (__main__.TestProfiles.test_geometry_invariant_breaks_on_centre_edit) ... ok
+test_p1_roundtrip (__main__.TestProfiles.test_p1_roundtrip) ... ok
+test_p2_geometry_and_size (__main__.TestProfiles.test_p2_geometry_and_size) ... ok
+test_p2_roundtrip (__main__.TestProfiles.test_p2_roundtrip) ... ok
+test_profiles_json (__main__.TestProfiles.test_profiles_json) ... ok
+test_truncation_and_edit_detection_p1_p2 (__main__.TestProfiles.test_truncation_and_edit_detection_p1_p2) ... ok
+test_wrong_profile_rejected (__main__.TestProfiles.test_wrong_profile_rejected) ... ok
+test_default_template_overlaps_justifying_reserved_zone (__main__.TestReservedZone.test_default_template_overlaps_justifying_reserved_zone) ... ok
+test_p1_no_text_overlap (__main__.TestReservedZone.test_p1_no_text_overlap) ... ok
+test_p2_no_text_overlap (__main__.TestReservedZone.test_p2_no_text_overlap) ... ok
+test_reserved_zone_generated (__main__.TestReservedZone.test_reserved_zone_generated) ... ok
+test_bijection_all_1024 (__main__.TestWordMap.test_bijection_all_1024) ... ok
+test_cross_runtime_javascript (__main__.TestWordMap.test_cross_runtime_javascript) ... ok
+test_cross_verification_production_signer (__main__.TestWordMap.test_cross_verification_production_signer) ... ok
+test_kat_values (__main__.TestWordMap.test_kat_values) ... ok
+test_trunc8_exact_trunc7_breaks (__main__.TestWordMap.test_trunc8_exact_trunc7_breaks) ... ok
+
+----------------------------------------------------------------------
+Ran 30 tests in 2.644s
+
+OK
