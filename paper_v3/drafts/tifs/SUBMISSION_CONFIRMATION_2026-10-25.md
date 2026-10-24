@@ -1,13 +1,19 @@
 # TIFS submission confirmation — 2026-10-25
 
-**Status:** **SUBMITTED** to IEEE Transactions on Information Forensics and Security (TIFS)
+**Status:** **SUBMITTED** to IEEE Transactions on Information Forensics and Security (TIFS) — acknowledgement email received 2026-10-25 02:03 EET
 **Portal:** https://ieee.atyponrex.com/journal/tifs-ieee
 **Date recorded:** 2026-10-25 02:04 EET
 **Portal submission UUID:** `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`
-**Manuscript ID:** **pending** — assigned/confirmed by the editorial office after submission; record it when it arrives.
+**Manuscript ID:** **pending** — confirmation email says it will arrive via ScholarOne Manuscripts in the next several days; record it immediately when issued.
 
 > Portal message at submission: “Congratulations. Your manuscript has been processed and submitted to the journal.”
 > The submission is now locked for author changes unless returned by the journal.
+
+## Acknowledgement email
+
+- Full transcription: `SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md`
+- From `no-reply@researchexchange.com`, 2026-10-25 02:03 EET, DKIM valid.
+- Confirms successful online submission and delivery to the TIFS Editorial Office; Manuscript ID pending via ScholarOne.
 
 ## Files recorded at submission
 

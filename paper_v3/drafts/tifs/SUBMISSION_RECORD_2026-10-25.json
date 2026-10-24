@@ -5,14 +5,35 @@
   "submitted_at": "2026-10-25T02:04:00+03:00",
   "portal_submission_uuid": "0e4ee084-bfb8-4eaf-afbf-b1707e9d1194",
   "manuscript_id": null,
-  "manuscript_id_status": "pending editorial acknowledgement",
+  "manuscript_id_status": "pending; expected via ScholarOne Manuscripts",
   "files": {
-    "main_pdf": {"path": "paper_v3/drafts/tifs/ieee/main.pdf", "bytes": 342649, "sha256": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480"},
-    "source_zip": {"path": "paper_v3/drafts/tifs/ieee/IEEEtran_TIFS_submission.zip", "bytes": 452570, "sha256": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e"},
-    "cover_letter": {"path": "paper_v3/drafts/tifs/cover_letter_TIFS.pdf", "bytes": 37639, "sha256": "f97624c33028d7c5c907f91c6637f3323301cd560daeb800759457e09619252b"},
-    "preprint_disclosure": {"path": "prior upload", "bytes": 113268},
-    "prior_zenodo": {"path": "prior upload", "bytes": 1047340},
-    "prior_submission_statement": {"path": "prior upload", "bytes": 67852}
+    "main_pdf": {
+      "path": "paper_v3/drafts/tifs/ieee/main.pdf",
+      "bytes": 342649,
+      "sha256": "41f9c37ecf319c23afe5f5cdb996af0f1b304fcc114db352635e0f967fee6480"
+    },
+    "source_zip": {
+      "path": "paper_v3/drafts/tifs/ieee/IEEEtran_TIFS_submission.zip",
+      "bytes": 452570,
+      "sha256": "66c606bcb94e8c14191b539c6c45729469935ea978ef1f5ac899e19ebb8be31e"
+    },
+    "cover_letter": {
+      "path": "paper_v3/drafts/tifs/cover_letter_TIFS.pdf",
+      "bytes": 37639,
+      "sha256": "f97624c33028d7c5c907f91c6637f3323301cd560daeb800759457e09619252b"
+    },
+    "preprint_disclosure": {
+      "path": "prior upload",
+      "bytes": 113268
+    },
+    "prior_zenodo": {
+      "path": "prior upload",
+      "bytes": 1047340
+    },
+    "prior_submission_statement": {
+      "path": "prior upload",
+      "bytes": 67852
+    }
   },
   "reviewer_pdf": {
     "path": "/home/attor/Documents/0e4ee084-bfb8-4eaf-afbf-b1707e9d1194.pdf",
@@ -21,8 +42,14 @@
     "sha256": "9cf8f732206035119f565ab7bb911007f4394a984865dd633fc46af527f29666"
   },
   "portal_answers": {
-    "edics": ["IF-WAT-MODL", "IF-FOR-AUTH"],
-    "subject_categories": ["Watermarking and Data Hiding", "Multimedia Forensics"],
+    "edics": [
+      "IF-WAT-MODL",
+      "IF-FOR-AUTH"
+    ],
+    "subject_categories": [
+      "Watermarking and Data Hiding",
+      "Multimedia Forensics"
+    ],
     "previously_submitted_to_tifs": false,
     "human_subjects": false,
     "animal_subjects": false,
@@ -30,7 +57,11 @@
     "identical_preprint": true,
     "other_preprints_not_prior_art": false,
     "resubmission_related_rejected": true,
-    "prior_submission_ids": ["JISAS-D-26-07950", "SIGPRO-D-26-04464", "COSE-D-26-06638"],
+    "prior_submission_ids": [
+      "JISAS-D-26-07950",
+      "SIGPRO-D-26-04464",
+      "COSE-D-26-06638"
+    ],
     "extended_conference": false,
     "other_author_papers_not_in_references": false,
     "code": true,
@@ -43,5 +74,13 @@
     "verify submitted cover letter version in My Submissions; contact editorial office if 30.3 KB old cover was submitted",
     "do not submit elsewhere while under review",
     "log first decision"
-  ]
+  ],
+  "acknowledgement_email": {
+    "received_at": "2026-10-25T02:03:00+03:00",
+    "from": "no-reply@researchexchange.com",
+    "subject": "Manuscript submitted to IEEE Transactions on Information Forensics and Security",
+    "dkim": "valid",
+    "transcription": "paper_v3/drafts/tifs/SUBMISSION_ACKNOWLEDGEMENT_EMAIL_2026-10-25.md",
+    "screenshot_sha256": "c6de4f5b2e198f60924a3ad98453ad4d22e428cc830672898f1796220b3fd170"
+  }
 }
