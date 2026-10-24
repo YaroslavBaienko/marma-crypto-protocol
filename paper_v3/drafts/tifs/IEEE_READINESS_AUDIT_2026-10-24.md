@@ -69,7 +69,7 @@ metadata include it.
 | Build warnings | 0 undefined citations, 0 BibTeX warnings, 0 LaTeX errors; 5 overfull hboxes (cosmetic, <8 pt) |
 | Author block/ORCID | present and ORCID checksum valid |
 | Index terms | present (5) |
-| Artifacts | `ieee/main.pdf` (10 pp, 342,649 B, SHA-256 `d762d745…`), `IEEEtran_TIFS_submission.zip` (452,365 B, SHA-256 `2300ab5c…`), `ieee/main_sps_margins.pdf` (alternate with 1-inch margins), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
+| Artifacts | `ieee/main.pdf` (10 pp, 342,649 B, SHA-256 `d762d745…`), `IEEEtran_TIFS_submission.zip` (452,575 B, SHA-256 `1c0c3d21…`), `ieee/main_sps_margins.pdf` (alternate with 1-inch margins), internal `TIFS_bundle_2026-10-24.zip` (hash reported after final bundle build); upload manifest in `drafts/tifs/SUBMISSION_MANIFEST_2026-10-24.md` |
 | Source draft | `Manuscript_TIFS_content_v1.pdf` (13-page single-column editing version) |
 
 **Formatting caveat:** SPS author instructions ask for margins ≥1 inch, while IEEEtran's journal

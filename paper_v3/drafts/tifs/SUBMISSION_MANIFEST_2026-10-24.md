@@ -9,7 +9,7 @@ Modulation on Vector Geometry*
 **Status:** prepared, not submitted. Owner actions are listed at the end.
 
 **One-link submission package:** https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/tifs-v3/TIFS_submission_package_2026-10-25.zip
-(SHA-256 `cf960984274e46f692b9d621838e54fb136d7610d303fd9ae6c92ea1dbf40a7d`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
+(SHA-256 `4167f4b6b1b8149905cee7349ff2f5cd00b83f0ae7aeace8259ff9beeeec069e`; contains `main.pdf`, `cover_letter_TIFS.pdf`, source zip, optional 1-inch-margin PDF, README and SHA256SUMS.)
 
 ## 1. Files to upload to the portal
 
@@ -18,7 +18,7 @@ Modulation on Vector Geometry*
 | `ieee/main.pdf` — review PDF | 342,649 B | `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9` |
 | `cover_letter_TIFS.pdf` — cover letter | 31,031 B | `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87` |
 | `ieee/main_sps_margins.pdf` — optional alternate with ≥1-inch side margins | 11 pp, 343,623 B | only if portal flags margins |
-| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,365 B | `2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df` |
+| `ieee/IEEEtran_TIFS_submission.zip` — optional LaTeX source (self-contained: class, bst, figures, main.pdf) | 452,575 B | `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454` |
 
 Optional separate figures: `ieee/figures/fig_*.pdf` (the review PDF already embeds them).
 
@@ -27,7 +27,7 @@ Verify before upload:
 sha256sum -c <<'SUMS'
 d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9  ieee/main.pdf
 af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87  cover_letter_TIFS.pdf
-2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df  ieee/IEEEtran_TIFS_submission.zip
+1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454  ieee/IEEEtran_TIFS_submission.zip
 SUMS
 ```
 

@@ -12,10 +12,10 @@ Modulation on Vector Geometry* · **Author:** Yaroslav V. Baienko (ORCID 0009-00
   SHA-256 `d762d7456f3f52619bbe8f29bcf400bffa355036bc07470873aa4a1794f2a7f9`
 - **Cover letter:** `cover_letter_TIFS.pdf` — 31,031 B,
   SHA-256 `af725aed20430834d0dd9d54fcea4089cba8fd2601f4eff7cad1087328a41f87`
-- **LaTeX source:** `IEEEtran_TIFS_submission.zip` — 452,365 B,
-  SHA-256 `2300ab5c5cd7a3d3fbb5c9248cf125a20f55b4fba143a020a1336304836b81df`
+- **LaTeX source:** `IEEEtran_TIFS_submission.zip` — 452,575 B,
+  SHA-256 `1c0c3d2125e8ba9f2f4279a8b2b7f4a8ec0ef5658d05f4fca5c3f462406e1454`
 - **Internal bundle:** `TIFS_bundle_2026-10-24.zip` — SHA-256
-  `45409228b14758d78944aad3467456e7992edf30d62c804d39f1f463a4efc1c0`
+  `d2bacd2aa4bcc0da4cc3a14c3729bf1b427d7caef968d251590e0748183476c3`
 
 ## 2. IEEE/TIFS formal gates
 
