@@ -1,6 +1,6 @@
 # marma-crypto-watermark v2.2.0 — release candidate notes
 
-**RC revision: `2.2.0-4`** (seal placement policy + Nautilus selection fix + seal-only visual contract).
+**RC revision: `2.2.0-5`** (Nautilus seal-placement dialog, seal placement policy, selection fix, seal-only visual contract).
 
 **Status: RELEASE CANDIDATE — built and package-tested, NOT installed system-wide and NOT tagged.**
 The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
@@ -46,6 +46,11 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 - **Keyless PDF verification:** `marma-watermark verify` no longer requires the owner's private
   key vault for ordinary PDFs (the embedded DSTU EC signature is checked); universal-SVG
   verification falls back to the active session key.
+- **Nautilus seal-placement UI (2026-10-24):** new menu action
+  `⚙️ Розміщення печатки (last, first-last, all, ask)` under Keys/Session/Help saves the policy
+  to `~/.config/marma-crypto/config.json` (`seal_pages`). Signing actions read the saved policy;
+  `ask` opens a per-signing radio dialog (default last), and `MARMA_SEAL_PAGES` overrides the file.
+  Dialog screenshot: `docs/visual_contract/seal_placement_dialog.png`.
 - P1 `v1-geometric` behavior is unchanged.
 
 ## Verification evidence
@@ -56,14 +61,14 @@ The installed system package is still `2.1.0-1`; the new `.deb` is in `dist/`.
 | Packaged CLI P2 sign→verify (extracted .deb) | **PASS** (`verified=true`, `profile=v2-round42`, 42.0 mm) |
 | Packaged PDF/DOCX seal-only check (extracted .deb) | **PASS** (verified, no visible caption, hidden packet retained) |
 | Packaged seal-pages check (extracted .deb) | **PASS** (`last` and `all` verified, `seal_pages`/`visible_seal_ok` reported) |
-| Full production pytest suite (`tests/`) | **65 passed** with `pymupdf>=1.28.2` (40 core + 5 seal-only visual + 6 Nautilus selection + 14 seal-placement). The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
+| Full production pytest suite (`tests/`) | **73 passed** with `pymupdf>=1.28.2` (40 core + 5 seal-only visual + 6 Nautilus selection + 14 seal-placement + 8 Nautilus placement-dialog/config). The earlier 1 failure was an environment artifact: `PYTHONPATH=/usr/lib/python3/dist-packages` shadowed PyMuPDF 1.28.2 with 1.25.4, whose text extraction does not reproduce the whitepapers' sealed content hash. With the correct environment the PAdES-LTA/whitepaper audit passes; see `tests/README.md` and `requirements-dev.txt`. |
 | Nautilus P2 script wiring (headless, fake CLI) | **PASS** (args: `--sign-svg`, `--profile v2-round42`, `--gui`) |
 | Manual GUI click-through in Nautilus | **NOT DONE** (owner action) |
 | System deployment / installation | **NOT DONE** (requires sudo: `sudo dpkg -i dist/marma-crypto-watermark_2.2.0-1_all.deb`) |
 | Git tag / GitHub release | **NOT DONE** (latest tag is `v2.1.0`) |
 
-Artifact: `dist/marma-crypto-watermark_2.2.0-4_all.deb`
-SHA256: `6e2c33312b65efee0d1859cc563c221cc3dc1bd63abbd82634095d59d6109db2`
+Artifact: `dist/marma-crypto-watermark_2.2.0-5_all.deb`
+SHA256: `ab3b871d9ba126a9968c1c8778072d7c1c8f2b89bb7e3f3e20160c3c95c6626b`
 Visual evidence: `docs/visual_contract/` (P2 42 mm seal and a stamped page; no caption).
 
 ## Install / rollout (owner)

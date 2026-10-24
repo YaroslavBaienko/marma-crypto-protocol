@@ -1,6 +1,6 @@
 # Nautilus scenarios — headless end-to-end run
 
-Generated: 2026-10-24 20:41 · contact sheet: `contact_sheet.png`
+Generated: 2026-10-24 20:48 · contact sheet: `contact_sheet.png`
 
 Environment: Nautilus selection simulated with **URIs only** (the regression case) or paths;
 `MARMA_HEADLESS=1`; real `marma-watermark` from `~/.local/bin`; fake `zenity` logs any chooser call.

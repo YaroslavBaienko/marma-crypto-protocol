@@ -36,7 +36,8 @@ fi
 [[ -z "$RECIPIENTS" ]] && RECIPIENTS="Investor_Alpha,Investor_Beta,Legal_Auditor_03"
 
 EMBLEM="${MARMA_EMBLEM:-tryzub}"
-CMD_ARGS=(batch-seal --recipients "$RECIPIENTS" --emblem "$EMBLEM" --optical-ring)
+SEAL_POLICY="$(marma_resolve_seal_pages)" || exit 0
+CMD_ARGS=(batch-seal --recipients "$RECIPIENTS" --emblem "$EMBLEM" --optical-ring --seal-pages "$SEAL_POLICY")
 [[ -n "${MARMA_OUTPUT_DIR:-}" ]] && CMD_ARGS+=(--output "${MARMA_OUTPUT_DIR}")
 [[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
 

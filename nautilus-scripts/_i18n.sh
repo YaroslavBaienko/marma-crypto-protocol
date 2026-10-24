@@ -97,6 +97,70 @@ elif [[ -f "$HOME/ai-debian-admin/deb-packages/marma-crypto-watermark/src/marma_
     export -f marma-watermark 2>/dev/null || true
 fi
 
+# ------------------------------------------------------------------------------
+# Seal placement preference: last (default) | first | first-last | all | ask
+# env MARMA_SEAL_PAGES overrides the saved ~/.config/marma-crypto/config.json value.
+# ------------------------------------------------------------------------------
+marma_config_path() {
+    printf '%s\n' "${XDG_CONFIG_HOME:-$HOME/.config}/marma-crypto/config.json"
+}
+
+marma_get_seal_pages() {
+    local spec="${MARMA_SEAL_PAGES:-}"
+    local cfg
+    cfg="$(marma_config_path)"
+    if [[ -z "$spec" && -f "$cfg" ]]; then
+        spec="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8")).get("seal_pages",""))' "$cfg" 2>/dev/null || true)"
+    fi
+    case "$spec" in
+        first|first-last|all|ask) printf '%s\n' "$spec" ;;
+        *) printf 'last\n' ;;
+    esac
+}
+
+marma_set_seal_pages() {
+    local spec="$1"
+    local cfg
+    cfg="$(marma_config_path)"
+    mkdir -p "$(dirname "$cfg")" 2>/dev/null || true
+    python3 - "$cfg" "$spec" <<'PYCFG'
+import json, sys
+path, spec = sys.argv[1], sys.argv[2]
+try:
+    data = json.load(open(path, encoding="utf-8"))
+except Exception:
+    data = {}
+data["seal_pages"] = spec
+json.dump(data, open(path, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
+PYCFG
+}
+
+# Resolve the placement for a signing action. If the user chose "ask", show a radio dialog
+# (unless headless / no display); on cancel return 1 so the caller can abort.
+marma_resolve_seal_pages() {
+    local spec choice
+    spec="$(marma_get_seal_pages)"
+    if [[ "$spec" != "ask" ]]; then
+        printf '%s\n' "$spec"
+        return 0
+    fi
+    if [[ -z "${DISPLAY:-}${WAYLAND_DISPLAY:-}" || -n "${MARMA_HEADLESS:-}" ]] || ! command -v zenity >/dev/null 2>&1; then
+        printf 'last\n'
+        return 0
+    fi
+    choice="$(zenity --list --radiolist \
+        --title="$(marma_text "Розміщення печатки — Marma-Crypto" "Seal placement — Marma-Crypto")" \
+        --text="$(marma_text "Оберіть, на яких сторінках ставити видиму печатку:" "Choose which pages carry the visible seal:")" \
+        --column="" --column="ID" --column="$(marma_text "Сторінки" "Pages")" \
+        TRUE "last" "$(marma_text "Остання (сторінка підпису) — рекомендовано" "Last (signature page) — recommended")" \
+        FALSE "all" "$(marma_text "Кожна сторінка" "Every page")" \
+        FALSE "first-last" "$(marma_text "Перша + остання" "First + last")" \
+        FALSE "first" "$(marma_text "Лише перша" "First only")" \
+        --hide-column=2 --print-column=2 --width=620 --height=390 2>/dev/null || true)"
+    [[ -z "$choice" ]] && return 1
+    printf '%s\n' "$choice"
+}
+
 marma_text() {
     if [[ "$MARMA_LANG" == "en" ]]; then
         echo "$2"

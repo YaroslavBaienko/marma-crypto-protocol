@@ -39,7 +39,8 @@ if [[ -z "${MARMA_EMBLEM:-}" && -z "${MARMA_HEADLESS:-}" ]] && command -v zenity
     [[ -n "$CHOICE" ]] && EMBLEM="$CHOICE"
 fi
 
-CMD_ARGS=(sign --emblem "$EMBLEM" --optical-ring)
+SEAL_POLICY="$(marma_resolve_seal_pages)" || exit 0
+CMD_ARGS=(sign --emblem "$EMBLEM" --optical-ring --seal-pages "$SEAL_POLICY")
 [[ -n "$RECIPIENT" ]] && CMD_ARGS+=(--recipient-id "$RECIPIENT")
 [[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
 

@@ -36,7 +36,8 @@ if [[ ${#VALID_FILES[@]} -eq 0 ]]; then
     fi
 fi
 
-CMD_ARGS=(sign --mode seal)
+SEAL_POLICY="$(marma_resolve_seal_pages)" || exit 0
+CMD_ARGS=(sign --mode seal --seal-pages "$SEAL_POLICY")
 [[ -z "${MARMA_HEADLESS:-}" ]] && CMD_ARGS+=(--gui)
 CMD_ARGS+=("${VALID_FILES[@]}")
 if marma_run_or_warn "Помилка підписання" "Signing failed" marma-watermark "${CMD_ARGS[@]}"; then
