@@ -1,0 +1,698 @@
+{
+  "summary": {
+    "entries": 49,
+    "doi_entries": 40,
+    "pass": 49,
+    "unverified": 0,
+    "manual": 9,
+    "anchor_files_hash_ok": 22,
+    "anchor_files": 22,
+    "release": {
+      "url": "https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/tifs-v3",
+      "files": [
+        "main.pdf",
+        "cover_letter_TIFS.pdf",
+        "IEEEtran_TIFS_submission.zip"
+      ]
+    }
+  },
+  "references": [
+    {
+      "key": "baienko2026preprint",
+      "status": "PASS",
+      "doi": "10.5281/zenodo.23560975",
+      "bib_title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subsp",
+      "crossref_title": "Marma-256 (Marma-Crypto v2.1.0): Sub-Micron Dithered Quantization Index Modulation, Orthogonal Subsp",
+      "title_similarity": 1.0,
+      "bib_year": "2026",
+      "crossref_year": "2026",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 403
+    },
+    {
+      "key": "bender1996",
+      "status": "PASS",
+      "doi": "10.1147/sj.353.0313",
+      "bib_title": "Techniques for data hiding",
+      "crossref_title": "Techniques for data hiding",
+      "title_similarity": 1.0,
+      "bib_year": "1996",
+      "crossref_year": "1996",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "boneh1999",
+      "status": "PASS",
+      "doi": "10.1007/3-540-48405-1_22",
+      "bib_title": "An Efficient Public Key Traitor Tracing Scheme",
+      "crossref_title": "An Efficient Public Key Traitor Tracing Scheme",
+      "title_similarity": 1.0,
+      "bib_year": "1999",
+      "crossref_year": "1999",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "boneh2021",
+      "status": "PASS",
+      "doi": "10.1007/978-3-030-84242-0_23",
+      "bib_title": "Halo Infinite: Proof-Carrying Data from Additive Polynomial Commitments",
+      "crossref_title": "Halo Infinite: Proof-Carrying Data from Additive Polynomial Commitments",
+      "title_similarity": 1.0,
+      "bib_year": "2021",
+      "crossref_year": "2021",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "catalano2013",
+      "status": "PASS",
+      "doi": "10.1007/978-3-642-36362-7_5",
+      "bib_title": "Vector Commitments and Their Applications",
+      "crossref_title": "Vector Commitments and Their Applications",
+      "title_similarity": 1.0,
+      "bib_year": "2013",
+      "crossref_year": "2013",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "cayre2005",
+      "status": "PASS",
+      "doi": "10.1109/tsp.2005.855418",
+      "bib_title": "Watermarking security: theory and practice",
+      "crossref_title": "Watermarking security: theory and practice",
+      "title_similarity": 1.0,
+      "bib_year": "2005",
+      "crossref_year": "2005",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "chen2001",
+      "status": "PASS",
+      "doi": "10.1109/18.923725",
+      "bib_title": "Quantization index modulation: a class of provably good methods for digital watermarking and informa",
+      "crossref_title": "Quantization index modulation: a class of provably good methods for digital watermarking and informa",
+      "title_similarity": 1.0,
+      "bib_year": "2001",
+      "crossref_year": "2001",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "cox1997",
+      "status": "PASS",
+      "doi": "10.1109/83.650120",
+      "bib_title": "Secure spread spectrum watermarking for multimedia",
+      "crossref_title": "Secure spread spectrum watermarking for multimedia",
+      "title_similarity": 1.0,
+      "bib_year": "1997",
+      "crossref_year": "1997",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "cox2008book",
+      "status": "PASS_MANUAL",
+      "detail": "Cox, Miller, Bloom, Fridrich, Kalker, Digital Watermarking and Steganography, 2nd ed., Morgan Kaufmann, 2008; ISBN 978-0-12-372585-1."
+    },
+    {
+      "key": "doncel2007",
+      "status": "PASS",
+      "doi": "10.1109/tvcg.2007.1050",
+      "bib_title": "An Optimal Detector Structure for the Fourier Descriptors Domain Watermarking of 2D Vector Graphics",
+      "crossref_title": "An Optimal Detector Structure for the Fourier Descriptors Domain Watermarking of 2D Vector Graphics",
+      "title_similarity": 1.0,
+      "bib_year": "2007",
+      "crossref_year": "2007",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "dstu4145",
+      "status": "PASS_MANUAL",
+      "detail": "DSTU 4145-2002, Ukrainian national standard; standard identifier verified against reference audit."
+    },
+    {
+      "key": "dstu7564",
+      "status": "PASS_MANUAL",
+      "detail": "DSTU 7564:2014, Kupyna hash standard; standard identifier verified against reference audit."
+    },
+    {
+      "key": "eggers2003",
+      "status": "PASS",
+      "doi": "10.1109/tsp.2003.809366",
+      "bib_title": "Scalar costa scheme for information embedding",
+      "crossref_title": "Scalar costa scheme for information embedding",
+      "title_similarity": 1.0,
+      "bib_year": "2003",
+      "crossref_year": "2003",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "eidas",
+      "status": "PASS_MANUAL",
+      "detail": "Regulation (EU) No 910/2014 (eIDAS), Official Journal L 257; EUR-Lex CELEX 32014R0910. https://eur-lex.europa.eu/eli/reg/2014/910/oj"
+    },
+    {
+      "key": "etsicades",
+      "status": "PASS_MANUAL",
+      "detail": "ETSI EN 319 122-1 V1.1.1 (2016), CAdES building blocks; ETSI standard."
+    },
+    {
+      "key": "etsipades",
+      "status": "PASS_MANUAL",
+      "detail": "ETSI EN 319 142-1 V1.1.1 (2016), PAdES building blocks; ETSI standard."
+    },
+    {
+      "key": "fips1403",
+      "status": "PASS",
+      "doi": "10.6028/NIST.FIPS.140-3",
+      "bib_title": "Security Requirements for Cryptographic Modules",
+      "crossref_title": "Security requirements for cryptographic modules",
+      "title_similarity": 1.0,
+      "bib_year": "2019",
+      "crossref_year": "2019",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 404
+    },
+    {
+      "key": "fips1804",
+      "status": "PASS",
+      "doi": "10.6028/NIST.FIPS.180-4",
+      "bib_title": "Secure Hash Standard (SHS)",
+      "crossref_title": "Secure hash standard",
+      "title_similarity": 0.909,
+      "bib_year": "2015",
+      "crossref_year": "2015",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 404
+    },
+    {
+      "key": "fips1865",
+      "status": "PASS",
+      "doi": "10.6028/NIST.FIPS.186-5",
+      "bib_title": "Digital Signature Standard (DSS)",
+      "crossref_title": "Digital Signature Standard (DSS)",
+      "title_similarity": 1.0,
+      "bib_year": "2023",
+      "crossref_year": "2023",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 404
+    },
+    {
+      "key": "fips202",
+      "status": "PASS_DOI_RESOLVES",
+      "doi": "10.6028/NIST.FIPS.202",
+      "bib_title": "SHA-3 Standard: Permutation-Based Hash and Extendable-Output Functions",
+      "crossref_title": "SHA-3 standard :",
+      "title_similarity": 0.337,
+      "bib_year": "2015",
+      "crossref_year": "2015",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 404
+    },
+    {
+      "key": "gost34311",
+      "status": "PASS_MANUAL",
+      "detail": "GOST 34.311-95, CIS hash standard; standard identifier verified against reference audit."
+    },
+    {
+      "key": "hatoum2018",
+      "status": "PASS",
+      "doi": "10.5220/0006899604200427",
+      "bib_title": "Blind PDF Document Watermarking Robust Against PCA and ICA Attacks",
+      "crossref_title": "Blind PDF Document Watermarking Robust Against PCA and ICA Attacks",
+      "title_similarity": 1.0,
+      "bib_year": "2018",
+      "crossref_year": "2018",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "he2005",
+      "status": "PASS",
+      "doi": "10.1109/icip.2005.1529736",
+      "bib_title": "A practical print-scan resilient watermarking scheme",
+      "crossref_title": "A practical print-scan resilient watermarking scheme",
+      "title_similarity": 1.0,
+      "bib_year": "2005",
+      "crossref_year": "2005",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "hou2014",
+      "status": "PASS",
+      "doi": "10.3923/itj.2014.869.873",
+      "bib_title": "A Blind Watermarking for 2D-Vector Engineering Graphics",
+      "crossref_title": "A Blind Watermarking for 2D-Vector Engineering Graphics",
+      "title_similarity": 1.0,
+      "bib_year": "2014",
+      "crossref_year": "2014",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "huet2002",
+      "status": "PASS",
+      "doi": "10.1016/s0304-3975(02)00028-2",
+      "bib_title": "{\\'S}r{\\i} Yantra Geometry",
+      "crossref_title": "Śrı̄ Yantra Geometry",
+      "title_similarity": 0.895,
+      "bib_year": "2002",
+      "crossref_year": "2002",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "iso32000",
+      "status": "PASS_MANUAL",
+      "detail": "ISO/IEC 32000-2:2020, Document management — Portable document format — Part 2: PDF 2.0; ISO standard 75839."
+    },
+    {
+      "key": "kulaichev1984",
+      "status": "PASS_MANUAL",
+      "detail": "Kulaichev, Indian Journal of History of Science 19(3):279-292 (1984); reference-audit entry (no DOI)."
+    },
+    {
+      "key": "li2003",
+      "status": "PASS",
+      "doi": "10.1109/iccima.2003.1238163",
+      "bib_title": "A blind watermarking of vector graphics images",
+      "crossref_title": "A blind watermarking of vector graphics images",
+      "title_similarity": 1.0,
+      "bib_year": "2003",
+      "crossref_year": "None",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "libert2016",
+      "status": "PASS_DOI_RESOLVES",
+      "doi": "10.4230/LIPIcs.ICALP.2016.30",
+      "bib_title": "Functional Commitment Schemes: From Polynomial Commitments to Pairing-Based Accumulators from Simple",
+      "crossref_title": "",
+      "title_similarity": 0,
+      "bib_year": "2016",
+      "crossref_year": "",
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "mainka2021",
+      "status": "PASS",
+      "doi": "10.14722/ndss.2021.24117",
+      "bib_title": "Shadow Attacks: Hiding and Replacing Content in Signed PDFs",
+      "crossref_title": "Shadow Attacks: Hiding and Replacing Content in Signed PDFs",
+      "title_similarity": 1.0,
+      "bib_year": "2021",
+      "crossref_year": "2021",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "mladenov2019",
+      "status": "PASS_DOI_RESOLVES",
+      "doi": "10.1145/3319535.3339812",
+      "bib_title": "1 Trillion Dollar Refund: How To Spoof PDF Signatures",
+      "crossref_title": "1 Trillion Dollar Refund",
+      "title_similarity": 0.632,
+      "bib_year": "2019",
+      "crossref_year": "2019",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 403
+    },
+    {
+      "key": "mouhamed2012",
+      "status": "PASS",
+      "doi": "10.1109/urke.2012.6319586",
+      "bib_title": "Blind 2D vector data watermarking approach using random table and polar coordinates",
+      "crossref_title": "Blind 2D vector data watermarking approach using random table and polar coordinates",
+      "title_similarity": 1.0,
+      "bib_year": "2012",
+      "crossref_year": "2012",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "muller2018",
+      "status": "PASS",
+      "doi": "10.1007/978-3-319-76526-6",
+      "bib_title": "Handbook of Floating-Point Arithmetic",
+      "crossref_title": "Handbook of Floating-Point Arithmetic",
+      "title_similarity": 1.0,
+      "bib_year": "2018",
+      "crossref_year": "2018",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "muller2019",
+      "status": "PASS",
+      "doi": "10.1145/3319535.3354214",
+      "bib_title": "Practical Decryption exFiltration: Breaking PDF Encryption",
+      "crossref_title": "Practical Decryption exFiltration",
+      "title_similarity": 0.733,
+      "bib_year": "2019",
+      "crossref_year": "2019",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 403
+    },
+    {
+      "key": "ni2006",
+      "status": "PASS",
+      "doi": "10.1109/tcsvt.2006.869964",
+      "bib_title": "Reversible data hiding",
+      "crossref_title": "Reversible data hiding",
+      "title_similarity": 1.0,
+      "bib_year": "2006",
+      "crossref_year": "2006",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "nist80057",
+      "status": "PASS",
+      "doi": "10.6028/NIST.SP.800-57pt1r5",
+      "bib_title": "Recommendation for Key Management: Part 1 -- General",
+      "crossref_title": "Recommendation for key management:",
+      "title_similarity": 0.815,
+      "bib_year": "2020",
+      "crossref_year": "2020",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 404
+    },
+    {
+      "key": "ohbuchi1998",
+      "status": "PASS",
+      "doi": "10.1109/49.668977",
+      "bib_title": "Watermarking three-dimensional polygonal models through geometric and topological modifications",
+      "crossref_title": "Watermarking three-dimensional polygonal models through geometric and topological modifications",
+      "title_similarity": 1.0,
+      "bib_year": "1998",
+      "crossref_year": "1998",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "ohbuchi2003",
+      "status": "PASS",
+      "doi": "10.1109/smi.2003.1199619",
+      "bib_title": "Watermarking 2D vector maps in the mesh-spectral domain",
+      "crossref_title": "Watermarking 2D vector maps in the mesh-spectral domain",
+      "title_similarity": 1.0,
+      "bib_year": "2003",
+      "crossref_year": "None",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "peng2019",
+      "status": "PASS",
+      "doi": "10.1109/tifs.2019.2899520",
+      "bib_title": "Reversible Data Hiding in Encrypted 2D Vector Graphics Based on Reversible Mapping Model for Real Nu",
+      "crossref_title": "Reversible Data Hiding in Encrypted 2D Vector Graphics Based on Reversible Mapping Model for Real Nu",
+      "title_similarity": 1.0,
+      "bib_year": "2019",
+      "crossref_year": "2019",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "perez2004",
+      "status": "PASS",
+      "doi": "10.1109/mmsp.2004.1436443",
+      "bib_title": "Rational dither modulation: a novel data-hiding method robust to value-metric scaling attacks",
+      "crossref_title": "Rational dither modulation: a novel data-hiding method robust to value-metric scaling attacks",
+      "title_similarity": 1.0,
+      "bib_year": "2004",
+      "crossref_year": "None",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "rfc3161",
+      "status": "PASS",
+      "doi": "10.17487/RFC3161",
+      "bib_title": "Internet X.509 Public Key Infrastructure Time-Stamp Protocol (TSP)",
+      "crossref_title": "Internet X.509 Public Key Infrastructure Time-Stamp Protocol (TSP)",
+      "title_similarity": 1.0,
+      "bib_year": "2001",
+      "crossref_year": "2001",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "rfc6979",
+      "status": "PASS",
+      "doi": "10.17487/RFC6979",
+      "bib_title": "Deterministic Usage of the Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Al",
+      "crossref_title": "Deterministic Usage of the Digital Signature Algorithm (DSA) and Elliptic Curve Digital Signature Al",
+      "title_similarity": 1.0,
+      "bib_year": "2013",
+      "crossref_year": "2013",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "richtergebert2011",
+      "status": "PASS_DOI_RESOLVES",
+      "doi": "10.1007/978-3-642-17286-1",
+      "bib_title": "Perspectives on Projective Geometry: A Guided Tour Through Real and Complex Geometry",
+      "crossref_title": "Perspectives on Projective Geometry",
+      "title_similarity": 0.593,
+      "bib_year": "2011",
+      "crossref_year": "2011",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "rohlmann2021",
+      "status": "PASS",
+      "doi": "10.1109/sp40001.2021.00110",
+      "bib_title": "Breaking the Specification: PDF Certification",
+      "crossref_title": "Breaking the Specification: PDF Certification",
+      "title_similarity": 1.0,
+      "bib_year": "2021",
+      "crossref_year": "2021",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "tardos2008",
+      "status": "PASS",
+      "doi": "10.1145/1346330.1346335",
+      "bib_title": "Optimal probabilistic fingerprint codes",
+      "crossref_title": "Optimal probabilistic fingerprint codes",
+      "title_similarity": 1.0,
+      "bib_year": "2008",
+      "crossref_year": "2008",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 403
+    },
+    {
+      "key": "thodi2007",
+      "status": "PASS",
+      "doi": "10.1109/tip.2006.891046",
+      "bib_title": "Expansion Embedding Techniques for Reversible Watermarking",
+      "crossref_title": "Expansion Embedding Techniques for Reversible Watermarking",
+      "title_similarity": 1.0,
+      "bib_year": "2007",
+      "crossref_year": "2007",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "tian2003",
+      "status": "PASS",
+      "doi": "10.1109/tcsvt.2003.815962",
+      "bib_title": "Reversible data embedding using a difference expansion",
+      "crossref_title": "Reversible data embedding using a difference expansion",
+      "title_similarity": 1.0,
+      "bib_year": "2003",
+      "crossref_year": "2003",
+      "error": "",
+      "doi_resolves": false,
+      "doi_status": 202
+    },
+    {
+      "key": "wang2014",
+      "status": "PASS",
+      "doi": "10.1016/j.cad.2013.10.005",
+      "bib_title": "A high capacity reversible data hiding method for 2D vector maps based on virtual coordinates",
+      "crossref_title": "A high capacity reversible data hiding method for 2D vector maps based on virtual coordinates",
+      "title_similarity": 1.0,
+      "bib_year": "2014",
+      "crossref_year": "2014",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    },
+    {
+      "key": "yang2018",
+      "status": "PASS",
+      "doi": "10.1016/j.neucom.2018.06.005",
+      "bib_title": "Steganalysis of joint codeword quantization index modulation steganography based on codeword Bayesia",
+      "crossref_title": "Steganalysis of joint codeword quantization index modulation steganography based on codeword Bayesia",
+      "title_similarity": 1.0,
+      "bib_year": "2018",
+      "crossref_year": "2018",
+      "error": "",
+      "doi_resolves": true,
+      "doi_status": 200
+    }
+  ],
+  "anchors": [
+    {
+      "name": "Marma_Crypto_IACR_LNCS_Edition.pdf",
+      "source": "whitepaper/Marma_Crypto_IACR_LNCS_Edition.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf",
+      "source": "whitepaper/Marma_Crypto_Whitepaper_UA_PROTOCOL.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf",
+      "source": "whitepaper/Marma_Crypto_Whitepaper_EN_PROTOCOL.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "Marma_Crypto_Whitepaper_EN.pdf",
+      "source": "whitepaper/Marma_Crypto_Whitepaper_EN.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "Marma_Crypto_Whitepaper_UA.pdf",
+      "source": "whitepaper/Marma_Crypto_Whitepaper_UA.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "01_Manuscript_Marma_Signal_Processing.pdf",
+      "source": "submission_snapshots/elsevier-v2.0/01_Manuscript_Marma_Signal_Processing.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "01_Manuscript_Marma_Crypto_JISA.pdf",
+      "source": "submission_snapshots/elsevier-v2.0/01_Manuscript_Marma_Crypto_JISA.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "01b_Manuscript_Extended_Whitepaper_EN.pdf",
+      "source": "submission_elsevier_jisa/01b_Manuscript_Extended_Whitepaper_EN.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "01_Opys_Vynakhodu.pdf",
+      "source": "patent_ukrnoivi/01_Opys_Vynakhodu.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "02_Formula_Vynakhodu.pdf",
+      "source": "patent_ukrnoivi/02_Formula_Vynakhodu.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "03_Kreslennia.pdf",
+      "source": "patent_ukrnoivi/03_Kreslennia.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "04_Referat.pdf",
+      "source": "patent_ukrnoivi/04_Referat.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "NIST.FIPS.186-5.pdf",
+      "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.186-5.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "NIST.FIPS.180-4.pdf",
+      "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "NIST.FIPS.202.pdf",
+      "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.202.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "NIST.SP.800-57pt1r5.pdf",
+      "source": "https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-57pt1r5.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "NIST.FIPS.140-3.pdf",
+      "source": "https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.140-3.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "irs_f1040.pdf",
+      "source": "https://www.irs.gov/pub/irs-pdf/f1040.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "irs_fw2.pdf",
+      "source": "https://www.irs.gov/pub/irs-pdf/fw2.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "irs_f941.pdf",
+      "source": "https://www.irs.gov/pub/irs-pdf/f941.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "irs_f1120.pdf",
+      "source": "https://www.irs.gov/pub/irs-pdf/f1120.pdf",
+      "local_hash_ok": true
+    },
+    {
+      "name": "irs_f1099.pdf",
+      "source": "https://www.irs.gov/pub/irs-pdf/f1099msc.pdf",
+      "local_hash_ok": true
+    }
+  ]
+}
