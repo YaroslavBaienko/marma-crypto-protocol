@@ -1,5 +1,7 @@
 # IEEE TIFS submission plan (primary target after the DSP withdrawal)
 
+**Playbook:** `paper_v3/IEEE_SUBMISSION_PLAYBOOK_2026-10-25.md` · **Skill:** `skills/ieee-publication-prep/`
+
 **Date:** 2026-10-23 · **Status (2026-10-25):** **SUBMITTED** — IEEEtran PDF (10 pages, 243-word abstract), evaluation complete; portal UUID `0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`; Manuscript ID pending. Record: `paper_v3/drafts/tifs/SUBMISSION_CONFIRMATION_2026-10-25.md`.
 **Why TIFS:** the best topical fit for fragile watermarking/forensics; IEEE hybrid model lets the
 author publish under the subscription route **without an APC** (open access remains optional).

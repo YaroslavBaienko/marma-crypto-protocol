@@ -1,0 +1,15 @@
+{
+  "skill_name": "ieee-publication-prep",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I have a 10-page IEEEtran PDF and a source zip for TIFS. Check whether it is ready to upload: page/abstract limits, ORCID 0000-0001-6690-2603, source root, fonts, references, and tell me what to fix before I submit.",
+      "expected_output": "A preflight report with PASS/FAIL checks and the remaining portal steps."
+    },
+    {
+      "id": 2,
+      "prompt": "The portal asks whether the manuscript was previously published, whether it is a resubmission of a rejected paper, and whether identical preprints exist. Our paper has a public GitHub author copy and earlier Zenodo preprints; help me answer truthfully and list the files/statement I need.",
+      "expected_output": "Portal-answer matrix with evidence files and wording, not a yes/no guess."
+    }
+  ]
+}
