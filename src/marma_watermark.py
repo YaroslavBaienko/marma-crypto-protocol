@@ -2034,6 +2034,9 @@ def main() -> int:
     parser.add_argument("--sign-svg", type=Path, help="Output SVG path to generate a signed Sri Yantra SVG")
     parser.add_argument("--verify-svg", type=Path, help="Signed SVG file to verify")
     parser.add_argument("--protocol", action="store_true", help="Generate official PDF Verification Protocol")
+    parser.add_argument("--profile", choices=["v1-geometric", "v2-round42"], default="v1-geometric",
+                        help="Seal profile for SVG signing/verification: v1-geometric (legacy) or "
+                             "v2-round42 (42 mm round branded technical stamp)")
     parser.add_argument("--payload", type=str, help="Custom payload string for SVG signing/verification")
     parser.add_argument("--recipient-id", type=str, default="", help="Canary Leak-Tracing recipient ID to embed/verify in D5.ay")
     parser.add_argument("--recipients", type=str, default="", help="Comma-separated Deal-Room recipient IDs for `batch-seal`")
@@ -2180,11 +2183,20 @@ def main() -> int:
                     recipient_id=args.recipient_id, signer_key_name=kname,
                 )
             else:
-                r = sign_any_file(
-                    f, out, secret_key=sec, mode=args.mode, payload=args.payload,
-                    signer_key_name=kname, key_fingerprint=kfp, key_file_path=kpath, raw_password=rpwd,
-                    recipient_id=args.recipient_id,
-                )
+                if ext == ".svg" and args.profile != "v1-geometric":
+                    from marma_seal_profiles import sign_seal_svg
+                    eff_out = out or f.with_name(f"{f.stem}_marma_{args.profile}.svg")
+                    r = sign_seal_svg(
+                        args.payload or f"EDU-VEDI::Canonical-Sri-Yantra::{f.name}", sec, eff_out,
+                        profile_id=args.profile, signer_key_name=kname, key_fingerprint=kfp,
+                        key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
+                    )
+                else:
+                    r = sign_any_file(
+                        f, out, secret_key=sec, mode=args.mode, payload=args.payload,
+                        signer_key_name=kname, key_fingerprint=kfp, key_file_path=kpath, raw_password=rpwd,
+                        recipient_id=args.recipient_id,
+                    )
             results.append(r)
         print(json.dumps(results if len(results) > 1 else results[0], indent=2, ensure_ascii=False))
         return 0
@@ -2211,10 +2223,19 @@ def main() -> int:
                 from marma_crypto.universal_qim import verify_universal_svg_drawing
                 res = verify_universal_svg_drawing(f, secret_key=sec or DEFAULT_SECRET, recipient_id=args.recipient_id)
             else:
-                res = verify_any_file(
-                    f, secret_key=sec, payload=args.payload, key_file_path=kpath,
-                    raw_password=rpwd, recipient_id=args.recipient_id,
-                )
+                if ext == ".svg":
+                    from marma_seal_profiles import verify_seal_svg
+                    res = verify_seal_svg(
+                        f.read_text(encoding="utf-8"), expected_profile=args.profile,
+                        payload=args.payload or None, secret_key=sec or DEFAULT_SECRET,
+                        key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
+                        svg_path=f,
+                    )
+                else:
+                    res = verify_any_file(
+                        f, secret_key=sec, payload=args.payload, key_file_path=kpath,
+                        raw_password=rpwd, recipient_id=args.recipient_id,
+                    )
             print(json.dumps(res, indent=2, ensure_ascii=False))
             if not res.get("verified"):
                 all_ok = False
@@ -2251,15 +2272,26 @@ def main() -> int:
     if args.sign_svg:
         sec, kname, kfp, kpath, rpwd = resolve_signing_credentials(args.gui, args.key_file, args.secret, doc_desc=args.sign_svg.name)
         pay = args.payload or f"EDU-VEDI::Canonical-Sri-Yantra::{args.sign_svg.name}"
-        res = sign_sri_yantra_svg(
-            pay, sec, args.sign_svg, signer_key_name=kname, key_fingerprint=kfp,
-            key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
-        )
+        if args.profile != "v1-geometric":
+            from marma_seal_profiles import sign_seal_svg
+            res = sign_seal_svg(
+                pay, sec, args.sign_svg, profile_id=args.profile, signer_key_name=kname,
+                key_fingerprint=kfp, key_file_path=kpath, raw_password=rpwd,
+                recipient_id=args.recipient_id,
+            )
+        else:
+            res = sign_sri_yantra_svg(
+                pay, sec, args.sign_svg, signer_key_name=kname, key_fingerprint=kfp,
+                key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
+            )
         print(json.dumps(res, indent=2, ensure_ascii=False))
         return 0
     if args.verify_svg:
-        res = verify_sri_yantra_svg(
-            args.verify_svg.read_text(encoding="utf-8"), args.payload, args.secret, recipient_id=args.recipient_id,
+        from marma_seal_profiles import verify_seal_svg
+        res = verify_seal_svg(
+            args.verify_svg.read_text(encoding="utf-8"), expected_profile=args.profile,
+            payload=args.payload, secret_key=args.secret or DEFAULT_SECRET,
+            recipient_id=args.recipient_id, svg_path=args.verify_svg,
         )
         print(json.dumps(res, indent=2, ensure_ascii=False))
         return 0 if res.get("verified") else 2

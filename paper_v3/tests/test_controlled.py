@@ -445,5 +445,62 @@ class TestProductionProfile(unittest.TestCase):
         self.assertFalse(v["verified"])
 
 
+class TestProductionCLI(unittest.TestCase):
+    """The --profile flag in the production CLI (sign/verify SVG paths)."""
+
+    CLI = ROOT / "src" / "marma_watermark.py"
+    SECRET = "Sovereign-Vedic-Geometry-Key-108"
+
+    def setUp(self):
+        self.tmp = Path(tempfile.mkdtemp(prefix="controlled_cli_"))
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+
+    def _run(self, *args):
+        r = subprocess.run([sys.executable, str(self.CLI), *args], capture_output=True, text=True, cwd=ROOT)
+        return r
+
+    def _json(self, text):
+        i = text.find("{")
+        return json.loads(text[i:]) if i >= 0 else {}
+
+    def test_help_lists_profile_flag(self):
+        r = self._run("--help")
+        self.assertEqual(r.returncode, 0)
+        self.assertIn("--profile", r.stdout)
+        self.assertIn("v2-round42", r.stdout)
+
+    def test_cli_p2_sign_and_verify(self):
+        svg = self.tmp / "p2.svg"
+        r = self._run("--sign-svg", str(svg), "--payload", "CLI P2 payload",
+                      "--secret", self.SECRET, "--profile", "v2-round42")
+        self.assertEqual(r.returncode, 0, r.stderr[-500:])
+        signed = self._json(r.stdout)
+        self.assertEqual(signed.get("profile"), "v2-round42")
+        self.assertEqual(signed.get("profile_mm"), 42.0)
+        self.assertIn('data-profile="v2-round42"', svg.read_text())
+        v = self._run("--verify-svg", str(svg), "--payload", "CLI P2 payload",
+                      "--secret", self.SECRET, "--profile", "v2-round42")
+        self.assertEqual(v.returncode, 0, v.stderr[-500:])
+        self.assertTrue(self._json(v.stdout).get("verified"))
+
+    def test_cli_wrong_profile_fails_closed(self):
+        svg = self.tmp / "p2b.svg"
+        self._run("--sign-svg", str(svg), "--payload", "CLI P2 payload",
+                  "--secret", self.SECRET, "--profile", "v2-round42")
+        v = self._run("--verify-svg", str(svg), "--payload", "CLI P2 payload",
+                      "--secret", self.SECRET, "--profile", "v1-geometric")
+        self.assertEqual(v.returncode, 2)
+        self.assertFalse(self._json(v.stdout).get("verified"))
+
+    def test_cli_legacy_v1_default_unchanged(self):
+        svg = self.tmp / "v1.svg"
+        r = self._run("--sign-svg", str(svg), "--payload", "CLI v1 payload", "--secret", self.SECRET)
+        self.assertEqual(r.returncode, 0, r.stderr[-500:])
+        v = self._run("--verify-svg", str(svg), "--payload", "CLI v1 payload", "--secret", self.SECRET)
+        self.assertEqual(v.returncode, 0, v.stderr[-500:])
+        self.assertTrue(self._json(v.stdout).get("verified"))
+        self.assertEqual(self._json(v.stdout).get("profile"), "v1-geometric")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
