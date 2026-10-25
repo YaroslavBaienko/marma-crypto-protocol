@@ -1,7 +1,7 @@
 # Release test record — marma-crypto-watermark 2.2.0-6 (2026-10-25)
 
 **Artifact:** `dist/marma-crypto-watermark_2.2.0-6_all.deb`
-**SHA-256:** `c251b9e89c8446608151bf7e2df0ebcdb5ddce4f2cb3431cdcf12aaaa3ae4567`
+**SHA-256:** `5150f1e7168d378757bb0d1bab21044e48737629496b5aea7a297bcddcbd1101`
 **Size:** 90 KB (Installed-Size ~?; see `dpkg-deb -I`)
 
 ## Package-level tests (host)
