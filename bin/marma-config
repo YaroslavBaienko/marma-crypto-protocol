@@ -29,6 +29,17 @@ declare -A CATEGORIES_EN=(
     ["⚙️ Keys, Session & Help"]="6_keygen.sh:🗝️ Manage Vault Key (.secure_keys)|7_lock_session.sh:🔒 Lock RAM Session (Wipe Cached Key)|12_seal_pages.sh:⚙️ Seal placement (last, first-last, all, ask)|0_help.sh:📖 Help & Sri Yantra Mathematical Standard"
 )
 
+QUICK_UK=(
+    "1_stamp_both.sh|⚡ Швидко: підписати вибране"
+    "3_verify.sh|✅ Швидко: перевірити вибране"
+    "4_pdf_protocol.sh|📄 Швидко: PDF-протокол перевірки"
+)
+QUICK_EN=(
+    "1_stamp_both.sh|⚡ Quick: sign selected"
+    "3_verify.sh|✅ Quick: verify selected"
+    "4_pdf_protocol.sh|📄 Quick: verification report"
+)
+
 FOLDER_UK="🔱 Шрі Янтра · Marma-Crypto"
 FOLDER_EN="🔱 Sri Yantra · Marma-Crypto"
 
@@ -119,6 +130,23 @@ deploy_nautilus_scripts_for_dir() {
                 cp "$src_dir/$s_file" "$cat_dir/$s_disp"
                 chmod 0755 "$cat_dir/$s_disp"
             done
+        done
+    fi
+
+    # Root-level quick actions; the category folders remain for advanced actions.
+    if [[ "$effective_lang" == "en" ]]; then
+        for item in "${QUICK_EN[@]}"; do
+            local s_file="${item%%|*}"
+            local s_disp="${item##*|}"
+            cp "$src_dir/$s_file" "$target_folder/$s_disp"
+            chmod 0755 "$target_folder/$s_disp"
+        done
+    else
+        for item in "${QUICK_UK[@]}"; do
+            local s_file="${item%%|*}"
+            local s_disp="${item##*|}"
+            cp "$src_dir/$s_file" "$target_folder/$s_disp"
+            chmod 0755 "$target_folder/$s_disp"
         done
     fi
 

@@ -265,3 +265,17 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
 * **Whitepapers & Mathematical Specification (`whitepaper/`):** Licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
 
 
+
+
+## Preflight and machine-readable verification report (v2.2.0-6)
+
+```bash
+marma-watermark doctor --json-out /tmp/marma-doctor.json
+marma-watermark verify document.pdf --json-out /tmp/marma-verify.json
+marma-watermark protocol document.pdf --json-out /tmp/marma-report.json -o report.pdf
+```
+
+`doctor` checks Python, PyMuPDF (PAdES needs >= 1.28.2), python-docx, pycairo, the Nautilus
+menu, the key vault permissions and config. `protocol` still produces the human-readable
+PDF report; `--json-out` adds the machine-readable evidence record for a case-management or
+VDR integration.

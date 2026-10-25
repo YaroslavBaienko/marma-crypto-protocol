@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# build.sh — Збірка .deb пакета marma-crypto-watermark v2.2.0 (Nautilus + GTK4/Adwaita)
+# build.sh — Збірка .deb пакета marma-crypto-watermark v2.2.0-6 (Nautilus + GTK4/Adwaita)
 # За зразком архітектури $HOME/legaltech (qes-tools)
 #
 # Встановлює у систему:
@@ -24,7 +24,7 @@ BIN_DIR="${SCRIPT_DIR}/bin"
 NAUTILUS_SRC="${SCRIPT_DIR}/nautilus-scripts"
 
 PKG_NAME="marma-crypto-watermark"
-PKG_VERSION="2.2.0-5"
+PKG_VERSION="2.2.0-6"
 PKG_ARCH="all"
 PKG_MAINTAINER="Yaroslav Baienko <yaroslav@advocacy.uno>"
 
@@ -106,7 +106,7 @@ _marma_watermark_completions() {
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
     prev="${COMP_WORDS[COMP_CWORD-1]}"
-    opts="sign verify trace protocol keygen clear-session selftest batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --profile --seal-pages --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --secret --strict-key --mode --lang --gui --open --help --version"
+    opts="sign verify trace protocol keygen clear-session selftest doctor batch-seal serve-api --stamp-pdf --verify-pdf --stamp-docx --verify-docx --sign-svg --verify-svg --protocol --profile --seal-pages --recipient-id --recipients --suspects --emblem --optical-ring --image --content-sha256 --port --key-file -k --output -o --json-out --secret --strict-key --mode --lang --gui --open --help --version"
     if [[ ${cur} == -* ]] || [[ ${COMP_CWORD} -eq 1 ]]; then
         COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
         return 0
@@ -141,9 +141,10 @@ Description: Sri Yantra Cryptographic Geometric Watermark & Nautilus Suite
  tokens, and GNOME Files (Nautilus) right-click Scripts menu ("🔱 Шрі Янтра · Marma-Crypto").
  .
  Provides /usr/bin/marma-watermark, /usr/bin/marma-dialog (GTK4/Libadwaita),
- and /usr/bin/marma-config for stamping 256-bit bijective vector watermarks,
- golden Bindu seals, Canary leak-tracing (--recipient-id / trace), verifying
- 9-triangle concurrency invariants, and generating official PDF protocols.
+ and /usr/bin/marma-config. The production CLI seals PDF/DOCX/SVG with the
+ current 266-bit payload (256-bit digest + 10-bit recipient word); the optional
+ browser demo uses the legacy v1.3 256-bit carrier. Includes verification
+ reports (PDF + JSON), a doctor preflight and Nautilus quick actions.
 EOF
 
 cat > "${PKGROOT}/DEBIAN/postinst" <<'EOF'
@@ -163,8 +164,8 @@ if [ "$1" = "configure" ]; then
     fi
 
     echo "================================================================================"
-    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.2.0"
-    echo " • marma-watermark sign       — накладання 256-бітного водяного знака та печатки (Шрі Янтра / Тризуб / Щит / CAD)"
+    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.2.0-6"
+    echo " • marma-watermark sign       — накладання 266-бітного payload (256-bit digest + 10-bit recipient) та печатки (Шрі Янтра / Тризуб / Щит / CAD)"
     echo " • marma-watermark batch-seal — пакетне штампування Deal-Room (N отримувачів + Optical Lotus ECC)"
     echo " • marma-watermark verify     — перевірка цілісності тексту, комбінера та 27-DOF геометрії"
     echo " • marma-watermark trace      — розшук джерела витоку з PDF/DOCX/SVG або фото екрана (.png/.jpg)"
@@ -172,6 +173,8 @@ if [ "$1" = "configure" ]; then
     echo " • marma-watermark protocol   — формування офіційного PDF-протоколу перевірки"
     echo " • marma-dialog               — нативні вікна GTK4 / Libadwaita (вибір ключа з ~/.secure_keys)"
     echo " • marma-config               — керування мовою меню Nautilus (marma-config --lang uk|en|auto)"
+    echo " • marma-watermark doctor     — preflight Python/PyMuPDF/Nautilus/keys"
+    echo " • verify --json-out / protocol --json-out — machine-readable evidence report"
     echo " 🖱️ Інтегровано у файловий менеджер GNOME (правий клік -> Скрипти -> 🔱 Шрі Янтра · Marma-Crypto)"
     echo "================================================================================"
 fi
@@ -254,9 +257,25 @@ if [[ "${MODE}" == "test" ]]; then
     HOME="${FAKE_HOME}" MARMA_SOURCE_SCRIPTS_DIR="${TEST_ROOT}/usr/share/marma-crypto-watermark/nautilus-scripts" \
         "${TEST_ROOT}/usr/lib/marma-crypto-watermark/bin/marma-config" --lang uk
     find "${FAKE_HOME}/.local/share/nautilus/scripts" -maxdepth 3 | sed 's/^/      /'
+    QUICK_COUNT=$(find "${FAKE_HOME}/.local/share/nautilus/scripts" -mindepth 2 -maxdepth 2 -type f | wc -l)
+    if [ "${QUICK_COUNT}" -lt 3 ]; then
+        echo "    ❌ Nautilus quick actions missing (found ${QUICK_COUNT}, expected >=3)" >&2
+        exit 1
+    fi
+    echo "    Nautilus quick actions: ${QUICK_COUNT}"
 
     echo "    запуск автономного самотесту (SVG + PDF + DOCX + PDF Protocol + Tamper Detection):"
     python3 "${TEST_ROOT}/usr/lib/marma-crypto-watermark/marma_watermark.py" selftest
+
+    echo "    doctor preflight:"
+    python3 "${TEST_ROOT}/usr/lib/marma-crypto-watermark/marma_watermark.py" doctor --json-out "${TEST_ROOT}/doctor.json" || true
+    python3 - "${TEST_ROOT}/doctor.json" <<'PYEOF'
+import json, sys
+d = json.load(open(sys.argv[1], encoding="utf-8"))
+assert d.get("status") in ("ok", "error"), d
+assert any(c.get("check") == "pymupdf>=1.28.2" for c in d.get("checks", []))
+print("      doctor JSON OK:", d.get("status"))
+PYEOF
     rm -rf "${TEST_ROOT}"
     echo "==> --test: PASS (пакет і меню Nautilus повністю працездатні)"
 fi

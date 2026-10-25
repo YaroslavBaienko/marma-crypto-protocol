@@ -2185,6 +2185,54 @@ def run_self_test(out_dir: Path | None = None) -> int:
     return 0 if all_passed else 1
 
 
+
+def run_doctor(json_out: Path | None = None) -> int:
+    """Local preflight: Python, PyMuPDF, document libraries, Nautilus menu and key vault.
+
+    The PAdES-LTA whitepaper hash check needs PyMuPDF >= 1.28.2; older distro packages
+    must be reported explicitly instead of failing later with a confusing hash mismatch.
+    """
+    checks: list[dict] = []
+
+    def add(name: str, ok: bool, detail: str, critical: bool = False) -> None:
+        checks.append({"check": name, "ok": bool(ok), "detail": detail, "critical": bool(critical)})
+
+    py_ok = sys.version_info >= (3, 10)
+    add("python>=3.10", py_ok, sys.version.split()[0], critical=True)
+    if pymupdf is None:
+        add("pymupdf", False, "not importable", critical=True)
+    else:
+        ver = str(getattr(pymupdf, "__version__", "unknown"))
+        try:
+            parts = tuple(int(x) for x in ver.split(".")[:3])
+            ver_ok = parts >= (1, 28, 2)
+        except Exception:
+            ver_ok = False
+        add("pymupdf>=1.28.2", ver_ok, ver, critical=True)
+    add("python-docx", docx is not None, getattr(docx, "__version__", "missing") if docx is not None else "missing")
+    add("pycairo", cairo is not None, getattr(cairo, "version", "missing") if cairo is not None else "missing")
+    menu_dirs = [
+        Path.home() / ".local/share/nautilus/scripts/🔱 Шрі Янтра · Marma-Crypto",
+        Path.home() / ".local/share/nautilus/scripts/🔱 Sri Yantra · Marma-Crypto",
+    ]
+    menu = next((p for p in menu_dirs if p.is_dir()), None)
+    add("nautilus-menu", menu is not None, str(menu) if menu else "not deployed; run marma-config --refresh")
+    vault = Path.home() / ".secure_keys"
+    vault_ok = vault.is_dir() and (vault.stat().st_mode & 0o077) == 0
+    add("key-vault-permissions", vault_ok, f"{vault} mode={oct(vault.stat().st_mode & 0o777)}" if vault.is_dir() else "vault directory missing")
+    config = Path.home() / ".config/marma-crypto/config.json"
+    add("config", config.is_file(), str(config))
+
+    critical_failed = any(c["critical"] and not c["ok"] for c in checks)
+    status = "ok" if not critical_failed else "error"
+    result = {"status": status, "version": VERSION, "checks": checks}
+    out = json.dumps(result, indent=2, ensure_ascii=False)
+    print(out)
+    if json_out:
+        json_out.write_text(out + "\n", encoding="utf-8")
+    return 0 if not critical_failed else 1
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
         prog="marma-watermark",
@@ -2201,10 +2249,11 @@ def main() -> int:
             "keygen",
             "clear-session",
             "selftest",
+            "doctor",
             "batch-seal",
             "serve-api",
         ],
-        help="Action: sign, verify, trace, protocol, keygen, clear-session, selftest, batch-seal, or serve-api",
+        help="Action: sign, verify, trace, protocol, keygen, clear-session, selftest, doctor, batch-seal, or serve-api",
     )
     parser.add_argument("files", nargs="*", type=Path, help="Target documents (.pdf, .docx, .svg, .png, .jpg)")
     parser.add_argument("--stamp-pdf", type=Path, help="Input PDF file to stamp with Sri Yantra watermark")
@@ -2241,6 +2290,7 @@ def main() -> int:
     parser.add_argument("--content-sha256", type=str, default="", help="Optional document content SHA-256 for optical suspect matching")
     parser.add_argument("--port", type=int, default=8765, help="HTTP port for `serve-api` Deal-Room microservice")
     parser.add_argument("--output", "-o", type=Path, help="Output path for stamped document or protocol")
+    parser.add_argument("--json-out", type=Path, help="Write machine-readable verification/doctor result JSON to this path")
     parser.add_argument("--key-file", "-k", type=Path, help="Path to key file in ~/.secure_keys/ (.pfx, .p12, .key)")
     parser.add_argument("--secret", type=str, default=None, help="Author's secret key or password")
     parser.add_argument("--strict-key", action="store_true", help="Prompt/use key to verify cryptographic derivation")
@@ -2276,6 +2326,9 @@ def main() -> int:
 
     if args.action == "selftest":
         return run_self_test()
+
+    if args.action == "doctor":
+        return run_doctor(args.json_out)
 
     if args.action == "serve-api":
         from marma_crypto.api_server import MarmaDealRoomServer
@@ -2336,12 +2389,16 @@ def main() -> int:
         targets = args.files
         if not targets:
             parser.error("Вкажіть файл для формування PDF-протоколу.")
+        protocol_results = []
         for t in targets:
             out_p = args.output or t.with_name(f"{t.stem}_marma_protocol.pdf")
             res = generate_pdf_verification_protocol(t, out_p, lang=args.lang, secret_key=args.secret)
+            protocol_results.append(res)
             print(json.dumps(res, indent=2, ensure_ascii=False))
             if args.open and (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
                 subprocess.Popen(["xdg-open", str(out_p)], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        if args.json_out:
+            args.json_out.write_text(json.dumps(protocol_results if len(protocol_results) > 1 else protocol_results[0], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return 0
 
     if args.action == "sign":
@@ -2402,6 +2459,7 @@ def main() -> int:
                 doc_desc=args.files[0].name, force_prompt=True,
             )
         all_ok = True
+        verify_results = []
         dlg_bin = find_marma_dialog_bin()
         for f in args.files:
             ext = f.suffix.lower()
@@ -2425,11 +2483,14 @@ def main() -> int:
                         f, secret_key=sec, payload=args.payload, key_file_path=kpath,
                         raw_password=rpwd, recipient_id=args.recipient_id,
                     )
+            verify_results.append(res)
             print(json.dumps(res, indent=2, ensure_ascii=False))
             if not res.get("verified"):
                 all_ok = False
             if args.gui and (os.environ.get("DISPLAY") or os.environ.get("WAYLAND_DISPLAY")):
                 subprocess.run([dlg_bin, "verify-report", "--report-json", json.dumps(res), "--lang", args.lang], check=False)
+        if args.json_out:
+            args.json_out.write_text(json.dumps(verify_results if len(verify_results) > 1 else verify_results[0], indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
         return 0 if all_ok else 2
 
     if args.stamp_pdf:

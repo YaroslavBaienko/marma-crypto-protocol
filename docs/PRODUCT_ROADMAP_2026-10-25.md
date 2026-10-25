@@ -11,8 +11,8 @@ mispositioned; see `docs/research/NICHE_ANALYSIS_2026-10-25.md`.
 | Website | Product-first landing page, value cards, quickstart, OG card, responsive, EN/UK toggle | Still sells broad “trace” and crypto jargon; no pilot CTA, pricing, proof/case study, buyer-specific path |
 | Browser app | Zero-upload PDF/SVG sealer + verifier | Browser carrier is v1.3 **256-bit**; production CLI is v2.1.0 **266-bit** |
 | CLI/app | 266-bit, PDF/DOCX/SVG, seal-page policies, verify/trace | Linux-only, CLI/Nautilus friction; no JSON verification report or API |
-| `.deb` | `2.2.0-5_all.deb`, 4.5 MB installed, Python/GNOME deps | Description still says “256-bit”; `python3-pymupdf` dependency may be older than the PAdES requirement; no clean-VM/APT upgrade test in repo |
-| Nautilus | 16 scripts, localized, selection resolver tested | Cluttered root menu; no consolidated top-level action; limited progress/error UX; no verify/report submenu |
+| `.deb` | `2.2.0-6_all.deb`, Python/GNOME deps; doctor + JSON report + quick Nautilus actions | `python3-pymupdf` dependency may still be older than the PAdES requirement; clean-VM/APT upgrade test not yet automated |
+| Nautilus | 3 localized category folders + 3 root quick actions (seal/verify/report), selection resolver tested | Advanced categories still dense; progress/error messaging can be improved; no explicit “what it is not” in the menu |
 | GTM | Product Hunt 1 upvote; no paid pilot; no design partner | Wrong category/audience; no proof of willingness to pay |
 | Research | TIFS `T-IFS-29736-2026` under review | Credibility only; not distribution |
 
@@ -63,12 +63,10 @@ upgrade/uninstall clean; `marma-watermark doctor` reports the exact PyMuPDF vers
 
 ### P0.4 Nautilus integration UX
 
-Current: 16 root-level scripts under a folder. Buyers will not parse that.
+Current: a folder with 3 category subfolders (16 actions) plus 3 root quick actions.
 
-- Consolidate to one top-level **“🔱 Marma-Crypto”** action with a zenity/GTK submenu:
-  `Seal document`, `Verify`, `Trace leak`, `Seal pages`, `Batch deal-room`, `Export report`,
-  `Settings`, `Help`.
-- Keep advanced/debug actions in an `Advanced` submenu.
+- ✅ Added root quick actions: seal, verify, verification report.
+- Next: add a single `More…` / `Advanced` entry, progress/error dialogs and hide debug actions.
 - Show progress (`zenity --progress` or `notify-send`) for batch operations; never block silently.
 - On error, show an actionable dialog with the command/log path; fail closed.
 - Only enable for PDF/DOCX/SVG selections; keep the URI/path/split-view resolver.

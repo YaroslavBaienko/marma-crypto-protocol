@@ -3,25 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marma-Crypto Protocol v2.2.0 — Seal, Verify & Trace PDF/DOCX/SVG Watermarks</title>
-  <meta name="description" content="Marma-Crypto Protocol: open-source geometric document sealing. Production Linux CLI embeds a 266-bit payload in PDF, DOCX and SVG; a zero-upload browser demo seals PDF/SVG and verifies both. Trace leaked recipient copies. Complements PAdES/eIDAS QES." />
+  <title>Marma-Crypto — Tamper-evident seals for signed legal documents</title>
+  <meta name="description" content="Tamper-evident visible seals for signed PDF/DOCX/SVG. Exact client-side verification and recipient canaries for legal evidence and M&A data rooms; complements PAdES/eIDAS. Vector-preserved copies only; screenshots need a robust layer. Request a pilot." />
   <link rel="canonical" href="https://yaroslavbaienko.github.io/marma-crypto-protocol/" />
 
   <!-- OpenGraph & X (Twitter) Card Meta Tags -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="Marma-Crypto Protocol" />
-  <meta property="og:title" content="Marma-Crypto Protocol — Seal, Verify & Trace PDF, DOCX and SVG" />
-  <meta property="og:description" content="Open-source document sealing: production CLI embeds a 266-bit geometric payload in PDF/DOCX/SVG; the browser demo seals PDF/SVG and verifies both. Trace leaked recipient copies. PAdES/eIDAS evidence stays complementary." />
+  <meta property="og:title" content="Marma-Crypto — Tamper-evident seals for signed documents" />
+  <meta property="og:description" content="Visible seals + exact verification for legal/M&A evidence. Complements PAdES/eIDAS. Recipient canaries for vector-preserved copies; screenshots/photos need a robust companion. Pilot available." />
   <meta property="og:url" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/" />
-  <meta property="og:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0" />
+  <meta property="og:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0-6" />
   <meta property="og:image:width" content="1270" />
   <meta property="og:image:height" content="760" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@baienko" />
   <meta name="twitter:creator" content="@baienko" />
-  <meta name="twitter:title" content="Marma-Crypto Protocol — Seal, Verify & Trace Documents" />
+  <meta name="twitter:title" content="Marma-Crypto — Tamper-evident seals for signed documents" />
   <meta name="twitter:description" content="Open-source document sealing: 266-bit CLI payload for PDF/DOCX/SVG; zero-upload browser demo for PDF/SVG; client-side verification and recipient leak tracing." />
-  <meta name="twitter:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0" />
+  <meta name="twitter:image" content="https://yaroslavbaienko.github.io/marma-crypto-protocol/og_card.png?v=2.2.0-6" />
 
   <!-- Google Scholar Highwire Press Citation Meta Tags -->
   <meta name="citation_title" content="Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication" />
@@ -557,7 +557,7 @@
     </style>
 </head>
 <body>
-<div style="background:#0f2740;color:#f0d078;padding:8px 14px;text-align:center;font:600 13px system-ui,sans-serif;border-bottom:1px solid #e6bd53">Software v2.2.0-5 released 2026-10-24 — seal placement (last/all/first-last/first), seal-only rendering and Nautilus UX fixes. Protocol v2.1.0 unchanged.</div>
+<div style="background:#0f2740;color:#f0d078;padding:8px 14px;text-align:center;font:600 13px system-ui,sans-serif;border-bottom:1px solid #e6bd53">Software v2.2.0-6 released 2026-10-25 — seal placement (last/all/first-last/first), seal-only rendering and Nautilus UX fixes. Protocol v2.1.0 unchanged.</div>
 
 
   <!-- Top Navigation -->
@@ -565,11 +565,12 @@
     <div class="topbar-inner">
       <div class="brand">
         <span>🔱 Marma-Crypto Protocol</span>
-        <span class="brand-badge" data-i18n="brandBadge">software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM</span>
+        <span class="brand-badge" data-i18n="brandBadge">software v2.2.0-6 · protocol v2.1.0 · 266-bit QIM</span>
       </div>
       <div class="nav-actions">
         <a class="pill-link nav-primary" href="#sealerStudioCard" data-i18n="navSeal">Seal</a>
         <a class="pill-link nav-primary" href="#verifier" data-i18n="navVerify">Verify</a>
+        <a class="pill-link nav-primary" href="#pilot" data-i18n="navPilot">Pilot</a>
         <a class="pill-link nav-primary" href="#quickstart" data-i18n="navInstall">Install</a>
         <a class="pill-link" href="https://doi.org/10.5281/zenodo.23560975" target="_blank" rel="noopener">Zenodo DOI</a>
         <a class="pill-link" href="https://github.com/YaroslavBaienko/marma-crypto-protocol" target="_blank" rel="noopener">GitHub</a>
@@ -582,16 +583,16 @@
     <!-- Hero -->
     <section class="hero">
       <div class="hero-kicker" data-i18n="kicker">
-        Seal · Verify · Trace — cryptographic-geometric document integrity
+        Legal &amp; M&amp;A document evidence · visible seal · PAdES/eIDAS complement
       </div>
       <h1 data-i18n="heroTitle">
-        Seal, verify and trace documents with geometric watermarks
+        Tamper-evident seals for signed documents
       </h1>
       <p data-i18n="heroDesc">
-        Marma-Crypto embeds a 266-bit cryptographic digest into the geometry of a visible seal, verifies it client-side, and traces leaked copies to a recipient. Open source. PDF and SVG in the browser; PDF, DOCX and SVG via Linux CLI. It complements PAdES/eIDAS rather than replacing them.
+        Marma-Crypto binds a visible seal to an exact cryptographic digest, so a signed PDF or DOCX can be checked on screen and in the browser. Built for legal evidence and M&amp;A data rooms; it complements PAdES/eIDAS rather than replacing them. Recipient tracing works for vector-preserved copies; screenshots and photos need a separate robust layer.
       </p>
       <div class="hero-cta">
-        <a class="btn-gold" href="#sealerStudioCard" data-i18n="btnHeroSeal">🔱 Seal a document</a>
+        <a class="btn-gold" href="mailto:zerhug@gmail.com?subject=Marma-Crypto%20legal%2FM%26A%20pilot%20request" data-i18n="btnHeroPilot">📅 Request a 15-min evidence audit</a>
         <a class="btn-outline" href="#verifier" data-i18n="btnHeroVerify">✓ Verify a document</a>
         <a class="btn-outline" href="#quickstart" data-i18n="btnHeroInstall">⚙ Install CLI / .deb</a>
       </div>
@@ -622,10 +623,27 @@
         <article class="value-item">
           <div class="value-icon">🕵️</div>
           <h3 data-i18n="valueTraceTitle">Trace</h3>
-          <p data-i18n="valueTraceDesc">Embed a recipient-side canary in a separate degree of freedom. When a copy leaks, compare suspect IDs and identify the likely source without hiding the mark from the recipient.</p>
+          <p data-i18n="valueTraceDesc">Embed a recipient-side canary in a separate degree of freedom. It works when the leaked copy still preserves the vector geometry. Screenshots, photos and printouts need a separate robust layer; we do not claim universal leak tracing.</p>
         </article>
       </div>
-      <p class="hero-proof" data-i18n="proofLine">Open source (Apache-2.0) · 266-bit QIM · 1,800+ reproducible sample runs · software v2.2.0-5 · IEEE TIFS 2026 manuscript submitted; preprint on Zenodo</p>
+      <p class="hero-proof" data-i18n="proofLine">Open source (Apache-2.0) · 266-bit CLI payload · 1,800+ reproducible runs · software v2.2.0-6 · IEEE TIFS 2026 under review; preprint on Zenodo</p>
+    </section>
+
+    <!-- Paid pilot / legal use case -->
+    <section class="card" id="pilot" aria-labelledby="pilotTitle" style="border-color:rgba(212,168,67,0.55);">
+      <div class="value-head">
+        <h2 id="pilotTitle" data-i18n="pilotTitle">Paid pilot: one legal or M&amp;A evidence workflow</h2>
+        <p data-i18n="pilotDesc">A fixed-fee pilot for a legal, arbitration or M&amp;A team. We agree the scope after a 15-minute call: one document set, a verification report, and a clear go/no-go decision. No VDR replacement, no e-signature replacement.</p>
+      </div>
+      <div class="value-grid">
+        <article class="value-item"><h3 data-i18n="pilot1Title">1. Evidence set</h3><p data-i18n="pilot1Desc">Up to 10 signed PDF/DOCX documents from a real or anonymised deal/evidence room.</p></article>
+        <article class="value-item"><h3 data-i18n="pilot2Title">2. Verification report</h3><p data-i18n="pilot2Desc">Visible seal + exact digest + PAdES/QES status in a human-readable PDF/JSON record.</p></article>
+        <article class="value-item"><h3 data-i18n="pilot3Title">3. Decision</h3><p data-i18n="pilot3Desc">A short review of fit, limitations and next steps; no automatic enterprise commitment.</p></article>
+      </div>
+      <div style="text-align:center;margin-top:16px;">
+        <a class="btn-gold" href="mailto:zerhug@gmail.com?subject=Marma-Crypto%20legal%2FM%26A%20pilot%20request" data-i18n="btnHeroPilot">📅 Request a 15-min evidence audit</a>
+      </div>
+      <p class="hero-proof" data-i18n="limitsLine">What this is not: not a replacement for QES/PAdES, notarization or a VDR; the fragile vector seal fails closed under rasterisation, and screenshots/photos need a robust companion layer.</p>
     </section>
 
     <!-- NEW v1.3.0 KILLER FEATURE: Client-Side Browser Sealer & Deal-Room Canary Studio -->
@@ -853,10 +871,12 @@
         </div>
         <div class="meta-box">
           <div class="meta-key" data-i18n="quickCliTitle">Linux CLI — PDF, DOCX and SVG</div>
-          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickCliDesc">Install from the signed APT repository or the GitHub release, then use the CLI for batch sealing and recipient tracing.</p>
+          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickCliDesc">Install the v2.2.0-6 package from the GitHub release or the signed APT repository, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.</p>
 <pre class="quick-code">curl -fsSL https://yaroslavbaienko.github.io/legaltech/public.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/legaltech.gpg
 echo "deb [signed-by=/etc/apt/keyrings/legaltech.gpg] https://yaroslavbaienko.github.io/legaltech stable main" | sudo tee /etc/apt/sources.list.d/legaltech.list
-sudo apt update &amp;&amp; sudo apt install marma-crypto-watermark qes-tools</pre>
+sudo apt update &amp;&amp; sudo apt install marma-crypto-watermark qes-tools
+marma-watermark doctor
+marma-watermark protocol document.pdf --json-out report.json -o report.pdf</pre>
         </div>
         <div class="meta-box">
           <div class="meta-key" data-i18n="quickNautilusTitle">Nautilus integration</div>
@@ -879,7 +899,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         </div>
       </div>
       <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:14px;" data-i18n="entIntro">
-        While the core Marma-Crypto Protocol, CLI, and browser verifier are 100% open-source (Apache 2.0), we provide turnkey enterprise deployment, custom institutional seals, and court-admissible forensic opinions for banks, law firms, M&amp;A data rooms, and RWA/Web3 platforms:
+        While the core Marma-Crypto Protocol, CLI, and browser verifier are 100% open-source (Apache 2.0), we provide enterprise deployment, custom institutional seals and forensic document support for banks, law firms, M&amp;A data rooms and RWA/Web3 platforms. Forensic reports support the lawyer; they are not a guarantee of court admissibility:
       </p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;">
         <div class="meta-box" style="border-color:rgba(212,168,67,0.32);">
@@ -974,7 +994,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
 
     <footer class="footer">
       <div>
-        <strong>Marma-Crypto Protocol · software v2.2.0-5 · protocol v2.1.0</strong> · <span data-i18n="footerAuthor">Author & Inventor:</span> <strong>Yaroslav V. Baienko (Ярослав Володимирович Баєнко)</strong>
+        <strong>Marma-Crypto Protocol · software v2.2.0-6 · protocol v2.1.0</strong> · <span data-i18n="footerAuthor">Author & Inventor:</span> <strong>Yaroslav V. Baienko (Ярослав Володимирович Баєнко)</strong>
       </div>
       <div style="margin-top:4px;">
         CERN Zenodo DOI: <a href="https://doi.org/10.5281/zenodo.23560975">10.5281/zenodo.23560975</a> ·
@@ -2294,13 +2314,24 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
     // Full Bilingual Dictionary (English primary, Ukrainian secondary)
     const I18N = {
       en: {
-        brandBadge: "software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM",
+        brandBadge: "software v2.2.0-6 · protocol v2.1.0 · 266-bit QIM",
         navSeal: "Seal",
         navVerify: "Verify",
         navInstall: "Install",
-        kicker: "Seal · Verify · Trace — cryptographic-geometric document integrity",
-        heroTitle: "Seal, verify and trace documents with geometric watermarks",
-        heroDesc: "Marma-Crypto is an open-source document-sealing protocol. The production Linux CLI embeds a 266-bit cryptographic digest into the geometry of a visible seal; the zero-upload browser demo seals PDF/SVG with a 256-bit carrier. Verify client-side and trace leaked copies to a recipient. Complements PAdES/eIDAS.",
+        navPilot: "Pilot",
+        kicker: "Legal & M&A document evidence · visible seal · PAdES/eIDAS complement",
+        heroTitle: "Tamper-evident seals for signed documents",
+        heroDesc: "Marma-Crypto binds a visible seal to an exact cryptographic digest, so a signed PDF or DOCX can be checked on screen and in the browser. Built for legal evidence and M&A data rooms; it complements PAdES/eIDAS rather than replacing them. Recipient tracing works for vector-preserved copies; screenshots and photos need a separate robust layer.",
+        btnHeroPilot: "📅 Request a 15-min evidence audit",
+        pilotTitle: "Paid pilot: one legal or M&A evidence workflow",
+        pilotDesc: "A fixed-fee pilot for a legal, arbitration or M&A team. We agree the scope after a 15-minute call: one document set, a verification report, and a clear go/no-go decision. No VDR replacement, no e-signature replacement.",
+        pilot1Title: "1. Evidence set",
+        pilot1Desc: "Up to 10 signed PDF/DOCX documents from a real or anonymised deal/evidence room.",
+        pilot2Title: "2. Verification report",
+        pilot2Desc: "Visible seal + exact digest + PAdES/QES status in a human-readable PDF/JSON record.",
+        pilot3Title: "3. Decision",
+        pilot3Desc: "A short review of fit, limitations and next steps; no automatic enterprise commitment.",
+        limitsLine: "What this is not: not a replacement for QES/PAdES, notarization or a VDR; the fragile vector seal fails closed under rasterisation, and screenshots/photos need a robust companion layer.",
         btnHeroSeal: "🔱 Seal a document",
         btnHeroVerify: "✓ Verify a document",
         btnHeroInstall: "⚙ Install CLI / .deb",
@@ -2311,13 +2342,13 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         valueVerifyTitle: "Verify",
         valueVerifyDesc: "Check the visible seal, the vector geometry and the embedded digest locally. If the geometry is missing or altered, verification fails closed instead of pretending the document is valid.",
         valueTraceTitle: "Trace",
-        valueTraceDesc: "Embed a recipient-side canary in a separate degree of freedom. When a copy leaks, compare suspect IDs and identify the likely source without hiding the mark from the recipient.",
-        proofLine: "Open source (Apache-2.0) · 266-bit QIM · 1,800+ reproducible sample runs · software v2.2.0-5 · IEEE TIFS 2026 manuscript submitted; preprint on Zenodo",
+        valueTraceDesc: "Embed a recipient-side canary in a separate degree of freedom. It works when the leaked copy still preserves the vector geometry. Screenshots, photos and printouts need a separate robust layer; we do not claim universal leak tracing.",
+        proofLine: "Open source (Apache-2.0) · 266-bit CLI payload · 1,800+ reproducible runs · software v2.2.0-6 · IEEE TIFS 2026 under review; preprint on Zenodo",
         quickTitle: "⚙ Quickstart: use the browser or install the CLI",
         quickBrowserTitle: "Browser — zero upload",
         quickBrowserDesc: "Choose a PDF or SVG above, seal it with the v1.3 256-bit browser demo, then drop the sealed file into the verifier. Files never leave your device.",
         quickCliTitle: "Linux CLI — PDF, DOCX and SVG",
-        quickCliDesc: "Install the production v2.1.0 CLI from the signed APT repository or the GitHub release, then use it for 266-bit sealing of PDF/DOCX/SVG, seal-page policies and recipient tracing.",
+        quickCliDesc: "Install the v2.2.0-6 package from the GitHub release or the signed APT repository, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.",
         quickNautilusTitle: "Nautilus integration",
         quickNautilusDesc: "Seal selected PDF/DOCX/SVG files from the file manager, with a visible seal-placement setting (last / first-last / all / ask) and no text caption under the seal.",
         btnHeroEn: "📘 Whitepaper EN",
@@ -2365,7 +2396,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         entSectionTitle: "🏛️ Enterprise Integration & Forensic Legal Advisory",
         entBtnEmail: "✉️ Request Enterprise / Legal Consultation",
         entBtnX: "𝕏 Direct Message (@baienko)",
-        entIntro: "While the core Marma-Crypto Protocol, CLI, and browser verifier are 100% open-source (Apache 2.0), we provide turnkey enterprise deployment, custom institutional seals, and court-admissible forensic opinions for banks, law firms, M&A data rooms, and RWA/Web3 platforms:",
+        entIntro: "While the core Marma-Crypto Protocol, CLI and browser verifier are open source (Apache 2.0), we provide enterprise deployment, custom institutional seals and forensic document support for banks, law firms, M&A data rooms and RWA/Web3 platforms. Forensic reports support the lawyer; they are not a guarantee of court admissibility:",
         entPkg1Tag: "PACKAGE 01 · CI/CD & API",
         entPkg1Title: "Enterprise Document Sealing CI/CD",
         entPkg1Desc: "Turnkey integration of Marma-Crypto + Qualified Electronic Signatures (DSTU 4145-2002 / eIDAS PAdES-B-LTA + RFC 3161 TSP) into automated banking, legal, M&A, and RWA/Web3 document pipelines via headless Linux CLI, Docker, or on-premise microservice.",
@@ -2379,25 +2410,36 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         footerLicense: "License: Apache 2.0 / CC BY 4.0"
       },
       uk: {
-        brandBadge: "software v2.2.0-5 · protocol v2.1.0 · 266-bit QIM",
+        brandBadge: "software v2.2.0-6 · protocol v2.1.0 · 266-bit QIM",
         navSeal: "Запечатати",
         navVerify: "Перевірити",
         navInstall: "Встановити",
-        kicker: "Запечатати · Перевірити · Знайти витік — криптографічно-геометрична цілісність документів",
-        heroTitle: "Запечатуйте, перевіряйте та відстежуйте документи геометричними водяними знаками",
-        heroDesc: "Marma-Crypto — відкритий протокол запечатування документів. Production Linux CLI вбудовує 266-бітний криптографічний дайджест у геометрію видимої печатки; zero-upload браузерний демо-режим запечатує PDF/SVG 256-бітним носієм. Перевірка — на клієнті, пошук витоку — до отримувача. Доповнює PAdES/eIDAS.",
+        navPilot: "Пілот",
+        kicker: "Юридичні та M&A докази · видима печатка · доповнення PAdES/eIDAS",
+        heroTitle: "Захист від підміни для підписаних документів",
+        heroDesc: "Marma-Crypto прив'язує видиму печатку до точного криптографічного дайджесту, тож підписаний PDF або DOCX можна перевірити на екрані й у браузері. Для юридичних доказів і M&A data rooms; доповнює PAdES/eIDAS, а не замінює їх. Пошук отримувача працює для копій, що зберегли векторну геометрію; скріншоти й фото потребують окремого robust-шару.",
+        btnHeroPilot: "📅 Запросити 15-хвилинний аудит доказів",
+        pilotTitle: "Платний пілот: один юридичний або M&A сценарій",
+        pilotDesc: "Пілот із фіксованою оплатою для юридичної, арбітражної або M&A команди. Обсяг узгоджуємо за 15 хвилин: один набір документів, звіт перевірки та чітке рішення go/no-go. Без заміни VDR чи e-signature.",
+        pilot1Title: "1. Набір доказів",
+        pilot1Desc: "До 10 підписаних PDF/DOCX з реальної або анонімізованої deal/evidence room.",
+        pilot2Title: "2. Звіт перевірки",
+        pilot2Desc: "Видима печатка + точний дайджест + статус PAdES/QES у PDF/JSON-звіті.",
+        pilot3Title: "3. Рішення",
+        pilot3Desc: "Короткий огляд fit, обмежень і наступних кроків; без автоматичного enterprise-контракту.",
+        limitsLine: "Чого це не робить: не замінює QES/PAdES, нотаріат чи VDR; fragile vector seal fail-closed під растеризацією, а скріншоти/фото потребують robust-компаньйона.",
         btnHeroSeal: "🔱 Запечатати документ",
         btnHeroVerify: "✓ Перевірити документ",
         btnHeroInstall: "⚙ Встановити CLI / .deb",
         valueTitle: "Один протокол. Три дії: запечатати, перевірити, знайти витік.",
         valueDesc: "Для документів, де валідного підпису недостатньо: договори в data room, інженерні креслення, рішення рад директорів і докази. Видима печатка та криптографічний дайджест прив'язані до однієї геометрії.",
         valueSealTitle: "Запечатати",
-        valueSealDesc: "Додайте видиму геометричну печатку з 266-бітним корисним навантаженням. Браузер — PDF/SVG; Linux CLI — PDF, DOCX і SVG, з політиками last / first / first-last / all.",
+        valueSealDesc: "Production CLI додає видиму геометричну печатку з 266-бітним payload до PDF/DOCX/SVG із політиками last / first / first-last / all. Zero-upload браузерний демо-режим запечатує PDF/SVG 256-бітним носієм.",
         valueVerifyTitle: "Перевірити",
         valueVerifyDesc: "Перевірте видиму печатку, векторну геометрію та вбудований дайджест локально. Якщо геометрія відсутня або змінена, перевірка завершується fail-closed.",
         valueTraceTitle: "Знайти витік",
-        valueTraceDesc: "Вбудуйте canary-мітку отримувача в окремий ступінь свободи. Якщо копія витекла, порівняйте ID підозрюваних і визначте ймовірне джерело, не приховуючи мітку від отримувача.",
-        proofLine: "Відкритий код (Apache-2.0) · 266-bit QIM · 1 800+ відтворюваних прогонів · software v2.2.0-5 · рукопис IEEE TIFS 2026 подано; препринт на Zenodo",
+        valueTraceDesc: "Canary-мітка працює, якщо витік зберіг векторну геометрію. Скріншоти, фото й друк потребують окремого robust-шару; ми не заявляємо універсальний leak tracing.",
+        proofLine: "Відкритий код (Apache-2.0) · 266-bit CLI payload · 1 800+ відтворюваних прогонів · software v2.2.0-6 · IEEE TIFS 2026 under review; препринт на Zenodo",
         quickTitle: "⚙ Швидкий старт: браузер або CLI",
         quickBrowserTitle: "Браузер — без завантаження на сервер",
         quickBrowserDesc: "Виберіть PDF або SVG вище, запечатайте через браузерний демо-режим v1.3 256-bit і перетягніть запечатаний файл у верифікатор. Файли не покидають ваш пристрій.",
@@ -2450,7 +2492,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         entSectionTitle: "🏛️ Корпоративне Впровадження (Enterprise) та Судово-Експертний Аудит",
         entBtnEmail: "✉️ Замовити Enterprise-інтеграцію / Експертизу",
         entBtnX: "𝕏 Написати в X (@baienko)",
-        entIntro: "Базовий протокол Marma-Crypto, CLI та браузерний верифікатор є відкритими (Apache 2.0). Для банків, юридичних фірм, M&A data rooms та RWA/Web3-платформ ми виконуємо впровадження «під ключ», розробку корпоративних печаток і підготовку експертних висновків:",
+        entIntro: "Базовий протокол Marma-Crypto, CLI та браузерний верифікатор є відкритими (Apache 2.0). Для банків, юридичних фірм, M&A data rooms та RWA/Web3-платформ ми виконуємо впровадження, розробку корпоративних печаток і готуємо форензичні матеріали на підтримку юриста; це не гарантія судової допустимості:",
         entPkg1Tag: "ПАКЕТ 01 · CI/CD ТА API",
         entPkg1Title: "Enterprise Document Sealing CI/CD",
         entPkg1Desc: "Інтеграція Marma-Crypto + КЕП (ДСТУ 4145-2002 / eIDAS PAdES-B-LTA + мітка часу RFC 3161 TSP) в автоматизовані конвеєри документообігу банків, юрфірм, M&A та RWA/Web3-проєктів через серверний Linux CLI, Docker або локальний мікросервіс.",
