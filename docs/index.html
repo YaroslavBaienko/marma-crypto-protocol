@@ -871,10 +871,9 @@
         </div>
         <div class="meta-box">
           <div class="meta-key" data-i18n="quickCliTitle">Linux CLI — PDF, DOCX and SVG</div>
-          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickCliDesc">Install the v2.2.0-6 package from the GitHub release or the signed APT repository, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.</p>
-<pre class="quick-code">curl -fsSL https://yaroslavbaienko.github.io/legaltech/public.gpg | sudo gpg --dearmor -o /etc/apt/keyrings/legaltech.gpg
-echo "deb [signed-by=/etc/apt/keyrings/legaltech.gpg] https://yaroslavbaienko.github.io/legaltech stable main" | sudo tee /etc/apt/sources.list.d/legaltech.list
-sudo apt update &amp;&amp; sudo apt install marma-crypto-watermark qes-tools
+          <p style="font-size:0.86rem;color:var(--text-muted);margin:6px 0;" data-i18n="quickCliDesc">Install the v2.2.0-6 package from the GitHub release, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.</p>
+<pre class="quick-code">curl -LO https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/v2.2.0/marma-crypto-watermark_2.2.0-6_all.deb
+sudo apt install ./marma-crypto-watermark_2.2.0-6_all.deb
 marma-watermark doctor
 marma-watermark protocol document.pdf --json-out report.json -o report.pdf</pre>
         </div>
@@ -2348,7 +2347,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         quickBrowserTitle: "Browser — zero upload",
         quickBrowserDesc: "Choose a PDF or SVG above, seal it with the v1.3 256-bit browser demo, then drop the sealed file into the verifier. Files never leave your device.",
         quickCliTitle: "Linux CLI — PDF, DOCX and SVG",
-        quickCliDesc: "Install the v2.2.0-6 package from the GitHub release or the signed APT repository, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.",
+        quickCliDesc: "Install the v2.2.0-6 package from the GitHub release, then run the preflight. Debian 13's python3-pymupdf (1.25.4) is older than the PAdES requirement (1.28.2); doctor reports it instead of failing silently.",
         quickNautilusTitle: "Nautilus integration",
         quickNautilusDesc: "Seal selected PDF/DOCX/SVG files from the file manager, with a visible seal-placement setting (last / first-last / all / ask) and no text caption under the seal.",
         btnHeroEn: "📘 Whitepaper EN",
@@ -2444,7 +2443,7 @@ marma-watermark trace --suspects "Investor-A, Counsel-B" document.pdf</pre>
         quickBrowserTitle: "Браузер — без завантаження на сервер",
         quickBrowserDesc: "Виберіть PDF або SVG вище, запечатайте через браузерний демо-режим v1.3 256-bit і перетягніть запечатаний файл у верифікатор. Файли не покидають ваш пристрій.",
         quickCliTitle: "Linux CLI — PDF, DOCX і SVG",
-        quickCliDesc: "Встановіть production CLI v2.1.0 із підписаного APT-репозиторію або GitHub release; він дає 266-бітне запечатування PDF/DOCX/SVG, політики сторінок і пошук витоку.",
+        quickCliDesc: "Встановіть пакет v2.2.0-6 з GitHub release, потім запустіть preflight. У Debian 13 python3-pymupdf (1.25.4) старший за вимогу PAdES (1.28.2); doctor це покаже, а не приховає.",
         quickNautilusTitle: "Інтеграція з Nautilus",
         quickNautilusDesc: "Запечатуйте вибрані PDF/DOCX/SVG файли з файлового менеджера; налаштування розміщення печатки (last / first-last / all / ask) і без підпису під печаткою.",
         btnHeroEn: "📘 Whitepaper EN",

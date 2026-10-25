@@ -1,4 +1,4 @@
-# 🔱 Marma-Crypto Protocol (software `v2.2.0-5` · protocol `v2.1.0` — `Marma-256` · `Universal` · `Deal-Room API` · `Optical ECC`)
+# 🔱 Marma-Crypto Protocol (software `v2.2.0-6` · protocol `v2.1.0` — `Marma-256` · `Universal` · `Deal-Room API` · `Optical ECC`)
 
 **Sub-Micron Keyed Dithered QIM Vector Watermarking, 256-Bit Bijective Vector Commitments, Universal 27-DOF Emblem Modulation (`Sri Yantra` / `Tryzub` / `Corporate` / `CAD`), and Optical Screen-Photo Traitor Tracing (`DSTU 4145-2002` / `PAdES-B-LTA`)**
 
@@ -18,7 +18,7 @@
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)** · **🇺🇦 [Українська сторінка та Інженерний FAQ → `ua.html`](https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html)**
 > **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
 
-> **⚡ Engineering `TL;DR` (What `Marma-256` (software v2.2.0-5, protocol v2.1.0) Is — and What It Is Not):**
+> **⚡ Engineering `TL;DR` (What `Marma-256` (software v2.2.0-6, protocol v2.1.0) Is — and What It Is Not):**
 > - **What it is:** A **dual-layer vector & optical forensic watermarking suite** for PDF (`ISO 32000-2`), DOCX, and SVG/CAD drawings:
 >   1. **Layer 1 (`Marma-256` & `Marma-Universal` Vector Lattice):** A bijective vector-graphic encoding layer ($\mathcal{E}_{10}$) with **Chen–Wornell Keyed Dithered QIM** ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) and **Fisher–Yates Channel Permutation** ($\pi_K \in S_{27}$) that embeds all **256 bits** of a cryptographic signature digest $V = \text{SHA-256}(r \parallel s)$ plus an orthogonal **10-bit recipient Canary beacon** into exact $18\text{ npt}$ ($1.8\times 10^{-8}\text{ pt}$) coordinate perturbations of **any 2D vector emblem with $\ge 27$ degrees of freedom** — including the **9-triangle Sri Yantra** (`sri-yantra`), the **Ukrainian State Trident — Тризуб** (`tryzub`), a **Corporate B2B/LegalTech Heraldic Shield** (`corporate-shield`), or **arbitrary engineering CAD/SVG/GIS polygons** (`cad-polygon`).
 >   2. **Layer 2 (`Marma-Optical` Screen-Photo ECC Ring):** A surrounding **32-Sector Ceremonial Lotus Ring (`32-Petal Padma Dial`)** encoded with a systematic **$[32, 16, d_{\min}=8]$ error-correcting code** and decoded via **Soft-Decision Maximum-Likelihood (ML) Pearson Correlation**. Even when a traitor **photographs the monitor with a smartphone** or takes a blurry, noisy `JPEG`/`PNG` screenshot (destroying all PDF floating-point vector coordinates), `marma-watermark trace` extracts the 10-bit `canary_word` directly from the raster image and identifies the leaker.
@@ -43,7 +43,7 @@
 
 ---
 
-## 🆕 What's New in Software `v2.2.0` (release `v2.2.0-5`; protocol unchanged `v2.1.0`)
+## 🆕 What's New in Software `v2.2.0` (release `v2.2.0-6`; protocol unchanged `v2.1.0`)
 
 1. **Seal placement policy** — `--seal-pages last|first|first-last|all` (env `MARMA_SEAL_PAGES`);
    **default is now `last`** (signature page). Applies to PDF, universal/API PDF and DOCX
@@ -58,10 +58,10 @@
    DOCX and universal/API outputs; cryptographic metadata stays embedded.
 5. **Verification without the owner key vault** — ordinary PDF verification uses the embedded
    DSTU EC signature; universal-SVG verification falls back to the active session key.
-6. **Packaging** — Debian revision `2.2.0-5`, menu refresh, updated bash completion; 73/73
+6. **Packaging** — Debian revision `2.2.0-6`, `doctor` preflight, `--json-out` evidence records, Nautilus quick actions; 73/73
    production tests, 16-scenario Nautilus matrix, packaged self-test PASS.
 
-> **Versioning:** software `v2.2.0-5` is released via Git tag `v2.2.0` + GitHub release
+> **Versioning:** software `v2.2.0-6` is released via Git tag `v2.2.0` + GitHub release
 > (2026-10-24); system-wide installation on this host is pending owner `sudo`. The archived
 > paper/package DOI remains `v2.1.0`, and the web verifier documents protocol `v2.1.0`.
 
@@ -200,8 +200,8 @@ sudo apt install marma-crypto-watermark qes-tools
 Or build and inspect the `.deb` package locally from source:
 ```bash
 ./build.sh --test
-sha256sum dist/marma-crypto-watermark_2.2.0-5_all.deb
-sudo dpkg -i dist/marma-crypto-watermark_2.2.0-5_all.deb
+sha256sum dist/marma-crypto-watermark_2.2.0-6_all.deb
+sudo dpkg -i dist/marma-crypto-watermark_2.2.0-6_all.deb
 ```
 
 ### 2. Verify the Signed Whitepapers Right Now
@@ -250,7 +250,7 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
   author      = {Baienko, Yaroslav V.},
   title       = {Marma-256 (Marma-Crypto): Sub-Micron Dithered Quantization Index Modulation and Orthogonal Subspace Multiplexing on Overdetermined Planar Incidence Manifolds for Bijective 2D Vector Graphics Watermarking and Fragile Authentication},
   year        = {2026},
-  version     = {v2.1.0-rev1 (Zenodo v5; software branch v2.2.0-5 is a local RC)},
+  version     = {v2.1.0-rev1 (Zenodo v5; software release v2.2.0-6)},
   institution = {CERN Zenodo / Elsevier SSRN},
   number      = {UKRNOIVI Patent Appl. a 2026 06266},
   doi         = {10.5281/zenodo.23560975},
