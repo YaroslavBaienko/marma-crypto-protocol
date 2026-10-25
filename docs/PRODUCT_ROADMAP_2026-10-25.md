@@ -4,6 +4,26 @@
 **Context:** niche analysis shows the product is technically differentiated but commercially
 mispositioned; see `docs/research/NICHE_ANALYSIS_2026-10-25.md`.
 
+## Progress — 2026-10-25 (implemented in this repo)
+
+- ✅ P0.1 website: legal/M&A positioning, pilot CTA, honest vector-only leak-tracing limit,
+  refreshed OG card; live page verified.
+- ✅ P0.2 browser/CLI labelling: browser remains v1.3 256-bit and is labelled as a demo;
+  production CLI is 266-bit. Payload parity is still a P1 product task.
+- ✅ P0.3 packaging: `2.2.0-6` release asset, `doctor`, `--json-out` evidence records,
+  Nautilus quick actions, clean Debian 13 install smoke test; PyMuPDF 1.25.4 vs 1.28.2 gap is
+  now reported by `doctor` (upstream dependency fix still open).
+- ✅ P0.4 Nautilus: root quick actions seal / verify / report plus the three category folders;
+  progress/error polish remains.
+- ✅ P0.5 verification report: PDF protocol + JSON sidecar (`protocol --json-out`,
+  `verify --json-out`).
+- ✅ Pilot kit: one-pager, buyer interview script, outreach/LOI; VDR/DMS integration brief.
+- ⏳ P0.6 buyer validation and paid pilot: requires owner outreach; assets are ready.
+- ⏳ Product Hunt listing update: prepared in `docs/producthunt/PH_UPDATE_2026-10-25.md`;
+  actual save needs owner login.
+- ⏳ APT repository refresh: site now points to the GitHub release `.deb`; the legaltech APT mirror
+  still needs a separate sync.
+
 ## 0. Current state (measured)
 
 | Area | State | Main gap |
