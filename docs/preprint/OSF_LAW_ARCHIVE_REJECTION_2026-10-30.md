@@ -12,6 +12,22 @@ the moderator left a comment visible only to contributors.
 > the logged-in banner first. Do not resubmit the same version until the moderator comment has been
 > read.
 
+## 0. Provider mismatch to check first
+
+The screenshot URL is `osf.io/preprints/lawarxiv/a8q5x_v1` — the **legacy LawArXiv** provider.
+OSF's provider API says LawArXiv **no longer accepts new submissions** and directs authors to the
+active **Law Archive** (`osf.io/preprints/lawarchive`) for legal scholarship. The rejection email
+says “Law Archive”, so the UI label and the legacy URL may disagree; verify the provider in the
+logged-in preprint dashboard.
+
+Sources: [OSF provider metadata — lawarxiv](https://api.osf.io/v2/providers/preprints/lawarxiv/),
+[active Law Archive provider](https://api.osf.io/v2/providers/preprints/lawarchive/),
+[OSF provider registry](https://doapr.coar-repositories.org/repositories/lawarxiv/).
+
+If the record is under the legacy provider, do not retry the legacy URL. If a legal reframe is
+actually intended, submit through the active Law Archive; a technical paper will still fail the
+law-scope test.
+
 ## 1. Most likely cause: out of scope for Law Archive
 
 Law Archive is the **Open Archive for Legal Scholarship** hosted by Yale’s Lillian Goldman Law
