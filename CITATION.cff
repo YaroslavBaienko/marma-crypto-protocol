@@ -5,7 +5,7 @@ type: software
 version: "2.1.0"
 date-released: "2026-10-21"
 doi: "10.5281/zenodo.23560975"
-license: "Apache-2.0"
+license: "LicenseRef-MarmaCrypto-Dual-Patent-Reserved"
 repository-code: "https://github.com/YaroslavBaienko/marma-crypto-protocol"
 url: "https://yaroslavbaienko.github.io/marma-crypto-protocol/"
 authors:

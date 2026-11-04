@@ -12,8 +12,8 @@
 [![IEEE TIFS](https://img.shields.io/badge/📄_IEEE_TIFS-in_preparation-1f6feb.svg)](PUBLICATIONS.md)
 [![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23560975.svg)](https://doi.org/10.5281/zenodo.23560975)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
-[![License: Apache 2.0](https://img.shields.io/badge/Code_License-Apache_2.0-blue.svg)](LICENSE)
-[![Whitepaper: CC BY 4.0](https://img.shields.io/badge/Specification-CC_BY_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
+[![License: Dual (Academic & Public Verifier / Commercial Patent License)](https://img.shields.io/badge/License-Dual_(Public_Verifier_%2F_Commercial_Patent_Reserved)-b8860b.svg)](LICENSE)
+[![Whitepaper: CC BY-NC-ND 4.0](https://img.shields.io/badge/Specification-CC_BY--NC--ND_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)** · **🇺🇦 [Українська сторінка та Інженерний FAQ → `ua.html`](https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html)**
 > **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
@@ -259,10 +259,13 @@ python3 -m unittest discover -s tests -p "test_*.py" -v
 }
 ```
 
-## ⚖️ License
+## ⚖️ Dual License & Patent Reservation (`UA Patent App. No. a 2026 06266`)
 
-* **Software & Source Code (`src/`, `bin/`, `nautilus-scripts/`):** Licensed under the **Apache License, Version 2.0** (including Explicit Patent Grant & Attribution Clauses).
-* **Whitepapers & Mathematical Specification (`whitepaper/`):** Licensed under **Creative Commons Attribution 4.0 International (CC BY 4.0)**.
+* **Software & Source Code (`src/`, `bin/`, `nautilus-scripts/`, `docs/`):** Licensed under the [**Marma-Crypto Dual License & Patent Reservation Agreement**](LICENSE):
+  1. **Royalty-Free Public Verification & Academic Reproducibility License:** Free for client-side document verification (Tier 1 Public Verifier), scientific peer review (IEEE, IACR, Elsevier, SSRN), university teaching, and non-commercial evaluation with mandatory citation.
+  2. **Commercial / Enterprise Patent License Required:** Any commercial use, production document sealing, Deal-Room batch stamping, 23-bit Canary leak-tracing deployment, SaaS/VDR/DMS integration, or paid legal/forensic service requires a separate written **Commercial License Agreement** from the Inventor (**Yaroslav V. Baienko**, `yaroslav@advocacy.uno`).
+  3. **Explicit Patent Reservation:** All commercial patent rights under 20-year Ukrainian Invention Patent Application No. **`a 2026 06266`** (filing/priority date `2026-10-19` officially established by UKRNOIVI Decision No. `24741/ЗА/26` on `2026-10-29`) and international PCT/Paris Convention counterparts are strictly reserved. No patent license is granted for commercial exploitation without a signed commercial agreement.
+* **Whitepapers & Mathematical Specification (`whitepaper/`):** Licensed under **Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)**.
 
 
 
