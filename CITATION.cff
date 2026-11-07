@@ -1,9 +1,9 @@
 cff-version: 1.2.0
-message: "If you use this protocol, specification, or software, please cite both the whitepaper (Zenodo DOI) and the software implementation."
-title: "Marma-Crypto (Marma-256) v2.1.0: Sub-Micron Dithered Quantization Index Modulation, Universal Vector Emblems, Deal-Room REST API, and Optical Screen-Photo ECC over GF(2^257) (DSTU 4145-2002)"
+message: "If you use this protocol, specification, or software, please cite the published monograph (ISBN 979-8-237-32599-7), the whitepaper (Zenodo DOI), and the software implementation."
+title: "Marma-Crypto (Marma-256) v2.3.0: Sub-Micron Dithered Quantization Index Modulation, Stealth 0% Opacity Sealing, Subhash Kak Triadic Model (L/M/H = 27 DOF), Universal Vector Emblems, and Optical Screen-Photo ECC over GF(2^257) (DSTU 4145-2002)"
 type: software
-version: "2.1.0"
-date-released: "2026-10-21"
+version: "2.3.0"
+date-released: "2026-11-07"
 doi: "10.5281/zenodo.23560975"
 license: "LicenseRef-MarmaCrypto-Dual-Patent-Reserved"
 repository-code: "https://github.com/YaroslavBaienko/marma-crypto-protocol"
@@ -14,9 +14,12 @@ authors:
     orcid: "https://orcid.org/0000-0001-6690-2603"
     affiliation: "Ukrainian National Bar Association / GOLAW"
 identifiers:
+  - type: other
+    value: "ISBN:979-8-237-32599-7"
+    description: "Published Monograph: Sacred Geometry as Applied Cryptography: The 266-Bit Marma-Crypto Protocol, Sri Yantra Lattice, and Post-Quantum Document Integrity (Apple Books / Books2Read)"
   - type: doi
     value: "10.5281/zenodo.23560975"
-    description: "CERN Zenodo Version 5 DOI (v2.1.0-rev1, 22-page manuscript + 2.1.0 Debian package)"
+    description: "CERN Zenodo Version 5 DOI (v2.1.0-rev1, 22-page manuscript + Debian package)"
   - type: doi
     value: "10.5281/zenodo.23540160"
     description: "CERN Zenodo Version 4 DOI (v2.1.0)"

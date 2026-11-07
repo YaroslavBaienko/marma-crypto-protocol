@@ -142,35 +142,75 @@
   </style>
 </head>
 <body>
-<div style="background:#0f2740;color:#f0d078;padding:8px 14px;text-align:center;font:600 13px system-ui,sans-serif;border-bottom:1px solid #e6bd53">Software v2.2.0-5 released 2026-10-24 — seal placement (last/all/first-last/first), seal-only rendering and Nautilus UX fixes. Protocol v2.1.0 unchanged.</div>
+<div style="background:#0f2740;color:#f0d078;padding:10px 14px;text-align:center;font:600 13px system-ui,sans-serif;border-bottom:1px solid #e6bd53">
+  🕵️ <strong>Marma-Crypto v2.3.0 (2026-11-07)</strong> — Додано <strong>Stealth Mode (0% візуальних слідів · <code>--mode stealth</code> / <code>--seal-pages none</code>)</strong>, тріадну модель проф. Субхаша Кака (<code>L / M / H = 3 × 9 = 27</code> DOF), меню Nautilus «Підписати скрито» та опубліковано монографію (ISBN <code>979-8-237-32599-7</code>:
+  <a href="https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Apple Books</a> ·
+  <a href="https://books2read.com/u/476a5a" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">Books2Read</a> ·
+  <a href="https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/v2.3.0" target="_blank" rel="noopener" style="color:#fff;text-decoration:underline;">GitHub Release v2.3.0</a>).
+</div>
 
 
   <!-- Головна картка -->
   <div class="card">
-    <h1>🔱 Протокол «Марма-Крипто» (v2.1.0 / Marma-256): 266-бітний бієктивний геометричний водяний знак PDF/SVG на основі нелінійної планіметрії Шрі Янтри, Тризуба та ДСТУ 4145-2002</h1>
+    <h1>🔱 Протокол «Марма-Крипто» (v2.3.0 / Marma-256): Видимий та Скритий (Stealth 0%) 266-бітний геометричний водяний знак PDF/DOCX/SVG на основі планіметрії Шрі Янтри, тріад Кака (L/M/H) та ДСТУ 4145-2002</h1>
     <p>
       <strong>Автор:</strong> Баєнко Ярослав Володимирович (Yaroslav V. Baienko, адвокат, магістр права, магістр комп'ютерних наук) ·
       <strong>ORCID:</strong> <a href="https://orcid.org/0000-0001-6690-2603">0000-0001-6690-2603</a> ·
       <strong>Патентна заявка УКРНОІВІ:</strong> <code>a 2026 06266</code> (<code>Вх-72320/2026</code> · збір <code>Вх-72403/2026</code>) ·
+      <strong>Монографія (ISBN-13):</strong> <code>979-8-237-32599-7</code> (<a href="https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247" target="_blank" rel="noopener">Apple Books</a> · <a href="https://books2read.com/u/476a5a" target="_blank" rel="noopener">Усі книгарні</a>) ·
       <strong>Рецензування Elsevier Signal Processing:</strong> <code>SIGPRO-D-26-04464</code> ·
       <strong>Архів препринту (CERN Zenodo v5 DOI):</strong> <a href="https://doi.org/10.5281/zenodo.23560975">10.5281/zenodo.23560975</a>
     </p>
 
     <div class="tldr-box">
-      <strong>⚡ Інженерний TL;DR (що це таке і чим це НЕ є):</strong>
+      <strong>⚡ Інженерний TL;DR (що нового у v2.3.0, що це таке і чим це НЕ є):</strong>
       <ul style="margin:8px 0 0 0;padding-left:20px;">
-        <li><strong>Що це:</strong> Бієктивний векторно-графічний кодек ($\mathcal{E}_{10}$) для документів PDF (<code>ISO 32000-2</code>) та SVG, де <strong>сама видима на сторінці векторна печатка несе у своїх координатах усі 256 біт дайджесту криптографічного підпису</strong> $V = \text{SHA-256}(r \parallel s)$ з цілочисельним кроком $18\text{ нпт}$ ($1.8 \times 10^{-8}\text{ pt}$) плюс ортогональний <strong>10-бітний криміналістичний маяк отримувача (Canary Leak-Tracing)</strong> на 27-му каналі (<code>D5.ay</code>).</li>
-        <li><strong>Чим це НЕ є:</strong> Протокол <strong>не винаходить власний алгоритм ЕЦП</strong>, не замінює перевірку КЕП відкритим ключем підписанта і не конкурує зі штатним масивом <code>/ByteRange</code> у вбудованому PAdES, коли PDF лежить недоторканим. Він закриває 4 дірки реального документообігу: (1) зовнішні підписи <code>.p7s</code> без <code>/ByteRange</code> у PDF; (2) «сплющення» (<code>flatten</code>) PDF у корпоративних СЕД та канцеляріях; (3) інкрементальні дописування після підпису; (4) вимогу держорганів бачити візуальний штамп на сторінці та відстеження витоків між контрагентами.</li>
-        <li><strong>100% постквантова сумісність (NIST PQC Agility):</strong> Геометрична решітка $\mathcal{E}_{10}$ кодує довільний 256-бітний дайджест підпису, тому при міграції з класичних еліптичних кривих ДСТУ 4145-2002 / ECDSA (вразливих до квантового алгоритму Шора) на постквантові стандарти <strong>NIST FIPS 204 (ML-DSA / Dilithium)</strong> або <strong>NIST FIPS 205 (SLH-DSA / SPHINCS+)</strong> жодна формула геометричного шару не змінюється.</li>
+        <li><strong>Що це:</strong> Бієктивний векторно-графічний кодек ($\mathcal{E}_{10}$) для документів PDF (<code>ISO 32000-2</code>), DOCX та SVG, де <strong>266-бітний криптографічний пакет</strong> (256 біт дайджесту підпису $V = \text{SHA-256}(r \parallel s)$ з цілочисельним кроком $18\text{ нпт}$ плюс ортогональний <strong>10-бітний криміналістичний маяк отримувача Canary Leak-Tracing</strong> на 27-му каналі <code>D5.ay</code>) записується або у <strong>видиму векторну печатку (<code>--mode visible</code>)</strong>, або у <strong>повністю невидимий скритий штамп (<code>--mode stealth</code> / <code>--seal-pages none</code>, 0% візуальної присутності на сторінці)</strong>.</li>
+        <li><strong>Тріадна модель проф. Субхаша Кака (<code>INV_KAK_LMH_27</code> · $L / M / H = 3 \times 9 = 27$):</strong> 9 трикутників Нава-чакри (27 ступенів свободи) структуровано у три функціональні тріади по 9 слотів: <strong>L (Lower · зовнішній периметр Бхупури):</strong> <code>D1 (B1), U1 (C1), D2 (B2)</code> (9 слотів = 90 біт); <strong>M (Middle · середнє кільце зв'язності):</strong> <code>D3 (B3), D4 (B4), U2 (C2)</code> (9 слотів = 90 біт); <strong>H (Higher · ядро Бінду та Canary-маяк):</strong> <code>D5 (B5), U3 (C3), U4 (C4)</code> (8 слотів = 76 біт + 27-й симетричний слот <code>D5.ay</code> = 10-бітний Canary на 1 024 отримувачів).</li>
+        <li><strong>Чим це НЕ є:</strong> Протокол <strong>не винаходить власний алгоритм ЕЦП</strong>, не замінює перевірку КЕП відкритим ключем підписанта і не конкурує зі штатним масивом <code>/ByteRange</code> у вбудованому PAdES, коли PDF лежить недоторканим. Він закриває 4 дірки реального документообігу: (1) зовнішні підписи <code>.p7s</code> без <code>/ByteRange</code> у PDF; (2) «сплющення» (<code>flatten</code>) PDF у корпоративних СЕД; (3) «тихі правки» у великих договорах та інкрементальні дописування після підпису; (4) скрите та видиме відстеження джерела витоків (<code>Canary Leak-Tracing</code>) у M&amp;A Deal Rooms.</li>
+        <li><strong>100% постквантова сумісність (NIST PQC Agility):</strong> Геометрична решітка $\mathcal{E}_{10}$ кодує довільний 256-бітний дайджест підпису, тому при міграції з класичних еліптичних кривих ДСТУ 4145-2002 / ECDSA на постквантові стандарти <strong>NIST FIPS 204 (ML-DSA / Dilithium)</strong> або <strong>NIST FIPS 205 (SLH-DSA / SPHINCS+)</strong> жодна формула геометричного шару не змінюється.</li>
       </ul>
     </div>
 
     <div>
-      <a class="btn" href="index.html">✍️ Відкрити Інтерактивну Браузерну Студію та Верифікатор (100% Client-Side)</a>
+      <a class="btn" href="index.html">✍️ Відкрити Інтерактивну Браузерну Студію v2.3.0 (Stealth 0% + Верифікатор)</a>
+      <a class="btn btn-alt" href="https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247" target="_blank" rel="noopener">🍎 Монографія в Apple Books (ISBN 979-8-237-32599-7)</a>
       <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_UA.pdf">📕 Український Whitepaper (PDF · КЕП PAdES-LTA)</a>
       <a class="btn btn-alt" href="whitepaper/Marma_Crypto_Whitepaper_EN.pdf">📘 English Whitepaper (PDF)</a>
-      <a class="btn btn-alt" href="https://github.com/YaroslavBaienko/marma-crypto-protocol">💻 GitHub Репозиторій</a>
+      <a class="btn btn-alt" href="https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/v2.3.0">💻 GitHub Release v2.3.0 (.deb)</a>
     </div>
+  </div>
+
+  <!-- Скритий режим Stealth v2.3.0 та Судове доказування -->
+  <div class="card">
+    <h2>🕵️ Режим Stealth v2.3.0 (0% візуальних слідів) та Доказування витоку в Суді</h2>
+    <p style="color:var(--muted);font-size:0.92rem;">
+      У версії <code>v2.3.0</code> додано повноцінний скритий режим <code>--mode stealth</code> (<code>--seal-pages none</code>) для PDF та DOCX, а також пункт правої кнопки миші в Debian Nautilus <strong>«🕵️ Підписати скрито (Stealth · 0% видимості + Canary)»</strong>:
+    </p>
+    <ul>
+      <li><strong>Ловля інсайдерів у M&amp;A Deal Room:</strong> Команда <code>marma-watermark batch-seal --input TermSheet.pdf --recipients "InvestorA,InvestorB,FundC" --secret "$KEY" --mode stealth</code> створює візуально ідентичні чисті документи без жодного штампа на сторінці. Якщо файл зливають у Telegram, інсайдер навіть не знає, що всередині PDF Trailer / DOCX customXml записана 266-бітна решітка з його персональним 10-бітним <code>Canary</code> на вершині <code>D5.ay</code>.</li>
+      <li><strong>Виявлення «тихих правок» у договорах на 80+ сторінок:</strong> Запечатайте драфт <code>.docx</code> скрито перед відправкою контрагенту. Якщо контрагент тихо змінить одну цифру пені чи підсудності без режиму <em>Track Changes</em>, команда <code>marma-watermark verify</code> за 1 секунду виявить розбіжність 256-бітного хешу канонічного тексту і покаже <code>❌ TAMPER DETECTED</code>.</li>
+      <li><strong>Як довести витік у суді та арбітражі (3-кроковий ланцюг доказів):</strong>
+        <ol style="margin-top:6px;">
+          <li><strong>Фіксація факту відправки (Chain of Custody):</strong> Збережіть оригінал електронного листа <code>.eml</code> із криптографічним <code>DKIM</code>-підписом поштового сервера отримувача або підпишіть реєстр роздачі Deal Room кваліфікованим електронним підписом (КЕП) із міткою часу <code>TSP</code> АЦСК (<code>ДСТУ 4145-2002</code> / <code>PAdES-LTA</code>).</li>
+          <li><strong>Математичне вилучення мітки:</strong> Запустіть <code>marma-watermark trace leaked.pdf --suspects "InvestorA,InvestorB,FundC" --secret "$KEY"</code> — верифікатор витягує 10-бітне слово $w_{\text{canary}} \in [1..1023]$ з <code>D5.ay</code> та звіряє криптографічне зобов'язання <code>HMAC-SHA256</code> (ймовірність випадкового збігу $< 2^{-128}$).</li>
+          <li><strong>Судово-експертна відтворюваність:</strong> Алгоритм є відкритим і детермінованим, опублікованим у монографії з міжнародним ISBN <code>979-8-237-32599-7</code> та захищеним патентною заявкою УКРНОІВІ <code>a 2026 06266</code>. Судовий експерт може незалежно повторити верифікацію офлайн.</li>
+        </ol>
+      </li>
+    </ul>
+    <pre><code># 1. Встановлення Debian-пакета v2.3.0
+wget https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/download/v2.3.0/marma-crypto-watermark_2.3.0-1_all.deb
+sudo apt install ./marma-crypto-watermark_2.3.0-1_all.deb
+
+# 2. Скрите підписання одного PDF або DOCX (0% візуальних слідів на аркуші)
+marma-watermark seal --input Contract.docx --output Contract_Stealth.docx \
+  --secret "DEAL-ROOM-KEY" --recipient "Counterparty-B" --mode stealth
+
+# 3. Пакетне маркування M&A Deal Room (Stealth) та миттєвий пошук джерела зливу
+marma-watermark batch-seal --input TermSheet.pdf --output-dir ./deal_room \
+  --recipients "Investor-Alpha,M&A-Party-07,Legal-Counsel-B" --secret "DEAL-ROOM-KEY" --mode stealth
+marma-watermark trace ./deal_room/TermSheet_M_A-Party-07.pdf \
+  --suspects "Investor-Alpha,M&A-Party-07,Legal-Counsel-B" --secret "DEAL-ROOM-KEY"</code></pre>
   </div>
 
   <!-- Візуальна архітектура та геометричні діаграми -->
@@ -287,11 +327,15 @@ sudo apt update && sudo apt install marma-crypto-watermark qes-tools</code></pre
 
   <!-- Цитування -->
   <div class="card">
-    <h2>🎓 Академічне цитування та статус публікацій</h2>
+    <h2>🎓 Опублікована монографія (ISBN 979-8-237-32599-7) та Академічне цитування</h2>
     <p style="font-size:0.88rem;color:var(--muted);">
-      <strong>Примітка щодо статусу архівів:</strong> відкриті репозиторії (<code>CERN Zenodo</code>, <code>Elsevier SSRN</code>, <code>Figshare</code>, <code>UNESCO / Inria Software Heritage</code>) є <strong>нерецензованими архівами самодепонування (non-peer-reviewed prior-art archives)</strong> для незмінної фіксації пріоритету за часом та відтворюваності коду (ISO/IEC 18670). Офіційна патентна експертиза на винахід триває в УКРНОІВІ (заявка <code>a 2026 06266</code> від 19.10.2026).
+      <strong>Офіційна монографія:</strong> «Sacred Geometry as Applied Cryptography: The 266-Bit Marma-Crypto Protocol, Sri Yantra Lattice, and Post-Quantum Document Integrity» вийшла друком у глобальній дистрибуції з міжнародним <strong>ISBN-13: <code>979-8-237-32599-7</code></strong> (<a href="https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247" target="_blank" rel="noopener">Apple Books</a> · <a href="https://books2read.com/u/476a5a" target="_blank" rel="noopener">Books2Read</a>). Офіційна патентна експертиза на винахід триває в УКРНОІВІ (заявка <code>a 2026 06266</code> від 19.10.2026).
     </p>
-    <pre>Баєнко Я. В. Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри та еліптичних кривих ДСТУ 4145-2002 над GF(2^257) (Версія 1.3.0). CERN Zenodo, 2026. 9 с. DOI: https://doi.org/10.5281/zenodo.23436152</pre>
+    <pre>1. Монографія (ISBN 979-8-237-32599-7):
+Baienko, Y. V. Sacred Geometry as Applied Cryptography: The 266-Bit Marma-Crypto Protocol, Sri Yantra Lattice, and Post-Quantum Document Integrity. Global Distribution (Draft2Digital / Apple Books), 2026. ISBN 979-8-237-32599-7. URL: https://books2read.com/u/476a5a
+
+2. Препринт та специфікація протоколу (v2.3.0 / Marma-256):
+Баєнко Я. В. Протокол «Марма-Крипто»: Криптографічно-геометричний водяний знак на основі нелінійної планіметрії Шрі Янтри, тріад Кака (L/M/H) та еліптичних кривих ДСТУ 4145-2002 над GF(2^257) (Версія 2.3.0). CERN Zenodo, 2026. DOI: https://doi.org/10.5281/zenodo.23560975</pre>
   </div>
 
 </body>

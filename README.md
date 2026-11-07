@@ -1,11 +1,13 @@
-# 🔱 Marma-Crypto Protocol (software `v2.2.0-6` · protocol `v2.1.0` — `Marma-256` · `Universal` · `Deal-Room API` · `Optical ECC`)
+# 🔱 Marma-Crypto Protocol (software `v2.3.0` · protocol `v2.1.0` — `Stealth 0% Mode` · `Subhash Kak Triads L/M/H` · `Marma-256` · `Universal` · `Optical ECC`)
 
-**Sub-Micron Keyed Dithered QIM Vector Watermarking, 256-Bit Bijective Vector Commitments, Universal 27-DOF Emblem Modulation (`Sri Yantra` / `Tryzub` / `Corporate` / `CAD`), and Optical Screen-Photo Traitor Tracing (`DSTU 4145-2002` / `PAdES-B-LTA`)**
+**Sub-Micron Keyed Dithered QIM Vector Watermarking, Invisible Stealth Sealing (`--mode stealth`, 0% Visual Trace), Subhash Kak Triadic Partition (`L / M / H = 3 × 9 = 27 DOF`), Universal 27-DOF Emblem Modulation (`Sri Yantra` / `Tryzub` / `Corporate` / `CAD`), and Optical Screen-Photo Traitor Tracing (`DSTU 4145-2002` / `PAdES-B-LTA`)**
 
-*Криптографічно-геометричний водяний знак, 256-бітна бієктивна векторна стеганографія, універсальний 27-DOF модулятор векторних емблем (Шрі Янтра / Тризуб / Корпоративний щит / CAD-креслення) та оптичний розшук витоків по фото екрана на основі еліптичних кривих ДСТУ 4145-2002*
+*Криптографічно-геометричний водяний знак, скритий режим підписання Stealth (0% візуальних слідів), тріадна модель проф. Субхаша Кака (`L / M / H = 3 × 9 = 27`), універсальний 27-DOF модулятор векторних емблем (Шрі Янтра / Тризуб / Корпоративний щит / CAD-креслення) та розшук витоків на основі еліптичних кривих ДСТУ 4145-2002*
 
 [![Live Verifier](https://img.shields.io/badge/🌐_Live_Online_Verifier-yaroslavbaienko.github.io-d4a843.svg)](https://yaroslavbaienko.github.io/marma-crypto-protocol/)
-[![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-v2.1.0--1_signed--by_GPG-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
+[![Monograph ISBN](https://img.shields.io/badge/📚_Monograph_ISBN-979--8--237--32599--7-b8860b.svg)](https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247)
+[![GitHub Release v2.3.0](https://img.shields.io/badge/🚀_Release-v2.3.0_(Stealth_%2B_Kak_L%2FM%2FH)-2ea44f.svg)](https://github.com/YaroslavBaienko/marma-crypto-protocol/releases/tag/v2.3.0)
+[![APT Repository](https://img.shields.io/badge/🐧_Signed_APT_Repo-v2.3.0--1_signed--by_GPG-2ea44f.svg)](https://yaroslavbaienko.github.io/legaltech/)
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
 [![Elsevier SIGPRO/DSP](https://img.shields.io/badge/📄_Elsevier-SIGPRO_desk--rejected_·_DSP_transfer_withdrawn-9e9e9e.svg)](PUBLICATIONS.md)
@@ -42,6 +44,22 @@
 | <img src="whitepaper/figures/fig2_c954_geometry.svg" alt="C9,54 Planar Incidence Lattice & 27-DOF Allocation" width="410" /> | <img src="whitepaper/figures/fig5_comparative_benchmarks.svg" alt="Comparative Analysis vs QIM, Spread-Spectrum, and Font-Manifold" width="410" /> |
 
 ---
+
+## 🕵️ What's New in Software `v2.3.0` (`Stealth 0% Mode` · `Subhash Kak Triads L/M/H` · `Monograph ISBN 979-8-237-32599-7`)
+
+1. **Stealth Mode (`--mode stealth` / `--seal-pages none`) for PDF and DOCX (`0%` Visual Footprint):**
+   - Embeds the full 266-bit cryptographic lattice (`256-bit signature digest + 10-bit Canary recipient word`) and DSTU 4145-2002 / HMAC commitments directly into the PDF incremental trailer (`%MARMA_SEAL::{...}`) or DOCX `customXml/marma_seal.xml` (`MARMA_SEAL_PACKET::{...}`) **without rendering any visible stamp on the page** (`visual_opacity = 0.0`, `seal_pages = "none"`).
+   - Ideal for **M&A Deal Room leak tracing** (`marma-watermark batch-seal --mode stealth`), **detecting silent 1-digit edits in 80-page contracts**, and preserving **clean court margins and corporate letterheads**.
+2. **Prof. Subhash Kak's Triadic Synthesis (`src/marma_crypto/kak_synthesis.py` · `INV_KAK_LMH_27`):**
+   - Formalizes the 27 degrees of freedom of the 9-triangle Sri Yantra (`Nava-Cakra`) into three functional triads of 9 slots each ($L / M / H = 3 \times 9 = 27$):
+     - **`L` (Lower · Outer Bhūpura Perimeter):** `D1 (B1), U1 (C1), D2 (B2)` — 9 slots (`90 bits`) anchoring outer structural integrity;
+     - **`M` (Middle · Intermediate Coupling Ring):** `D3 (B3), D4 (B4), U2 (C2)` — 9 slots (`90 bits`) binding internal harmonic intersections;
+     - **`H` (Higher · Inner Bindu Core & Canary):** `D5 (B5), U3 (C3), U4 (C4)` — 8 slots (`76 bits`) + 27th symmetric slot `D5.ay` (`10-bit Canary` = 1,024 recipient IDs).
+   - Includes **54-Marma Nonlinear Incidence Verifier (`INV_MARMA_54`)** and **Self-Similar Holographic Prefix (`INV_HOLO_PREFIX` = `0x6C`, $108 = 4 \times 27$)** (`marma-watermark kak-audit`).
+3. **Debian GNOME Files (`Nautilus`) Stealth Right-Click Action:**
+   - Adds `🕵️ Підписати скрито (Stealth · 0% видимості + Canary)` (`01b_sign_stealth.sh`) to the right-click menu in Debian (`marma-crypto-watermark_2.3.0-1_all.deb`).
+4. **Published Monograph (ISBN-13: `979-8-237-32599-7`):**
+   - *Sacred Geometry as Applied Cryptography: The 266-Bit Marma-Crypto Protocol, Sri Yantra Lattice, and Post-Quantum Document Integrity* — available globally on [Apple Books](https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247) and [Books2Read](https://books2read.com/u/476a5a).
 
 ## 🆕 What's New in Software `v2.2.0` (release `v2.2.0-6`; protocol unchanged `v2.1.0`)
 
