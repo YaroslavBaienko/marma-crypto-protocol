@@ -80,7 +80,8 @@
 
 | Date | Milestone / Deadline | Jurisdiction, Fee & Legal Effect |
 | :--- | :--- | :--- |
-| **`2026-10-19`** ✅ | **Filed (done)** | Invention application `a 2026 06266` filed with UKRNOIVI via SEV ZES (`Вх-72320/2026`); filing-fee receipt `Вх-72403/2026` registered 2026-10-20. Paris Convention priority date established. |
+| **`2026-10-19`** ✅ | **Filed (done)** | Invention application `a 2026 06266` filed with UKRNOIVI via SEV ZES (`Вх-72320/2026`); filing-fee receipt (`код 10100`, `160.00 UAH`) paid and accepted. |
+| **`2026-10-29`** ✅ | **Filing Date Established — Form B4 (`№ 24741/ЗА/26`, done)** | UKRNOIVI issued Official Notice **№ 24741/ЗА/26 (Форма В4)** under Art. 13 of Law No. 3687-XII, formally establishing the **Filing Date (`Дата подання заявки`) of application `a 2026 06266` as `19.10.2026`** and transferring the application to Formal Examination. Paris Convention Art. 4 priority date (`19.10.2026`) locked in by state authority. |
 | **`2027-01-19`** | **Art. 37 clearance (T+90 days)** | Completion of the 3-month state-secrecy review under Art. 37 of Law No. 3687-XII — foreign / PCT filings become lawful. |
 | **`2027-04-17`** | **🚨 6-month inventor grace (filed subject matter)** | Final day of the 6-month novelty grace under Art. 6(6) of Law No. 3687-XII, counted from the 2026-10-17 disclosure. |
 | **`2027-04-21`** | **🚨 Decision: separate application for the `v2.1.0` delta** | Keyed Dithered QIM (Theorem 5), `Marma-Universal`, `Marma-Optical` and the Deal-Room API were first disclosed 2026-10-21 and are **not covered** by the filed claims; a separate Ukrainian application must be filed by this date (6-month grace). |

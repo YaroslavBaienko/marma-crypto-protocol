@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "marma-crypto"
-version = "2.1.0"
-description = "Sub-Micron Keyed Dithered QIM Vector Watermarking, Universal Emblem Modulator (Sri Yantra / Tryzub / Corporate / CAD), and Optical Screen-Photo Traitor Tracing Suite"
+version = "2.3.0"
+description = "Sub-Micron Keyed Dithered QIM Vector Watermarking, 54-Marma Nonlinear Incidence Verifier, Subhash Kak Synthesis (v2.3.0), Universal Emblem Modulator (Sri Yantra / Tryzub / Corporate / CAD), and Optical Screen-Photo Traitor Tracing Suite"
 readme = "README.md"
 requires-python = ">=3.10"
 license = {text = "Proprietary / Sovereign LegalTech"}

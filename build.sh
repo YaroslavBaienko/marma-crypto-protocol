@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# build.sh — Збірка .deb пакета marma-crypto-watermark v2.2.0-6 (Nautilus + GTK4/Adwaita)
+# build.sh — Збірка .deb пакета marma-crypto-watermark v2.3.0-1 (Nautilus + GTK4/Adwaita)
 # За зразком архітектури $HOME/legaltech (qes-tools)
 #
 # Встановлює у систему:
@@ -24,7 +24,7 @@ BIN_DIR="${SCRIPT_DIR}/bin"
 NAUTILUS_SRC="${SCRIPT_DIR}/nautilus-scripts"
 
 PKG_NAME="marma-crypto-watermark"
-PKG_VERSION="2.2.0-6"
+PKG_VERSION="2.3.0-1"
 PKG_ARCH="all"
 PKG_MAINTAINER="Yaroslav Baienko <yaroslav@advocacy.uno>"
 
@@ -164,7 +164,7 @@ if [ "$1" = "configure" ]; then
     fi
 
     echo "================================================================================"
-    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.2.0-6"
+    echo " 🔱 Встановлено комплекс геометричного підпису marma-crypto-watermark v2.3.0-1"
     echo " • marma-watermark sign       — накладання 266-бітного payload (256-bit digest + 10-bit recipient) та печатки (Шрі Янтра / Тризуб / Щит / CAD)"
     echo " • marma-watermark batch-seal — пакетне штампування Deal-Room (N отримувачів + Optical Lotus ECC)"
     echo " • marma-watermark verify     — перевірка цілісності тексту, комбінера та 27-DOF геометрії"

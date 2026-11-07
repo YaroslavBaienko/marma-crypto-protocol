@@ -52,7 +52,7 @@ from .universal_qim import (
     verify_emblem_coordinates_v21,
 )
 
-API_VERSION = "2.1.0"
+API_VERSION = "2.3.0"
 
 
 # ==============================================================================
@@ -81,12 +81,12 @@ def stamp_pdf_universal_v21(
         key_fingerprint = hashlib.sha256(secret_key.encode("utf-8")).hexdigest()
 
     doc = pymupdf.open(str(in_pdf))
-    if mode == "watermark":
+    if mode in ("watermark", "stealth"):
         seal_spec = "none"; seal_page_list = []
     else:
         seal_spec = (seal_pages or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
         seal_page_list = resolve_seal_pages(seal_spec, len(doc))
-        seal_spec = seal_pages_label(seal_page_list, len(doc)) if seal_page_list else seal_spec
+        seal_spec = seal_pages_label(seal_page_list, len(doc)) if seal_page_list else "none"
     if precomputed_crypto:
         content_hash = precomputed_crypto["content_hash"]
         hex_sig = precomputed_crypto["hex_sig"]
@@ -113,8 +113,25 @@ def stamp_pdf_universal_v21(
         rect = page.rect
         w, h = rect.width, rect.height
 
+        # A0. Stealth mode (0% opacity invisible vector carrier on first page)
+        if (mode == "stealth" or seal_spec == "none") and mode != "watermark" and page_idx == 0:
+            shape_st = page.new_shape()
+            scale_st = min(w, h) * 0.62 / 300.0
+            cx_st, cy_st = w / 2.0, h / 2.0
+
+            def map_st(x: float, y: float) -> pymupdf.Point:
+                return pymupdf.Point(cx_st + (x - 150.0) * scale_st, cy_st + (y - 150.0) * scale_st)
+
+            for t in perturbed:
+                p1 = map_st(t["lx"], t["by"])
+                p2 = map_st(150.0, t["ay"])
+                p3 = map_st(t["rx"], t["by"])
+                shape_st.draw_polyline([p1, p2, p3, p1])
+            shape_st.finish(color=(0.50, 0.50, 0.50), width=0.0, stroke_opacity=0.0)
+            shape_st.commit(overlay=True)
+
         # A. Full-page vector background watermark
-        if mode in ("watermark", "both"):
+        if mode == "watermark" or (mode == "both" and seal_spec != "none"):
             shape_bg = page.new_shape()
             scale_bg = min(w, h) * 0.62 / 300.0
             cx_bg, cy_bg = w / 2.0, h / 2.0
@@ -255,7 +272,9 @@ def verify_pdf_universal_v21(
     content_ok = content_hash == embedded_csha
     bijective_ok = (rec_hex == embedded_hmac) and (rec_canary == embedded_canary)
     visible = {"ok": None, "seal_pages": pkt.get("seal_pages"), "missing_pages": []}
-    if pkt.get("seal_pages") and pkt.get("seal_pages") not in ("none", "watermark"):
+    if pkt.get("seal_pages") == "none":
+        visible = {"ok": True, "seal_pages": "none", "missing_pages": []}
+    elif pkt.get("seal_pages") and pkt.get("seal_pages") not in ("none", "watermark"):
         try:
             visible = pdf_visible_seal_check(pdf_path, pkt["seal_pages"])
         except ValueError as exc:
@@ -503,6 +522,52 @@ def dispatch_api_request(method: str, path: str, body: dict[str, Any] | None = N
             key_fingerprint=key_fingerprint,
         )
         return 200, res
+
+    if method == "POST" and path == "/v2.3/verify-marma54":
+        from .kak_synthesis_v23 import verify_sri_yantra_marma_concurrency_v23
+
+        triangles = list(payload.get("triangles") or [])
+        cx = float(payload.get("cx", 150.0))
+        if len(triangles) != 9:
+            return 400, {"status": "error", "error": "9 Sri Yantra triangles required"}
+        return 200, verify_sri_yantra_marma_concurrency_v23(triangles, cx=cx)
+
+    if method == "POST" and path == "/v2.3/augmented-stamp":
+        from .kak_synthesis_v23 import stamp_augmented_dual_layer_v23
+
+        doc_payload = str(payload.get("payload") or "")
+        secret_key = str(payload.get("secret_key") or DEFAULT_SECRET)
+        recipient_id = str(payload.get("recipient_id") or "")
+        recipient_code = payload.get("recipient_code_23bit")
+        if not doc_payload:
+            return 400, {"status": "error", "error": "Non-empty payload required"}
+        return 200, stamp_augmented_dual_layer_v23(
+            payload=doc_payload,
+            secret_key=secret_key,
+            recipient_id=recipient_id,
+            recipient_code_23bit=int(recipient_code) if recipient_code is not None else None,
+        )
+
+    if method == "POST" and path == "/v2.3/augmented-verify":
+        from .kak_synthesis_v23 import verify_augmented_dual_layer_v23
+
+        packet = dict(payload.get("packet") or {})
+        doc_payload = payload.get("payload")
+        secret_key = payload.get("secret_key")
+        suspects = payload.get("suspect_recipients")
+        if not packet or "triangles" not in packet:
+            return 400, {"status": "error", "error": "Valid augmented packet with triangles required"}
+        return 200, verify_augmented_dual_layer_v23(
+            packet=packet,
+            payload=str(doc_payload) if doc_payload is not None else None,
+            secret_key=str(secret_key) if secret_key else None,
+            suspect_recipients=list(suspects) if suspects else None,
+        )
+
+    if method == "GET" and path == "/v2.3/kak-cross-validation":
+        from .kak_synthesis_v23 import cross_validate_kak_corpus_v23
+
+        return 200, cross_validate_kak_corpus_v23(verify_pdf_sha256=False)
 
     return 404, {"status": "error", "error": f"Unknown endpoint: {method} {path}"}
 

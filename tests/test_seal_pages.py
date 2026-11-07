@@ -44,6 +44,8 @@ class TestResolve(unittest.TestCase):
         self.assertEqual(mw.resolve_seal_pages("first", 3), [0])
         self.assertEqual(mw.resolve_seal_pages("first-last", 3), [0, 2])
         self.assertEqual(mw.resolve_seal_pages("all", 3), [0, 1, 2])
+        self.assertEqual(mw.resolve_seal_pages("none", 3), [])
+        self.assertEqual(mw.resolve_seal_pages("stealth", 3), [])
         self.assertEqual(mw.resolve_seal_pages("first-last", 1), [0])
         self.assertEqual(mw.resolve_seal_pages("all", 1), [0])
 
@@ -104,6 +106,19 @@ class TestPdfPlacement(unittest.TestCase):
         self.assertTrue(v["verified"], v.get("reason"))
         self.assertIsNone(v["visible_seal_ok"])
 
+    def test_stealth_mode_zero_visible_marks_and_canary(self):
+        out = self.tmp / "stealth.pdf"
+        mw.stamp_pdf_document(self.src, out, mode="stealth", recipient_id="Stealth_Investor_09")
+        v = mw.verify_pdf_document(out, recipient_id="Stealth_Investor_09")
+        self.assertTrue(v["verified"], v.get("reason"))
+        self.assertEqual(v["seal_pages"], "none")
+        self.assertTrue(v["visible_seal_ok"])
+        self.assertTrue(v["canary_recipient_verified"])
+        doc = fitz.open(str(out))
+        actual_visible = {i for i in range(3) if mw.page_has_visible_seal(doc[i])}
+        doc.close()
+        self.assertEqual(actual_visible, set())
+
 class TestDocxPlacement(unittest.TestCase):
     def setUp(self):
         self.tmp = Path(tempfile.mkdtemp(prefix="sealpages_docx_")); self.addCleanup(shutil.rmtree, self.tmp, True)
@@ -129,6 +144,17 @@ class TestDocxPlacement(unittest.TestCase):
         v = mw.verify_docx_document(out)
         self.assertFalse(v["verified"])
         self.assertIn("Visible seal missing", v["reason"])
+
+    def test_stealth_docx_zero_visible_images_and_canary(self):
+        out = self.tmp / "stealth.docx"
+        mw.stamp_docx_document(self.src, out, mode="stealth", seal_pages="none", recipient_id="Stealth_Counsel_07")
+        v = mw.verify_docx_document(out, recipient_id="Stealth_Counsel_07")
+        self.assertTrue(v["verified"], v.get("reason"))
+        self.assertEqual(v["seal_pages"], "none")
+        self.assertTrue(v["visible_seal_ok"])
+        self.assertTrue(v["canary_recipient_verified"])
+        d = docx.Document(str(out))
+        self.assertEqual(len(d.inline_shapes), 0)
 
 class TestUniversalAndSvgPlacement(unittest.TestCase):
     def setUp(self):
@@ -169,12 +195,13 @@ class TestCliSealPages(unittest.TestCase):
     def test_help_lists_choices(self):
         r = self._cli("--help")
         self.assertEqual(r.returncode, 0); self.assertIn("--seal-pages", r.stdout)
-        for c in ("last", "first", "first-last", "all"): self.assertIn(c, r.stdout)
+        for c in ("last", "first", "first-last", "all", "none", "stealth"): self.assertIn(c, r.stdout)
 
     def test_cli_policies_and_default(self):
-        for spec in ("last", "first-last", "all"):
+        for spec in ("last", "first-last", "all", "none"):
             out = self.tmp / f"cli_{spec}.pdf"
-            r = self._cli("sign", "--mode", "seal", "--seal-pages", spec, "-o", str(out), str(self.src))
+            mode = "stealth" if spec == "none" else "seal"
+            r = self._cli("sign", "--mode", mode, "--seal-pages", spec, "-o", str(out), str(self.src))
             self.assertEqual(r.returncode, 0, r.stderr[-400:])
             v = self._verify(out)
             self.assertTrue(v.get("verified"), (spec, v.get("reason")))

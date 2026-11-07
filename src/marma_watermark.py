@@ -52,7 +52,7 @@ try:
 except Exception:
     pymupdf = None  # type: ignore[assignment]
 
-VERSION = "2.2.0"
+VERSION = "2.3.0"
 
 # Canonical 9-Triangle Coordinates (lx, by, ay, rx, is_upward) in 300x300 space (R=100)
 CANONICAL_TRIANGLES: list[tuple[str, float, float, float, float, bool]] = [
@@ -975,16 +975,16 @@ def verify_sri_yantra_svg(
 
 
 # ==============================================================================
-# SEAL PLACEMENT POLICY (last | first | first-last | all)
+# SEAL PLACEMENT POLICY (last | first | first-last | all | none)
 # ==============================================================================
-SEAL_PAGES_SPECS = ("last", "first", "first-last", "all")
+SEAL_PAGES_SPECS = ("last", "first", "first-last", "all", "none")
 SEAL_PAGES_DEFAULT = "last"
 SEAL_GOLD_RGB = (0.95, 0.80, 0.38)
 
 def resolve_seal_pages(spec: str | None, n_pages: int) -> list[int]:
     """Return the page indices (0-based) that must carry the visible seal."""
     spec = (spec or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
-    if spec in ("none", "watermark"):
+    if spec in ("none", "watermark", "stealth"):
         return []
     if spec not in SEAL_PAGES_SPECS:
         raise ValueError(f"invalid seal_pages: {spec!r} (choices: {', '.join(SEAL_PAGES_SPECS)})")
@@ -1035,6 +1035,8 @@ def pdf_visible_seal_check(path: Path, spec: str) -> dict:
     try:
         n = len(doc)
         expected = resolve_seal_pages(spec, n)
+        if not expected:
+            return {"ok": True, "seal_pages": "none", "expected_pages": [], "missing_pages": []}
         missing = [i for i in expected if not page_has_visible_seal(doc[i])]
         return {"ok": not missing, "seal_pages": seal_pages_label(expected, n),
                 "expected_pages": expected, "missing_pages": missing}
@@ -1059,19 +1061,20 @@ def stamp_pdf_document(
 ) -> dict:
     """Stamp a PDF with a vector watermark + corner seal + DSTU 4145-2002 PAdES signature.
 
-    seal_pages: last (default) | first | first-last | all; MARMA_SEAL_PAGES is the env fallback.
+    mode: both (default) | watermark | seal | stealth (0% visual opacity).
+    seal_pages: last (default) | first | first-last | all | none; MARMA_SEAL_PAGES is the env fallback.
     """
     if not key_fingerprint:
         key_fingerprint = hashlib.sha256(secret_key.encode("utf-8")).hexdigest()
 
     doc = pymupdf.open(str(in_pdf))
-    if mode == "watermark":
+    if mode in ("watermark", "stealth"):
         seal_spec = "none"
         seal_page_list = []
     else:
         seal_spec = (seal_pages or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
         seal_page_list = resolve_seal_pages(seal_spec, len(doc))
-        seal_spec = seal_pages_label(seal_page_list, len(doc)) if seal_page_list else seal_spec
+        seal_spec = seal_pages_label(seal_page_list, len(doc)) if seal_page_list else "none"
     full_text = "\n".join(normalize_text(page.get_text("text")) for page in doc)
     content_hash = hashlib.sha256(full_text.encode("utf-8")).hexdigest()
     payload = f"PDF-CONTENT-SHA256::{content_hash}"
@@ -1093,8 +1096,29 @@ def stamp_pdf_document(
         rect = page.rect
         w, h = rect.width, rect.height
 
+        # A0. Stealth mode (0% opacity invisible vector carrier on first page for pure covert embedding)
+        if (mode == "stealth" or seal_spec == "none") and mode != "watermark" and page_idx == 0:
+            shape_st = page.new_shape()
+            scale_st = min(w, h) * 0.62 / 300.0
+            cx_st, cy_st = w / 2.0, h / 2.0
+
+            def map_st(x: float, y: float) -> pymupdf.Point:
+                return pymupdf.Point(cx_st + (x - 150.0) * scale_st, cy_st + (y - 150.0) * scale_st)
+
+            for t in perturbed:
+                p1 = map_st(t["lx"], t["by"])
+                p2 = map_st(150.0, t["ay"])
+                p3 = map_st(t["rx"], t["by"])
+                shape_st.draw_polyline([p1, p2, p3, p1])
+            shape_st.finish(
+                color=(0.50, 0.50, 0.50),
+                width=0.0,
+                stroke_opacity=0.0,
+            )
+            shape_st.commit(overlay=True)
+
         # A. Subtle full-page vector background watermark on every page
-        if mode in ("watermark", "both"):
+        if mode == "watermark" or (mode == "both" and seal_spec != "none"):
             shape_bg = page.new_shape()
             scale_bg = min(w, h) * 0.62 / 300.0
             cx_bg, cy_bg = w / 2.0, h / 2.0
@@ -1320,7 +1344,9 @@ def verify_pdf_document(
         )
 
     visible_seal = {"ok": None, "seal_pages": seal_packet.get("seal_pages"), "missing_pages": []}
-    if seal_packet.get("seal_pages") and seal_packet.get("seal_pages") not in ("none", "watermark"):
+    if seal_packet.get("seal_pages") == "none":
+        visible_seal = {"ok": True, "seal_pages": "none", "missing_pages": []}
+    elif seal_packet.get("seal_pages") and seal_packet.get("seal_pages") not in ("none", "watermark"):
         try:
             visible_seal = pdf_visible_seal_check(pdf_path, seal_packet["seal_pages"])
         except ValueError as exc:
@@ -1452,6 +1478,10 @@ def docx_visible_seal_check(doc_obj: docx.Document, spec: str) -> dict:
     last_content = max(content_positions) if content_positions else len(body_paras) - 1
     ok = False
     missing = []
+    if spec in ("none", "stealth", "watermark"):
+        ok = (not body_positions) and (not header_seal)
+        if not ok: missing.append("unexpected-visible-seal")
+        return {"ok": ok, "seal_pages": "none", "missing": missing}
     if spec == "last":
         ok = any(i >= last_content for i in body_positions)
         if not ok: missing.append("last")
@@ -1521,17 +1551,22 @@ def stamp_docx_document(
     raw_password: str = "",
     recipient_id: str = "",
     seal_pages: str | None = None,
+    mode: str = "both",
 ) -> dict:
     """Stamp a Word (.docx) document with a Sri Yantra visual seal and DSTU 4145-2002 signature.
 
-    seal_pages: last (default) | first | first-last | all (header, repeats on every page);
+    mode: both (default) | seal | watermark | stealth (0% visible marks).
+    seal_pages: last (default) | first | first-last | all (header, repeats on every page) | none;
     MARMA_SEAL_PAGES is the env fallback.
     """
     if not key_fingerprint:
         key_fingerprint = hashlib.sha256(secret_key.encode("utf-8")).hexdigest()
 
     doc_obj = docx.Document(str(in_docx))
-    seal_spec = (seal_pages or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
+    if mode in ("stealth", "watermark"):
+        seal_spec = "none"
+    else:
+        seal_spec = (seal_pages or os.environ.get("MARMA_SEAL_PAGES") or SEAL_PAGES_DEFAULT).strip().lower()
     if seal_spec not in SEAL_PAGES_SPECS:
         raise ValueError(f"invalid seal_pages: {seal_spec!r} (choices: {', '.join(SEAL_PAGES_SPECS)})")
     body_text = extract_docx_canonical_text(doc_obj)
@@ -1554,18 +1589,19 @@ def stamp_docx_document(
     with tempfile.NamedTemporaryFile(suffix=".png", delete=False) as tmp_f:
         seal_png = Path(tmp_f.name)
     try:
-        render_seal_png(perturbed, seal_png, size=600)
+        if seal_spec != "none":
+            render_seal_png(perturbed, seal_png, size=600)
 
-        if seal_spec == "all":
-            _docx_add_seal_header(doc_obj, seal_png)
-        else:
-            anchors = []
-            if seal_spec in ("first", "first-last"):
-                anchors.append(doc_obj.paragraphs[0] if doc_obj.paragraphs else None)
-            if seal_spec in ("last", "first-last"):
-                anchors.append(None)
-            for before in anchors:
-                _docx_add_seal_image(doc_obj, seal_png, before=before)
+            if seal_spec == "all":
+                _docx_add_seal_header(doc_obj, seal_png)
+            else:
+                anchors = []
+                if seal_spec in ("first", "first-last"):
+                    anchors.append(doc_obj.paragraphs[0] if doc_obj.paragraphs else None)
+                if seal_spec in ("last", "first-last"):
+                    anchors.append(None)
+                for before in anchors:
+                    _docx_add_seal_image(doc_obj, seal_png, before=before)
 
         seal_packet = {
             "protocol": "MARMA-DSTU4145-V1.3",
@@ -2071,7 +2107,7 @@ def sign_any_file(
             in_path, out_path, secret_key=secret_key,
             signer_key_name=signer_key_name, key_fingerprint=key_fingerprint,
             key_file_path=key_file_path, raw_password=raw_password,
-            recipient_id=recipient_id, seal_pages=seal_pages,
+            recipient_id=recipient_id, seal_pages=seal_pages, mode=mode,
         )
     if ext == ".svg":
         pay = payload or f"SVG-FILE::{in_path.name}"
@@ -2270,7 +2306,7 @@ def main() -> int:
     parser.add_argument("--seal-pages", choices=list(SEAL_PAGES_SPECS),
                         default=os.environ.get("MARMA_SEAL_PAGES") or None,
                         help="Visible seal placement for PDF/DOCX: last (default; signature page), "
-                             "first, first-last, or all. Env fallback: MARMA_SEAL_PAGES.")
+                             "first, first-last, all, or none (stealth/invisible). Env fallback: MARMA_SEAL_PAGES.")
     parser.add_argument("--payload", type=str, help="Custom payload string for SVG signing/verification")
     parser.add_argument("--recipient-id", type=str, default="", help="Canary Leak-Tracing recipient ID to embed/verify in D5.ay")
     parser.add_argument("--recipients", type=str, default="", help="Comma-separated Deal-Room recipient IDs for `batch-seal`")
@@ -2296,9 +2332,9 @@ def main() -> int:
     parser.add_argument("--strict-key", action="store_true", help="Prompt/use key to verify cryptographic derivation")
     parser.add_argument(
         "--mode",
-        choices=["both", "watermark", "seal"],
+        choices=["both", "watermark", "seal", "stealth"],
         default="both",
-        help="PDF visual mode: 'watermark' (center background), 'seal' (corner badge), or 'both'",
+        help="Visual mode: 'both' (background + corner seal), 'watermark' (center background), 'seal' (corner badge), or 'stealth' (0%% visible marks)",
     )
     parser.add_argument("--lang", choices=["uk", "en"], default="uk", help="Language for GUI / PDF protocol")
     parser.add_argument("--gui", action="store_true", help="Use GTK4/Adwaita GUI dialogs")
@@ -2513,7 +2549,7 @@ def main() -> int:
         res = stamp_docx_document(
             args.stamp_docx, out, secret_key=sec, signer_key_name=kname, key_fingerprint=kfp,
             key_file_path=kpath, raw_password=rpwd, recipient_id=args.recipient_id,
-            seal_pages=args.seal_pages,
+            seal_pages=args.seal_pages, mode=args.mode,
         )
         print(json.dumps(res, indent=2, ensure_ascii=False))
         return 0

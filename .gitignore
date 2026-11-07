@@ -29,13 +29,16 @@ reports/*
 .litellm_key
 producthunt/facebook_slides_*/
 
-# UKRNOIVI Application Form with personal applicant PII (Rule 4 LDB)
+# UKRNOIVI Application Form & Official Notices with personal applicant PII (Rule 4 LDB)
 patent_ukrnoivi/00_Zajava_*
-
 patent_ukrnoivi/*.p7s
-
 patent_ukrnoivi/Component.pdf*
+patent_ukrnoivi/Component_160.pdf
+patent_ukrnoivi/document.pdf
 patent_ukrnoivi/08_Kvytantsija*
+patent_ukrnoivi/09_*
+patent_ukrnoivi/10_*
+patent_ukrnoivi/11_*
 
 submission_elsevier_jisa/
 

@@ -60,7 +60,16 @@ prior-submission statement (pp. 39–40). Cover letter is not shown to reviewers
 
 - [x] Record the **Manuscript ID** `T-IFS-29736-2026` from the SPS follow-up email / My Submissions.
 - [x] Owner confirmed the submitted cover letter is the **corrected 36.8 KB** version (`f97624c3…`), not the old 30.3 KB build. No editorial-office correction is needed.
-- [ ] Confirm the submitted `main.pdf` is 334.6 KB and the LaTeX zip is 442 KB (they correspond to the hashes above).
+- [x] Confirm the submitted `main.pdf` is 334.6 KB and the LaTeX zip is 442 KB (verified on Final Review 2026-10-28; they correspond to the hashes above).
+- [x] **2026-10-27 / 2026-10-28 Administrative Return & Resubmission (`T-IFS-29736-2026`):**
+  - On 2026-10-27 18:19 EET (`Rescinded paper_2026-10-27 1819.eml`), IEEE SPS Editorial Office (Kristen Redding / Rida Sohail) unsubmitted `T-IFS-29736-2026` to DRAFT because `This manuscript has no affiliations` had been checked in Atypon Research Exchange, leaving `"Authors & Institutions"` blank in ScholarOne.
+  - On **2026-10-28 15:19:41 EET**, `T-IFS-29736-2026` (`UUID 0e4ee084-bfb8-4eaf-afbf-b1707e9d1194`) was remedied and **resubmitted**:
+    - Unchecked `This manuscript has no affiliations` on the `Affiliations` step;
+    - Highlighted and linked Affiliation `1`: `independent researcher (Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher), Kyiv, Ukraine` to `Yaroslav V. Baienko ¹` (`Ukraine`, `Corresponding Author`, `Submitting Author`, ORCID `0000-0001-6690-2603`);
+    - Confirmed `Matched organization: Organization is not listed` on the `Match Organizations` step;
+    - Completed submission (`Congratulations — Your manuscript has been processed and submitted to the journal`; `Submitted On: 28 October 2026 by Yaroslav Baienko`);
+    - Also completed all mandatory (`req`) fields in the **ScholarOne Manuscripts** user profile (`https://mc.manuscriptcentral.com/site/tifs-ieee/account/edit-account/address` Steps 2 & 3 on 2026-10-28 15:31 EET): replaced `No affiliation` with `Institution: Independent Researcher`, `Department: Applied Cryptography and Legal Engineering`, full postal address, `City`, `State/Province`, `Postal Code`, `Country: Ukraine`, `Phone`, `Specialty/Area of Expertise: Applied Cryptography and Multimedia Forensics`, `EDICS: IF-WAT-MODL`, and `Privacy Acknowledgement`;
+    - On **2026-10-28 16:20:40 EET** (`Original2026-10-28 1620.eml`, registered as `MARMA-L3-0056`), **ScholarOne Manuscripts** (`onbehalfof@manuscriptcentral.com`, Rida Sohail) confirmed receipt of the remedied submission **`T-IFS-29736-2026`** (*"has been successfully submitted online and is presently being given full consideration for publication in the IEEE Transactions on Information Forensics & Security as a Regular Paper"*).
 - [ ] Do not submit the manuscript elsewhere while it is under TIFS review.
 - [ ] Log the first editor decision in `PUBLICATIONS.md` and this record.
 - [ ] If a revision is invited, start a new `paper_v3/drafts/tifs/revision_<id>/` and keep the initial submission frozen.

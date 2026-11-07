@@ -24,8 +24,9 @@ CHOICE="$(zenity --list --radiolist \
     $([[ "$CURRENT" == "all" ]] && echo TRUE || echo FALSE) "all" "$(marma_text "Кожна сторінка" "Every page")" \
     $([[ "$CURRENT" == "first-last" ]] && echo TRUE || echo FALSE) "first-last" "$(marma_text "Перша + остання" "First + last")" \
     $([[ "$CURRENT" == "first" ]] && echo TRUE || echo FALSE) "first" "$(marma_text "Лише перша" "First only")" \
+    $([[ "$CURRENT" == "none" ]] && echo TRUE || echo FALSE) "none" "$(marma_text "Без видимої печатки (Stealth · 0% видимості)" "No visible seal (Stealth · 0% visible)")" \
     $([[ "$CURRENT" == "ask" ]] && echo TRUE || echo FALSE) "ask" "$(marma_text "Питати під час підписання" "Ask on each signing")" \
-    --hide-column=2 --print-column=2 --width=640 --height=430 2>/dev/null || true)"
+    --hide-column=2 --print-column=2 --width=640 --height=460 2>/dev/null || true)"
 
 [[ -z "$CHOICE" ]] && exit 0
 marma_set_seal_pages "$CHOICE"

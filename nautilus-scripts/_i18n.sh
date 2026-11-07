@@ -113,7 +113,7 @@ marma_get_seal_pages() {
         spec="$(python3 -c 'import json,sys; print(json.load(open(sys.argv[1], encoding="utf-8")).get("seal_pages",""))' "$cfg" 2>/dev/null || true)"
     fi
     case "$spec" in
-        first|first-last|all|ask) printf '%s\n' "$spec" ;;
+        first|first-last|all|none|ask) printf '%s\n' "$spec" ;;
         *) printf 'last\n' ;;
     esac
 }
@@ -156,7 +156,8 @@ marma_resolve_seal_pages() {
         FALSE "all" "$(marma_text "Кожна сторінка" "Every page")" \
         FALSE "first-last" "$(marma_text "Перша + остання" "First + last")" \
         FALSE "first" "$(marma_text "Лише перша" "First only")" \
-        --hide-column=2 --print-column=2 --width=620 --height=390 2>/dev/null || true)"
+        FALSE "none" "$(marma_text "Без видимої печатки (Stealth · 0% видимості)" "No visible seal (Stealth · 0% visible)")" \
+        --hide-column=2 --print-column=2 --width=620 --height=420 2>/dev/null || true)"
     [[ -z "$choice" ]] && return 1
     printf '%s\n' "$choice"
 }

@@ -58,11 +58,11 @@ The cover letter is not shown to reviewers.
 4. Abstract → 243-word TIFS abstract.
 5. Authors / Affiliations / Author Details:
    - Yaroslav V. Baienko, `zerhug@gmail.com`, Ukraine, corresponding/submitting author;
-   - no affiliation (independent researcher);
+   - **IMPORTANT (2026-10-28 fix):** Do **NOT** check `This manuscript has no affiliations` (checking it causes ScholarOne `Authors & Institutions` to arrive blank and triggers an administrative return). Instead, highlight the full footnote affiliation string `independent researcher (Attorney-at-Law, Legal Engineer & Applied Cryptography Researcher), Kyiv, Ukraine` on the `Affiliations` step and assign it (`1`) to `Yaroslav V. Baienko` on `Author Details`;
    - CRediT: Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation,
      Visualization, Project administration, Resources, Writing – original draft/review & editing;
    - ORCID `0000-0001-6690-2603`.
-6. Match Organizations → no affiliation.
+6. Match Organizations → search `Independent Researcher` / click **`Organization is not listed`** (sets status to `Matched organization: Organization is not listed`).
 7. Additional Information:
    - EDICS and subject categories as above;
    - previously submitted to this journal: **No**;
