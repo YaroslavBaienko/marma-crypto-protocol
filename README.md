@@ -11,16 +11,16 @@
 [![Standard: DSTU 4145-2002 | PAdES-B-LTA](https://img.shields.io/badge/Crypto-DSTU_4145--2002_%7C_256--Bit_Bijective_%7C_PAdES--LTA-1b2a4a.svg)](src/dstu4145_bridge.js)
 [![Patent Pending UA](https://img.shields.io/badge/⚖️_Patent_Pending_(UKRNOIVI)-a_2026_06266-0057b7.svg)](patent_ukrnoivi/05_Zajava_ta_Instruktsija_SEV_ZES.md)
 [![Elsevier SIGPRO/DSP](https://img.shields.io/badge/📄_Elsevier-SIGPRO_desk--rejected_·_DSP_transfer_withdrawn-9e9e9e.svg)](PUBLICATIONS.md)
-[![IEEE TIFS](https://img.shields.io/badge/📄_IEEE_TIFS-in_preparation-1f6feb.svg)](PUBLICATIONS.md)
+[![IEEE TIFS](https://img.shields.io/badge/📄_IEEE_TIFS-under_review_(T--IFS--29736--2026)-1f6feb.svg)](PUBLICATIONS.md)
 [![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23560975.svg)](https://doi.org/10.5281/zenodo.23560975)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Dual (Academic & Public Verifier / Commercial Patent License)](https://img.shields.io/badge/License-Dual_(Public_Verifier_%2F_Commercial_Patent_Reserved)-b8860b.svg)](LICENSE)
 [![Whitepaper: CC BY-NC-ND 4.0](https://img.shields.io/badge/Specification-CC_BY--NC--ND_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
 
 > **🌐 [Open the Interactive Browser Sealer, Deal-Room Canary Studio & 9-Triangle Verifier → `https://yaroslavbaienko.github.io/marma-crypto-protocol/`](https://yaroslavbaienko.github.io/marma-crypto-protocol/)** · **🇺🇦 [Українська сторінка та Інженерний FAQ → `ua.html`](https://yaroslavbaienko.github.io/marma-crypto-protocol/ua.html)**
-> **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
+> **📚 [Registry of Versions, Preprint Archives & Submissions (`PUBLICATIONS.md`)](PUBLICATIONS.md) · 🔬 [Śrī Yantra Uniqueness & Kak 2024 Synthesis (`docs/research/SRI_YANTRA_MATHEMATICAL_UNIQUENESS_AND_KAK_2024_SYNTHESIS.md`)](docs/research/SRI_YANTRA_MATHEMATICAL_UNIQUENESS_AND_KAK_2024_SYNTHESIS.md) · 🛠️ [DOU Community Engineering Feedback Log (`docs/DOU_COMMUNITY_FEEDBACK.md`)](docs/DOU_COMMUNITY_FEEDBACK.md) · 🇪🇺 [EU NGI0 Grant & R&D Roadmap (`ROADMAP.md`)](ROADMAP.md)**
 
-> **⚡ Engineering `TL;DR` (What `Marma-256` (software v2.2.0-6, protocol v2.1.0) Is — and What It Is Not):**
+> **⚡ Engineering `TL;DR` (What `Marma-256` (software v2.3.0, protocol v2.1.0) Is — and What It Is Not):**
 > - **What it is:** A **dual-layer vector & optical forensic watermarking suite** for PDF (`ISO 32000-2`), DOCX, and SVG/CAD drawings:
 >   1. **Layer 1 (`Marma-256` & `Marma-Universal` Vector Lattice):** A bijective vector-graphic encoding layer ($\mathcal{E}_{10}$) with **Chen–Wornell Keyed Dithered QIM** ($\mathbf{d}_K \in \mathbb{Z}_{1024}^{27}$) and **Fisher–Yates Channel Permutation** ($\pi_K \in S_{27}$) that embeds all **256 bits** of a cryptographic signature digest $V = \text{SHA-256}(r \parallel s)$ plus an orthogonal **10-bit recipient Canary beacon** into exact $18\text{ npt}$ ($1.8\times 10^{-8}\text{ pt}$) coordinate perturbations of **any 2D vector emblem with $\ge 27$ degrees of freedom** — including the **9-triangle Sri Yantra** (`sri-yantra`), the **Ukrainian State Trident — Тризуб** (`tryzub`), a **Corporate B2B/LegalTech Heraldic Shield** (`corporate-shield`), or **arbitrary engineering CAD/SVG/GIS polygons** (`cad-polygon`).
 >   2. **Layer 2 (`Marma-Optical` Screen-Photo ECC Ring):** A surrounding **32-Sector Ceremonial Lotus Ring (`32-Petal Padma Dial`)** encoded with a systematic **$[32, 16, d_{\min}=8]$ error-correcting code** and decoded via **Soft-Decision Maximum-Likelihood (ML) Pearson Correlation**. Even when a traitor **photographs the monitor with a smartphone** or takes a blurry, noisy `JPEG`/`PNG` screenshot (destroying all PDF floating-point vector coordinates), `marma-watermark trace` extracts the 10-bit `canary_word` directly from the raster image and identifies the leaker.
@@ -50,14 +50,14 @@
 1. **Stealth Mode (`--mode stealth` / `--seal-pages none`) for PDF and DOCX (`0%` Visual Footprint):**
    - Embeds the full 266-bit cryptographic lattice (`256-bit signature digest + 10-bit Canary recipient word`) and DSTU 4145-2002 / HMAC commitments directly into the PDF incremental trailer (`%MARMA_SEAL::{...}`) or DOCX `customXml/marma_seal.xml` (`MARMA_SEAL_PACKET::{...}`) **without rendering any visible stamp on the page** (`visual_opacity = 0.0`, `seal_pages = "none"`).
    - Ideal for **M&A Deal Room leak tracing** (`marma-watermark batch-seal --mode stealth`), **detecting silent 1-digit edits in 80-page contracts**, and preserving **clean court margins and corporate letterheads**.
-2. **Prof. Subhash Kak's Triadic Synthesis (`src/marma_crypto/kak_synthesis.py` · `INV_KAK_LMH_27`):**
+2. **Prof. Subhash Kak's Triadic Synthesis & `EDU-VEDI` Layer 10 Cross-Validation (`src/marma_crypto/kak_synthesis_v23.py` · 41 Papers `VEDI-L10-0223..0263` · `15/15` Invariants PASS):**
    - Formalizes the 27 degrees of freedom of the 9-triangle Sri Yantra (`Nava-Cakra`) into three functional triads of 9 slots each ($L / M / H = 3 \times 9 = 27$):
      - **`L` (Lower · Outer Bhūpura Perimeter):** `D1 (B1), U1 (C1), D2 (B2)` — 9 slots (`90 bits`) anchoring outer structural integrity;
      - **`M` (Middle · Intermediate Coupling Ring):** `D3 (B3), D4 (B4), U2 (C2)` — 9 slots (`90 bits`) binding internal harmonic intersections;
-     - **`H` (Higher · Inner Bindu Core & Canary):** `D5 (B5), U3 (C3), U4 (C4)` — 8 slots (`76 bits`) + 27th symmetric slot `D5.ay` (`10-bit Canary` = 1,024 recipient IDs).
-   - Includes **54-Marma Nonlinear Incidence Verifier (`INV_MARMA_54`)** and **Self-Similar Holographic Prefix (`INV_HOLO_PREFIX` = `0x6C`, $108 = 4 \times 27$)** (`marma-watermark kak-audit`).
+     - **`H` (Higher · Inner Bindu Core & Canary):** `D5 (B5), U3 (C3), U4 (C4)` — 8 slots (`76 bits`) + 27th symmetric slot `D5.ay` (`10-bit Canary` = 1,024 recipient IDs; extended 23-bit Parakh–Kak attribution = $8,388,608$ IDs).
+   - Includes **54-Marma Nonlinear Incidence Verifier (`verify_sri_yantra_marma_concurrency_v23`)**, **Prime-Reciprocal $d$-Sequence QIM Schedule over Fermat Prime $q=257$**, **Quantum Rotation Hilbert-Space Witness**, and **Self-Similar Holographic Prefix (`0x6C`, $108 = 4 \times 27$)** (`python3 -m unittest tests/test_marma_v23_kak_cross_verification.py -v`).
 3. **Debian GNOME Files (`Nautilus`) Stealth Right-Click Action:**
-   - Adds `🕵️ Підписати скрито (Stealth · 0% видимості + Canary)` (`01b_sign_stealth.sh`) to the right-click menu in Debian (`marma-crypto-watermark_2.3.0-1_all.deb`).
+   - Adds `🕵️ Підписати скрито (Stealth · 0% видимості + Canary)` (`nautilus-scripts/1e_stamp_stealth.sh`) to the right-click menu in Debian (`marma-crypto-watermark_2.3.0-1_all.deb`).
 4. **Published Monograph (ISBN-13: `979-8-237-32599-7`):**
    - *Sacred Geometry as Applied Cryptography: The 266-Bit Marma-Crypto Protocol, Sri Yantra Lattice, and Post-Quantum Document Integrity* — available globally on [Apple Books](https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247) and [Books2Read](https://books2read.com/u/476a5a).
 

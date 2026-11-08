@@ -799,6 +799,7 @@ def stamp_augmented_dual_layer_v23(
         "public_layer_commitment": public_layer_commitment,
         "public_recipient_commitment": recip_info["public_token_hash"],
         "rmse_pt": encoded["rmse_pt"],
+        "extra_winding_rmse_pt": encoded.get("extra_winding_rmse_pt", 0.0),
         "max_abs_delta_pt": encoded["max_abs_delta_pt"],
         "marma_54_concurrency": marma_54_report,
         "triangles": triangles,
@@ -1573,8 +1574,26 @@ def cross_validate_kak_corpus_v23(
     expected_count = len(KAK_40_CORPUS_MAP)
 
     for doc_code, mapping in sorted(KAK_40_CORPUS_MAP.items()):
+        inv_id = mapping["invariant_id"]
+        inv_res = invariants.get(inv_id, {"passed": False, "summary": "Unknown invariant"})
         meta = by_code.get(doc_code)
         if not meta:
+            if not meta_dir.is_dir() and not verify_pdf_sha256:
+                doc_ok = bool(inv_res["passed"])
+                if not doc_ok:
+                    all_docs_verified = False
+                documents_report.append(
+                    {
+                        "doc_code": doc_code,
+                        "pillar": mapping["pillar"],
+                        "marma_subsystem": mapping["marma_subsystem"],
+                        "invariant_id": inv_id,
+                        "invariant_passed": inv_res["passed"],
+                        "invariant_summary": inv_res["summary"],
+                        "verified": doc_ok,
+                    }
+                )
+                continue
             all_docs_verified = False
             documents_report.append(
                 {

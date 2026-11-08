@@ -18,16 +18,20 @@ Provides:
 from __future__ import annotations
 
 import hashlib
+import hmac
 import json
 import os
 import re
+import sqlite3
 import threading
 import time
+from contextlib import closing
 from datetime import datetime, timezone
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from typing import Any
-from urllib.request import Request, urlopen
+from urllib.error import HTTPError
+from urllib.request import ProxyHandler, Request, build_opener, urlopen
 
 import pymupdf
 
@@ -461,11 +465,369 @@ def trace_leak_any_medium(
 
 
 # ==============================================================================
+# 3B. ADMIN PANEL AUTHENTICATION & VISITOR TELEMETRY ENGINE (v2.3.0)
+# ==============================================================================
+ADMIN_AUTH_SALT = b"MARMA-CRYPTO-ADMIN-SALT-V2.3.0::EDU-VEDI"
+ADMIN_AUTH_ITERATIONS = 100000
+EXPECTED_ADMIN_EMAIL_HASH = "877595b2195819f4d510bcc6d68dfc21364f46a3d74de0889233fa561fd89131"
+# Primary PBKDF2-HMAC-SHA256 verifier hash for zerhug@gmail.com + secondary fallback hash:
+EXPECTED_ADMIN_VERIFIER_HASH = "7d3149e8b8befd79145f8995b2087120edb2be48ce9cee42648c880bac3f4aba"
+ACCEPTED_ADMIN_VERIFIER_HASHES: tuple[str, ...] = (
+    "7d3149e8b8befd79145f8995b2087120edb2be48ce9cee42648c880bac3f4aba",
+    "89fd2f96c3891ce927a8f500f024e15f9a9265c394e369707af0521ee53623d0",
+)
+
+_TELEMETRY_LOCK = threading.Lock()
+_TELEMETRY_EVENTS_MEM: list[dict[str, Any]] = []
+
+
+def _get_telemetry_db_path() -> Path:
+    custom = os.environ.get("MARMA_TELEMETRY_DB_PATH", "").strip()
+    if custom:
+        return Path(custom)
+    return Path("/tmp/marma_telemetry_v23.sqlite3")
+
+
+def _init_telemetry_sqlite() -> None:
+    db_path = _get_telemetry_db_path()
+    db_path.parent.mkdir(parents=True, exist_ok=True)
+    with closing(sqlite3.connect(str(db_path))) as conn:
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS telemetry_events_v23 (
+                event_id TEXT PRIMARY KEY,
+                timestamp TEXT NOT NULL,
+                epoch_ms INTEGER NOT NULL,
+                visitor_id TEXT NOT NULL,
+                session_id TEXT NOT NULL,
+                ip TEXT NOT NULL,
+                country TEXT NOT NULL,
+                country_code TEXT NOT NULL,
+                city TEXT NOT NULL,
+                region TEXT NOT NULL,
+                isp TEXT NOT NULL,
+                asn TEXT NOT NULL,
+                timezone TEXT NOT NULL,
+                page TEXT NOT NULL,
+                path TEXT NOT NULL,
+                lang TEXT NOT NULL,
+                referrer TEXT NOT NULL,
+                browser TEXT NOT NULL,
+                os TEXT NOT NULL,
+                device_type TEXT NOT NULL,
+                screen TEXT NOT NULL,
+                action TEXT NOT NULL,
+                details_json TEXT NOT NULL
+            )
+            """
+        )
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_telemetry_ip ON telemetry_events_v23(ip)")
+        conn.execute("CREATE INDEX IF NOT EXISTS idx_telemetry_epoch ON telemetry_events_v23(epoch_ms)")
+        conn.commit()
+
+
+def verify_admin_credentials_v23(email: str, password: str) -> dict[str, Any]:
+    """
+    Zero-plaintext PBKDF2-HMAC-SHA256 (100,000 iterations) verification for the
+    Marma-Crypto v2.3.0 Admin Panel. Matches the WebCrypto implementation in docs/admin.html.
+    """
+    clean_email = (email or "").strip().lower()
+    email_hash = hashlib.sha256(f"MARMA-ADMIN-EMAIL-V23::{clean_email}".encode("utf-8")).hexdigest()
+    credential = f"{clean_email}:{password or ''}".encode("utf-8")
+    dk = hashlib.pbkdf2_hmac("sha256", credential, ADMIN_AUTH_SALT, ADMIN_AUTH_ITERATIONS, dklen=32)
+    verifier_hash = hashlib.sha256(b"MARMA-ADMIN-VERIFIER-V23::" + dk).hexdigest()
+    email_ok = hmac.compare_digest(email_hash, EXPECTED_ADMIN_EMAIL_HASH)
+    pass_ok = any(hmac.compare_digest(verifier_hash, expected) for expected in ACCEPTED_ADMIN_VERIFIER_HASHES)
+    authenticated = bool(email_ok and pass_ok)
+    return {
+        "authenticated": authenticated,
+        "admin_email": clean_email if authenticated else None,
+        "admin_key": dk.hex() if authenticated else None,
+        "verifier_hash": verifier_hash if authenticated else None,
+        "kdf": "PBKDF2-HMAC-SHA256",
+        "iterations": ADMIN_AUTH_ITERATIONS,
+    }
+
+
+def verify_admin_key_hex_v23(dk_hex: str) -> bool:
+    """Verify a derived 256-bit hex key (`X-Marma-Admin-Key`) without storing the key in plaintext."""
+    try:
+        dk = bytes.fromhex((dk_hex or "").strip())
+    except ValueError:
+        return False
+    if len(dk) != 32:
+        return False
+    verifier_hash = hashlib.sha256(b"MARMA-ADMIN-VERIFIER-V23::" + dk).hexdigest()
+    return any(hmac.compare_digest(verifier_hash, expected) for expected in ACCEPTED_ADMIN_VERIFIER_HASHES)
+
+
+def record_telemetry_event_v23(event: dict[str, Any], client_ip: str = "127.0.0.1") -> dict[str, Any]:
+    """Record a visitor telemetry event with IP, Geo/ASN, OS/Browser, and action metadata (SQLite + RAM)."""
+    now_iso = datetime.now(timezone.utc).isoformat()
+    raw_ip = str(event.get("ip") or "").strip()
+    resolved_ip = raw_ip if (raw_ip and raw_ip not in ("resolving...", "local-client")) else (client_ip or "127.0.0.1")
+    rec: dict[str, Any] = {
+        "event_id": str(event.get("event_id") or f"evt_{int(time.time() * 1000)}_{len(_TELEMETRY_EVENTS_MEM)}"),
+        "timestamp": str(event.get("timestamp") or now_iso),
+        "epoch_ms": int(event.get("epoch_ms") or int(time.time() * 1000)),
+        "visitor_id": str(event.get("visitor_id") or "v_anon"),
+        "session_id": str(event.get("session_id") or "s_anon"),
+        "ip": resolved_ip,
+        "country": str(event.get("country") or "Local / Unknown"),
+        "country_code": str(event.get("country_code") or "LO"),
+        "city": str(event.get("city") or "Localhost"),
+        "region": str(event.get("region") or ""),
+        "isp": str(event.get("isp") or "Direct HTTP Client"),
+        "asn": str(event.get("asn") or "AS0"),
+        "timezone": str(event.get("timezone") or "UTC"),
+        "page": str(event.get("page") or "index.html"),
+        "path": str(event.get("path") or "/"),
+        "lang": str(event.get("lang") or "en"),
+        "referrer": str(event.get("referrer") or "direct"),
+        "browser": str(event.get("browser") or "Python/HTTP"),
+        "os": str(event.get("os") or "Linux"),
+        "device_type": str(event.get("device_type") or "Desktop"),
+        "screen": str(event.get("screen") or "0x0"),
+        "action": str(event.get("action") or "page_view"),
+        "details": dict(event.get("details") or {}),
+    }
+    with _TELEMETRY_LOCK:
+        _TELEMETRY_EVENTS_MEM.append(rec)
+        if len(_TELEMETRY_EVENTS_MEM) > 5000:
+            del _TELEMETRY_EVENTS_MEM[:-5000]
+        try:
+            _init_telemetry_sqlite()
+            with closing(sqlite3.connect(str(_get_telemetry_db_path()))) as conn:
+                conn.execute(
+                    """
+                    INSERT OR REPLACE INTO telemetry_events_v23 VALUES (
+                        ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?
+                    )
+                    """,
+                    (
+                        rec["event_id"],
+                        rec["timestamp"],
+                        rec["epoch_ms"],
+                        rec["visitor_id"],
+                        rec["session_id"],
+                        rec["ip"],
+                        rec["country"],
+                        rec["country_code"],
+                        rec["city"],
+                        rec["region"],
+                        rec["isp"],
+                        rec["asn"],
+                        rec["timezone"],
+                        rec["page"],
+                        rec["path"],
+                        rec["lang"],
+                        rec["referrer"],
+                        rec["browser"],
+                        rec["os"],
+                        rec["device_type"],
+                        rec["screen"],
+                        rec["action"],
+                        json.dumps(rec["details"], ensure_ascii=False),
+                    ),
+                )
+                conn.commit()
+        except Exception:
+            pass
+    return rec
+
+
+def clear_telemetry_events_v23() -> int:
+    """Clear both SQLite and in-memory telemetry events and return the number of cleared records."""
+    with _TELEMETRY_LOCK:
+        count = len(_TELEMETRY_EVENTS_MEM)
+        _TELEMETRY_EVENTS_MEM.clear()
+        try:
+            _init_telemetry_sqlite()
+            with closing(sqlite3.connect(str(_get_telemetry_db_path()))) as conn:
+                cur = conn.execute("SELECT COUNT(*) FROM telemetry_events_v23")
+                db_count = int(cur.fetchone()[0])
+                conn.execute("DELETE FROM telemetry_events_v23")
+                conn.commit()
+                count = max(count, db_count)
+        except Exception:
+            pass
+    return count
+
+
+def get_telemetry_stats_v23() -> dict[str, Any]:
+    """Compute aggregated visitor, IP, geo, OS/browser, popularity, and action analytics for Admin Panel."""
+    with _TELEMETRY_LOCK:
+        events_by_id: dict[str, dict[str, Any]] = {e["event_id"]: e for e in _TELEMETRY_EVENTS_MEM}
+        try:
+            _init_telemetry_sqlite()
+            with closing(sqlite3.connect(str(_get_telemetry_db_path()))) as conn:
+                conn.row_factory = sqlite3.Row
+                rows = conn.execute(
+                    "SELECT * FROM telemetry_events_v23 ORDER BY epoch_ms ASC LIMIT 10000"
+                ).fetchall()
+                for r in rows:
+                    d = dict(r)
+                    d["details"] = json.loads(d.pop("details_json", "{}") or "{}")
+                    events_by_id[d["event_id"]] = d
+        except Exception:
+            pass
+        events = sorted(events_by_id.values(), key=lambda x: x.get("epoch_ms", 0))
+
+    now_ms = int(time.time() * 1000)
+    day_ms = 86_400_000
+    by_ip: dict[str, dict[str, Any]] = {}
+    action_counts: dict[str, int] = {}
+    country_counts: dict[str, int] = {}
+    page_counts: dict[str, int] = {}
+    referrer_counts: dict[str, int] = {}
+    os_counts: dict[str, int] = {}
+    browser_counts: dict[str, int] = {}
+    unique_sessions: set[str] = set()
+    unique_visitors: set[str] = set()
+    dau_ips: set[str] = set()
+    wau_ips: set[str] = set()
+    mau_ips: set[str] = set()
+
+    for ev in events:
+        ip = ev.get("ip", "127.0.0.1")
+        act = ev.get("action", "unknown")
+        country = f"{ev.get('country', 'Unknown')} ({ev.get('country_code', 'UN')})"
+        page = ev.get("page", "index.html")
+        ref = ev.get("referrer") or "direct"
+        os_name = ev.get("os") or "Unknown"
+        br_name = ev.get("browser") or "Unknown"
+        ep_ms = int(ev.get("epoch_ms") or now_ms)
+
+        unique_sessions.add(ev.get("session_id", ""))
+        unique_visitors.add(ev.get("visitor_id", ""))
+        if now_ms - ep_ms <= day_ms:
+            dau_ips.add(ip)
+        if now_ms - ep_ms <= 7 * day_ms:
+            wau_ips.add(ip)
+        if now_ms - ep_ms <= 30 * day_ms:
+            mau_ips.add(ip)
+
+        action_counts[act] = action_counts.get(act, 0) + 1
+        country_counts[country] = country_counts.get(country, 0) + 1
+        page_counts[page] = page_counts.get(page, 0) + 1
+        referrer_counts[ref] = referrer_counts.get(ref, 0) + 1
+        os_counts[os_name] = os_counts.get(os_name, 0) + 1
+        browser_counts[br_name] = browser_counts.get(br_name, 0) + 1
+
+        if ip not in by_ip:
+            by_ip[ip] = {
+                "ip": ip,
+                "country": ev.get("country", "Unknown"),
+                "country_code": ev.get("country_code", "UN"),
+                "city": ev.get("city", ""),
+                "isp": ev.get("isp", ""),
+                "asn": ev.get("asn", ""),
+                "os": os_name,
+                "browser": br_name,
+                "device_type": ev.get("device_type", "Desktop"),
+                "first_seen": ev.get("timestamp", ""),
+                "last_seen": ev.get("timestamp", ""),
+                "total_events": 0,
+                "actions": [],
+                "pages": [],
+                "sessions": set(),
+            }
+        entry = by_ip[ip]
+        entry["total_events"] += 1
+        if ev.get("timestamp", "") < entry["first_seen"] or not entry["first_seen"]:
+            entry["first_seen"] = ev.get("timestamp", "")
+        if ev.get("timestamp", "") > entry["last_seen"]:
+            entry["last_seen"] = ev.get("timestamp", "")
+        entry["actions"].append(act)
+        if page not in entry["pages"]:
+            entry["pages"].append(page)
+        entry["sessions"].add(ev.get("session_id", ""))
+
+    ip_profiles = []
+    returning_ips = 0
+    engaged_ips = 0
+    deep_forensic_ips = 0
+    for ip, data in by_ip.items():
+        data_copy = dict(data)
+        sess_cnt = len(data["sessions"])
+        data_copy["session_count"] = sess_cnt
+        if sess_cnt > 1 or data["total_events"] >= 3:
+            returning_ips += 1
+        acts_set = set(data["actions"])
+        if acts_set.intersection(
+            {"seal_pdf_browser", "seal_svg_browser", "dealroom_1click_demo", "verify_file_drop", "verify_preset_load"}
+        ):
+            engaged_ips += 1
+        if acts_set.intersection({"canary_trace_run", "simulate_tamper_attack", "download_sealed_copy"}):
+            deep_forensic_ips += 1
+        del data_copy["sessions"]
+        ip_profiles.append(data_copy)
+    ip_profiles.sort(key=lambda x: x["total_events"], reverse=True)
+
+    total_ips = len(by_ip)
+    retention_pct = round((returning_ips / total_ips) * 100.0, 1) if total_ips > 0 else 0.0
+    popularity_score = min(
+        100,
+        int(
+            round(
+                min(40.0, total_ips * 5.0)
+                + min(30.0, len(events) * 1.5)
+                + min(30.0, retention_pct * 0.3)
+            )
+        ),
+    )
+
+    return {
+        "status": "ok",
+        "version": API_VERSION,
+        "persistence": {
+            "engine": "SQLite3 + RAM Cache",
+            "db_path": str(_get_telemetry_db_path()),
+        },
+        "summary": {
+            "total_events": len(events),
+            "unique_ips": total_ips,
+            "unique_visitors": len(unique_visitors),
+            "unique_sessions": len(unique_sessions),
+            "action_counts": action_counts,
+            "country_counts": country_counts,
+            "page_counts": page_counts,
+            "referrer_counts": referrer_counts,
+            "os_counts": os_counts,
+            "browser_counts": browser_counts,
+        },
+        "popularity": {
+            "popularity_score_0_100": popularity_score,
+            "dau_unique_ips": len(dau_ips),
+            "wau_unique_ips": len(wau_ips),
+            "mau_unique_ips": len(mau_ips),
+            "returning_ips": returning_ips,
+            "new_ips": max(0, total_ips - returning_ips),
+            "retention_rate_pct": retention_pct,
+            "conversion_funnel": {
+                "visited_site_ips": total_ips,
+                "used_studio_sealer_or_verifier_ips": engaged_ips,
+                "ran_canary_or_downloaded_ips": deep_forensic_ips,
+            },
+        },
+        "ip_profiles": ip_profiles,
+        "events": events,
+    }
+
+
+# ==============================================================================
 # 4. REST API ROUTER & EMBEDDED HTTP MICROSERVICE
 # ==============================================================================
-def dispatch_api_request(method: str, path: str, body: dict[str, Any] | None = None) -> tuple[int, dict[str, Any]]:
+def dispatch_api_request(
+    method: str,
+    path: str,
+    body: dict[str, Any] | None = None,
+    headers: dict[str, str] | None = None,
+    client_ip: str = "127.0.0.1",
+) -> tuple[int, dict[str, Any]]:
     """Pure functional dispatcher for REST endpoints (usable both in-process and over HTTP)."""
     payload = body or {}
+    req_headers = {k.lower(): v for k, v in (headers or {}).items()}
     if method == "GET" and path == "/v1/health":
         return 200, {
             "status": "ok",
@@ -569,6 +931,97 @@ def dispatch_api_request(method: str, path: str, body: dict[str, Any] | None = N
 
         return 200, cross_validate_kak_corpus_v23(verify_pdf_sha256=False)
 
+    if method == "POST" and path == "/v2.3/telemetry/ingest":
+        forwarded_ip = (
+            req_headers.get("x-forwarded-for", "").split(",")[0].strip()
+            or req_headers.get("cf-connecting-ip", "").strip()
+            or req_headers.get("x-real-ip", "").strip()
+            or client_ip
+        )
+        rec = record_telemetry_event_v23(payload, client_ip=forwarded_ip)
+        return 200, {"status": "ok", "recorded": True, "event_id": rec["event_id"], "ip": rec["ip"]}
+
+    if method == "POST" and path == "/v2.3/admin/login":
+        email = str(payload.get("email") or "")
+        password = str(payload.get("password") or "")
+        auth = verify_admin_credentials_v23(email, password)
+        if not auth["authenticated"]:
+            return 401, {"status": "error", "authenticated": False, "error": "Invalid administrator email or password"}
+        return 200, {"status": "ok", **auth}
+
+    if method == "GET" and path == "/v2.3/admin/stats":
+        admin_key = req_headers.get("x-marma-admin-key") or str(payload.get("admin_key") or "")
+        if not verify_admin_key_hex_v23(admin_key):
+            return 401, {"status": "error", "error": "Unauthorized: valid X-Marma-Admin-Key required"}
+        return 200, get_telemetry_stats_v23()
+
+    if method == "POST" and path == "/v2.3/admin/clear":
+        admin_key = req_headers.get("x-marma-admin-key") or str(payload.get("admin_key") or "")
+        if not verify_admin_key_hex_v23(admin_key):
+            return 401, {"status": "error", "error": "Unauthorized: valid X-Marma-Admin-Key required"}
+        cleared = clear_telemetry_events_v23()
+        return 200, {"status": "ok", "cleared_events": cleared}
+
+    if method == "POST" and path == "/v2.3/kan/score-risk":
+        from .kan_kak_bridge_v23 import KAN_KAK_MODEL_ID_RISK, score_risk_kak_v23
+
+        entity = dict(payload.get("entity") or {})
+        if not entity:
+            return 400, {"status": "error", "error": "Non-empty entity dict required"}
+        model_id = str(payload.get("model_id") or KAN_KAK_MODEL_ID_RISK)
+        return 200, score_risk_kak_v23(entity=entity, model_id=model_id)
+
+    if method == "POST" and path == "/v2.3/kan/predict-outcome":
+        from .kan_kak_bridge_v23 import KAN_KAK_MODEL_ID_OUTCOME, predict_outcome_kak_v23
+
+        feats = list(payload.get("features") or [])
+        if not feats:
+            return 400, {"status": "error", "error": "Non-empty features list required"}
+        model_id = str(payload.get("model_id") or KAN_KAK_MODEL_ID_OUTCOME)
+        return 200, predict_outcome_kak_v23(features=feats, model_id=model_id)
+
+    if method == "POST" and path == "/v2.3/kan/qmc-evl":
+        from .kan_kak_bridge_v23 import simulate_evl_kak_dsequence_qmc_v23
+
+        return 200, simulate_evl_kak_dsequence_qmc_v23(
+            claim_amount_eur=float(payload.get("claim_amount_eur", 1_000_000.0)),
+            win_prob_p=float(payload.get("win_prob_p", 0.65)),
+            legal_cost_eur=float(payload.get("legal_cost_eur", 80_000.0)),
+            adverse_cost_eur=float(payload.get("adverse_cost_eur", 60_000.0)),
+            settlement_offer_eur=float(payload.get("settlement_offer_eur", 450_000.0)),
+            secret_key=str(payload.get("secret_key") or DEFAULT_SECRET),
+            case_code=str(payload.get("case_code") or "ARBITRATION-KAK-QMC"),
+        )
+
+    if method == "POST" and path == "/v2.3/kan/stamp-audit":
+        from .kan_kak_bridge_v23 import stamp_kan_audit_memo_v23
+
+        entity = dict(payload.get("entity") or {})
+        recipient_id = str(payload.get("recipient_id") or "G2-Client-Recipient")
+        if not entity:
+            return 400, {"status": "error", "error": "Non-empty entity dict required"}
+        return 200, stamp_kan_audit_memo_v23(
+            entity=entity,
+            recipient_id=recipient_id,
+            secret_key=str(payload.get("secret_key") or DEFAULT_SECRET),
+            case_code=str(payload.get("case_code") or "G2-ARBITRATION-AUDIT"),
+            recipient_code_23bit=(
+                int(payload["recipient_code_23bit"]) if payload.get("recipient_code_23bit") is not None else None
+            ),
+        )
+
+    if method == "POST" and path == "/v2.3/kan/verify-audit":
+        from .kan_kak_bridge_v23 import verify_kan_audit_memo_v23
+
+        bundle = dict(payload.get("bundle") or {})
+        if not bundle or "augmented_seal_packet" not in bundle:
+            return 400, {"status": "error", "error": "Valid stamped bundle required"}
+        return 200, verify_kan_audit_memo_v23(
+            stamped_bundle=bundle,
+            secret_key=payload.get("secret_key"),
+            suspect_recipients=payload.get("suspect_recipients"),
+        )
+
     return 404, {"status": "error", "error": f"Unknown endpoint: {method} {path}"}
 
 
@@ -580,19 +1033,29 @@ class _DealRoomRequestHandler(BaseHTTPRequestHandler):
         raw = json.dumps(data, ensure_ascii=False).encode("utf-8")
         self.send_response(status_code)
         self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Access-Control-Allow-Origin", "*")
+        self.send_header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+        self.send_header("Access-Control-Allow-Headers", "Content-Type, Authorization, X-Marma-Admin-Key")
         self.send_header("Content-Length", str(len(raw)))
         self.end_headers()
         self.wfile.write(raw)
 
+    def do_OPTIONS(self) -> None:  # noqa: N802
+        self._send_json(200, {"status": "ok"})
+
     def do_GET(self) -> None:  # noqa: N802
-        code, resp = dispatch_api_request("GET", self.path)
+        hdrs = {k: v for k, v in self.headers.items()}
+        client_ip = self.client_address[0] if self.client_address else "127.0.0.1"
+        code, resp = dispatch_api_request("GET", self.path, None, headers=hdrs, client_ip=client_ip)
         self._send_json(code, resp)
 
     def do_POST(self) -> None:  # noqa: N802
         length = int(self.headers.get("Content-Length", "0") or 0)
         raw_body = self.rfile.read(length).decode("utf-8") if length > 0 else "{}"
         body = json.loads(raw_body) if raw_body.strip() else {}
-        code, resp = dispatch_api_request("POST", self.path, body)
+        hdrs = {k: v for k, v in self.headers.items()}
+        client_ip = self.client_address[0] if self.client_address else "127.0.0.1"
+        code, resp = dispatch_api_request("POST", self.path, body, headers=hdrs, client_ip=client_ip)
         self._send_json(code, resp)
 
 
@@ -620,18 +1083,31 @@ class MarmaDealRoomServer:
     def __exit__(self, exc_type: Any, exc_val: Any, exc_tb: Any) -> None:
         self.stop()
 
-    def get_json(self, path: str) -> tuple[int, dict[str, Any]]:
-        req = Request(f"{self.base_url}{path}", method="GET")
-        with urlopen(req, timeout=10) as resp:
-            return resp.status, json.loads(resp.read().decode("utf-8"))
+    def get_json(self, path: str, headers: dict[str, str] | None = None) -> tuple[int, dict[str, Any]]:
+        opener = build_opener(ProxyHandler({}))
+        req = Request(f"{self.base_url}{path}", headers=headers or {}, method="GET")
+        try:
+            with opener.open(req, timeout=10) as resp:
+                return resp.status, json.loads(resp.read().decode("utf-8"))
+        except HTTPError as err:
+            return err.code, json.loads(err.read().decode("utf-8"))
 
-    def post_json(self, path: str, payload: dict[str, Any]) -> tuple[int, dict[str, Any]]:
+    def post_json(
+        self, path: str, payload: dict[str, Any], headers: dict[str, str] | None = None
+    ) -> tuple[int, dict[str, Any]]:
+        opener = build_opener(ProxyHandler({}))
         data = json.dumps(payload).encode("utf-8")
+        req_headers = {"Content-Type": "application/json"}
+        if headers:
+            req_headers.update(headers)
         req = Request(
             f"{self.base_url}{path}",
             data=data,
-            headers={"Content-Type": "application/json"},
+            headers=req_headers,
             method="POST",
         )
-        with urlopen(req, timeout=30) as resp:
-            return resp.status, json.loads(resp.read().decode("utf-8"))
+        try:
+            with opener.open(req, timeout=30) as resp:
+                return resp.status, json.loads(resp.read().decode("utf-8"))
+        except HTTPError as err:
+            return err.code, json.loads(err.read().decode("utf-8"))

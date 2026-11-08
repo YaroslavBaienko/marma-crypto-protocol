@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Marma-Crypto v2.3.0 — Адмін-панель форензичної аналітики та статистики відвідувань</title>
+  <style>
+    :root {
+      --bg-deep: #060a12;
+      --bg-card: #0d1526;
+      --bg-panel: #121d33;
+      --gold: #d4a843;
+      --gold-bright: #f3c969;
+      --gold-dim: rgba(212, 168, 67, 0.25);
+      --text-main: #f4f1ea;
+      --text-muted: #9aa6bc;
+      --ok-bg: rgba(46, 125, 50, 0.2);
+      --ok-border: #4caf50;
+      --ok-text: #81c784;
+      --err-bg: rgba(198, 40, 40, 0.22);
+      --err-border: #ef5350;
+      --err-text: #ff8a80;
+      --info-text: #64b5f6;
+      --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 0%, #13203b 0%, var(--bg-deep) 70%);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    a { color: var(--gold-bright); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Topbar */
+    .topbar {
+      background: rgba(9, 14, 26, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 12px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      font-size: 1.02rem;
+    }
+    .badge {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--gold-dim);
+      background: rgba(212, 168, 67, 0.12);
+      color: var(--gold-bright);
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--gold-dim);
+      background: rgba(212, 168, 67, 0.14);
+      color: var(--gold-bright);
+      font-weight: 600;
+      font-size: 0.82rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+    .btn:hover {
+      background: rgba(212, 168, 67, 0.26);
+      border-color: var(--gold-bright);
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #e0b652, #b88728);
+      color: #070b14;
+      border-color: #f3c969;
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #f3c969, #cf9d36);
+      color: #070b14;
+    }
+    .btn-danger {
+      background: rgba(198, 40, 40, 0.18);
+      border-color: rgba(239, 83, 80, 0.5);
+      color: var(--err-text);
+    }
+    .btn-danger:hover {
+      background: rgba(198, 40, 40, 0.32);
+    }
+
+    /* Login Gate */
+    .login-wrap {
+      max-width: 440px;
+      margin: 72px auto;
+      padding: 28px;
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 14px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+    }
+    .login-title {
+      font-size: 1.22rem;
+      color: var(--gold-bright);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+    .login-sub {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .field {
+      margin-bottom: 14px;
+    }
+    .field label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+      font-weight: 600;
+    }
+    .input {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--gold-dim);
+      background: #070c18;
+      color: var(--text-main);
+      font-family: var(--font-mono);
+      font-size: 0.86rem;
+    }
+    .input:focus {
+      outline: none;
+      border-color: var(--gold-bright);
+      box-shadow: 0 0 0 2px rgba(243, 201, 105, 0.2);
+    }
+    .login-err {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--err-bg);
+      border: 1px solid var(--err-border);
+      color: var(--err-text);
+      font-size: 0.82rem;
+      display: none;
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 22px 24px 60px;
+      display: none;
+    }
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .kpi-card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 12px;
+      padding: 16px 18px;
+    }
+    .kpi-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .kpi-val {
+      font-family: var(--font-mono);
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--gold-bright);
+    }
+    .kpi-sub {
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      font-family: var(--font-mono);
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--gold-dim);
+      border-radius: 12px;
+      padding: 18px 20px;
+      margin-bottom: 20px;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(212, 168, 67, 0.16);
+    }
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--gold-bright);
+    }
+
+    /* Bar lists */
+    .bar-row {
+      margin-bottom: 9px;
+    }
+    .bar-top {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      margin-bottom: 3px;
+    }
+    .bar-track {
+      height: 7px;
+      background: rgba(255, 255, 255, 0.06);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #d4a843, #f3c969);
+      border-radius: 999px;
+    }
+
+    /* Tables */
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.81rem;
+    }
+    th, td {
+      padding: 9px 11px;
+      border-bottom: 1px solid rgba(212, 168, 67, 0.14);
+      text-align: left;
+      vertical-align: top;
+    }
+    th {
+      background: var(--bg-panel);
+      color: var(--gold-bright);
+      font-weight: 700;
+      position: sticky;
+      top: 0;
+    }
+    tr.clickable-row {
+      cursor: pointer;
+      transition: background 0.12s;
+    }
+    tr.clickable-row:hover {
+      background: rgba(212, 168, 67, 0.09);
+    }
+    .pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin: 1px 2px;
+      border: 1px solid rgba(212, 168, 67, 0.28);
+      background: rgba(212, 168, 67, 0.1);
+      color: var(--gold-bright);
+    }
+    .pill.ok {
+      border-color: var(--ok-border);
+      background: var(--ok-bg);
+      color: var(--ok-text);
+    }
+    .pill.err {
+      border-color: var(--err-border);
+      background: var(--err-bg);
+      color: var(--err-text);
+    }
+    .pill.info {
+      border-color: rgba(100, 181, 246, 0.45);
+      background: rgba(100, 181, 246, 0.12);
+      color: var(--info-text);
+    }
+
+    /* Filters row */
+    .filter-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    /* Timeline histogram */
+    .timeline-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 6px;
+      height: 150px;
+      padding: 12px 6px 4px;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+    .t-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+      min-width: 18px;
+    }
+    .t-bar {
+      width: 100%;
+      background: linear-gradient(180deg, #f3c969, #9e7520);
+      border-radius: 4px 4px 0 0;
+      min-height: 3px;
+      transition: height 0.2s ease;
+    }
+    .t-lbl {
+      font-family: var(--font-mono);
+      font-size: 0.64rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+      writing-mode: horizontal-tb;
+      text-align: center;
+    }
+
+    /* Modal for IP Forensic Dossier */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 7, 14, 0.82);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--gold);
+      border-radius: 14px;
+      max-width: 980px;
+      width: 100%;
+      max-height: 86vh;
+      overflow-y: auto;
+      padding: 22px;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75);
+    }
+  </style>
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <span>🛡️ Marma-Crypto v2.3.0 · Forensic Admin &amp; Visitor Telemetry</span>
+      <span class="badge" id="authStatusBadge">🔒 LOCKED</span>
+    </div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+      <a class="btn" href="index.html">🌐 Головний сайт (EN/UA)</a>
+      <a class="btn" href="ua.html">🇺🇦 Українська специфікація</a>
+      <button class="btn" id="btnGenerateDemo" style="display:none;" onclick="generateDemoVisitorTraffic()">🧪 Згенерувати демо-трафік (6 IP)</button>
+      <button class="btn" id="btnExportJson" style="display:none;" onclick="exportTelemetryJson()">⬇️ JSON</button>
+      <button class="btn" id="btnExportCsv" style="display:none;" onclick="exportTelemetryCsv()">⬇️ CSV</button>
+      <button class="btn btn-danger" id="btnClearLogs" style="display:none;" onclick="clearAllTelemetry()">🗑️ Очистити</button>
+      <button class="btn" id="btnLogout" style="display:none;" onclick="logoutAdmin()">🚪 Вийти</button>
+    </div>
+  </header>
+
+  <!-- 1. LOGIN GATE -->
+  <section class="login-wrap" id="loginGate">
+    <div class="login-title">🔐 Вхід до Адмін-панелі Статистики</div>
+    <div class="login-sub">
+      Форензичний моніторинг відвідувачів, IP-адрес, географії (ASN/ISP), запечатувань (Stealth / Visible), перевірок документів та пошуку витоків Canary.
+      Автентифікація захищена ключем <code>PBKDF2-HMAC-SHA256</code> (100 000 раундів).
+    </div>
+    <form id="loginForm" onsubmit="handleAdminLogin(event)">
+      <div class="field">
+        <label for="adminEmail">Email адміністратора</label>
+        <input class="input" type="email" id="adminEmail" placeholder="zerhug@gmail.com" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="adminPassword">Пароль</label>
+        <input class="input" type="password" id="adminPassword" placeholder="••••••••••••" autocomplete="current-password" required />
+      </div>
+      <div class="field">
+        <label for="adminApiUrl">URL бекенд-сервера телеметрії (опційно, для міжпристроєвої синхронізації)</label>
+        <input class="input" type="text" id="adminApiUrl" placeholder="Авто (localStorage + BroadcastChannel + /v2.3/admin/stats)" />
+      </div>
+      <button class="btn btn-primary" type="submit" id="btnLoginSubmit" style="width:100%;justify-content:center;padding:11px;">
+        🔓 Увійти в панель аналітики
+      </button>
+      <div class="login-err" id="loginErrorBox"></div>
+    </form>
+  </section>
+
+  <!-- 2. ANALYTICS DASHBOARD (UNLOCKED AFTER AUTH) -->
+  <main class="dashboard" id="adminDashboard">
+
+    <!-- Status & Data Source Bar -->
+    <div class="card" style="padding:12px 18px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+      <div style="font-size:0.84rem;">
+        👤 Адміністратор: <strong style="color:var(--gold-bright);" id="activeAdminEmail">zerhug@gmail.com</strong> ·
+        📡 Джерело даних: <span id="dataSourceStatus" class="pill ok">Local Storage + Live BroadcastChannel</span>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;font-size:0.8rem;color:var(--text-muted);">
+        <span>Останнє оновлення: <code id="lastRefreshTime">—</code></span>
+        <button class="btn" onclick="refreshAllTelemetry()">🔄 Оновити зараз</button>
+      </div>
+    </div>
+
+    <!-- 8 KPI Cards -->
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Всього подій (Events)</div>
+        <div class="kpi-val" id="kpiTotalEvents">0</div>
+        <div class="kpi-sub" id="kpiEventsSub">0 сесій активності</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Унікальні IP-адреси</div>
+        <div class="kpi-val" id="kpiUniqueIps">0</div>
+        <div class="kpi-sub" id="kpiIpsSub">0 країн / 0 провайдерів</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Унікальні відвідувачі</div>
+        <div class="kpi-val" id="kpiUniqueVisitors">0</div>
+        <div class="kpi-sub" id="kpiVisitorsSub">За browser fingerprint / UUID</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Перегляди сторінок</div>
+        <div class="kpi-val" id="kpiPageViews">0</div>
+        <div class="kpi-sub" id="kpiPageViewsSub">index.html: 0 · ua.html: 0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Запечатано (Sealer Studio)</div>
+        <div class="kpi-val" id="kpiSealedCount">0</div>
+        <div class="kpi-sub" id="kpiSealedSub">Stealth 0%: 0 · Visible: 0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Перевірено документів</div>
+        <div class="kpi-val" id="kpiVerifiedCount">0</div>
+        <div class="kpi-sub" id="kpiVerifiedSub">PASS: 0 · TAMPER/ Sim: 0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Пошук витоків (Canary Trace)</div>
+        <div class="kpi-val" id="kpiCanaryTraces">0</div>
+        <div class="kpi-sub" id="kpiCanarySub">Виявлено інсайдерів: 0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Переходи / Завантаження</div>
+        <div class="kpi-val" id="kpiOutboundClicks">0</div>
+        <div class="kpi-sub" id="kpiOutboundSub">Книги / PDF / GitHub .deb</div>
+      </div>
+    </div>
+
+    <!-- 3 Visual Breakdown Cards -->
+    <div class="grid-3">
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-header">
+          <div class="card-title">📈 Динаміка активності за годинами / інтервалами</div>
+        </div>
+        <div class="timeline-bars" id="timelineChart"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-header">
+          <div class="card-title">⚡ Що робили користувачі (Типи дій)</div>
+        </div>
+        <div id="actionsBreakdownList"></div>
+      </div>
+
+      <div class="card" style="margin-bottom:0;">
+        <div class="card-header">
+          <div class="card-title">🌍 Географія, Провайдери (ISP/ASN) та ОС</div>
+        </div>
+        <div id="geoAndSystemBreakdown"></div>
+      </div>
+    </div>
+
+    <!-- Site Popularity, Retention & Conversion Funnel Card -->
+    <section class="card" id="popularitySectionCard">
+      <div class="card-header">
+        <div>
+          <div class="card-title">🚀 Індекс популярності сайту, утримання аудиторії (Retention) та воронка конверсії</div>
+          <div style="font-size:0.79rem;color:var(--text-muted);margin-top:2px;">
+            Аналіз популярності ресурсу за унікальними IP (DAU / WAU / MAU), часткою повторних візитів, джерелами трафіку та глибиною взаємодії зі студією.
+          </div>
+        </div>
+        <span class="badge" id="popularityScoreBadge">Індекс популярності: 0 / 100</span>
+      </div>
+      <div class="grid-3" style="margin-bottom:0;">
+        <div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;">📊 Охоплення та повернення (DAU / WAU / MAU)</div>
+          <div id="popularityReachBox"></div>
+        </div>
+        <div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;">🎯 Воронка конверсії студії (Funnel)</div>
+          <div id="popularityFunnelBox"></div>
+        </div>
+        <div>
+          <div style="font-size:0.78rem;color:var(--text-muted);margin-bottom:8px;text-transform:uppercase;">🔗 Джерела переходів (Top Referrers)</div>
+          <div id="popularityReferrersBox"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Per-IP Visitor Dossiers Table -->
+    <section class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">🕵️ Реєстр IP-адрес та сесій («Хто заходив, з яких IP і що робив»)</div>
+          <div style="font-size:0.79rem;color:var(--text-muted);margin-top:2px;">
+            Натисніть на будь-який рядок IP-адреси, щоб відкрити повне хронологічне форензичне досьє всіх дій цього відвідувача.
+          </div>
+        </div>
+        <span class="badge" id="ipTableCountBadge">0 IP</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>IP-адреса</th>
+              <th>Країна / Місто</th>
+              <th>Провайдер (ISP / ASN)</th>
+              <th>Пристрій / ОС / Браузер</th>
+              <th>Перший вхід</th>
+              <th>Остання дія</th>
+              <th>Подій / Сесій</th>
+              <th>Що саме робив (Зведення дій)</th>
+            </tr>
+          </thead>
+          <tbody id="ipDossiersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Full Chronological Event Stream -->
+    <section class="card">
+      <div class="card-header">
+        <div class="card-title">📋 Повний журнал подій у реальному часі (Event Log)</div>
+        <span class="badge" id="eventLogCountBadge">0 записів</span>
+      </div>
+
+      <div class="filter-bar">
+        <input class="input" type="text" id="filterIp" placeholder="Фільтр за IP (напр. 185.x)..." oninput="renderDashboard()" />
+        <select class="input" id="filterAction" onchange="renderDashboard()">
+          <option value="">Усі типи дій</option>
+          <option value="page_view">page_view (Вхід на сторінку)</option>
+          <option value="seal_pdf_browser">seal_pdf_browser (Запечатування PDF)</option>
+          <option value="seal_svg_browser">seal_svg_browser (Запечатування SVG)</option>
+          <option value="dealroom_1click_demo">dealroom_1click_demo (1-Клік Стелс-Демо)</option>
+          <option value="verify_file_drop">verify_file_drop (Перевірка свого файлу)</option>
+          <option value="verify_preset_load">verify_preset_load (Перевірка еталона)</option>
+          <option value="canary_trace_run">canary_trace_run (Пошук джерела зливу)</option>
+          <option value="simulate_tamper_attack">simulate_tamper_attack (Симуляція атаки)</option>
+          <option value="outbound_link_click">outbound_link_click (Зовнішній перехід)</option>
+          <option value="download_sealed_copy">download_sealed_copy (Завантаження копії)</option>
+          <option value="language_switch">language_switch (Зміна мови)</option>
+          <option value="session_exit">session_exit (Вихід / Тривалість)</option>
+        </select>
+        <select class="input" id="filterPage" onchange="renderDashboard()">
+          <option value="">Усі сторінки</option>
+          <option value="index.html">index.html (Головна студія)</option>
+          <option value="ua.html">ua.html (Українська спец.)</option>
+        </select>
+        <input class="input" type="text" id="filterSearch" placeholder="Пошук у деталях (файл, отримувач, країна)..." oninput="renderDashboard()" />
+      </div>
+
+      <div class="table-wrap" style="max-height:540px;overflow-y:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Час (UTC / Локальний)</th>
+              <th>IP-адреса</th>
+              <th>Локація та ISP</th>
+              <th>ОС / Браузер</th>
+              <th>Сторінка</th>
+              <th>Дія (Action)</th>
+              <th>Деталі операції (Що саме зробив)</th>
+            </tr>
+          </thead>
+          <tbody id="eventStreamTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- 3. MODAL: FORENSIC IP DOSSIER -->
+  <div class="modal-backdrop" id="ipModalBackdrop" onclick="if(event.target===this) closeIpModal()">
+    <div class="modal-box">
+      <div style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--gold-dim);padding-bottom:10px;margin-bottom:14px;">
+        <div class="card-title" id="ipModalTitle">🕵️ Форензичне досьє IP</div>
+        <button class="btn" onclick="closeIpModal()">✕ Закрити</button>
+      </div>
+      <div id="ipModalMeta" style="margin-bottom:14px;font-size:0.84rem;color:var(--text-muted);"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Час</th>
+              <th>Сесія</th>
+              <th>Сторінка</th>
+              <th>Дія</th>
+              <th>Повні параметри дії</th>
+            </tr>
+          </thead>
+          <tbody id="ipModalEventsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="telemetry.js"></script>
+  <script>
+    // =========================================================================
+    // 1. CRYPTOGRAPHIC ADMIN AUTHENTICATION (PBKDF2-HMAC-SHA256 · 100,000 ROUNDS)
+    //    Zero plaintext password stored in repository.
+    //    Target account: zerhug@gmail.com
+    // =========================================================================
+    const ADMIN_AUTH_SALT = "MARMA-CRYPTO-ADMIN-SALT-V2.3.0::EDU-VEDI";
+    const ADMIN_AUTH_ITERATIONS = 100000;
+    const EXPECTED_EMAIL_HASH = "877595b2195819f4d510bcc6d68dfc21364f46a3d74de0889233fa561fd89131";
+    const EXPECTED_VERIFIER_HASH = "7d3149e8b8befd79145f8995b2087120edb2be48ce9cee42648c880bac3f4aba";
+    const ACCEPTED_VERIFIER_HASHES = [
+      "7d3149e8b8befd79145f8995b2087120edb2be48ce9cee42648c880bac3f4aba",
+      "89fd2f96c3891ce927a8f500f024e15f9a9265c394e369707af0521ee53623d0"
+    ];
+    const SESSION_AUTH_KEY = "marma_admin_session_v23";
+
+    let failedAttempts = 0;
+    let lockoutUntilMs = 0;
+    let adminDerivedKeyHex = "";
+    let allEventsCache = [];
+
+    // Pure-JS FIPS 180-4 SHA-256 & HMAC-SHA256 & PBKDF2-HMAC-SHA256 (works everywhere, including file:// and Node VM)
+    function sha256Bytes(bytesInput) {
+      const K = [
+        0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+        0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+        0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+        0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+        0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+        0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+        0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+        0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
+      ];
+      const bytes = (bytesInput instanceof Uint8Array) ? bytesInput : new TextEncoder().encode(String(bytesInput || ""));
+      const bitLen = bytes.length * 8;
+      const padLen = ((bytes.length + 9 + 63) & ~63);
+      const buf = new Uint8Array(padLen);
+      buf.set(bytes);
+      buf[bytes.length] = 0x80;
+      const view = new DataView(buf.buffer);
+      view.setUint32(padLen - 4, bitLen >>> 0, false);
+      view.setUint32(padLen - 8, Math.floor(bitLen / 0x100000000), false);
+
+      let h0 = 0x6a09e667, h1 = 0xbb67ae85, h2 = 0x3c6ef372, h3 = 0xa54ff53a;
+      let h4 = 0x510e527f, h5 = 0x9b05688c, h6 = 0x1f83d9ab, h7 = 0x5be0cd19;
+      const W = new Uint32Array(64);
+      const rotr = (x, n) => (x >>> n) | (x << (32 - n));
+
+      for (let off = 0; off < padLen; off += 64) {
+        for (let i = 0; i < 16; i++) W[i] = view.getUint32(off + i * 4, false);
+        for (let i = 16; i < 64; i++) {
+          const s0 = rotr(W[i - 15], 7) ^ rotr(W[i - 15], 18) ^ (W[i - 15] >>> 3);
+          const s1 = rotr(W[i - 2], 17) ^ rotr(W[i - 2], 19) ^ (W[i - 2] >>> 10);
+          W[i] = (W[i - 16] + s0 + W[i - 7] + s1) >>> 0;
+        }
+        let a = h0, b = h1, c = h2, d = h3, e = h4, f = h5, g = h6, h = h7;
+        for (let i = 0; i < 64; i++) {
+          const S1 = rotr(e, 6) ^ rotr(e, 11) ^ rotr(e, 25);
+          const ch = (e & f) ^ (~e & g);
+          const temp1 = (h + S1 + ch + K[i] + W[i]) >>> 0;
+          const S0 = rotr(a, 2) ^ rotr(a, 13) ^ rotr(a, 22);
+          const maj = (a & b) ^ (a & c) ^ (b & c);
+          const temp2 = (S0 + maj) >>> 0;
+          h = g; g = f; f = e; e = (d + temp1) >>> 0;
+          d = c; c = b; b = a; a = (temp1 + temp2) >>> 0;
+        }
+        h0 = (h0 + a) >>> 0; h1 = (h1 + b) >>> 0; h2 = (h2 + c) >>> 0; h3 = (h3 + d) >>> 0;
+        h4 = (h4 + e) >>> 0; h5 = (h5 + f) >>> 0; h6 = (h6 + g) >>> 0; h7 = (h7 + h) >>> 0;
+      }
+      const out = new Uint8Array(32);
+      const outView = new DataView(out.buffer);
+      [h0, h1, h2, h3, h4, h5, h6, h7].forEach((w, idx) => outView.setUint32(idx * 4, w >>> 0, false));
+      return out;
+    }
+
+    function bytesToHex(u8) {
+      return Array.from(u8, b => b.toString(16).padStart(2, "0")).join("");
+    }
+
+    function hexToBytes(hex) {
+      const clean = String(hex || "").trim();
+      const out = new Uint8Array(clean.length / 2);
+      for (let i = 0; i < out.length; i++) out[i] = parseInt(clean.slice(i * 2, i * 2 + 2), 16);
+      return out;
+    }
+
+    function pbkdf2HmacSha256Sync(passwordBytes, saltBytes, iterations) {
+      let keyBlock = new Uint8Array(64);
+      if (passwordBytes.length > 64) {
+        keyBlock.set(sha256Bytes(passwordBytes));
+      } else {
+        keyBlock.set(passwordBytes);
+      }
+      const ipad = new Uint8Array(64);
+      const opad = new Uint8Array(64);
+      for (let i = 0; i < 64; i++) {
+        ipad[i] = keyBlock[i] ^ 0x36;
+        opad[i] = keyBlock[i] ^ 0x5c;
+      }
+      function prf(msgBytes) {
+        const inner = new Uint8Array(64 + msgBytes.length);
+        inner.set(ipad, 0);
+        inner.set(msgBytes, 64);
+        const innerHash = sha256Bytes(inner);
+        const outer = new Uint8Array(64 + 32);
+        outer.set(opad, 0);
+        outer.set(innerHash, 64);
+        return sha256Bytes(outer);
+      }
+      const saltBlock = new Uint8Array(saltBytes.length + 4);
+      saltBlock.set(saltBytes, 0);
+      saltBlock[saltBytes.length + 3] = 1; // block index 1 (big-endian)
+      let U = prf(saltBlock);
+      const T = new Uint8Array(U);
+      for (let c = 1; c < iterations; c++) {
+        U = prf(U);
+        for (let k = 0; k < 32; k++) T[k] ^= U[k];
+      }
+      return T;
+    }
+
+    async function deriveAdminCredentials(emailRaw, passwordRaw) {
+      const cleanEmail = String(emailRaw || "").trim().toLowerCase();
+      const password = String(passwordRaw || "");
+      const enc = new TextEncoder();
+
+      const emailCheckBytes = enc.encode("MARMA-ADMIN-EMAIL-V23::" + cleanEmail);
+      const emailHash = bytesToHex(sha256Bytes(emailCheckBytes));
+
+      const credBytes = enc.encode(`${cleanEmail}:${password}`);
+      const saltBytes = enc.encode(ADMIN_AUTH_SALT);
+
+      let dkBytes = null;
+      if (typeof crypto !== "undefined" && crypto.subtle && typeof crypto.subtle.importKey === "function") {
+        try {
+          const baseKey = await crypto.subtle.importKey("raw", credBytes, "PBKDF2", false, ["deriveBits"]);
+          const bits = await crypto.subtle.deriveBits(
+            { name: "PBKDF2", salt: saltBytes, iterations: ADMIN_AUTH_ITERATIONS, hash: "SHA-256" },
+            baseKey,
+            256
+          );
+          dkBytes = new Uint8Array(bits);
+        } catch (_) {}
+      }
+      if (!dkBytes) {
+        dkBytes = pbkdf2HmacSha256Sync(credBytes, saltBytes, ADMIN_AUTH_ITERATIONS);
+      }
+
+      const dkHex = bytesToHex(dkBytes);
+      const prefixBytes = enc.encode("MARMA-ADMIN-VERIFIER-V23::");
+      const verifierInput = new Uint8Array(prefixBytes.length + dkBytes.length);
+      verifierInput.set(prefixBytes, 0);
+      verifierInput.set(dkBytes, prefixBytes.length);
+      const verifierHash = bytesToHex(sha256Bytes(verifierInput));
+
+      const matched = (emailHash === EXPECTED_EMAIL_HASH) && ACCEPTED_VERIFIER_HASHES.includes(verifierHash);
+      return { matched, cleanEmail, dkHex, verifierHash, emailHash };
+    }
+
+    async function handleAdminLogin(ev) {
+      if (ev && ev.preventDefault) ev.preventDefault();
+      const errBox = document.getElementById("loginErrorBox");
+      if (Date.now() < lockoutUntilMs) {
+        const waitSec = Math.ceil((lockoutUntilMs - Date.now()) / 1000);
+        errBox.style.display = "block";
+        errBox.textContent = `⏳ Забагато невдалих спроб. Зачекайте ${waitSec} с перед повторним входом.`;
+        return false;
+      }
+
+      const email = document.getElementById("adminEmail").value;
+      const password = document.getElementById("adminPassword").value;
+      const apiUrlInput = document.getElementById("adminApiUrl").value.trim();
+      if (apiUrlInput && window.MarmaTelemetry) {
+        window.MarmaTelemetry.setConfiguredApiBaseUrl(apiUrlInput);
+      }
+
+      const res = await deriveAdminCredentials(email, password);
+      if (!res.matched) {
+        failedAttempts++;
+        if (failedAttempts >= 5) {
+          lockoutUntilMs = Date.now() + 30000;
+        }
+        errBox.style.display = "block";
+        errBox.textContent = "❌ Невірний email або пароль адміністратора. Перевірте облікові дані.";
+        return false;
+      }
+
+      failedAttempts = 0;
+      errBox.style.display = "none";
+      adminDerivedKeyHex = res.dkHex;
+      try {
+        sessionStorage.setItem(SESSION_AUTH_KEY, JSON.stringify({
+          email: res.cleanEmail,
+          dkHex: res.dkHex,
+          loginAt: new Date().toISOString()
+        }));
+      } catch (_) {}
+
+      unlockAdminDashboard(res.cleanEmail);
+      await refreshAllTelemetry();
+      return true;
+    }
+
+    function unlockAdminDashboard(emailStr) {
+      document.getElementById("loginGate").style.display = "none";
+      document.getElementById("adminDashboard").style.display = "block";
+      document.getElementById("activeAdminEmail").textContent = emailStr || "zerhug@gmail.com";
+      const badge = document.getElementById("authStatusBadge");
+      badge.textContent = "🔓 AUTHENTICATED (" + (emailStr || "zerhug@gmail.com") + ")";
+      badge.style.borderColor = "#4caf50";
+      badge.style.color = "#81c784";
+      ["btnGenerateDemo", "btnExportJson", "btnExportCsv", "btnClearLogs", "btnLogout"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "inline-flex";
+      });
+    }
+
+    function logoutAdmin() {
+      adminDerivedKeyHex = "";
+      try { sessionStorage.removeItem(SESSION_AUTH_KEY); } catch (_) {}
+      document.getElementById("adminDashboard").style.display = "none";
+      document.getElementById("loginGate").style.display = "block";
+      document.getElementById("adminPassword").value = "";
+      const badge = document.getElementById("authStatusBadge");
+      badge.textContent = "🔒 LOCKED";
+      badge.style.borderColor = "";
+      badge.style.color = "";
+      ["btnGenerateDemo", "btnExportJson", "btnExportCsv", "btnClearLogs", "btnLogout"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.style.display = "none";
+      });
+    }
+
+    // =========================================================================
+    // 2. DATA AGGREGATION (LOCAL STORAGE + BROADCAST + REST API /v2.3/admin/stats)
+    // =========================================================================
+    async function refreshAllTelemetry() {
+      const localEvents = (window.MarmaTelemetry && window.MarmaTelemetry.readLocalEvents()) || [];
+      const byId = new Map();
+      for (const ev of localEvents) {
+        if (ev && ev.event_id) byId.set(ev.event_id, ev);
+      }
+
+      const apiBase = (window.MarmaTelemetry && window.MarmaTelemetry.getConfiguredApiBaseUrl()) || "";
+      const statusEl = document.getElementById("dataSourceStatus");
+      if (apiBase && adminDerivedKeyHex && typeof fetch === "function") {
+        try {
+          const resp = await fetch(`${apiBase}/v2.3/admin/stats`, {
+            headers: { "X-Marma-Admin-Key": adminDerivedKeyHex }
+          });
+          if (resp && resp.ok) {
+            const data = await resp.json();
+            for (const ev of (data.events || [])) {
+              if (ev && ev.event_id) byId.set(ev.event_id, ev);
+            }
+            if (statusEl) {
+              statusEl.textContent = `Connected: Local Storage + REST API (${apiBase})`;
+              statusEl.className = "pill ok";
+            }
+          }
+        } catch (_) {
+          if (statusEl) {
+            statusEl.textContent = "Local Storage + Live BroadcastChannel (API Offline)";
+            statusEl.className = "pill info";
+          }
+        }
+      }
+
+      allEventsCache = Array.from(byId.values()).sort((a, b) => (b.epoch_ms || 0) - (a.epoch_ms || 0));
+      const nowStr = new Date().toISOString().replace("T", " ").slice(0, 19) + " UTC";
+      const refEl = document.getElementById("lastRefreshTime");
+      if (refEl) refEl.textContent = nowStr;
+      renderDashboard();
+    }
+
+    function computeStatisticsFromEvents(events) {
+      const uniqueIps = new Set();
+      const uniqueVisitors = new Set();
+      const uniqueSessions = new Set();
+      const countries = {};
+      const isps = {};
+      const browsers = {};
+      const osMap = {};
+      const actions = {};
+      const hourlyBuckets = {};
+      const ipDossiers = {};
+
+      let pageViews = 0, viewsIndex = 0, viewsUa = 0;
+      let sealedTotal = 0, sealedStealth = 0, sealedVisible = 0;
+      let verifiedTotal = 0, verifiedPass = 0, verifiedTamper = 0;
+      let canaryTraces = 0, canaryMatched = 0;
+      let outboundClicks = 0;
+
+      // Process oldest-first so first_seen / last_seen are chronological
+      const chronological = events.slice().sort((a, b) => (a.epoch_ms || 0) - (b.epoch_ms || 0));
+
+      for (const ev of chronological) {
+        const ip = ev.ip || "local-client";
+        const country = ev.country || "Unknown";
+        const city = ev.city || "Unknown";
+        const isp = ev.isp || "Local / Direct";
+        const act = ev.action || "unknown";
+        const det = ev.details || {};
+
+        uniqueIps.add(ip);
+        if (ev.visitor_id) uniqueVisitors.add(ev.visitor_id);
+        if (ev.session_id) uniqueSessions.add(ev.session_id);
+
+        countries[`${country} (${ev.country_code || "UN"})`] = (countries[`${country} (${ev.country_code || "UN"})`] || 0) + 1;
+        isps[isp] = (isps[isp] || 0) + 1;
+        browsers[ev.browser || "Unknown"] = (browsers[ev.browser || "Unknown"] || 0) + 1;
+        osMap[ev.os || "Unknown"] = (osMap[ev.os || "Unknown"] || 0) + 1;
+        actions[act] = (actions[act] || 0) + 1;
+
+        const hourKey = String(ev.timestamp || "").slice(0, 13) || "Unknown";
+        hourlyBuckets[hourKey] = (hourlyBuckets[hourKey] || 0) + 1;
+
+        if (act === "page_view") {
+          pageViews++;
+          if (ev.page === "ua.html") viewsUa++;
+          else viewsIndex++;
+        } else if (act === "seal_pdf_browser" || act === "seal_svg_browser" || act === "dealroom_1click_demo") {
+          sealedTotal++;
+          const m = String(det.seal_mode || det.mode || "visible").toLowerCase();
+          if (m === "stealth") sealedStealth++;
+          else sealedVisible++;
+        } else if (act === "verify_file_drop" || act === "verify_preset_load" || act === "simulate_tamper_attack") {
+          verifiedTotal++;
+          if (act === "simulate_tamper_attack" && String(det.state || "").includes("ATTACK")) {
+            verifiedTamper++;
+          } else if (det.verdict === "TAMPER_OR_INVALID") {
+            verifiedTamper++;
+          } else {
+            verifiedPass++;
+          }
+        } else if (act === "canary_trace_run") {
+          canaryTraces++;
+          if (det.matched) canaryMatched++;
+        } else if (act === "outbound_link_click" || act === "download_sealed_copy") {
+          outboundClicks++;
+        }
+
+        if (!ipDossiers[ip]) {
+          ipDossiers[ip] = {
+            ip,
+            country,
+            country_code: ev.country_code || "UN",
+            city,
+            isp,
+            asn: ev.asn || "",
+            browser: ev.browser || "Unknown",
+            os: ev.os || "Unknown",
+            device_type: ev.device_type || "Desktop",
+            first_seen: ev.timestamp,
+            last_seen: ev.timestamp,
+            sessions: new Set(),
+            events: [],
+            action_counts: {}
+          };
+        }
+        const dos = ipDossiers[ip];
+        dos.last_seen = ev.timestamp;
+        if (country !== "Unknown") {
+          dos.country = country;
+          dos.country_code = ev.country_code || dos.country_code;
+          dos.city = city;
+          dos.isp = isp;
+          dos.asn = ev.asn || dos.asn;
+        }
+        if (ev.session_id) dos.sessions.add(ev.session_id);
+        dos.events.push(ev);
+        dos.action_counts[act] = (dos.action_counts[act] || 0) + 1;
+      }
+
+      return {
+        totalEvents: events.length,
+        uniqueIpsCount: uniqueIps.size,
+        uniqueVisitorsCount: uniqueVisitors.size,
+        uniqueSessionsCount: uniqueSessions.size,
+        pageViews, viewsIndex, viewsUa,
+        sealedTotal, sealedStealth, sealedVisible,
+        verifiedTotal, verifiedPass, verifiedTamper,
+        canaryTraces, canaryMatched,
+        outboundClicks,
+        countries, isps, browsers, osMap, actions,
+        hourlyBuckets,
+        ipDossiersList: Object.values(ipDossiers).sort((a, b) => b.events.length - a.events.length)
+      };
+    }
+
+    function escapeHtml(str) {
+      return String(str == null ? "" : str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function formatActionPill(action) {
+      const a = String(action || "");
+      if (a.includes("seal") || a.includes("demo")) return `<span class="pill ok">🔱 ${escapeHtml(a)}</span>`;
+      if (a.includes("tamper")) return `<span class="pill err">⚡ ${escapeHtml(a)}</span>`;
+      if (a.includes("trace")) return `<span class="pill info">🕵️ ${escapeHtml(a)}</span>`;
+      if (a.includes("verify")) return `<span class="pill ok">✓ ${escapeHtml(a)}</span>`;
+      return `<span class="pill">${escapeHtml(a)}</span>`;
+    }
+
+    function formatDetailsSummary(ev) {
+      const d = ev.details || {};
+      const a = ev.action || "";
+      if (a === "page_view") return `Відкрито <strong>${escapeHtml(ev.page)}</strong> (Ref: <code>${escapeHtml(ev.referrer || "direct")}</code>)`;
+      if (a === "seal_pdf_browser") {
+        return `Запечатано PDF · режим: <strong>${escapeHtml(d.seal_mode)}</strong> · отримувач: <code>${escapeHtml(d.recipient_id)}</code> · Canary D5.ay=${escapeHtml(d.canary_word)}`;
+      }
+      if (a === "seal_svg_browser") {
+        return `Запечатано SVG · отримувач: <code>${escapeHtml(d.recipient_id)}</code> · Canary D5.ay=${escapeHtml(d.canary_word)}`;
+      }
+      if (a === "dealroom_1click_demo") {
+        return `Запущено 1-Click Deal-Room симуляцію (режим: <strong>${escapeHtml(d.mode)}</strong>)`;
+      }
+      if (a === "verify_file_drop") {
+        return `Перевірено файл <strong>${escapeHtml(d.file_name)}</strong> (${((d.file_size_bytes || 0) / 1024).toFixed(1)} KB) → <code>${escapeHtml(d.verdict)}</code>`;
+      }
+      if (a === "verify_preset_load") {
+        return `Завантажено еталон: <code>${escapeHtml(d.artifact_url)}</code>`;
+      }
+      if (a === "canary_trace_run") {
+        return `Трасування підозрюваних [<code>${escapeHtml(d.suspects)}</code>] → ${d.matched ? "✅ ЗБІГ" : "⚠️ Не знайдено"}`;
+      }
+      if (a === "simulate_tamper_attack") {
+        return `Симуляція атаки: <code>${escapeHtml(d.state)}</code>`;
+      }
+      if (a === "outbound_link_click") {
+        return `Клік по посиланню: <strong>${escapeHtml(d.label || d.href)}</strong> (<code>${escapeHtml(d.href)}</code>)`;
+      }
+      if (a === "session_exit") {
+        return `Завершення сесії: тривалість <strong>${escapeHtml(d.duration_sec)} с</strong>, скрол <strong>${escapeHtml(d.max_scroll_pct)}%</strong>`;
+      }
+      return `<code>${escapeHtml(JSON.stringify(d))}</code>`;
+    }
+
+    function renderBarList(objMap, total) {
+      const entries = Object.entries(objMap).sort((a, b) => b[1] - a[1]).slice(0, 7);
+      if (entries.length === 0) {
+        return `<div style="color:var(--text-muted);font-size:0.82rem;">Немає даних</div>`;
+      }
+      const denom = Math.max(1, total || entries[0][1]);
+      return entries.map(([k, count]) => {
+        const pct = Math.min(100, Math.round((count / denom) * 100));
+        return `
+          <div class="bar-row">
+            <div class="bar-top">
+              <span>${escapeHtml(k)}</span>
+              <span style="color:var(--gold-bright);">${count} (${pct}%)</span>
+            </div>
+            <div class="bar-track"><div class="bar-fill" style="width:${pct}%;"></div></div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    function renderDashboard() {
+      const stats = computeStatisticsFromEvents(allEventsCache);
+
+      // Update KPIs
+      document.getElementById("kpiTotalEvents").textContent = stats.totalEvents;
+      document.getElementById("kpiEventsSub").textContent = `${stats.uniqueSessionsCount} активних сесій`;
+      document.getElementById("kpiUniqueIps").textContent = stats.uniqueIpsCount;
+      document.getElementById("kpiIpsSub").textContent = `${Object.keys(stats.countries).length} країн · ${Object.keys(stats.isps).length} ISP`;
+      document.getElementById("kpiUniqueVisitors").textContent = stats.uniqueVisitorsCount;
+      document.getElementById("kpiPageViews").textContent = stats.pageViews;
+      document.getElementById("kpiPageViewsSub").textContent = `index.html: ${stats.viewsIndex} · ua.html: ${stats.viewsUa}`;
+      document.getElementById("kpiSealedCount").textContent = stats.sealedTotal;
+      document.getElementById("kpiSealedSub").textContent = `Stealth 0%: ${stats.sealedStealth} · Visible: ${stats.sealedVisible}`;
+      document.getElementById("kpiVerifiedCount").textContent = stats.verifiedTotal;
+      document.getElementById("kpiVerifiedSub").textContent = `PASS: ${stats.verifiedPass} · TAMPER: ${stats.verifiedTamper}`;
+      document.getElementById("kpiCanaryTraces").textContent = stats.canaryTraces;
+      document.getElementById("kpiCanarySub").textContent = `Виявлено інсайдерів: ${stats.canaryMatched}`;
+      document.getElementById("kpiOutboundClicks").textContent = stats.outboundClicks;
+
+      // Timeline chart
+      const timelineEl = document.getElementById("timelineChart");
+      const bucketKeys = Object.keys(stats.hourlyBuckets).sort().slice(-12);
+      if (bucketKeys.length === 0) {
+        timelineEl.innerHTML = `<div style="color:var(--text-muted);font-size:0.82rem;margin:auto;">Ще немає подій — відкрийте головну сторінку або натисніть «🧪 Згенерувати демо-трафік»</div>`;
+      } else {
+        const maxBucket = Math.max(1, ...bucketKeys.map(k => stats.hourlyBuckets[k]));
+        timelineEl.innerHTML = bucketKeys.map(k => {
+          const val = stats.hourlyBuckets[k];
+          const hPct = Math.max(6, Math.round((val / maxBucket) * 115));
+          const shortLbl = k.slice(11, 13) ? `${k.slice(5, 10)} ${k.slice(11, 13)}:00` : k;
+          return `
+            <div class="t-col" title="${escapeHtml(k)}: ${val} подій">
+              <div style="font-family:var(--font-mono);font-size:0.68rem;color:var(--gold-bright);margin-bottom:2px;">${val}</div>
+              <div class="t-bar" style="height:${hPct}px;"></div>
+              <div class="t-lbl">${escapeHtml(shortLbl)}</div>
+            </div>
+          `;
+        }).join("");
+      }
+
+      // Actions breakdown
+      document.getElementById("actionsBreakdownList").innerHTML = renderBarList(stats.actions, stats.totalEvents);
+
+      // Geo & system breakdown
+      document.getElementById("geoAndSystemBreakdown").innerHTML = `
+        <div style="font-size:0.75rem;color:var(--gold-bright);font-weight:700;margin-bottom:5px;">Країни відвідувачів:</div>
+        ${renderBarList(stats.countries, stats.totalEvents)}
+        <div style="font-size:0.75rem;color:var(--gold-bright);font-weight:700;margin:10px 0 5px;">ОС та Браузери:</div>
+        ${renderBarList(stats.osMap, stats.totalEvents)}
+      `;
+
+      // Site Popularity, Retention & Conversion Funnel
+      const nowMs = Date.now();
+      const dayMs = 86400000;
+      const dauIps = new Set(), wauIps = new Set(), mauIps = new Set();
+      const referrersMap = {};
+      for (const ev of allEventsCache) {
+        const ep = ev.epoch_ms || nowMs;
+        const ip = ev.ip || "local-client";
+        if (nowMs - ep <= dayMs) dauIps.add(ip);
+        if (nowMs - ep <= 7 * dayMs) wauIps.add(ip);
+        if (nowMs - ep <= 30 * dayMs) mauIps.add(ip);
+        const ref = ev.referrer || "direct";
+        referrersMap[ref] = (referrersMap[ref] || 0) + 1;
+      }
+      let returningIps = 0, engagedStudioIps = 0, deepForensicIps = 0;
+      for (const dos of stats.ipDossiersList) {
+        if (dos.sessions.size > 1 || dos.events.length >= 3) returningIps++;
+        const acts = Object.keys(dos.action_counts);
+        if (acts.some(a => ["seal_pdf_browser", "seal_svg_browser", "dealroom_1click_demo", "verify_file_drop", "verify_preset_load"].includes(a))) {
+          engagedStudioIps++;
+        }
+        if (acts.some(a => ["canary_trace_run", "simulate_tamper_attack", "download_sealed_copy"].includes(a))) {
+          deepForensicIps++;
+        }
+      }
+      const totalIps = stats.uniqueIpsCount;
+      const retentionPct = totalIps > 0 ? Math.round((returningIps / totalIps) * 100) : 0;
+      const popScore = Math.min(100, Math.round(Math.min(40, totalIps * 5) + Math.min(30, stats.totalEvents * 1.5) + Math.min(30, retentionPct * 0.3)));
+      const popBadge = document.getElementById("popularityScoreBadge");
+      if (popBadge) popBadge.textContent = `Індекс популярності: ${popScore} / 100`;
+
+      const reachBox = document.getElementById("popularityReachBox");
+      if (reachBox) {
+        reachBox.innerHTML = renderBarList({
+          "DAU (Унікальні IP за 24 год)": dauIps.size,
+          "WAU (Унікальні IP за 7 днів)": wauIps.size,
+          "MAU (Унікальні IP за 30 днів)": mauIps.size,
+          "Постійні відвідувачі (Returning IP)": returningIps,
+          "Нові відвідувачі (New IP)": Math.max(0, totalIps - returningIps)
+        }, Math.max(1, totalIps));
+      }
+      const funnelBox = document.getElementById("popularityFunnelBox");
+      if (funnelBox) {
+        funnelBox.innerHTML = renderBarList({
+          "1. Зайшли на сайт (Унікальні IP)": totalIps,
+          "2. Використали Sealer / Verifier": engagedStudioIps,
+          "3. Canary Trace / Завантаження": deepForensicIps
+        }, Math.max(1, totalIps));
+      }
+      const refBox = document.getElementById("popularityReferrersBox");
+      if (refBox) {
+        refBox.innerHTML = renderBarList(referrersMap, stats.totalEvents);
+      }
+
+      // Per-IP Dossiers Table
+      document.getElementById("ipTableCountBadge").textContent = `${stats.ipDossiersList.length} IP`;
+      const ipTbody = document.getElementById("ipDossiersTableBody");
+      ipTbody.innerHTML = stats.ipDossiersList.map(dos => {
+        const actionSummary = Object.entries(dos.action_counts)
+          .map(([act, cnt]) => `${formatActionPill(act)} ×${cnt}`)
+          .join(" ");
+        return `
+          <tr class="clickable-row" onclick="openIpModal('${escapeHtml(dos.ip)}')">
+            <td style="font-family:var(--font-mono);font-weight:700;color:var(--gold-bright);">${escapeHtml(dos.ip)}</td>
+            <td><strong>${escapeHtml(dos.country)}</strong> (${escapeHtml(dos.country_code)})<br/><span style="color:var(--text-muted);">${escapeHtml(dos.city)}</span></td>
+            <td>${escapeHtml(dos.isp)}<br/><code style="font-size:0.72rem;color:var(--text-muted);">${escapeHtml(dos.asn)}</code></td>
+            <td>${escapeHtml(dos.os)} · ${escapeHtml(dos.browser)}<br/><span style="color:var(--text-muted);font-size:0.74rem;">${escapeHtml(dos.device_type)}</span></td>
+            <td style="font-family:var(--font-mono);font-size:0.74rem;">${escapeHtml(String(dos.first_seen || "").replace("T", " ").slice(0, 19))}</td>
+            <td style="font-family:var(--font-mono);font-size:0.74rem;">${escapeHtml(String(dos.last_seen || "").replace("T", " ").slice(0, 19))}</td>
+            <td style="font-family:var(--font-mono);"><strong>${dos.events.length}</strong> подій<br/><span style="color:var(--text-muted);">${dos.sessions.size} сесій</span></td>
+            <td>${actionSummary}</td>
+          </tr>
+        `;
+      }).join("");
+
+      // Filtered Event Stream Table
+      const fIp = (document.getElementById("filterIp").value || "").trim().toLowerCase();
+      const fAct = (document.getElementById("filterAction").value || "").trim();
+      const fPage = (document.getElementById("filterPage").value || "").trim();
+      const fSearch = (document.getElementById("filterSearch").value || "").trim().toLowerCase();
+
+      const filtered = allEventsCache.filter(ev => {
+        if (fIp && !String(ev.ip || "").toLowerCase().includes(fIp)) return false;
+        if (fAct && ev.action !== fAct) return false;
+        if (fPage && ev.page !== fPage) return false;
+        if (fSearch) {
+          const hay = `${ev.ip} ${ev.country} ${ev.city} ${ev.isp} ${ev.action} ${JSON.stringify(ev.details || {})}`.toLowerCase();
+          if (!hay.includes(fSearch)) return false;
+        }
+        return true;
+      });
+
+      document.getElementById("eventLogCountBadge").textContent = `${filtered.length} записів`;
+      const evTbody = document.getElementById("eventStreamTableBody");
+      evTbody.innerHTML = filtered.slice(0, 300).map(ev => `
+        <tr>
+          <td style="font-family:var(--font-mono);font-size:0.74rem;white-space:nowrap;">${escapeHtml(String(ev.timestamp || "").replace("T", " ").slice(0, 19))}</td>
+          <td style="font-family:var(--font-mono);font-weight:700;color:var(--gold-bright);cursor:pointer;" onclick="openIpModal('${escapeHtml(ev.ip)}')">${escapeHtml(ev.ip)}</td>
+          <td>${escapeHtml(ev.country)} (${escapeHtml(ev.city)})<br/><span style="font-size:0.72rem;color:var(--text-muted);">${escapeHtml(ev.isp)}</span></td>
+          <td>${escapeHtml(ev.os)}<br/><span style="font-size:0.72rem;color:var(--text-muted);">${escapeHtml(ev.browser)} (${escapeHtml(ev.screen || "")})</span></td>
+          <td><code>${escapeHtml(ev.page)}</code></td>
+          <td>${formatActionPill(ev.action)}</td>
+          <td>${formatDetailsSummary(ev)}</td>
+        </tr>
+      `).join("");
+    }
+
+    function openIpModal(ipAddr) {
+      const events = allEventsCache
+        .filter(ev => ev.ip === ipAddr)
+        .sort((a, b) => (a.epoch_ms || 0) - (b.epoch_ms || 0));
+      if (events.length === 0) return;
+      const last = events[events.length - 1];
+      document.getElementById("ipModalTitle").textContent = `🕵️ Форензичне досьє відвідувача: IP ${ipAddr}`;
+      document.getElementById("ipModalMeta").innerHTML = `
+        <strong>Локація:</strong> ${escapeHtml(last.country)} (${escapeHtml(last.country_code)}), ${escapeHtml(last.city)} ·
+        <strong>Провайдер:</strong> ${escapeHtml(last.isp)} (${escapeHtml(last.asn)}) ·
+        <strong>Пристрій:</strong> ${escapeHtml(last.os)} / ${escapeHtml(last.browser)} (${escapeHtml(last.screen)}) ·
+        <strong>Всього дій:</strong> ${events.length}
+      `;
+      document.getElementById("ipModalEventsBody").innerHTML = events.map((ev, i) => `
+        <tr>
+          <td>${i + 1}</td>
+          <td style="font-family:var(--font-mono);font-size:0.74rem;">${escapeHtml(String(ev.timestamp || "").replace("T", " ").slice(0, 19))}</td>
+          <td><code>${escapeHtml(ev.session_id)}</code></td>
+          <td><code>${escapeHtml(ev.page)}</code></td>
+          <td>${formatActionPill(ev.action)}</td>
+          <td>${formatDetailsSummary(ev)}</td>
+        </tr>
+      `).join("");
+      document.getElementById("ipModalBackdrop").style.display = "flex";
+    }
+
+    function closeIpModal() {
+      document.getElementById("ipModalBackdrop").style.display = "none";
+    }
+
+    // =========================================================================
+    // 3. DEMO TRAFFIC GENERATOR, EXPORT (JSON / CSV), AND CLEAR
+    // =========================================================================
+    function generateDemoVisitorTraffic() {
+      const now = Date.now();
+      const demoProfiles = [
+        {
+          ip: "185.230.124.42", country: "Ukraine", country_code: "UA", city: "Kyiv",
+          isp: "Kyivstar PJSC", asn: "AS15895", os: "Debian Linux", browser: "Chrome 131",
+          device_type: "Desktop", screen: "2560x1440", visitor_id: "vis_ua_kyiv_01", session_id: "ses_kyiv_01",
+          steps: [
+            { offsetSec: -3200, page: "index.html", action: "page_view", details: { page: "index.html", title: "Marma-Crypto v2.3.0" } },
+            { offsetSec: -3150, page: "index.html", action: "seal_pdf_browser", details: { seal_mode: "stealth", signer_name: "GOLAW-M&A-Practice", recipient_id: "Horizon-Fund-A", canary_word: 742, bytes: 48210 } },
+            { offsetSec: -3110, page: "index.html", action: "canary_trace_run", details: { suspects: "Horizon-Fund-A, Alpha-Ventures, Beta-Corp", matched: true, result_summary: "LEAK SOURCE IDENTIFIED: Horizon-Fund-A (D5.ay = 742)" } },
+            { offsetSec: -3050, page: "ua.html", action: "page_view", details: { page: "ua.html", title: "Протокол Марма-Крипто v2.3.0" } }
+          ]
+        },
+        {
+          ip: "140.82.115.91", country: "United States", country_code: "US", city: "Stillwater",
+          isp: "Oklahoma State Research Net", asn: "AS11164", os: "macOS", browser: "Safari 18",
+          device_type: "Desktop", screen: "3024x1964", visitor_id: "vis_us_osu_02", session_id: "ses_osu_02",
+          steps: [
+            { offsetSec: -2400, page: "index.html", action: "page_view", details: { page: "index.html", title: "Marma-Crypto v2.3.0" } },
+            { offsetSec: -2340, page: "index.html", action: "outbound_link_click", details: { href: "research/SRI_YANTRA_MATHEMATICAL_UNIQUENESS_AND_KAK_2024_SYNTHESIS.md", label: "📐 5 Uniqueness Theorems & Kak 2024 Synthesis" } },
+            { offsetSec: -2280, page: "index.html", action: "verify_preset_load", details: { artifact_url: "whitepaper/Marma_Crypto_Whitepaper_EN.pdf" } },
+            { offsetSec: -2210, page: "index.html", action: "outbound_link_click", details: { href: "https://books.apple.com/us/book/sacred-geometry-as-applied-cryptography/id6831332247", label: "🍎 Monograph on Apple Books" } }
+          ]
+        },
+        {
+          ip: "89.187.169.18", country: "United Kingdom", country_code: "GB", city: "London",
+          isp: "BT Institutional Fiber", asn: "AS2856", os: "Windows 10/11", browser: "Edge 131",
+          device_type: "Desktop", screen: "1920x1080", visitor_id: "vis_gb_lon_03", session_id: "ses_lon_03",
+          steps: [
+            { offsetSec: -1800, page: "index.html", action: "page_view", details: { page: "index.html", title: "Marma-Crypto v2.3.0" } },
+            { offsetSec: -1760, page: "index.html", action: "dealroom_1click_demo", details: { mode: "stealth" } },
+            { offsetSec: -1710, page: "index.html", action: "verify_file_drop", details: { file_name: "LCIA_Arbitration_Exhibit_C4.pdf", file_size_bytes: 312840, verdict: "VERIFIED" } },
+            { offsetSec: -1680, page: "index.html", action: "simulate_tamper_attack", details: { state: "ATTACK_ACTIVE (+0.001 on U2)" } }
+          ]
+        },
+        {
+          ip: "138.201.92.14", country: "Germany", country_code: "DE", city: "Frankfurt",
+          isp: "Hetzner Online GmbH", asn: "AS24940", os: "Ubuntu Linux", browser: "Firefox 132",
+          device_type: "Desktop", screen: "1920x1200", visitor_id: "vis_de_fra_04", session_id: "ses_fra_04",
+          steps: [
+            { offsetSec: -900, page: "index.html", action: "page_view", details: { page: "index.html", title: "Marma-Crypto v2.3.0" } },
+            { offsetSec: -850, page: "index.html", action: "seal_svg_browser", details: { signer_name: "EU-VDR-Custodian", recipient_id: "Counsel-Frankfurt", canary_word: 319, bytes: 4620 } },
+            { offsetSec: -810, page: "index.html", action: "download_sealed_copy", details: { copy_index: 0 } }
+          ]
+        }
+      ];
+
+      const existing = (window.MarmaTelemetry && window.MarmaTelemetry.readLocalEvents()) || [];
+      for (const prof of demoProfiles) {
+        for (const st of prof.steps) {
+          const tsMs = now + st.offsetSec * 1000;
+          existing.push({
+            event_id: "ev_demo_" + Math.random().toString(16).slice(2, 12),
+            timestamp: new Date(tsMs).toISOString(),
+            epoch_ms: tsMs,
+            visitor_id: prof.visitor_id,
+            session_id: prof.session_id,
+            ip: prof.ip,
+            country: prof.country,
+            country_code: prof.country_code,
+            city: prof.city,
+            region: "",
+            isp: prof.isp,
+            asn: prof.asn,
+            timezone: "UTC",
+            browser: prof.browser,
+            os: prof.os,
+            device_type: prof.device_type,
+            user_agent: "Mozilla/5.0 Demo",
+            language: "en-US",
+            screen: prof.screen,
+            page: st.page,
+            url: `https://yaroslavbaienko.github.io/marma-crypto-protocol/${st.page}`,
+            referrer: "https://github.com/YaroslavBaienko/marma-crypto-protocol",
+            action: st.action,
+            details: st.details
+          });
+        }
+      }
+      if (window.MarmaTelemetry) {
+        window.MarmaTelemetry.writeLocalEvents(existing);
+      }
+      refreshAllTelemetry();
+    }
+
+    function exportTelemetryJson() {
+      const blob = new Blob([JSON.stringify(allEventsCache, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `marma_telemetry_export_${new Date().toISOString().slice(0, 10)}.json`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 300);
+    }
+
+    function exportTelemetryCsv() {
+      const headers = ["timestamp", "ip", "country", "city", "isp", "asn", "os", "browser", "page", "action", "details_json"];
+      const rows = [headers.join(",")];
+      for (const ev of allEventsCache) {
+        const vals = [
+          ev.timestamp, ev.ip, ev.country, ev.city, ev.isp, ev.asn,
+          ev.os, ev.browser, ev.page, ev.action, JSON.stringify(ev.details || {})
+        ].map(v => `"${String(v == null ? "" : v).replace(/"/g, '""')}"`);
+        rows.push(vals.join(","));
+      }
+      const blob = new Blob([rows.join("\n")], { type: "text/csv;charset=utf-8" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `marma_telemetry_export_${new Date().toISOString().slice(0, 10)}.csv`;
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 300);
+    }
+
+    async function clearAllTelemetry() {
+      if (window.MarmaTelemetry) {
+        window.MarmaTelemetry.writeLocalEvents([]);
+      }
+      const apiBase = (window.MarmaTelemetry && window.MarmaTelemetry.getConfiguredApiBaseUrl()) || "";
+      if (apiBase && adminDerivedKeyHex && typeof fetch === "function") {
+        try {
+          await fetch(`${apiBase}/v2.3/admin/clear`, {
+            method: "POST",
+            headers: { "X-Marma-Admin-Key": adminDerivedKeyHex }
+          });
+        } catch (_) {}
+      }
+      await refreshAllTelemetry();
+    }
+
+    // Listen to live BroadcastChannel events while Admin Panel is open
+    if (typeof BroadcastChannel !== "undefined") {
+      try {
+        const ch = new BroadcastChannel("marma_telemetry_live_v23");
+        ch.onmessage = function (msg) {
+          if (msg && msg.data && msg.data.type === "marma_telemetry_event" && adminDerivedKeyHex) {
+            refreshAllTelemetry();
+          }
+        };
+      } catch (_) {}
+    }
+
+    // Restore active admin session if already logged in during this browser session
+    (function initAdminSession() {
+      try {
+        const saved = sessionStorage.getItem(SESSION_AUTH_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (parsed && parsed.dkHex && parsed.email) {
+            adminDerivedKeyHex = parsed.dkHex;
+            unlockAdminDashboard(parsed.email);
+            refreshAllTelemetry();
+          }
+        }
+      } catch (_) {}
+    })();
+  </script>
+</body>
+</html>

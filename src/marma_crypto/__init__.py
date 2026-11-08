@@ -57,6 +57,18 @@ from .kak_synthesis_v23 import (
     verify_sri_yantra_marma_concurrency_v23,
     yamatarajabhanasalagam_debruijn_v23,
 )
+from .kan_kak_bridge_v23 import (
+    KAN_KAK_MODEL_ID_OUTCOME,
+    KAN_KAK_MODEL_ID_RISK,
+    RISK_FEATURE_SPEC_7,
+    check_marma54_feature_consistency_v23,
+    evaluate_rational_ppt_basis_v23,
+    predict_outcome_kak_v23,
+    score_risk_kak_v23,
+    simulate_evl_kak_dsequence_qmc_v23,
+    stamp_kan_audit_memo_v23,
+    verify_kan_audit_memo_v23,
+)
 from .optical_ecc import (
     compute_doc_tag6,
     decode_optical_codeword32_soft,
@@ -138,4 +150,14 @@ __all__ = [
     "verify_augmented_dual_layer_v23",
     "verify_sri_yantra_marma_concurrency_v23",
     "yamatarajabhanasalagam_debruijn_v23",
+    "KAN_KAK_MODEL_ID_RISK",
+    "KAN_KAK_MODEL_ID_OUTCOME",
+    "RISK_FEATURE_SPEC_7",
+    "evaluate_rational_ppt_basis_v23",
+    "check_marma54_feature_consistency_v23",
+    "score_risk_kak_v23",
+    "predict_outcome_kak_v23",
+    "simulate_evl_kak_dsequence_qmc_v23",
+    "stamp_kan_audit_memo_v23",
+    "verify_kan_audit_memo_v23",
 ]
