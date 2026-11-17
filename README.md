@@ -13,6 +13,7 @@
 [![Elsevier SIGPRO/DSP](https://img.shields.io/badge/📄_Elsevier-SIGPRO_desk--rejected_·_DSP_transfer_withdrawn-9e9e9e.svg)](PUBLICATIONS.md)
 [![IEEE TIFS](https://img.shields.io/badge/📄_IEEE_TIFS-under_review_(T--IFS--29736--2026)-1f6feb.svg)](PUBLICATIONS.md)
 [![Preprint Archive DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23560975.svg)](https://doi.org/10.5281/zenodo.23560975)
+[![CERN Zenodo Traction](https://img.shields.io/badge/📊_CERN_Zenodo-666_views_·_211_downloads_(31.7%25_conversion)-0057b7.svg)](https://zenodo.org/records/23560975)
 [![SWHID](https://img.shields.io/badge/Software_Heritage-swh%3A1%3Asnp%3Adcae02ea-e2231a.svg)](https://archive.softwareheritage.org/swh:1:snp:dcae02ea5d13bb6aa6a72b2624184c961e44c3a1;origin=https://github.com/YaroslavBaienko/marma-crypto-protocol)
 [![License: Dual (Academic & Public Verifier / Commercial Patent License)](https://img.shields.io/badge/License-Dual_(Public_Verifier_%2F_Commercial_Patent_Reserved)-b8860b.svg)](LICENSE)
 [![Whitepaper: CC BY-NC-ND 4.0](https://img.shields.io/badge/Specification-CC_BY--NC--ND_4.0-DCA900.svg)](whitepaper/Marma_Crypto_Whitepaper_EN.pdf)
